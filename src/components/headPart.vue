@@ -29,7 +29,9 @@
   export default {
     name: 'headPart',
     data () {
-
+			return {
+				
+			}
     },
     methods: {
 

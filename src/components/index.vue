@@ -228,10 +228,7 @@
   import '../../static/js/amazeui.min.js'
 
 
-import HelloWorld from "./HelloWorld";
-
 export default {
-  components: {HelloWorld},
   name: 'index',
   data () {
     return {

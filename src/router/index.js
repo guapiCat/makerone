@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import index from '@/components/index'
-import HelloWorld from '@/components/HelloWorld'
 import worksShow from '@/components/worksShow'
 import makerCourse from '@/components/makerCourse'
 import makerCommunity from '@/components/makerCommunity'
@@ -13,7 +12,7 @@ import register from'@/components/register'
 import registerSuccess from'@/components/registerSuccess'
 import lifedetail from'@/components/lifedetail'
 import workshowdetail from'@/components/workshowdetail'
-import communitydetail from'@/components/communitydetail'
+//import communitydetail from'@/components/communitydetail'
 Vue.use(Router)
 global.headNum = 0;
 const Routers = [
@@ -21,11 +20,6 @@ const Routers = [
     path: '/',
     name: 'index',
     component: index
-  },
-  {
-    path: '/user/list',
-    name: 'userList',
-    component: HelloWorld
   },
   {
     path:'/worksShow',
