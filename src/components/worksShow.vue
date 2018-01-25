@@ -33,7 +33,7 @@
         </div>
         <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-5 am-thumbnails" >
           <li>
-            <a href="work_show_detail.html">
+              <router-link to="/workshowdetail">
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
@@ -43,7 +43,7 @@
                 <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
                 <div class="clear"></div>
               </div>
-            </a>
+              </router-link>
           </li>
           <li>
             <a href="work_show_detail.html">
