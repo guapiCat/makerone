@@ -19,6 +19,9 @@ html,
 body {
   min-height: 100%;
 }
+i{
+  font-style: normal;
+}
 /**
  * 1. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
@@ -389,7 +392,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
- 
+
   background: #fff;
   font-family: "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", "FontAwesome", sans-serif;
   font-weight: normal;
@@ -438,7 +441,7 @@ a {
 }
 a:hover,
 a:focus {
- 
+
 }
 a:focus {
   outline: thin dotted;
