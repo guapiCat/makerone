@@ -24,9 +24,13 @@ const Routers = [
     name: 'index',
     component: index
   },
-,
   {
-    path:'/worksShow/list',
+    path: '/user/list',
+    name: 'userList',
+    component: HelloWorld
+  },
+  {
+    path:'/worksShow',
     name:'worksShow',
     component:worksShow
   },
@@ -51,7 +55,7 @@ const Routers = [
    component:materialLibrary
   },{
   path:'/makerLife',
-  name:'makerLife',
+  name:'/makerLife',
   component:makerLife
   },{
   path:'/login',
@@ -70,21 +74,11 @@ const Routers = [
   name:'lifedetail',
   component:lifedetail
   },{
-    path:'/makecommunitydetail/detail',
-    name:'communitydetail',
-    component:communitydetail
+    path:'/workshowdetail',
+    name:'workshowdetail',
+    component:workshowdetail
   },{
-     path:'/makeractivty/joindetail',
-    name:'joindetail',
-    component:jionactivity
-  },{
-    path:'/makercoummunity/applyjoindetail',
-    name:'applyjoindetail',
-    component:applyjoindetail
-  },{
-    path:'/createdetail',
-    name:'creatddetail',
-    component:createdetail
+  path:''
   }
 ]
 
