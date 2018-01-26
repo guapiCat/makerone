@@ -164,7 +164,7 @@
 
 </script>
 
-<style scoped>
+<style >
 .center-active{
   background-color:#f1cd3d;
 }

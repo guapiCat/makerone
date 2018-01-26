@@ -13,8 +13,8 @@
 
 <script>
 
-  import headPart from './components/headPart'
-  import footPart from './components/footPart'
+  import headPart from './components/headandfoot/headPart'
+  import footPart from './components/headandfoot/footPart'
 
 
   import router from './router';

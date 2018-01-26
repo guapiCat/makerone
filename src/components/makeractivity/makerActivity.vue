@@ -84,7 +84,7 @@
 
   .contentDiv_1{
     border-radius: 30px;
-    background: url("../../static/img/img_activity_01.png") 100% no-repeat;
+    background: url("../../../static/img/img_activity_01.png") 100% no-repeat;
     background-size: cover;
     height: 600px;
     padding-left: 0px;
@@ -110,7 +110,7 @@
   }
 
   .inner_content{
-    background: url('../../static/img/login_frame.png') no-repeat;
+    background: url('../../../static/img/login_frame.png') no-repeat;
     background-size: cover;
     height: 400px;
     border-radius: 40px;

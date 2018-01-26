@@ -2,7 +2,7 @@
   <div>
     <div class="workshow" style="width: 1200px;margin: 50px auto; ">
       <div class="center-title" style="margin-bottom: 20px; color: #969696;">
-        <span> <img src="static/img/icon_address.png" alt="" /><i>益谷创客平台-作品展示-<span>防盗书包</span></i></span>
+        <span> <img src="../../../static/img/icon_address.png" alt="" /><i>益谷创客平台-作品展示-<span>防盗书包</span></i></span>
       </div>
       <div class="center-box" style="border: solid 3px #f3f3f3 ; padding: 20px ; background-color: #fbfbfb;">
         <!--titile-->
@@ -15,7 +15,7 @@
             <span class="box-time">时间:</span><i>2016-11-16</i>
           </div>
           <div class="box-right">
-            <img src="static/img/upvote.png" alt="" />
+            <img src="../../../static/img/upvote.png" alt="" />
             <i>0</i>
           </div>
 
@@ -70,7 +70,7 @@
         <div class="all-comment-list">
           <h1 style="margin-left: 15px;">作品评论</h1>
           <div class="comment-list-detail">
-            <img src="static/img/img_bitmap.png" />
+            <img src="../../../static/img/img_bitmap.png" />
             <div class="comment-conten">
               <span>标仔</span>
               <p>厉害厉害</p>
@@ -81,7 +81,7 @@
             </div>
           </div>
           <div class="comment-list-detail">
-            <img src="static/img/img_bitmap.png" />
+            <img src="../../../static/img/img_bitmap.png" />
             <div class="comment-conten">
               <span>小娃娃</span>
               <p>好棒好棒</p>
@@ -93,7 +93,7 @@
 
           </div>
           <div class="comment-list-detail">
-            <img src="static/img/img_bitmap.png" />
+            <img src="../../../static/img/img_bitmap.png" />
             <div class="comment-conten">
               <span>小莉</span>
               <p>6666</p>
@@ -114,7 +114,12 @@
 
 <script>
     export default {
-        name: "workshow-detail"
+        name: "workshowdetail",
+        data () {
+          return {
+
+          }
+        }
     }
 </script>
 

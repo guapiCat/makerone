@@ -1,13 +1,13 @@
 <template>
 <div>
-  <div class="am-g" style="background: url('./static/img/img_login shading.png')  center center no-repeat;width:100%;height:966px;position: relative">
+  <div class="am-g" style="background: url('../../../static/img/img_login shading.png')  center center no-repeat;width:100%;height:966px;position: relative">
     <div class="am-u-sm-5" style= "  background-color:rgba(255,255,255,0.5);position: absolute;top: 15%;left:28%;padding-top: 30px;padding-bottom: 60px">
       <div class="am-u-sm-5 am-u-sm-offset-2" style="padding-top: 140px;">
         <span style="font-size: 50px; ">登录</span>
         <span style="font-size: 30px">LANDED</span>
       </div>
       <div class="am-u-sm-5" style="padding-left: 40px">
-        <img src="static/img/img_login man_2.png" />
+        <img src="../../../static/img/img_login man_2.png" />
       </div>
       <form class="am-form">
         <div class="am-form-group am-u-sm-10 am-u-sm-centered">
@@ -25,7 +25,7 @@
         </div>
         <div class="am-form-group am-u-sm-10 am-u-sm-centered">
           <div class="am-u-sm-11 am-u-sm-centered">
-            <a href="" class="table_button am-btn am-btn-default am-radius" name="login" id="nextstep" style="margin-right: 60px;"><span style="font-size: 20px;">登录</span></a>
+            <a  class="table_button am-btn am-btn-default am-radius" name="login" id="nextstep" style="margin-right: 60px;"><span style="font-size: 20px;">登录</span></a>
            <router-link to="/register"class="table_button am-btn am-btn-default am-radius" name="register" id="cancel"><span style="font-size: 20px;">我要注册</span></router-link>
 
           </div>
@@ -40,7 +40,7 @@
 <script>
     export default {
         name: "login",
-    mounted:function () {
+      mounted:function () {
       $(function(){
         $(".layout-footer").css("margin-top","0")
       })

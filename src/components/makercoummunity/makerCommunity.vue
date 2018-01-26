@@ -40,7 +40,7 @@
                 </div>
               </div>
               <div style="margin-top: 1%;padding-bottom: 2%;margin-left: 15%;">
-                <a class="am-btn am-btn-primary" style="border-radius: 7px;margin-right: 50%;">查看社团详情</a>
+                <router-link to="/makecommunitydetail/detail" class="am-btn am-btn-primary"style="border-radius: 7px;margin-right: 50%;" >查看社团详情</router-link>
                 <a class="am-btn am-btn-primary" style="border-radius: 7px;">申请加入</a>
               </div>
             </div>

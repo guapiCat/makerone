@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="am-g" style="background: url('../../static/img/img_login shading.png')  center center no-repeat;width:100%;height:966px;position: relative">
+  <div class="am-g" style="background: url('../../../static/img/img_login shading.png')  center center no-repeat;width:100%;height:966px;position: relative">
     <div class="am-u-sm-5" style= "  background-color:rgba(255,255,255,0.5);position: absolute;top: 15%;left:28%;padding-top: 30px;padding-bottom: 50px">
       <table class="login_table">
         <tr>
@@ -61,7 +61,7 @@
         <tr style="margin-top:40px;">
           <td>
           <router-link to="/registerSuccess" class="table_button am-btn am-btn-default am-radius" name="nextstep" id="nextstep" style=";margin-right: 20px"><span style="font-size: 20px;">下一步</span></router-link>
-            <a href="" class="table_button am-btn am-btn-default am-radius" name="cancel" id="cancel"><span style="font-size: 20px;">返回</span></a>
+            <a  class="table_button am-btn am-btn-default am-radius" name="cancel" id="cancel"><span style="font-size: 20px;">返回</span></a>
           </td>
         </tr>
       </table>

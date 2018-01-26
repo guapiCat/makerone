@@ -2,9 +2,9 @@
   <div>
     <div class="workshow" style="width: 1200px;margin: 50px auto;">
       <div class="center-title" style="margin-bottom: 20px; color: #969696;">
-        <span> <img src="static/img/icon_address.png" alt="" /><i>益谷创客平台-作品展示</i></span>
+        <span> <img src="../../../static/img/icon_address.png" alt="" /><i>益谷创客平台-作品展示</i></span>
         <div class="classify">
-          <i> <img src="static/img/icon_classify.png"/><span>分类</span></i>
+          <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
         </div>
         <div class="classifylist">
           <ul style="overflow: hidden;margin-top: 25px;">
@@ -28,25 +28,38 @@
             <span>浏览量</span>&nbsp;&nbsp;
           </div>
           <div class="center-right" >
-            <butten type="button" class="am-btn am-btn-primary am-round" style="margin-bottom: 15px;">提交作品</butten>
+            <button type="button" class="am-btn am-btn-primary am-round" style="margin-bottom: 15px;">提交作品</button>
           </div>
         </div>
         <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-5 am-thumbnails" >
           <li>
-              <router-link to="/workshowdetail">
+              <router-link to="../../../workshow/workshowdetail" >
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                <img class="q_head" src="static/img/img_head.png" />
+                <img class="q_head" src="../../../static/img/img_head.png" />
                 <a class="q_works_user">小王</a>
-                <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
+                <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
+                <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
                 <div class="clear"></div>
               </div>
               </router-link>
           </li>
           <li>
-            <a href="work_show_detail.html">
+            <a>
+              <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
+              <p class="q_coverName">创客作品</p>
+              <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                <img class="q_head" src="../../../static/img/img_head.png" />
+                <a class="q_works_user">小王</a>
+                <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
+                <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
+                <div class="clear"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a>
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
@@ -59,7 +72,7 @@
             </a>
           </li>
           <li>
-            <a href="work_show_detail.html">
+            <a>
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
@@ -72,20 +85,7 @@
             </a>
           </li>
           <li>
-            <a href="work_show_detail.html">
-              <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
-              <p class="q_coverName">创客作品</p>
-              <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                <img class="q_head" src="static/img/img_head.png" />
-                <a class="q_works_user">小王</a>
-                <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
-                <div class="clear"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="work_show_detail.html">
+            <a >
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
@@ -99,7 +99,7 @@
           </li>
           <li>
 
-            <a href="work_show_detail.html">
+            <a>
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
@@ -112,118 +112,118 @@
             </a>
           </li>
           <li>
-            <a href="work_show_detail.html">
+            <a >
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                 <img class="q_head" src="static/img/img_head.png" />
                 <a class="q_works_user">小王</a>
                 <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
+                <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
                 <div class="clear"></div>
               </div>
             </a>
           </li>
           <li>
-            <a href="work_show_detail.html">
+            <a>
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                <img class="q_head" src="static/img/img_head.png" />
+                <img class="q_head" src="../../../static/img/img_head.png" />
                 <a class="q_works_user">小王</a>
-                <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
+                <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
+                <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
                 <div class="clear"></div>
               </div>
             </a>
           </li>
           <li>
-            <a href="work_show_detail.html">
+            <a >
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                <img class="q_head" src="static/img/img_head.png" />
+                <img class="q_head" src="../../../static/img/img_head.png" />
                 <a class="q_works_user">小王</a>
-                <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
+                <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
+                <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
                 <div class="clear"></div>
               </div>
             </a>
           </li>
           <li>
-            <a href="work_show_detail.html">
+            <a >
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                <img class="q_head" src="static/img/img_head.png" />
+                <img class="q_head" src="../../../static/img/img_head.png" />
                 <a class="q_works_user">小王</a>
-                <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
+                <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
+                <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
                 <div class="clear"></div>
               </div>
             </a>
           </li>
           <li>
-            <a href="work_show_detail.html">
+            <a >
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                <img class="q_head" src="static/img/img_head.png" />
+                <img class="q_head" src="../../../static/img/img_head.png" />
                 <a class="q_works_user">小王</a>
-                <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
+                <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
+                <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
                 <div class="clear"></div>
               </div>
             </a>
           </li>
           <li>
-            <a href="work_show_detail.html">
+            <a >
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                <img class="q_head" src="static/img/img_head.png" />
+                <img class="q_head" src="../../../static/img/img_head.png" />
                 <a class="q_works_user">小王</a>
-                <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
+                <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
+                <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
                 <div class="clear"></div>
               </div>
             </a>
           </li>
           <li>
-            <a href="work_show_detail.html">
+            <a >
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                <img class="q_head" src="static/img/img_head.png" />
+                <img class="q_head" src="../../../static/img/img_head.png" />
                 <a class="q_works_user">小王</a>
-                <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
+                <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
+                <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
                 <div class="clear"></div>
               </div>
             </a>
           </li>
           <li>
-            <a href="work_show_detail.html">
+            <a >
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                <img class="q_head" src="static/img/img_head.png" />
+                <img class="q_head" src="../../../static/img/img_head.png" />
                 <a class="q_works_user">小王</a>
-                <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
+                <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
+                <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
                 <div class="clear"></div>
               </div>
             </a>
           </li>
           <li>
-            <a href="work_show_detail.html">
+            <a >
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                <img class="q_head" src="static/img/img_head.png" />
+                <img class="q_head" src="../../../static/img/img_head.png" />
                 <a class="q_works_user">小王</a>
-                <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
+                <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
+                <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
                 <div class="clear"></div>
               </div>
             </a>

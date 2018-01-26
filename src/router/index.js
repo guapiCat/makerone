@@ -1,19 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/components/index'
-import HelloWorld from '@/components/HelloWorld'
-import worksShow from '@/components/worksShow'
-import makerCourse from '@/components/makerCourse'
-import makerCommunity from '@/components/makerCommunity'
-import makerActivity from '@/components/makerActivity'
+import index from '@/components/index/index'
+import worksShow from '@/components/workshow/worksShow'
+import makerCourse from '@/components/makercourse/makerCourse'
+import makerCommunity from '@/components/makercoummunity/makerCommunity'
+import makerActivity from '@/components/makeractivity/makerActivity'
+import applyjoindetail from '@/components/makercoummunity/applyjoindetail'
+import jionactivity from '@/components/makeractivity/joindetail'
 import materialLibrary from'@/components/materialLibrary'
-import makerLife from'@/components/makerLife'
-import login from'@/components/login'
-import register from'@/components/register'
-import registerSuccess from'@/components/registerSuccess'
-import lifedetail from'@/components/lifedetail'
-import workshowdetail from'@/components/workshowdetail'
-import communitydetail from'@/components/communitydetail'
+import makerLife from'@/components/makerlife/makerLife'
+import login from'@/components/login/login'
+import register from'@/components/login/register'
+import registerSuccess from'@/components/login/registerSuccess'
+import lifedetail from'@/components/makerlife/lifedetail'
+import workshowdetail from'@/components/workshow/workshowdetail'
+import communitydetail from'@/components/makercoummunity/communitydetail'
+import createdetail from '@/components/makercoummunity/createdetail'
 Vue.use(Router)
 global.headNum = 0;
 const Routers = [
@@ -22,13 +24,9 @@ const Routers = [
     name: 'index',
     component: index
   },
+,
   {
-    path: '/user/list',
-    name: 'userList',
-    component: HelloWorld
-  },
-  {
-    path:'/worksShow',
+    path:'/worksShow/list',
     name:'worksShow',
     component:worksShow
   },
@@ -53,7 +51,7 @@ const Routers = [
    component:materialLibrary
   },{
   path:'/makerLife',
-  name:'/makerLife',
+  name:'makerLife',
   component:makerLife
   },{
   path:'/login',
@@ -72,11 +70,21 @@ const Routers = [
   name:'lifedetail',
   component:lifedetail
   },{
-    path:'/workshowdetail',
-    name:'workshowdetail',
-    component:workshowdetail
+    path:'/makecommunitydetail/detail',
+    name:'communitydetail',
+    component:communitydetail
   },{
-  path:''
+     path:'/makeractivty/joindetail',
+    name:'joindetail',
+    component:jionactivity
+  },{
+    path:'/makercoummunity/applyjoindetail',
+    name:'applyjoindetail',
+    component:applyjoindetail
+  },{
+    path:'/createdetail',
+    name:'creatddetail',
+    component:createdetail
   }
 ]
 

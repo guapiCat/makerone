@@ -3,6 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import '../static/css/amazeui.css'
+import '../static/css/common.min.css'
+
 
 Vue.config.productionTip = false
 
