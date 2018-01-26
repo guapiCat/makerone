@@ -34,35 +34,27 @@
     </div>
   </div>
 </div>
-
 </template>
-
 <script>
-  import {AXIOS} from '../http-common'
+  import {AXIOS} from '../../http-common'
   export default {
     name: "login",
     methods: {
       login() {
-        var name = $("#phone_studentId").val();
-        var password = $("#password").val();
-        AXIOS.post('user/login', {
-          params: {
-            username: name,
-            password: password
-          }
-        })
+        var params = new URLSearchParams();
+        params.append("username", $("#phone_studentId").val());
+        params.append("password",$("#password").val());
+        AXIOS.post('user/login', params)
           .then(response => {
+
             // JSON responses are automatically parsed.
-            var result = response.data.result
-            if(result == true){
-              sessionStorage.setItem("authKey", response.data.authKey);
+            var jsonResult = eval(response.data);
+              sessionStorage.setItem("TID", jsonResult["token"]);
               alert("登录成功");
-            }else {
-              alert("登录失败");
-            }
-            location.href = "/";
+            // location.href = "/";
           })
           .catch(e => {
+            alert("登录失败");
             this.errors.push(e)
           })
       }
