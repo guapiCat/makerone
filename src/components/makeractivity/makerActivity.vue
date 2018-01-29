@@ -2,23 +2,23 @@
 <div>
   <div class="bg">
     <div class="am-g head_img">
-      <img src="static/img/banner_activity.png">
+      <img src="../../../static/img/banner_activity.png">
     </div>
 
     <div class="am-u-sm-10 am-u-sm-centered arrow_img">
-      <img src="static/img/img_arrow.png">
+      <img src="../../../static/img/img_arrow.png">
     </div>
 
     <div class="am-u-sm-10 am-u-sm-centered titleDiv">
       <h1 class="title">创客活动</h1>
-      <img src="static/img/img_title%20line.png">
+      <img src="../../../static/img/img_title line.png">
     </div>
 
 
     <div class="am-g am-u-sm-8 am-u-sm-centered contentDiv_1">
 
       <div class="am-u-sm-1 left_decoration">
-        <img src="static/img/img_decration_01.png"/>
+        <img src="../../../static/img/img_decration_01.png"/>
       </div>
 
       <div class="am-u-sm-9 middle_content_1">
@@ -29,14 +29,14 @@
       </div>
 
       <div class="am-u-sm-1 right_decoration">
-        <img src="static/img/img_decration_02.png"/>
+        <img src="../../../static/img/img_decration_02.png"/>
       </div>
     </div>
 
     <div class="am-g am-u-sm-8 am-u-sm-centered contentDiv_1">
 
       <div class="am-u-sm-1 left_decoration">
-        <img src="static/img/img_decration_01.png"/>
+        <img src="../../../static/img/img_decration_01.png"/>
       </div>
 
       <div class="am-u-sm-9 middle_content_1">
@@ -47,7 +47,7 @@
       </div>
 
       <div class="am-u-sm-1 right_decoration">
-        <img src="static/img/img_decration_02.png"/>
+        <img src="../../../static/img/img_decration_02.png"/>
       </div>
     </div>
 

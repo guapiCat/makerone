@@ -2,20 +2,20 @@
 <div>
   <div class="workshow" style="width: 1200px;margin: 50px auto;">
     <div class="center-title" style="margin-bottom: 20px; color: #969696;">
-      <span> <img src="static/img/icon_address.png" alt="" /><i>益谷创客平台-创客课程</i></span>
+      <span> <img src="../../../static/img/icon_address.png" alt="" /><i>益谷创客平台-创客课程</i></span>
     </div>
     <div class="center-box" style="border: solid 3px #f3f3f3 ;">
       <div class="centent-title">
         <h1>防盗书包</h1>
         <h5>分类:<span>创客项目</span></h5>
         <div class="centent-title-right">
-          <img src="static/img/icon_upvote.png" style="height: 30px; width: 30px; margin-right:20px ;" />
+          <img src="../../../static/img/icon_upvote.png" style="height: 30px; width: 30px; margin-right:20px ;" />
           <button type="button" class="am-btn am-btn-primary">我要收藏</button>
         </div>
       </div>
       <div class="content-title-hand">
         <div class="content-title-hand-left">
-          <img src="static/img/airplane.png" />
+          <img src="../../../static/img/airplane.png" />
         </div>
 
         <div class="content-title-hand-right" style="float: left; width: 40%;" >
@@ -31,7 +31,7 @@
       <div class="content-box">
         <div class="content-box-left">
           <div class="content-box-left-title">
-            <img src="static/img/book.png" />
+            <img src="../../../static/img/book.png" />
             <span>课程目录</span>
           </div>
           <div class="content-box-body">
@@ -45,23 +45,23 @@
           </div>
           <div class="content-box-right-body">
             <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-2 am-thumbnails">
-              <li><img class="am-thumbnail" src="static/img/last-2.png" />
+              <li><img class="am-thumbnail" src="../../../static/img/last-2.png" />
                 <p class="q_coverName">创客作品</p>
                 <div class="q_worksCn">
-                  <img class="q_head" src="static/img/img_head.png" />
+                  <img class="q_head" src="../../../static/img/img_head.png" />
                   <a class="q_works_user">小王</a>
-                  <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                  <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
+                  <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
+                  <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
                   <div class="clear"></div>
                 </div>
               </li>
-              <li><img class="am-thumbnail" src="static/img/last-2.png" />
+              <li><img class="am-thumbnail" src="../../../static/img/last-2.png" />
                 <p class="q_coverName">创客作品</p>
                 <div class="q_worksCn">
-                  <img class="q_head" src="static/img/img_head.png" />
+                  <img class="q_head" src="../../../static/img/img_head.png" />
                   <a class="q_works_user">小王</a>
-                  <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-                  <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
+                  <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
+                  <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
                   <div class="clear"></div>
                 </div>
               </li>
@@ -70,54 +70,7 @@
           </div>
         </div>
         <div class="clear"></div>
-
-        <div class="comment" style="overflow: hidden;">
-          <span>您的评价:</span>
-        </div>
-
-        <div class="pinglun" style="text-align: center; margin-bottom: 30px;">
-          <textarea class=""  style="margin-top: 20px" cols="143" rows="5" id="doc-ta-1" placeholder="写点评论支持下资源贡献者吧~"></textarea>
-          <button type="button" class="am-btn am-btn-default am-radius" style="margin-left: 89%;margin-top: 2%;">发布评论</button>
-        </div>
-        <div class="all-comment-list">
-          <h1 style="margin-left: 15px;">作品评论</h1>
-          <div class="comment-list-detail">
-            <img src="static/img/img_bitmap.png" />
-            <div class="comment-conten">
-              <span>标仔</span>
-              <p>厉害厉害</p>
-            </div>
-            <div class="comment-right" style="float: right;margin-top: -8%;">
-              <button type="button" class="am-btn am-btn-primary" style="margin-left: 40%;">回复</button>
-              <p >2017-9-27 8:50</p>
-            </div>
-          </div>
-          <div class="comment-list-detail">
-            <img src="static/img/img_bitmap.png" />
-            <div class="comment-conten">
-              <span>小娃娃</span>
-              <p>好棒好棒</p>
-            </div>
-            <div class="comment-right" style="float: right;margin-top: -8%;">
-              <button type="button" class="am-btn am-btn-primary" style="margin-left: 40%;">回复</button>
-              <p>2017-9-27 8:50</p>
-            </div>
-
-          </div>
-          <div class="comment-list-detail">
-            <img src="static/img/img_bitmap.png" />
-            <div class="comment-conten">
-              <span>小萝莉</span>
-              <p>6666</p>
-            </div>
-            <div class="comment-right" style="float: right;margin-top: -8%;">
-              <button type="button" class="am-btn am-btn-primary" style="margin-left: 40%;">回复</button>
-              <p>2017-9-27 8:50</p>
-            </div>
-          </div>
-        </div>
-
-
+            <comment></comment>
       </div>
       <!--分页-->
       <ul class="am-pagination am-pagination-right">
@@ -137,13 +90,12 @@
 </template>
 
 <script>
-
-
   export default {
         name: "maker-course",
     methods:{
 
     }
+
 
     }
 </script>

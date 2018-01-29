@@ -1,7 +1,7 @@
 <template>
     <div>
       <div>
-        <img src="static/img/banner_fodder.png" style="width: 100%;"/>
+        <img src="../../../static/img/banner_fodder.png" style="width: 100%;"/>
       </div>
 
       <div style="background-color: #e5e5e5">
@@ -33,103 +33,103 @@
 
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
         <li>
           <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
-            <img class="am-thumbnail" src="static/img/img_fodder_03.png" style="height: 245px"/>
+            <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
           </div>
           <span style="border-radius: 0;color: #000;border: 0px">hall</span>
         </li>
@@ -185,7 +185,7 @@
 }
 
 .pic_content li{
-  background: url("../../static/img/img_fodder-frame.png") 100% no-repeat;
+  background: url("../../../static/img/img_fodder-frame.png") 100% no-repeat;
   width:267px;
   height: 339px;
   text-align: center;

@@ -33,7 +33,7 @@
         </div>
         <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-5 am-thumbnails" >
           <li>
-              <router-link to="../../../workshow/workshowdetail" >
+              <router-link to="/workShow/detail" >
               <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
               <p class="q_coverName">创客作品</p>
               <div class="q_worksCn" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">

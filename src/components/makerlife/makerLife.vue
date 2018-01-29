@@ -2,7 +2,7 @@
 <div>
   <div class="work-title" style="background: #F3F3F3;">
     <div class="classify">
-      <i> <img src="static/img/icon_classify.png"/><span>分类</span></i>
+      <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
     </div>
     <div class="classifylist">
       <ul>
@@ -13,7 +13,7 @@
       </ul>
     </div>
     <div class="classify" style="margin-top: 20px;">
-      <i> <img src="static/img/icon_sort.png"/><span>排序</span></i>
+      <i> <img src="../../../static/img/icon_sort.png"/><span>排序</span></i>
     </div>
     <div class="classifylist" >
       <ul>
@@ -28,26 +28,17 @@
       <h3>对于创客和老师来讲，如何开展创客教育</h3>
       <div class="work-content"><p id="work-content">目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都</p></div>
       <div class="conter-footer">
-        <span>点赞数：</span><img src="static/img/upvote.png"/><i>12</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span>浏览数：</span><img src="static/img/browse.png"/><i>24</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>作者：<i>螯合剂</i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>点赞数：</span><img src="../../../static/img/upvote.png"/><i>12</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>浏览数：</span><img src="../../../static/img/browse.png"/><i>24</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>作者：<i>螯合剂</i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span>发布时间：<i>2016-02-10</i></span>
       </div>
-      <a class="see-details"><button type="button" class="am-btn am-btn-primary am-radius">查看详情</button></a>
+      <router-link to="/worklife/detail"class="see-details"><button type="button" class="am-btn am-btn-primary am-radius">查看详情</button></router-link>
     </div>
     <div  class="center-box">
       <h3>对于创客和老师来讲，如何开展创客教育</h3>
       <div class="work-content"><p id="">目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都</p></div>
-      <div class="conter-footer"><span>点赞数：</span><img src="static/img/upvote.png"/><i>12</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span>浏览数：</span><img src="static/img/browse.png"/><i>24</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>作者：<i>螯合剂</i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span>发布时间：<i>2016-02-10</i></span>
-      </div>
-      <a class="see-details" ><button type="button" class="am-btn am-btn-primary am-radius">查看详情</button></a>
-    </div>
-    <div  class="center-box">
-      <h3>对于创客和老师来讲，如何开展创客教育</h3>
-      <div class="work-content"><p id="">目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都</p></div>
-      <div class="conter-footer"><span>点赞数：</span><img src="static/img/upvote.png"/><i>12</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span>浏览数：</span><img src="static/img/browse.png"/><i>24</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>作者：<i>螯合剂</i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="conter-footer"><span>点赞数：</span><img src="../../../static/img/upvote.png"/><i>12</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>浏览数：</span><img src="../../../static/img/browse.png"/><i>24</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>作者：<i>螯合剂</i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span>发布时间：<i>2016-02-10</i></span>
       </div>
       <a class="see-details" ><button type="button" class="am-btn am-btn-primary am-radius">查看详情</button></a>
@@ -55,8 +46,17 @@
     <div  class="center-box">
       <h3>对于创客和老师来讲，如何开展创客教育</h3>
       <div class="work-content"><p >目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都</p></div>
-      <div class="conter-footer"><span>点赞数：</span><img src="static/img/upvote.png"/><i>12</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span>浏览数：</span><img src="static/img/browse.png"/><i>24</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>作者：<i>螯合剂</i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <div class="conter-footer"><span>点赞数：</span><img src="../../../static/img/upvote.png"/><i>12</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>浏览数：</span><img src="../../../static/img/browse.png"/><i>24</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>作者：<i>螯合剂</i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>发布时间：<i>2016-02-10</i></span>
+      </div>
+      <a class="see-details" ><button type="button" class="am-btn am-btn-primary am-radius">查看详情</button></a>
+    </div>
+    <div  class="center-box">
+      <h3>对于创客和老师来讲，如何开展创客教育</h3>
+      <div class="work-content"><p >目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都目前对于大多数学校开展创客教育，创客导师都创客导师都创客导师都创客导师都创客导师都</p></div>
+      <div class="conter-footer"><span>点赞数：</span><img src="../../../static/img/upvote.png"/><i>12</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>浏览数：</span><img src="../../../static/img/browse.png"/><i>24</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>作者：<i>螯合剂</i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span>发布时间：<i>2016-02-10</i></span>
       </div>
       <a class="see-details" ><button type="button" class="am-btn am-btn-primary am-radius">查看详情</button></a>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
 export const AXIOS = axios.create({
-  baseURL: `http://127.0.0.1:8567`,
+  baseURL: `http://192.168.1.105:8080`,
   withCredentials:false
 })

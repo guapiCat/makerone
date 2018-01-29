@@ -45,7 +45,12 @@
 
 <script>
     export default {
-        name: "createdetail",
+      name: "createdetail",
+      data () {
+        return {
+
+        }
+      },
       mounted:function () {
         $(function () {
           var $list = $('#fileList');
