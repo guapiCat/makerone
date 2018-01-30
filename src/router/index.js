@@ -21,6 +21,31 @@ import materialdetail from '@/components/material/materialdetail'
 import upmaterial from '@/components/material/upmaterial'
 import allcourse from '@/components/makercourse/allcourse'
 // 评价
+import userHeader from '@/components/personal_space/userPart'
+import CollMaterial from '@/components/personal_space/CollMaterial'
+import CollCousera from '@/components/personal_space/CollCousera'
+import CollWorks from '@/components/personal_space/CollWorks'
+import IwantJoin from '@/components/personal_space/IwantJoin'
+import JoinAct from '@/components/personal_space/JoinAct'
+import MsgHistory from '@/components/personal_space/MsgHistory'
+import MyColl from '@/components/personal_space/MyColl'
+import MyGroup from '@/components/personal_space/MyGroup'
+import MyMsg from '@/components/personal_space/MyMsg'
+import MyClass from '@/components/personal_space/MyClass'
+import MyTeam from '@/components/personal_space/MyTeam'
+import MyWorks from '@/components/personal_space/MyWorks'
+import NewMsg from '@/components/personal_space/NewMsg'
+import PsonAsset from '@/components/personal_space/PsonAsset'
+import PsonData from '@/components/personal_space/PsonData'
+import PsonSet from '@/components/personal_space/PsonSet'
+import PsonSpace from '@/components/personal_space/PsonSpace'
+import SclCourse from '@/components/personal_space/SclCourse'
+import Second from '@/components/personal_space/Second'
+import SubPro from '@/components/personal_space/SubPro'
+import TemCre from '@/components/personal_space/TemCre'
+import TemJoin from '@/components/personal_space/TemJoin'
+import WorkShow from '@/components/personal_space/WorkShow'
+
 
 Vue.use(Router)
 global.headNum = 0;
@@ -114,9 +139,86 @@ const Routers = [
     name:'up',
     component:upmaterial
   },{
-  path:'/makercourse/allcourse',
+    path:'/makercourse/allcourse',
     name:'allcourse',
     component:allcourse
+  }, //个人中心的路由模块
+  {
+    path:"/user/userHeader",
+    component:userHeader
+  },
+  {
+    path:"/user/collMaterial",
+    component:CollMaterial
+  },
+  {
+    path:"/user/collCousera",
+    component:CollCousera
+  },
+  {
+    path:"/user/collWorks",
+    component:CollWorks
+  },
+  {
+    path:"/user/iwantJoin",
+    component:IwantJoin
+  },{
+    path:"/user/joinAct",
+    component:JoinAct
+  },{
+    path:"/user/msgHistory",
+    component:MsgHistory
+  },{
+    path:"/user/myColl",
+    component:MyColl
+  },{
+    path:"/user/myGroup",
+    component:MyGroup
+  },{
+    path:"/user/myMsg",
+    component:MyMsg
+  },{
+    path:"/user/myClass",
+    component:MyClass
+  },{
+    path:"/user/myTeam",
+    component:MyTeam
+  },{
+    path:"/user/myWorks",
+    component:MyWorks
+  },{
+    path:"/user/newMsg",
+    component:NewMsg
+  },{
+    path:"/user/psonAsset",
+    component:PsonAsset
+  },{
+    path:"/user/psonData",
+    component:PsonData
+  },{
+    path:"/user/psonSet",
+    component:PsonSet
+  },{
+    path:"/user/psonSpace",
+    component:PsonSpace
+  },{
+    path:"/user/sclCource",
+    component:SclCourse
+  },{
+    path:"/user/second",
+    component:Second
+  },{
+    path:"/user/subPro",
+    component:SubPro
+  },{
+    path:"/user/temCre",
+    component:TemCre
+  },{
+    path:"/user/temJoin",
+    component:TemJoin
+  },{
+    path:"/user/workShow",
+    component:WorkShow
   }
 ]
 
