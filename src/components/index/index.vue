@@ -2,8 +2,7 @@
   <div>
     <div class="am-slider am-slider-default"data-am-flexslider>
       <ul class="am-slides">
-        <li><img src="static/img/banner_1.png" /></li>
-        <li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>
+        <li v-for="banner in banners"><img :src="fileURL+banner.adImg" /></li>
       </ul>
     </div>
     <!--content-->
@@ -19,90 +18,23 @@
     </div>
     <div class="workshow"style="width: 1200px;margin: 0 auto;">
       <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 am-thumbnails">
-        <li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
-          <p class="q_coverName">创客作品</p>
-          <div class="q_worksCn">
-            <img class="q_head" src="static/img/img_head.png" />
-            <a class="q_works_user">小王</a>
-            <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-            <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
-            <div class="clear"></div>
-          </div>
-        </li>
-        <li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-2.jpg" />
-          <p class="q_coverName">创客作品</p>
-          <div class="q_worksCn">
-            <img class="q_head" src="static/img/img_head.png" />
-            <a class="q_works_user">小王</a>
-            <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-            <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
-            <div class="clear"></div>
-          </div>
-        </li>
-        <li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-3.jpg" />
-          <p class="q_coverName">创客作品</p>
-          <div class="q_worksCn">
-            <img class="q_head" src="static/img/img_head.png" />
-            <a class="q_works_user">小王</a>
-            <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-            <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
-            <div class="clear"></div>
-          </div>
-        </li>
-        <li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-4.jpg" />
-          <p class="q_coverName">创客作品</p>
-          <div class="q_worksCn">
-            <img class="q_head" src="static/img/img_head.png" />
-            <a class="q_works_user">小王</a>
-            <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-            <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
-            <div class="clear"></div>
-          </div>
-        </li>
-        <li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg" />
-          <p class="q_coverName">创客作品</p>
-          <div class="q_worksCn">
-            <img class="q_head" src="static/img/img_head.png" />
-            <a class="q_works_user">小王</a>
-            <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-            <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
-            <div class="clear"></div>
-          </div>
-        </li>
-        <li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-2.jpg" />
-          <p class="q_coverName">创客作品</p>
-          <div class="q_worksCn">
-            <img class="q_head" src="static/img/img_head.png" />
-            <a class="q_works_user">小王</a>
-            <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-            <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
-            <div class="clear"></div>
-          </div>
-        </li>
-        <li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-3.jpg" />
-          <p class="q_coverName">创客作品</p>
-          <div class="q_worksCn">
-            <img class="q_head" src="static/img/img_head.png" />
-            <a class="q_works_user">小王</a>
-            <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-            <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
-            <div class="clear"></div>
-          </div>
-        </li>
-        <li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-4.jpg" />
-          <p class="q_coverName">创客作品</p>
-          <div class="q_worksCn">
-            <img class="q_head" src="static/img/img_head.png" />
-            <a class="q_works_user">小王</a>
-            <a class="q_dianzan"><img src="static/img/upvote.png" /><span>5537</span></a>
-            <a class="q_liulan"><img src="static/img/browse.png" /><span>5537</span></a>
-            <div class="clear"></div>
-          </div>
+        <li v-for="list in ImplementationNotes">
+          <router-link :to="{name: 'workshowdetail', params: {workId: list.makerWorks.id}}">
+            <img class="am-thumbnail" :src="fileURL+list.makerWorks.worksCoverImage" />
+            <p class="q_coverName">{{list.makerWorks.worksName}}</p>
+            <div class="q_worksCn">
+              <img class="q_head" :src="fileURL+list.avatar" />
+              <a class="q_works_user">{{list.realName}}</a>
+              <a class="q_dianzan"><img src="static/img/upvote.png" /><span>{{list.makerWorks.worksThumbsUpNum}}</span></a>
+              <a class="q_liulan"><img src="static/img/browse.png" /><span>{{list.makerWorks.worksScanNum}}</span></a>
+              <div class="clear"></div>
+            </div>
+          </router-link>
         </li>
       </ul>
     </div>
     <div class="index_link_div">
-      <a target="blank" class="p_lookMore" style="float:right" >查看更多</a>
+      <router-link to="/worksShow/list" class="p_lookMore" style="float:right">查看更多</router-link>
     </div>
     <div class="section">
       <div class="container">
@@ -114,26 +46,26 @@
 
       </div>
     </div>
-    <div class="workshow"style="width: 1200px;margin: 0 auto; overflow: hidden;">
-      <div style="width: 780px; height: 500px; float: left;">
-        <div style="width: 780px; height: 300px; background: url(../../../static/img/last_1.png) center center no-repeat;">
+    <div class="workshow"  style="width: 1200px;margin: 0 auto; overflow: hidden;">
+      <div  style="width: 780px; height: 500px; float: left;">
+        <div  class="course1" :style="coursefirst">
           <div class="" style="height: 100%;width: 30%;float: left;background-color: #50ad5f;color: #fff;background-color: rgba(80,172,95,0.7);">
-            <p style="text-align: center; margin-top: 30%; font-size: 23px;">少儿编程课程</p>
-            <p style="text-align: center; font-size: 18px;">促进大脑逻辑思维开发</p>
+            <p  style="text-align: center; margin-top: 30%; font-size: 23px;">{{courses[0].courseName}}</p>
+            <p style="text-align: center; font-size: 18px;">{{courses[0].courseIntro}}</p>
           </div>
         </div>
         <div style="width: 780px; height: 300px; margin-top: 5px;">
           <ul style="float: left; list-style: none; padding-left:0px ;">
-            <li  style="float: left; background: url(../../../static/img/last-2.png);height: 216px; width: 383px; ">
+            <li class="courselist"  :style="coursesecond ">
               <div style="height: 38%;width: 100%;float: left;margin-top: 35%; color:#fff;background-color: rgba(67,116,160,.7);">
-                <p style="text-align: left; font-size: 23px; padding-left: 20px;">少儿编程课程</p>
-                <p style="text-align: left; font-size: 18px; padding-left: 20px;">促进大脑逻辑思维开发</p>
+                <p  style="text-align: left; font-size: 23px; padding-left: 20px;">{{courses[1].courseName}}</p>
+                <p style="text-align: left; font-size: 18px; padding-left: 20px;">{{courses[1].courseIntro}}</p>
               </div>
             </li>
-            <li  style="float: left; background: url(../../../static/img/last-2.png);height: 216px; width: 383px;margin-left: .8rem; ">
+            <li class="courselist1" :style="coursethird">
               <div style="height: 38%;width: 100%;float: left;margin-top: 35%; color:#fff;background-color: rgba(67,116,160,.7);">
-                <p style="text-align: left; font-size: 23px; padding-left: 20px;">少儿编程课程</p>
-                <p style="text-align: left; font-size: 18px; padding-left: 20px;">促进大脑逻辑思维开发</p>
+                <p   style="text-align: left; font-size: 23px; padding-left: 20px;">{{courses[2].courseName}}</p>
+                <p style="text-align: left; font-size: 18px; padding-left: 20px;">{{courses[2].courseIntro}}</p>
               </div>
             </li>
           </ul>
@@ -143,79 +75,45 @@
         </div>
 
       </div>
-      <div class="am-thumbnail" style="height: 520px;width: 409px; float: left; background: url(../../../static/img/last_3.png) center center no-repeat;">
+      <div  class="am-thumbnail course2"   :style="courselast">
         <div class="" style="height: 40%;width: 100%;float: left;background-color: #50ad5f;color: #fff;background-color: rgba(240,200,75,0.7);">
-          <p style="text-align: center; margin-top: 10%; font-size: 23px;">少儿编程课程</p>
-          <p style="text-align: center; font-size: 18px;">促进大脑逻辑思维开发</p>
+          <p style="text-align: center; margin-top: 10%; font-size: 23px;">{{courses[3].courseName}}</p>
+          <p style="text-align: center; font-size: 18px;">{{courses[3].courseIntro}}</p>
         </div>
       </div>
-
     </div>
     <div class="index_link_div">
-      <a target="blank" class="p_lookMore" style="float:right" >查看更多</a>
+      <router-link to="/makercourse/allcourse" class="p_lookMore" style="float:right">查看更多</router-link>
     </div>
 
     <div class="section">
       <div class="container">
         <div class="section--header">
           <img src="../../../static/img/flag.png" alt=""/>
-          <h5 class="sectionleft" >创客项目</h5>
-          <span>PROJECT</span>
+          <h5 class="sectionleft" >创客社团</h5>
+          <span>TEAM</span>
         </div>
         <!--index-container end-->
       </div>
     </div>
     <div class="workshow"style="width: 1200px;margin: 0 auto;">
       <ul class="am-avg-sm-3 am-thumbnails">
-        <li>
+        <li v-for="maker in teams">
+          <router-link :to="{name: 'communitydetail', params: {workId: maker.id}}">
           <div class="am-thumbnail" style="background: url(../../../static/img/img_shading_1.png) center top 0px; position: relative; ">
-            <img src="static/img/windmill.png" style="position: absolute;left: 134px;top: 25px;"/>
-            <p style="float: left;margin-left: 155px;margin-top: 165px; color: #FFF; font-size: 20px; margin-bottom: 0;">风车组</p>
-            <p style="float: left; margin: 0; text-align: center; color: #FFF; font-size: 15px;">
-              的身份和科技大厦就圣诞节卡萨丁会发生打卡机阿斯顿计划的方式就爱好啊和电话撒低功耗好几个回家放大
+            <img  :src="fileURL+maker.communityLogo"style="left: 128px; top: 22px;width: 133px;height: 133px;border-radius: 50%; position: absolute;"/>
+            <p style="float: left;margin-left: 123px;margin-top: 165px; color: #FFF; font-size: 20px; margin-bottom: 0;">{{maker.communityName}}</p>
+            <p style="float: left; margin: 0; text-align: center; color: #FFF; font-size: 15px; margin-top: 53%;margin-left: -53%;">
+                {{maker.communityIntro}}
             </p>
           </div>
+            </router-link>
         </li>
-        <li>	<div class="am-thumbnail" style="background: url(../../../static/img/img_shading_2.png) center top 0px;  position: relative;  ">
-          <img src="static/img/airplane.png" style="position: absolute;left: 134px;top: 25px;"/>
-          <p style="float: left;margin-left: 155px;margin-top: 165px; color: #FFF; font-size: 20px; margin-bottom: 0;">飞机组</p>
-          <p style="float: left; margin: 0; text-align: center; color: #FFF; font-size: 15px;">
-            的身份和科技大厦就圣诞节卡萨丁会发生打卡机阿斯顿计划的方式就爱好啊和电话撒低功耗好几个回家放大
-          </p>
-        </div></li>
-        <li>	<div class="am-thumbnail" style="background: url(../../../static/img/img_shading_3.png) center top 0px; position: relative;  ">
-          <img src="../../../static/img/fourperson.png" style="position: absolute;left: 134px;top: 25px;"/>
-          <p style="float: left;margin-left: 155px;margin-top: 165px; color: #FFF; font-size: 20px; margin-bottom: 0;">元气组</p>
-          <p style="float: left; margin: 0; text-align: center; color: #FFF; font-size: 15px;">
-            的身份和科技大厦就圣诞节卡萨丁会发生打卡机阿斯顿计划的方式就爱好啊和电话撒低功耗好几个回家放大
-          </p>
-        </div></li>
-        <li>	<div class="am-thumbnail" style="background: url(../../../static/img/img_shading_5.png) center top 0px; position: relative;  ">
-          <img src="static/img/fourperson.png" style="position: absolute;left: 134px;top: 25px;"/>
-          <p style="float: left;margin-left: 155px;margin-top: 165px; color: #FFF; font-size: 20px; margin-bottom: 0;">元气组</p>
-          <p style="float: left; margin: 0; text-align: center; color: #FFF; font-size: 15px;">
-            的身份和科技大厦就圣诞节卡萨丁会发生打卡机阿斯顿计划的方式就爱好啊和电话撒低功耗好几个回家放大
-          </p>
-        </div></li>
-        <li><div class="am-thumbnail" style="background: url(../../../static/img/img_shading_4.png) center top 0px;  position: relative; ">
-          <img src="static/img/windmill.png" style="position: absolute;left: 134px;top: 25px;"/>
-          <p style="float: left;margin-left: 155px;margin-top: 165px; color: #FFF; font-size: 20px; margin-bottom: 0;">元气组</p>
-          <p style="float: left; margin: 0; text-align: center; color: #FFF; font-size: 15px;">
-            的身份和科技大厦就圣诞节卡萨丁会发生打卡机阿斯顿计划的方式就爱好啊和电话撒低功耗好几个回家放大
-          </p>
-        </div></li>
-        <li><div class="am-thumbnail" style="background: url(../../../static/img/img_shading_2.png) center top 0px; position: relative;  ">
-          <img src="static/img/airplane.png" style="position: absolute;left: 134px;top: 25px;"/>
-          <p style="float: left;margin-left: 155px;margin-top: 165px; color: #FFF; font-size: 20px; margin-bottom: 0;">元气组</p>
-          <p style="float: left; margin: 0; text-align: center; color: #FFF; font-size: 15px;">
-            的身份和科技大厦就圣诞节卡萨丁会发生打卡机阿斯顿计划的方式就爱好啊和电话撒低功耗好几个回家放大
-          </p>
-        </div></li>
 
       </ul>
     </div>
     <div class="index_link_div">
-      <a target="blank" class="p_lookMore" style="float:right" >查看更多</a>
+      <router-link to="/makerCommunity/list" class="p_lookMore" style="float:right">查看更多</router-link>
     </div>
 
   </div>
@@ -226,33 +124,101 @@
 
 <script>
   import '../../../static/js/amazeui.min.js'
+  import {AXIOS} from "../../http-common";
+
+  export default {
+    name: 'index',
+    data () {
+      // banner:[];
+      return {
+        banners: [],
+        fileURL: "http://192.168.1.110:9000/",
+        ImplementationNotes:[],
+        teams:[],
+        courses:[],
+        coursesfirst:[],
+        coursefirst:{
+          backgroundImage: '',
+
+        },
+        coursesecond:{
+          backgroundImage: '',
+        },
+        coursethird:{
+          backgroundImage: '',
+        },
+        courselast:{
+          backgroundImage: '',
+        }
 
 
-export default {
 
-  name: 'index',
-  data () {
-    return {
+      }
 
+    },
+    mounted:function () {
+      $(function () {
+        $('.am-slider').flexslider()
+      })
+
+    },
+    created:function (){
+      AXIOS.get('homePage/banner', {}).then(response => {
+        this.banners=response.data;
+      }).catch(response => {
+        alert("加载失败");
+        this.errors.push(response)
+      });
+      AXIOS.get('homePage/makerworks?pageNum=1&pageSize=8',{}).then(response =>{
+        var worksshow= eval(response.data);
+        this.ImplementationNotes = worksshow.data.list;
+      }).catch(response => {
+        alert("加载失败")
+        this.errors.push(response)
+      });
+      AXIOS.get('homePage/makercommunity?pageNum=1&pageSize=6',{}).then(response=>{
+        var team=eval(response.data);
+
+       this.teams=team.list;
+      }).catch(response => {
+        alert("加载失败")
+      });
+      AXIOS.get('homePage/makercourse?pageNum=1&pageSize=4',{}).then(response=>{
+        var course=eval(response.data);
+        this.courses=course.list;
+
+        this.coursefirst.backgroundImage = "url('"+this.fileURL+this.courses[0].courseCoverImage+"')";
+        this.coursesecond.backgroundImage = "url('"+this.fileURL+this.courses[1].courseCoverImage+"')";
+        this.coursethird.backgroundImage = "url('"+this.fileURL+this.courses[2].courseCoverImage+"')";
+        this.courselast.backgroundImage = "url('"+this.fileURL+this.courses[3].courseCoverImage+"')";
+        console.log(this.coursefirst.backgroundImage);
+      }).catch(response => {
+        alert("加载失败")
+      })
+
+    }
   }
-
-  },
-  mounted:function () {
-    $(function () {
-      $('.am-slider').flexslider()
-    })
-
-  }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
   /*轮播*/
   .am-slides img{height: 500px;width: 100%;}
-.section--header {
-  text-align: center;
-}
+  .section--header {
+    text-align: center;
+  }
+  .course1{
+    width: 780px; height: 300px;background-size: cover ; background-repeat:no-repeat; background-position:center center;
+  }
+  .courselist{
+    float: left; background-size: cover ; background-repeat:no-repeat;  background-position:center center; height: 216px; width: 383px;
+  }
+  .courselist1{
+    float: left;  background-size: cover ; background-position:center center;height: 216px; width: 383px; background-repeat: no-repeat;margin-left: .8rem;
+  }
+  .course2{
+    height: 520px !important;width: 409px; float: left; background-size: cover; background-size: cover ; background-repeat:no-repeat; background-position:center center;
+  }
   .am-thumbnail {
     margin-bottom: 0px;
     padding: 0;
