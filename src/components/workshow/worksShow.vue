@@ -9,12 +9,15 @@
                 </div>
                 <div class="classifylist">
                     <ul style="overflow: hidden;margin-top: 25px;">
-                        <li class="title classify-active" style="margin-left: -31px;">全部</li>
-                        <li class="title" @click="one()">3D打印</li>
-                        <li class="title">机器人</li>
-                        <li class="title">木工</li>
-                        <li class="title">Scratch编程</li>
-                        <li class="title">综合课程</li>
+                        <li v-on:click="one(index)" v-for="item,index in proClass" v-bind:class="{on:index==guigeSpan}"
+                            class="title">{{item}}
+                        </li>
+                        <!--<li @click="one(index)" class="title classify-active" style="margin-left: -31px;">全部</li>-->
+                        <!--<li class="title" @click="one(index)">3D打印</li>-->
+                        <!--<li @click="one(index)" class="title">机器人</li>-->
+                        <!--<li @click="one(index)" class="title">木工</li>-->
+                        <!--<li @click="one(index)" class="title">Scratch编程</li>-->
+                        <!--<li @click="one(index)" class="title">综合课程</li>S-->
                     </ul>
                 </div>
                 <div class="clear"></div>
@@ -24,9 +27,10 @@
                 <div class="center-box-title">
                     <div class="center-left">
                         <i>排序:</i>&nbsp;&nbsp;&nbsp;
-                        <span class="cxTwo">时间</span>&nbsp;&nbsp;&nbsp;
-                        <span class="cxTwo">点赞数</span>&nbsp;&nbsp;&nbsp;
-                        <span class="cxTwo">浏览量</span>&nbsp;&nbsp;
+                        <span v-on:click="two(index)" class="cxTwo" v-for="item,index in proSee"
+                              style="margin-right:10px;">{{item}}</span>
+                        <!--<span class="cxTwo">点赞数</span>&nbsp;&nbsp;&nbsp;-->
+                        <!--<span class="cxTwo">浏览量</span>&nbsp;&nbsp;-->
                     </div>
                     <div class="center-right">
                         <button type="button" class="am-btn am-btn-primary am-round" style="margin-bottom: 15px;">提交作品
@@ -35,22 +39,22 @@
                 </div>
                 <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-5 am-thumbnails">
                     <!--作品展示-->
-                    <li v-for="zuopin in zuopins">
+                    <li v-for="item in myProducts">
                         <router-link to="/workShow/detail">
-                            <img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-1.jpg"/>
+                            <img class="am-thumbnail" :src="fileURL+item.makerWorks.worksCoverImage"/>
 
-                            <p class="q_coverName">创客作品</p>
+                            <p class="q_coverName">{{item.makerWorks.worksName}}</p>
 
                             <div class="q_worksCn"
                                  style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-                                <img class="q_head" src=""/>
-                                <a class="q_works_user">小王</a>
-                                <a class="q_dianzan"><img src="../../../static/img/upvote.png"/><span>5537</span></a>
-                                <a class="q_liulan"><img src="../../../static/img/browse.png"/><span>5537</span></a>
-
+                                <img class="q_head" :src="fileURL+item.avatar"/>
+                                <a class="q_works_user">{{item.realName}}</a>
+                                <a class="q_dianzan"><img src="../../../static/img/upvote.png"/><span>{{item.makerWorks.worksScanNum}}</span></a>
+                                <a class="q_liulan"><img src="../../../static/img/browse.png"/><span>{{item.makerWorks.worksThumbsUpNum}}</span></a>
                                 <div class="clear"></div>
                             </div>
                         </router-link>
+                        <p>{{item.list}}</p>
                     </li>
 
                 </ul>
@@ -67,75 +71,65 @@
         name: "works-show",
         data () {
             return {
-                zuopins: []
+                fileURL:"http://192.168.1.110:9000/",
+                proClass: [
+                    "全部",
+                    "3D打印",
+                    "机器人",
+                    "木工",
+                    "Scratch编程",
+                    "全部课程"
+                ],
+                proSee: [
+                    "时间",
+                    "点赞数",
+                    "浏览量"
+                ],
+                guigeSpan: 0,
+                clickOne: 0,
+                myProducts: []
             }
         },
-        methods:{
-          one() {
-            $(this).addClass("classify-active").siblings().removeClass("classify-active");//点击修改样式
-            this.reqAxios(2, 0, 1, 10)
-          },
-          reqAxios(makeWorType, sortType, pageNum, pageSize) {
-            AXIOS.get('makerWorks/sortMakerWorks', {
-                params:{
-                    "makeWorType": makeWorType,
-                    "sortType": sortType,
-                    "pageNum": pageNum,
-                    "pageSize": pageSize
-                }
-            }).then(response => {
-                console.log(this.zuopins);
-                this.zuopins = response.data.list;//将zuopins转为为后台数据
-                console.log(this.zuopins);
-            }).catch(e => {
-                this.errors.push(e);
-            });
-          }
+        methods: {
+            one: function (index) {
+                this.guigeSpan = index;
+                this.clickOne = index;
+                this.reqAxios(this.clickOne, 0, 1, 10);
+            },
+            two: function (index) {
+                console.log(index);
+                this.reqAxios(this.clickOne, index, 1, 10);
+            },
+            reqAxios: function (makeWorType, sortType, pageNum, pageSize) {
+                AXIOS.get('makerWorks/sortMakerWorks', {
+                    params: {
+                        "makeWorType": makeWorType,
+                        "sortType": sortType,
+                        "pageNum": pageNum,
+                        "pageSize": pageSize
+                    }
+                }).then(response => {
+                    this.myProducts = response.data.list;//将zuopins转为为后台数据
+                    console.log(response.data.list);
+                }).catch(e => {
+                    this.errors.push(e);
+                });
+            }
         },
         created: function () {
-          this.reqAxios(0, 0, 1, 10)
+            this.reqAxios(0, 0, 1, 10);
         },
         mounted: function () {
-            $(function () {
-                var clickId=0;
-                var clickTwo=0;
-                //点击木工，3D打印等，响应相应的作品
-                $(".title").on("click", function (e) {
-                });
-                //二级点击查询,点击浏览量等显示相应的作品
-                $(".cxTwo").on("click",function(){
-                    clickTwo=$(this).index();
-                    AXIOS.get('makerWorks/sortMakerWorks', {
-                        params:{
-                            "makeWorType": clickId,
-                            "sortType": clickTwo,
-                            "pageNum": 1,
-                            "pageSize": 10
-                        }
-                    }).then(response => {
-                        //var jsonResult = eval(response.data);
-                        this.zuopins=response.data.list;//将zuopins转为为后台数据
-                        console.log(this.zuopins);
-                    }).catch(e => {
-                        this.errors.push(e)
-                    });
-                })
 
-
-                $(".work-content").each(function (i) {
-                    var divH = $(this).height();
-                    var $p = $("#work-content", $(this)).eq(0);
-                    while ($p.height() > divH) {
-                        console.log($p.outerHeight());
-                        $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
-                    }
-                });
-            })
         }
     }
 </script>
 
 <style scoped>
+    .on {
+        background: #FFCA57 !important;
+    }
+
     .classify img {
         height: 25px;
         width: 29px;
