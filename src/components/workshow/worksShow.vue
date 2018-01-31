@@ -10,7 +10,7 @@
                 <div class="classifylist">
                     <ul style="overflow: hidden;margin-top: 25px;">
                         <li class="title classify-active" style="margin-left: -31px;">全部</li>
-                        <li class="title">3D打印</li>
+                        <li class="title" @click="one()">3D打印</li>
                         <li class="title">机器人</li>
                         <li class="title">木工</li>
                         <li class="title">Scratch编程</li>
@@ -71,23 +71,29 @@
             }
         },
         methods:{
-
-        },
-        beforeCreate:function () {
+          one() {
+            $(this).addClass("classify-active").siblings().removeClass("classify-active");//点击修改样式
+            this.reqAxios(2, 0, 1, 10)
+          },
+          reqAxios(makeWorType, sortType, pageNum, pageSize) {
             AXIOS.get('makerWorks/sortMakerWorks', {
                 params:{
-                    "makeWorType": 0,
-                    "sortType": 0,
-                    "pageNum": 1,
-                    "pageSize": 10
+                    "makeWorType": makeWorType,
+                    "sortType": sortType,
+                    "pageNum": pageNum,
+                    "pageSize": pageSize
                 }
             }).then(response => {
-                //var beginMsg = eval(response.data.list);
-                this.zuopins=response.data.list;//将zuopins转为为后台数据
+                console.log(this.zuopins);
+                this.zuopins = response.data.list;//将zuopins转为为后台数据
                 console.log(this.zuopins);
             }).catch(e => {
                 this.errors.push(e);
             });
+          }
+        },
+        created: function () {
+          this.reqAxios(0, 0, 1, 10)
         },
         mounted: function () {
             $(function () {
@@ -95,22 +101,6 @@
                 var clickTwo=0;
                 //点击木工，3D打印等，响应相应的作品
                 $(".title").on("click", function (e) {
-                    $(this).addClass("classify-active").siblings().removeClass("classify-active");//点击修改样式
-                    clickId=$(this).index();//获取到当前的id信息（对应3D打印或其他）
-                    clickId.toString();//把clickId转化为需要的值
-                    AXIOS.get('makerWorks/sortMakerWorks', {
-                        params:{
-                            "makeWorType": clickId,
-                            "pageNum": 1,
-                            "pageSize": 10
-                        }
-                    }).then(response => {
-                        var jsonResult = eval(response.data.list);
-                        this.zuopins=jsonResult;//将zuopins转为为后台数据
-                        console.log(this.zuopins);
-                    }).catch(e => {
-                        this.errors.push(e);
-                    });
                 });
                 //二级点击查询,点击浏览量等显示相应的作品
                 $(".cxTwo").on("click",function(){
@@ -245,4 +235,3 @@
         overflow: hidden;
     }
 </style>
-
