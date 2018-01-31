@@ -40,7 +40,7 @@
                 <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-5 am-thumbnails">
                     <!--作品展示-->
                     <li v-for="item in myProducts">
-                        <router-link to="/workShow/detail">
+                        <router-link :to="{name: 'workshowdetail',params: {workId: item.makerWorks.id}}">
                             <img class="am-thumbnail" :src="fileURL+item.makerWorks.worksCoverImage"/>
 
                             <p class="q_coverName">{{item.makerWorks.worksName}}</p>
@@ -72,14 +72,7 @@
         data () {
             return {
                 fileURL:"http://192.168.1.110:9000/",
-                proClass: [
-                    "全部",
-                    "3D打印",
-                    "机器人",
-                    "木工",
-                    "Scratch编程",
-                    "全部课程"
-                ],
+                proClass: [],
                 proSee: [
                     "时间",
                     "点赞数",
@@ -97,7 +90,7 @@
                 this.reqAxios(this.clickOne, 0, 1, 10);
             },
             two: function (index) {
-                console.log(index);
+                //console.log(index);
                 this.reqAxios(this.clickOne, index, 1, 10);
             },
             reqAxios: function (makeWorType, sortType, pageNum, pageSize) {
@@ -110,7 +103,7 @@
                     }
                 }).then(response => {
                     this.myProducts = response.data.list;//将zuopins转为为后台数据
-                    console.log(response.data.list);
+                    //console.log(response.data.list);
                 }).catch(e => {
                     this.errors.push(e);
                 });
@@ -118,6 +111,16 @@
         },
         created: function () {
             this.reqAxios(0, 0, 1, 10);
+            var params = new URLSearchParams();
+            AXIOS.get('makerWorks/makeWorkType', {
+                params:{}
+            }).then(response => {
+                for(var i=0;response.data;i++){
+                    this.proClass.push(response.data[i].dictDesc);
+                }
+            }).catch(e => {
+                this.errors.push(e)
+            });
         },
         mounted: function () {
 
