@@ -6,7 +6,7 @@
     </div>
     <div class="classifylist">
       <ul>
-        <li  @click="byClassify(item.type)" v-for="item,index in titletype"    class="title">{{item.name}}</li>
+        <li  @click="byClassify(item.type)" v-for="item,index in titletype" v-bind:class="{on:index==classifyClass}"   class="title">{{item.name}}</li>
 
       </ul>
     </div>
@@ -15,9 +15,7 @@
     </div>
     <div class="classifylist" >
       <ul>
-        <li  @click="bySort(0)" class=" title">浏览量</li>
-        <li  @click="bySort(1)" class=" title">点赞量</li>
-        <li  @click="bySort(2)" class=" title">时间</li>
+        <li v-for="item,index in sorttitle"  @click="bySort(index)" v-bind:class="{on:index==sortClass}"  class=" title">{{item}}</li>
 
       </ul>
     </div>
@@ -25,13 +23,13 @@
   <div class="workshow" style="width: 1200px;margin: 50px auto; ">
     <div  class="center-box" v-for="item in makerlife ">
       <h3>{{item.makerLive.liveTitle}}</h3>
-      <div class="work-content"><p id="work-content">{{item.makerLive.liveContent}}</p></div>
+      <div class="work-content"><p id="work-content" v-html="contentbox"></p></div>
       <div class="conter-footer">
         <span>点赞数：</span><img src="../../../static/img/upvote.png"/><i>{{item.makerLive.liveThumbsUpNum}}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span>浏览数：</span><img src="../../../static/img/browse.png"/><i>{{item.makerLive.liveScanNum}}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>作者：<i>{{item.username}}</i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span>发布时间：<i>{{item.makerLive.createDate}}</i></span>
       </div>
-      <router-link to="/worklife/detail"class="see-details"><button type="button" class="am-btn am-btn-primary am-radius">查看详情</button></router-link>
+      <router-link :to="{name: 'lifedetail',params:{ workId: item.makerLive.id}}"class="see-details"><button type="button" class="am-btn am-btn-primary am-radius">查看详情</button></router-link>
     </div>
 
   </div>
@@ -41,7 +39,6 @@
 
 <script type="es6">
      import {AXIOS} from '../../http-common'
-     import{formatDate}from  '../../../static/js/data'
     export default {
         name: "maker-life",
       data (){
@@ -49,16 +46,25 @@
             fileURL:"http://192.168.1.100:9000/",
             makerlife:[],
             titletype:[],
-            classify:0,
-            sort:0,
+            classify: 0,
+            sort: 0,
+            classifyClass:0,
+            sortClass:0,
+            sorttitle:[
+              "时间",
+              "点赞数",
+              "浏览量"
+            ],
+            contentbox:[]
 
 
           }
       },
-
       created:function () {
-        AXIOS.get('makerLive/makerLiveType?typeValue=liveType',{}).then(response=>{
+        AXIOS.get('makerLive/makerLiveType?typeValue=makerLive',{}).then(response=>{
           this.titletype=response.data;
+          this.classify = this.titletype[0].type;
+
         });
         this.reqAxios(1, 1, 1, 10);
       },
@@ -73,16 +79,21 @@
             }
           }).then(response=>{
             this.makerlife=response.data.list;
+            for (var i=0;i<this.makerlife.length;i++){
+              this.contentbox=this.makerlife[i].makerLive.liveContent;
+            };
           }).catch(response=>{
-            this.errors.push(e);
+            this.errors.push(response);
           })
         },
         byClassify: function (type) {
           this.classify= type;
+          this.classifyClass=type-1;
           this.reqAxios(this.classify,this.sort ,1 ,8)
         },
-        bySort: function (type) {
-          this.sort= type;
+        bySort: function (index) {
+          this.sort= index;
+          this.sortClass=index;
           this.reqAxios(this.classify,this.sort ,1 ,8)
         }
       },
@@ -102,9 +113,10 @@
 </script>
 
 <style scoped>
-  .toggle{
+   .on {
     background: #FFCA57 !important;
   }
+
   .classify{
     padding-left: 18%;
   }
