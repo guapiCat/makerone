@@ -62,7 +62,7 @@ const Routers = [
     component:worksShow,
 
   },{
-  path:'/workShow/detail',
+  path:'/workShow/detail/:workId',
   name:'workshowdetail',
   component:workshowdetail
   },
@@ -131,7 +131,7 @@ const Routers = [
     name:'teamdetail',
     component:teamdetail
   },{
-  path:'/material/detail',
+  path:'/material/detail/:metId',
     name:'meterialdetail',
     component:materialdetail
   },{
