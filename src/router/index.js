@@ -87,7 +87,7 @@ const Routers = [
    name:'materialLibrary' ,
    component:materialLibrary
   },{
-  path:'/makerLife/list',
+  path:'/makerLife/list/',
   name:'/makerLife',
   component:makerLife
   },{
@@ -103,12 +103,12 @@ const Routers = [
     name:'registerSuccess',
     component:registerSuccess
   },{
-  path:'/worklife/detail',
+  path:'/worklife/detail/:workId',
   name:'lifedetail',
   component:lifedetail
   },
   {
-       path:'/community/detail',
+       path:'/community/detail/:workId',
        name:'communitydetail',
        component:communitydetail
     },
