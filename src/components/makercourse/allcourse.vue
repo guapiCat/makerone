@@ -1,187 +1,57 @@
 <template>
     <div>
-      <div class="am-tabs" data-am-tabs style="width: 100%;">
-        <ul class="am-tabs-nav am-nav am-nav-tabs" style="padding-top: 17px; padding-left: 40%;">
-          <li class="am-active"><a href="#tab1">一年级</a></li>
-          <li><a href="#tab2">二年级</a></li>
-          <li><a href="#tab3">三年级</a></li>
-          <li><a href="#tab4">四年级</a></li>
-          <li><a href="#tab5">五年级</a></li>
-          <li><a href="#tab6">六年级</a></li>
-        </ul>
-        <div class="am-tabs-bd" style="border: 0px;width: 100%;height: 250px; background: #EEEEEE; ">
-          <div class="am-tab-panel am-active" id="tab1">
-            <div class="classify">
-              <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
-            </div>
-            <div class="classifylist">
-              <ul>
-                <li class="title">全部</li>
-                <li class="title">3D打印</li>
-                <li class="title">机器人</li>
-                <li class="title">木工</li>
-                <li class="title">Scratch编程</li>
-                <li class="title">综合课程</li>
-              </ul>
-            </div>
-            <div class="clear"></div>
-            <div class="classify" style="margin-top: 20px;">
-              <i> <img src="../../../static/img/icon_sort.png"/><span>排序</span></i>
-            </div>
-            <div class="classifylist">
-              <ul>
-                <li class="title">最新</li>
-                <li class="title">最热</li>
-              </ul>
-            </div>
-          </div>
-          <div class="am-tab-panel" id="tab2">	<div class="classify">
-            <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
-          </div>
-            <div class="classifylist">
-              <ul>
-                <li class="title">全部</li>
-                <li class="title">3D打印</li>
-                <li class="title">机器人</li>
-                <li class="title">木工</li>
-                <li class="title">Scratch编程</li>
-                <li class="title">综合课程</li>
-              </ul>
-            </div>
-            <div class="clear"></div>
-            <div class="classify" style="margin-top: 20px;">
-              <i> <img src="../../../static/img/icon_sort.png"/><span>排序</span></i>
-            </div>
-            <div class="classifylist">
-              <ul>
-                <li class="title">最新</li>
-                <li class="title">最热</li>
-              </ul>
-            </div></div>
-          <div class="am-tab-panel" id="tab3">	<div class="classify">
-            <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
-          </div>
-            <div class="classifylist">
-              <ul>
-                <li class="title">全部</li>
-                <li class="title">3D打印</li>
-                <li class="title">机器人</li>
-                <li class="title">木工</li>
-                <li class="title">Scratch编程</li>
-                <li class="title">综合课程</li>
-              </ul>
-            </div>
-            <div class="clear"></div>
-            <div class="classify" style="margin-top: 20px;">
-              <i> <img src="../../../static/img/icon_sort.png"/><span>排序</span></i>
-            </div>
-            <div class="classifylist">
-              <ul>
-                <li class="title">最新</li>
-                <li class="title">最热</li>
-              </ul>
-            </div></div>
-          <div class="am-tab-panel" id="tab4">	<div class="classify">
-            <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
-          </div>
-            <div class="classifylist">
-              <ul>
-                <li class="title">全部</li>
-                <li class="title">3D打印</li>
-                <li class="title">机器人</li>
-                <li class="title">木工</li>
-                <li class="title">Scratch编程</li>
-                <li class="title">综合课程</li>
-              </ul>
-            </div>
-            <div class="clear"></div>
-            <div class="classify" style="margin-top: 20px;">
-              <i> <img src="../../../static/img/icon_sort.png"/><span>排序</span></i>
-            </div>
-            <div class="classifylist">
-              <ul>
-                <li  class="title">最新</li>
-                <li class="title">最热</li>
-              </ul>
-            </div></div>
-          <div class="am-tab-panel" id="tab5">	<div class="classify">
-            <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
-          </div>
-            <div class="classifylist">
-              <ul>
-                <li class="title">全部</li>
-                <li class="title">3D打印</li>
-                <li class="title">机器人</li>
-                <li class="title">木工</li>
-                <li class="title">Scratch编程</li>
-                <li class="title">综合课程</li>
-              </ul>
-            </div>
-            <div class="clear"></div>
-            <div class="classify" style="margin-top: 20px;">
-              <i> <img src="../../../static/img/icon_sort.png"/><span>排序</span></i>
-            </div>
-            <div class="classifylist">
-              <ul>
-                <li class="title">最新</li>
-                <li class="title">最热</li>
-              </ul>
-            </div></div>
-          <div class="am-tab-panel" id="tab6">	<div class="classify">
-            <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
-          </div>
-            <div class="classifylist">
-              <ul>
-                <li class="title">全部</li>
-                <li class="title">3D打印</li>
-                <li class="title">机器人</li>
-                <li class="title">木工</li>
-                <li class="title">Scratch编程</li>
-                <li class="title">综合课程</li>
-              </ul>
-            </div>
-            <div class="clear"></div>
-            <div class="classify" style="margin-top: 20px;">
-              <i> <img src="../../../static/img/icon_sort.png"/><span>排序</span></i>
-            </div>
-            <div class="classifylist">
-              <ul>
-                <li class="title">最新</li>
-                <li class="title">最热</li>
-              </ul>
-            </div></div>
+      <div class="work-title" style="background: #F3F3F3;">
+        <div class="classify">
+          <i> <img src="../../../static/img/icon_classify.png"/><span>班级</span></i>
+        </div>
+        <div class="classifylist" style="margin: 0 0 20px 0; padding-top: 20px;">
+          <ul>
+            <li  @click="byclaass(index)" v-for="item,index in classtitle" class="title" v-bind:class="{lighton:index== classes-1 }">{{item}}</li>
+          </ul>
+        </div>
+        <div class="classify">
+          <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
+        </div>
+        <div class="classifylist">
+          <ul>
+            <li @click="byClassify(item.type)"  v-for="item,index in titletype" class="title" v-bind:class="{lighton:index==classify}">{{item.name}}</li>
+          </ul>
+        </div>
+        <div class="classify" style="margin-top: 20px;">
+          <i> <img src="../../../static/img/icon_sort.png"/><span>排序</span></i>
+        </div>
+        <div class="classifylist" >
+          <ul>
+            <li @click="bysort(index)"  v-for="item,index in sorttitle" class=" title" v-bind:class="{lighton:index==sort}" >{{item}}</li>
+          </ul>
         </div>
       </div>
       <div class="workshow" style="width: 1200px;margin: 80px auto;">
-        <div>
+        <div v-for="item in courseslist ">
           <div class="am-g">
             <div class="am-u-sm-5" style="margin-left: -2%;">
               <div style="margin-bottom: 4%;">
-                <img src="../../../static/img/img_kecheng.png" width="140%" height="140%" style="border: 1px solid #000000"/>
+                <img :src="fileURL+item.courseCoverImage" width="140%" height="400px" style="border: 1px solid #000000"/>
               </div>
               <div style="text-align: right;">
-                <span>点赞数&nbsp;:&nbsp;</span><img src="../../../static/img/icon_upvote.png" width="4%" style="margin-top: -2%;"/><span style="margin-right:10%;margin-left: 2%;">12</span>
-                <span>浏览数&nbsp;:&nbsp;</span><img src="../../../static/img/browse.png" style="margin-top: -1%;"/><span style="margin-left: 2%">14</span>
+                <span>点赞数&nbsp;:&nbsp;</span><img src="../../../static/img/icon_upvote.png" width="4%" style="margin-top: -2%;"/><span style="margin-right:10%;margin-left: 2%;">{{item.courseThumbsUpNum}}</span>
+                <span>浏览数&nbsp;:&nbsp;</span><img src="../../../static/img/browse.png" style="margin-top: -1%;"/><span style="margin-left: 2%">{{item.courseScanNum}}</span>
               </div>
             </div>
             <div class="am-u-sm-5" style="margin-left: -1%;">
               <div style="margin-bottom: 2%;">
                 <span class="course_span" style="color: #5fb7cf;">课程信息</span>
               </div>
-              <div style="padding-left: 3%;">
-                <span class="course_span">课程名称&nbsp;:&nbsp;<span>Scratch编程</span></span>
-                <span class="course_span">开课时间&nbsp;:&nbsp;<span>2017-05-04 17:12</span></span>
-                <span class="course_span">浏览人数&nbsp;:&nbsp;<span>1317</span>人</span>
-                <span class="course_span">课程进度&nbsp;:&nbsp;<span>连载至第四讲</span></span>
-                <span class="course_span">
-						 主讲人&nbsp;:&nbsp;<span style="margin-right: 10%">free</span>
-					 </span>
+              <div style="padding-left:3%;">
+                <span class="course_span">课程名称&nbsp;:&nbsp;<span>{{item.courseName}}</span></span>
+                <span class="course_span">开课时间&nbsp;  :&nbsp;<span>{{item.createDate}}</span></span>
+                <span class="course_span">浏览人数&nbsp;:&nbsp;<span>{{item.courseScanNum}}</span>人</span>
                 <span class="course_span">课程简介&nbsp;:&nbsp;
-						 <span>基于Scratch编程创意课程，与数学，物理，艺术，化学等结合起来，激发学生的学习兴趣，在做中学习，爱上学习。</span>
+						 <span>{{item.courseIntro}}</span>
 					 </span>
               </div>
               <div style="text-align: right;padding-top: 5%;padding-right: 3%;">
-                <a class="am-btn am-btn-primary" style="border-radius: 7px;width: 135px;">查看详情&nbsp;&nbsp;></a>
+                   <router-link :to="{name: 'makerCourse',params:{ workId: item.id}}"  class="am-btn am-btn-primary" style="border-radius: 7px;width: 135px;">查看详情</router-link>
               </div>
             </div>
           </div>
@@ -200,19 +70,78 @@
 </template>
 
 <script>
+  import {AXIOS} from '../../http-common'
     export default {
         name: "allcourse",
-      mounted:function () {
-        $(function () {
-          $(".title").on("click",function(){
-            $(this).addClass("classify-active").siblings().removeClass("classify-active")
+      data(){
+          return{
+            fileURL:"http://192.168.1.100:9000/",
+            courseslist:[],
+            titletype:[],
+            sorttitle:[
+              "最新",
+              "最热"
+            ],
+            classtitle:[
+              "一年级",
+              "二年级",
+              "三年级",
+              "四年级",
+              "五年级",
+              "六年级",
+            ],
+            classify: 0,
+            sort: 0,
+            classes:0
+          }
+      },
+      created:function () {
+          AXIOS.get('makerCourse/getCourseType',{}).then(response=>{
+            this.titletype=response.data;
+            this.sort = this.titletype[0].type;
+            this.classes=this.titletype[0].type+1
+          }).catch(response=>{
+            this.errors.push(response);
           });
-        })
+        this.reqAXIOS(1, 0, 1, 1,8);
+      },
+      methods:{
+        reqAXIOS:function (courseGrade,type,sortType,pageNum,pageSize) {
+          AXIOS.get('makerCourse/makerCourseShow',{
+            params:{
+              courseGrade:courseGrade,
+              type:type,
+              sortType:sortType,
+              pageNum:pageNum,
+              pageSize:pageSize
+            }
+          }).then(response=>{
+            this.courseslist=response.data.list;
+          }).catch(response=>{
+            this.errors.push(response);
+          });
+
+        },
+        byClassify: function (type) {
+          this.classify= type;
+          this.reqAXIOS(this.classes,this.classify,this.sort,1 ,8)
+        },
+        byclaass:function (index) {
+          this.classes=index+1;
+          this.reqAXIOS(this.classes,this.classify,this.sort,1 ,8)
+        },
+        bysort:function (index) {
+          this.sort=index;
+          this.reqAXIOS(this.classes,this.classify,this.sort,1 ,8)
+        }
       }
     }
 </script>
 
 <style scoped>
+  .lighton{
+    background: #FFCA57 !important;
+  }
   .course_span{
     padding-bottom: 3%;
     display: block;
