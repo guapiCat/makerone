@@ -5,8 +5,8 @@
       <span> <img src="../../../static/img/icon_address.png" alt="" /><i>益谷创客平台-创客社团-<span>团队详情</span></i></span>
     </div>
     <div class="center-box" style="text-align: center; border: solid 1px #f3f3f3; border-bottom: solid 5px #FAC952; padding: 20px ; background-color: #EEEEEE;">
-      <h1>元气团队-A</h1>
-      <p><span>学校:</span><i>沌口小学</i>&nbsp;&nbsp;&nbsp;&nbsp;<span>作者:</span><i>团长</i>&nbsp;&nbsp;&nbsp;&nbsp;<span>时间:</span><i>2017-10-18</i></p>
+      <h1>{{allMsg.makerTeamDTO.teamName}}</h1>
+      <p><span>学校:</span><i>{{allMsg.makerTeamDTO.schoolName}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<span>作者:</span><i>团长</i>&nbsp;&nbsp;&nbsp;&nbsp;<span>时间:</span><i>2017-10-18</i></p>
     </div>
     <div class="center-box" style="border: solid 3px #f3f3f3 ; padding: 20px ;width: 100%;height: 100%;">
       <h1>团队信息</h1>
@@ -17,12 +17,12 @@
             <img src="../../../static/img/airplane.png" />
           </div>
           <div class="content-title-hand-right">
-            <h5>元气团队-A</h5>
-            <p>创建时间：<span>2017-7-10</span></p>
+            <h5>{{allMsg.makerTeamDTO.teamName}}</h5>
+            <p>创建时间：<span>{{allMsg.makerTeamDTO.createTime}}</span></p>
             <p>需要人数：<span>30</span></p>
             <p>当前人数：<span>20</span></p>
             <p>人员需求：<span>有一定团队意识和创造力</span></p>
-            <p>团队介绍：<span>注重使用先进的教学方法和手段。精品课程要使用网络进行教学与管理，相关的教学大纲、教案、习题、实验指导、参考文献目录等要上网并免费开放，鼓励将网络课件、授课录像等上网开放，实现优质教学资源共享，带动其他课程的建设</span></p>
+            <p>团队介绍：<span>{{allMsg.makerTeamDTO.teamIntro}}</span></p>
           </div>
 
         </div>
@@ -61,9 +61,29 @@
 </div>
 </template>
 
-<script>
+<script type="es6">
+    import {AXIOS} from '../../http-common'
     export default {
-        name: "makerteam"
+        name: "makerteam",
+        data:function(){
+            return {
+                allMsg:[],
+                teamId:this.$route.params.teamId
+            }
+        },
+        created:function(){
+            var params = new URLSearchParams();
+            AXIOS.get('team/MakerTeamParticulars', {
+                params:{
+                    makerTeamId:this.teamId
+                }
+            }).then(response => {
+                console.log(response);
+                this.allMsg=response.data;
+            }).catch(e => {
+                this.errors.push(e)
+            });
+        }
     }
 </script>
 
