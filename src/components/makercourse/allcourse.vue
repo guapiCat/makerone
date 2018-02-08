@@ -14,7 +14,7 @@
         </div>
         <div class="classifylist">
           <ul>
-            <li @click="byClassify(item.type)"  v-for="item,index in titletype" class="title" v-bind:class="{lighton:index==classify}">{{item.name}}</li>
+            <li @click="byClassify(item.value)"  v-for="item,index in titletype" class="title" v-bind:class="{lighton:index==classify}">{{item.desc}}</li>
           </ul>
         </div>
         <div class="classify" style="margin-top: 20px;">
@@ -75,7 +75,7 @@
         name: "allcourse",
       data(){
           return{
-            fileURL:"http://192.168.1.100:9000/",
+            fileURL:"http://192.168.0.104:9000/",
             courseslist:[],
             titletype:[],
             sorttitle:[
@@ -96,10 +96,10 @@
           }
       },
       created:function () {
-          AXIOS.get('makerCourse/getCourseType',{}).then(response=>{
+          AXIOS.get('common/getGlobalType',{}).then(response=>{
             this.titletype=response.data;
-            this.sort = this.titletype[0].type;
-            this.classes=this.titletype[0].type+1
+            this.sort = this.titletype[0].value;
+            this.classes=this.titletype[0].value+1
           }).catch(response=>{
             this.errors.push(response);
           });
