@@ -163,28 +163,24 @@
         $(function () {
           $('.am-slider').flexslider()
         });
-      }).catch(response => {
-         alert(response);
+      }).catch(error => {
+         alert(error);
         //this.errors.push(response)
       });
-      AXIOS.get('homePage/makerworks?pageNum=1&pageSize=8',{}).then(response =>{
+      AXIOS.get('homePage/makerworks?pageSize=8',{}).then(response =>{
         var worksshow= eval(response.data);
-        this.ImplementationNotes = worksshow.data.list;
-      }).catch(response => {
-        alert("加载失败")
-        this.errors.push(response)
-      });
-      AXIOS.get('homePage/makercommunity?pageNum=1&pageSize=6',{}).then(response=>{
-        var team=eval(response.data);
+        this.ImplementationNotes = worksshow.data;
+      }).catch(error => {
+        alert(error)
 
-       this.teams=team.list;
-      }).catch(response => {
-        alert("加载失败")
       });
-      AXIOS.get('homePage/makercourse?pageNum=1&pageSize=4',{}).then(response=>{
-        var course=eval(response.data);
-        this.courses=course.list;
-
+      AXIOS.get('homePage/makercommunity?pageSize=6',{}).then(response=>{
+       this.teams=response.data;
+      }).catch(error => {
+        alert(error)
+      });
+      AXIOS.get('homePage/makercourse?pageSize=4',{}).then(response=>{
+        this.courses=response.data;
         this.coursefirst.backgroundImage = "url('"+this.fileURL+this.courses[0].courseCoverImage+"')";
         this.coursesecond.backgroundImage = "url('"+this.fileURL+this.courses[1].courseCoverImage+"')";
         this.coursethird.backgroundImage = "url('"+this.fileURL+this.courses[2].courseCoverImage+"')";
