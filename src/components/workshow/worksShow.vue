@@ -49,8 +49,8 @@
                                  style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
                                 <img class="q_head" :src="fileURL+item.avatar"/>
                                 <a class="q_works_user">{{item.realName}}</a>
-                                <a class="q_dianzan"><img src="../../../static/img/upvote.png"/><span>{{item.makerWorks.worksScanNum}}</span></a>
-                                <a class="q_liulan"><img src="../../../static/img/browse.png"/><span>{{item.makerWorks.worksThumbsUpNum}}</span></a>
+                                <a class="q_dianzan"><img src="../../../static/img/upvote.png"/><span>{{item.makerWorks.worksThumbsUpNum}}</span></a>
+                                <a class="q_liulan"><img src="../../../static/img/browse.png"/><span>{{item.makerWorks.worksScanNum}}</span></a>
                                 <div class="clear"></div>
                             </div>
                         </router-link>
@@ -75,8 +75,8 @@
                 proClass: [],
                 proSee: [
                     "时间",
-                    "点赞数",
-                    "浏览量"
+                    "浏览量",
+                    "点赞数"
                 ],
                 guigeSpan: 0,
                 clickOne: 0,
@@ -112,11 +112,12 @@
         created: function () {
             this.reqAxios(0, 0, 1, 10);
             var params = new URLSearchParams();
-            AXIOS.get('makerWorks/makeWorkType', {
+            AXIOS.get('common/getGlobalType', {
                 params:{}
             }).then(response => {
+                console.log(response);
                 for(var i=0;response.data;i++){
-                    this.proClass.push(response.data[i].dictDesc);
+                    this.proClass.push(response.data[i].desc);
                 }
             }).catch(e => {
                 this.errors.push(e)

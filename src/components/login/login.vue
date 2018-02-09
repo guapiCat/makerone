@@ -46,7 +46,6 @@
         params.append("password",$("#password").val());
         AXIOS.post('user/login', params)
           .then(response => {
-
             // JSON responses are automatically parsed.
             var jsonResult = eval(response.data);
               sessionStorage.setItem("TID", jsonResult["token"]);

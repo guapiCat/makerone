@@ -9,7 +9,7 @@
                  style="text-align: center; border: solid 1px #f3f3f3; border-bottom: solid 5px #FAC952; padding: 20px ; background-color: #EEEEEE;">
                 <h1>{{allMsg.teamName}}</h1>
 
-                <p><span>学校:</span><i>{{allMsg.schoolName}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<span>组长:</span><i>{{allMsg.teamMemberUserList[0].realName}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<span>时间:</span><i>2017-10-18</i>
+                <p><span>学校:</span><i>{{allMsg.schoolName}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<span>组长:</span><i>{{allMsg.sysUser.realName}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<span>时间:</span><i>2017-10-18</i>
                 </p>
             </div>
             <div class="center-box" style="border: solid 3px #f3f3f3 ; padding: 20px ;width: 100%;height: 100%;">
@@ -44,7 +44,7 @@
                                 style="float: right; color: #008bbe; cursor: pointer;">查看全部<img
                                 src="../../../static/img/arrow_2.png"
                                 style="margin-left: 10px;margin-top: -3px;"/> </span></p>
-                        <ul :class="{'am-avg-sm-4':creTrue,'am-thumbnails':creTrue,'seeAll':contOne}">
+                        <ul :class="{'am-avg-sm-4':creTrue,'am-thumbnails':creTrue,'seeAll':contOne,'noCont':jugCont}">
                             <li class="am-thumbnail" v-for="item in allMsg.makerWorksList"><img
                                     :src="fileURL+item.worksCoverImage"/>
 
@@ -62,11 +62,11 @@
                                 style="float: right; color: #008bbe; cursor: pointer;">查看全部<img
                                 src="../../../static/img/arrow_2.png"
                                 style="margin-left: 10px;margin-top: -3px;"/> </span></p>
-                        <ul :class="{'am-avg-sm-4':creTrue,'am-thumbnails':creTrue,'seeAll':contTwo}">
-                            <li v-for="item,index in allMsg.teamMemberUserList" class="am-thumbnail"><img
-                                    :src="fileURL+item.avatar"/>
+                        <ul :class="{'am-avg-sm-4':true,'am-thumbnails':true,'seeAll':contTwo}">
+                            <li v-for="item,index in teamMemb" class="am-thumbnail"><img
+                                    :src="fileURL+item[1]"/>
 
-                                <p>{{index?"组员":"组长"}}:<span>{{item.realName}}</span></p></li>
+                                <p>{{index?"组员":"组长"}}:<span>{{item[0]}}</span></p></li>
                             <!--<li class="am-thumbnail"><img  src="../../../static/img/img_bitmap.png" /><p>组员:<span>张华</span></p></li>-->
                             <!--<li class="am-thumbnail"><img  src="../../../static/img/img_bitmap.png" /><p>组员:<span>张华</span></p></li>-->
                             <!--<li class="am-thumbnail"><img  src="../../../static/img/img_bitmap.png" /><p>组员:<span>张华</span></p></li>-->
@@ -89,15 +89,25 @@
         data: function () {
             return {
                 allMsg: [],
+                teamMemb:[],
                 teamId: this.$route.params.teamId,
-                fileURL: "http://192.168.1.110:9000/",
+                fileURL: "http://192.168.0.105:9000/",
                 contOne: true,
                 contTwo: true,
-                creTrue:true
+                creTrue:true,
+                jugCont:false
             }
         },
         methods:{
+            //switchBol:function(goSwich){
+            //    if(goSwich==false){
+            //        goSwich=true;
+            //    }else{
+            //        goSwich=false;
+            //    }
+            //},
             seeAllOne:function(){
+                //this.switchBol(this.contOne);
                 if(this.contOne==false){
                     this.contOne=true;
                 }else{
@@ -105,6 +115,7 @@
                 }
             },
             seeAllTwo:function(){
+                //this.switchBol(this.contTwo);
                 if(this.contTwo==false){
                     this.contTwo=true;
                 }else{
@@ -119,19 +130,32 @@
                     makerTeamId: this.teamId
                 }
             }).then(response => {
-                console.log(response);
+                console.log(response.data);
                 this.allMsg = response.data;
+                this.teamMemb.push([this.allMsg.sysUser.username,this.allMsg.sysUser.avatar,this.allMsg.sysUser.id]);
+                for(var i=0;i<this.allMsg.teamMemberUserList.length;i++){
+                    this.teamMemb.push([this.allMsg.teamMemberUserList[i].username,this.allMsg.teamMemberUserList[i].avatar,this.allMsg.teamMemberUserList[i].id]);
+                }
+                if(response.data.makerWorksList.length==0){
+                    this.contOne=false;
+                    this.jugCont=true;
+                }
             }).catch(e => {
-                this.errors.push(e)
+                this.errors.push(e);
             });
+        },
+        mounted:function(){
         }
     }
 </script>
 
 <style scoped>
+    .noCont{
+        display:none;
+    }
     .seeAll{
         /*height: 10px;*/
-        height: 251px;
+        height: 257.375px;
         overflow: hidden;
         transition: all .5s linear;
     }
@@ -185,6 +209,7 @@
     .am-avg-sm-4 > li {
         width: 23%;
         margin-left: 2%;
+        margin-bottom: 30px;
     }
 
     .am-thumbnail img {

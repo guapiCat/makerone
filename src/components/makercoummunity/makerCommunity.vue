@@ -94,7 +94,7 @@
                         <div style="margin-top: 1%;padding-bottom: 2%;margin-left: 15%;">
                             <router-link :to="{name: 'teamdetail',params: {teamId: item.id}}"
                                          class="am-btn am-btn-primary" style="border-radius: 7px;margin-right: 50%;">
-                                查看社团详情
+                                查看团队详情
                             </router-link>
                             <router-link to=""
                                          class="am-btn am-btn-primary" style="border-radius: 7px;">申请加入

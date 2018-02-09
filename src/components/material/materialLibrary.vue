@@ -113,11 +113,11 @@
         created: function () {
             this.reqAxios(0, 0, 1, 10);
             var params = new URLSearchParams();
-            AXIOS.get('makerWorks/makeWorkType', {
+            AXIOS.get('common/getGlobalType', {
                 params: {}
             }).then(response => {
                 for (var i = 0; response.data; i++) {
-                    this.metClass.push(response.data[i].name);
+                    this.metClass.push(response.data[i].desc);
                 }
             }).catch(e => {
                 this.errors.push(e)
