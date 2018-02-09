@@ -82,13 +82,14 @@
             for (var i=0;i<this.makerlife.length;i++){
               this.contentbox=this.makerlife[i].makerLive.liveContent;
             };
+
           }).catch(response=>{
             this.errors.push(response);
           })
         },
-        byClassify: function (type) {
-          this.classify= type;
-          this.classifyClass=type-1;
+        byClassify: function (value) {
+          this.classify= value;
+          this.classifyClass=value;
           this.reqAxios(this.classify,this.sort ,1 ,8)
         },
         bySort: function (index) {
