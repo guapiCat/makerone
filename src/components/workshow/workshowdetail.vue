@@ -111,11 +111,11 @@
 
 <style scoped>
     .stepMsg{
-        height: 150px;
+        height: 160px;
         width:280px;
-        border:1px solid red;
+
         position: absolute;
-        background: gray;
+        background:  rgba(192, 192, 192, .6);
         opacity: 0;
         transition: all .5s linear;
     }
@@ -187,7 +187,8 @@
     .box-title {
         font-size: 25px;
         margin: 0 auto;
-        width: 100px;
+       text-align: center;
+        width: 100%;
     }
 
     .box-center {

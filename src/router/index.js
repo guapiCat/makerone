@@ -20,6 +20,7 @@ import teamdetail from '@/components/makercoummunity/teamdetail'
 import materialdetail from '@/components/material/materialdetail'
 import upmaterial from '@/components/material/upmaterial'
 import allcourse from '@/components/makercourse/allcourse'
+import activitydetail from '@/components/makeractivity/activitydetail'
 // 评价
 import userHeader from '@/components/personal_space/userPart'
 import CollMaterial from '@/components/personal_space/CollMaterial'
@@ -47,13 +48,14 @@ import TemJoin from '@/components/personal_space/TemJoin'
 import WorkShow from '@/components/personal_space/WorkShow'
 
 
+
 Vue.use(Router)
 global.headNum = 0;
 const Routers = [
   {
     path: '/',
     name: 'index',
-    component: index
+    component: index,
   },
 
   {
@@ -71,6 +73,10 @@ const Routers = [
     name:'makerCourse',
     component:makerCourse
 
+  },{
+    path:'/activity/detail/:id',
+    name:'activitydetail',
+    component:activitydetail
   },
   {
     path:'/makerCommunity/list',

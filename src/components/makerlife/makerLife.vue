@@ -6,7 +6,7 @@
     </div>
     <div class="classifylist">
       <ul>
-        <li  @click="byClassify(item.type)" v-for="item,index in titletype" v-bind:class="{on:index==classifyClass}"   class="title">{{item.name}}</li>
+        <li  @click="byClassify(item.value)" v-for="item,index in titletype" v-bind:class="{on:index==classifyClass}"   class="title">{{item.desc}}</li>
 
       </ul>
     </div>
@@ -43,7 +43,7 @@
         name: "maker-life",
       data (){
           return{
-            fileURL:"http://192.168.1.100:9000/",
+            fileURL:"http://192.168.0.104:9000/",
             makerlife:[],
             titletype:[],
             classify: 0,
@@ -61,7 +61,7 @@
           }
       },
       created:function () {
-        AXIOS.get('makerLive/makerLiveType?typeValue=makerLive',{}).then(response=>{
+        AXIOS.get('common/getGlobalType',{}).then(response=>{
           this.titletype=response.data;
           this.classify = this.titletype[0].type;
 
@@ -82,13 +82,14 @@
             for (var i=0;i<this.makerlife.length;i++){
               this.contentbox=this.makerlife[i].makerLive.liveContent;
             };
+
           }).catch(response=>{
             this.errors.push(response);
           })
         },
-        byClassify: function (type) {
-          this.classify= type;
-          this.classifyClass=type-1;
+        byClassify: function (value) {
+          this.classify= value;
+          this.classifyClass=value;
           this.reqAxios(this.classify,this.sort ,1 ,8)
         },
         bySort: function (index) {
