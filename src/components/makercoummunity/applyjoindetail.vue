@@ -20,23 +20,23 @@
 
             <tr>
               <td><span>姓名:</span></td>
-              <td style="width:500px"><input type="text" name="username" id="username" style="width: 100%;border-radius: 4px" readonly/></td>
+              <td style="width:500px"><input v-model="myName" type="text" name="username" id="username" style="width: 100%;border-radius: 4px"/></td>
             </tr>
 
             <tr>
               <td><span>班级:</span></td>
-              <td style="width:500px"><input type="text" name="class" id="class" style="width: 100%;border-radius: 4px" readonly/></td>
+              <td style="width:500px"><input type="text" v-model="myClass" name="class" id="class" style="width: 100%;border-radius: 4px"/></td>
             </tr>
 
             <tr style="padding-bottom: 70px;">
               <td class="desc" valign="top"><span>自我介绍:</span></td>
-              <td style="width:500px"><textarea name="self_desc" id="self_desc" style="width: 100%;height: 300px;border-radius: 4px">介绍自己特长......</textarea></td>
+              <td style="width:500px"><textarea v-model="mySpecial" name="self_desc" id="self_desc" style="width: 100%;height: 300px;border-radius: 4px" placeholder="介绍自己特长......"></textarea></td>
             </tr>
 
             <tr>
               <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
               <td>
-                <a href="javascript:;" class="am-btn am-btn-primary am-radius table_button"><span style="font-size: 20px;">提交</span></a>
+                <a href="javascript:;" class="am-btn am-btn-primary am-radius table_button"><span v-on:click="sendMsg" style="font-size: 20px;">提交</span></a>
               </td>
             </tr>
           </table>
@@ -49,9 +49,39 @@
 </div>
 </template>
 
-<script>
+<script type="es6">
+    import {AXIOS} from '../../http-common'
     export default {
-        name: "applyjoin"
+        name: "applyjoin",
+        data:function(){
+            return {
+                //初始化数据包括社团id，传过去的信息等
+                clubId:this.$route.params.clubJoinId,
+                myName:"",
+                myClass:"",
+                mySpecial:"",
+                userId:1
+            }
+        },
+        methods:{
+            sendMsg:function(){
+                alert("send ok");
+                var params = new URLSearchParams();
+                AXIOS.get('community/applyMakerCommunity', {
+                    params:{
+                        userId:this.userId,
+                        makerCommunityId:this.clubId,
+                        userName:this.myName,
+                        className:this.myClass,
+                        content:this.mySpecial
+                    }
+                }).then(response => {
+                    console.log(response.data);
+                }).catch(e => {
+                    this.errors.push(e)
+                });
+            }
+        }
     }
 </script>
 
