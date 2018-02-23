@@ -22,7 +22,7 @@ import upmaterial from '@/components/material/upmaterial'
 import allcourse from '@/components/makercourse/allcourse'
 import activitydetail from '@/components/makeractivity/activitydetail'
 // 评价
-import userHeader from '@/components/personal_space/userPart'
+//import userHeader from '@/components/personal_space/userPart'
 import CollMaterial from '@/components/personal_space/CollMaterial'
 import CollCousera from '@/components/personal_space/CollCousera'
 import CollWorks from '@/components/personal_space/CollWorks'
@@ -123,17 +123,16 @@ const Routers = [
     name:'createdetail',
     component:createdetail
   },{
-    path:'/community/applyjoindetail',
+    path:'/community/applyjoindetail/:clubJoinId',
     name:'applyjoindetail',
     component:applyjoindetail
   },{
-
     path:'/community/joindetail',
     name:'joindetail',
     component:joionactivity
 
   },{
-  path:'/makerteam/detail',
+  path:'/makerteam/detail/:teamId',
     name:'teamdetail',
     component:teamdetail
   },{
@@ -149,10 +148,10 @@ const Routers = [
     name:'allcourse',
     component:allcourse
   }, //个人中心的路由模块
-  {
-    path:"/user/userHeader",
-    component:userHeader
-  },
+  //{
+  //  path:"/user/userHeader",
+  //  component:userHeader
+  //},
   {
     path:"/user/collMaterial",
     component:CollMaterial

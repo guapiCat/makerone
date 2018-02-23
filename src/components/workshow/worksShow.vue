@@ -71,7 +71,7 @@
         name: "works-show",
         data () {
             return {
-                fileURL:"http://192.168.1.110:9000/",
+                fileURL:"http://192.168.0.105:9000/",
                 proClass: [],
                 proSee: [
                     "时间",

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <keep-alive>
-      <footPart v-if="headNum === 1"></footPart>
+      <userPart v-if="headNum === 1"></userPart>
       <headPart v-else></headPart>
     </keep-alive>
     <router-view/>
@@ -15,7 +15,7 @@
 
   import headPart from './components/headandfoot/headPart'
   import footPart from './components/headandfoot/footPart'
-
+  import userPart from './components/userPart'
 
   import router from './router';
 
@@ -28,7 +28,8 @@
     },
     components: {
       headPart: headPart,
-      footPart: footPart
+      footPart: footPart,
+      userPart:userPart
     }
   }
 </script>

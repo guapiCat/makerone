@@ -40,7 +40,7 @@
                     <span class="content-title">团队作品</span>
 
                     <div class="content-box-body" style="overflow: hidden;">
-                        <p style="margin-bottom: 40px;"><span v-on:click="seeAllOne()"
+                        <p style="margin-bottom: 40px;"><span v-on:click="switchBol(contOne)"
                                 style="float: right; color: #008bbe; cursor: pointer;">查看全部<img
                                 src="../../../static/img/arrow_2.png"
                                 style="margin-left: 10px;margin-top: -3px;"/> </span></p>
@@ -58,7 +58,7 @@
                     <span class="content-title">团队成员</span>
 
                     <div class="content-box-body" style="overflow: hidden;">
-                        <p style="margin-bottom: 40px;"><span v-on:click="seeAllTwo()"
+                        <p style="margin-bottom: 40px;"><span v-on:click="switchBol(contTwo)"
                                 style="float: right; color: #008bbe; cursor: pointer;">查看全部<img
                                 src="../../../static/img/arrow_2.png"
                                 style="margin-left: 10px;margin-top: -3px;"/> </span></p>
@@ -99,14 +99,10 @@
             }
         },
         methods:{
-            //switchBol:function(goSwich){
-            //    if(goSwich==false){
-            //        goSwich=true;
-            //    }else{
-            //        goSwich=false;
-            //    }
-            //},
-            seeAllOne:function(){
+            switchBol:function(goSwich){
+                goSwich = !goSwich
+            }
+            /*seeAllOne:function(){
                 //this.switchBol(this.contOne);
                 if(this.contOne==false){
                     this.contOne=true;
@@ -121,7 +117,7 @@
                 }else{
                     this.contTwo=false;
                 }
-            }
+            }*/
         },
         created: function () {
             var params = new URLSearchParams();

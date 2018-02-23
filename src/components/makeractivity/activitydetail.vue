@@ -15,7 +15,7 @@
 
 
     <div class="am-u-sm-10 am-u-sm-centered" style="text-align: center;margin-top:20px;padding-bottom: 40px;margin-left: 6%; margin-bottom: -50px;">
-      <a><img src="../../../static/img/icon_activity_add-button.png" alt=""></a>
+      <!--<a><img src="../../../static/img/icon_activity_add-button.png" alt=""></a>-->
     </div>
   </div>
 </div>
@@ -48,7 +48,7 @@
 
 <style scoped>
   .bg{
-    background: url('../../../static/img/img_activity_background.png');
+    /*background: url('../../../static/img/img_activity_background.png');*/
     background-size: cover;
     width: 100%;
   }

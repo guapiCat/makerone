@@ -67,11 +67,14 @@
               </ul>
               <p><span style="color: #008bbe;font-weight: bold;">精彩视频</span><span v-on:click="seeAllTwo()" style="float: right; color: #008bbe; cursor: pointer;">查看全部<img src="../../../static/img/arrow_2.png" style="margin-left: 10px;margin-top: -3px;" /> </span></p>
               <ul :class="{'am-avg-sm-4':true,'am-thumbnails':true,'seeAll':contTwo,'noCont':jugContTwo}">
-                <li><video>
-                </video></li>
-                <li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>
-                <li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-3.jpg" /></li>
-                <li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-4.jpg" /></li>
+                  <li v-for="item in allVideo">
+                      <video controls="controls" :src="fileURL+item" style="width:270px;height:270px"></video>
+                  </li>
+                <!--<li><video>-->
+                <!--</video></li>-->
+                <!--<li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-2.jpg" /></li>-->
+                <!--<li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-3.jpg" /></li>-->
+                <!--<li><img class="am-thumbnail" src="http://s.amazeui.org/media/i/demos/bing-4.jpg" /></li>-->
               </ul>
             </div>
           </div>
@@ -90,7 +93,7 @@
         data:function(){
             return {
                 allMsg:[],
-                fileURL: "http://192.168.0.105:9000/",
+                fileURL: "http://192.168.0.103:9000/",
                 clubId:this.$route.params.workId,
                 allImg:[],
                 allVideo:[],
