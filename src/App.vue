@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <component :is="currentView"></component>
-    <router-view/>
+    <router-view :fileURL="fileURL"/>
     <footPart></footPart>
 
 
@@ -20,6 +20,7 @@
     name: 'app',
     data (){
       return {
+        fileURL: 'http://192.168.0.103:9000/',
         currentView: 'headPart'
       }
     },
