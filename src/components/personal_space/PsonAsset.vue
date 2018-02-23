@@ -1,107 +1,42 @@
 <template>
     <div class="hello compon_center">
-        <div class="layout">
-            <div class="layout-header am-hide-sm-only">
-                <!--topbar start-->
-                <div class="topbar">
-                    <div class="container">
-                        <div class="am-g">
-                            <div class="am-u-md-3">
-                                <div class="topbar-left">
 
-                                    <div class="am-dropdown" data-am-dropdown style="color: #828181;">
-
-                                        <span style="margin-top:10px; display: block;">欢迎光临</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="nav-search">
-                                <img src="../../../static/img/nav_serch.png"/>
-                                <input type="search" placeholder="请输入关键字"/>
-                            </div>
-                            <div class="p_head_photo">
-                                <a id="btn_login2" class="q_btLogin" style="position: relative;"><img
-                                        src="../../../static/img/message.png" style="height: 24px;
-    margin-top: -8px;"/>
-                                    <span style="position: absolute; left: -5px;width: 33px;top: 13px; color: #FFFFFF;">消息</span></a>
-                                <a id="btn_login3" class="q_btLogin" href=""><img
-                                        src="../../../static/img/img_bitmap.png" alt=""
-                                        style="height: 39px; width: 39px;margin-top: 3px;margin-left: 12px;"/></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--topbar end-->
-
-                <div class="header-box" data-am-sticky>
-
-                    <!--nav start-->
-                    <div id="x_bg">
-                        <div id="x_header_contain">
-                            <div class="nav_img">
-                                <a href=""> <img src="../../../static/img/logo.png"/></a>
-                            </div>
-                            <div id="x_nav" style="margin-top: 18px;">
-                                <ul style="list-style: none;">
-                                    <li id="x_shouye">
-                                        <a class="active" href="">我的首页
-                                        </a>
-                                    </li>
-                                    <li id="x_luntan">
-                                        <a href="">我的作品</a>
-                                    </li>
-                                    <li id="x_newProgramming">
-                                        <a href="">我的项目</a>
-                                    </li>
-                                    <li id="x_diyzuopin1">
-                                        <a href="">我的学习</a>
-                                    </li>
-                                    <li id="x_diyzuopin2">
-                                        <a href="">我的班级</a>
-                                    </li>
-                                    <li id="x_contest1">
-                                        <a href="">个人资料</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
         <!--===========layout-container================-->
         <div class="am-slider am-slider-default" data-am-flexslider>
             <img src="../../../static/img/img_bitmap.png" alt=""
                  style="float: left;margin-left: 20%;height: 150px;width: 150px;margin-top:1%;"/>
             <h5>昵称：<span>free</span></h5>
 
-            <p>去编辑 <span><a href=""><img src="../../../static/img/arrow_1.png"
-                                                              style="height: 24px;width: 17px; margin-left: 15px; cursor: pointer;"/></a> </span>
-            </p>
-        </div>
-        <!--content-->
-        <div class="workshow" style="width: 1200px;margin: 50px auto; ">
-            <div class="center-title" style="margin-bottom: 20px; color: #969696;">
-                <span> <img src="../../../static/img/icon_address.png" alt=""/><i
-                        style="margin-left: 15px;">益谷创客平台-作品展示-<span>我的首页</span></i></span>
+            <div v-for="value,index in myHeader" v-on:click="hdClick(index)" v-bind:class="{on:index==guigeSpan}">
+                <p class="myHeadP">
+                    <a>
+                        <span>{{value}}</span>
+                    </a>
+                </p>
             </div>
-            <div class="person-data">
-                <p class="pdata">个人资料</p>
 
-                <p class="p-data"><img src="../../../static/img/personname.png"/>昵称：<span>free</span></p>
+            <!--<p><a href="">个人信息</a></p>-->
 
-                <p class="p-data"><img src="../../../static/img/telphone.png"/>电话：<span>1581545454545</span></p>
+            <!--<p><a href="">我的社团</a></p>-->
 
-                <p class="p-data"><img src="../../../static/img/school.png"/>学校：<span>free</span></p>
+            <!--<p><a href="">我的团队</a></p>-->
 
-                <p class="p-data p-noimg">班级：<span>一年级五班</span></p>
+            <!--<p><a href="">个人资产</a></p>-->
 
-                <p class="p-data p-noimg">学号：<span>12121</span></p>
+            <!--<p><a href="">我的作品</a></p>-->
 
-                <p style="height: 25rem;padding-top: 57%;padding-left: 20%;cursor: pointer;"><a
-                        href="../personal_data.html">查看更多资料</a></p>
+            <!--<p><a href="">我的收藏</a></p>-->
+
+            <div class="mySs">
+                <img class="mySs_img" src="../../static/img/nav_serch.png" alt=""/>
+                <input class="mySs_inp" type="text" placeholder="请输入关键字"/>
+
+                <div class="mySs_xx">
+                    <img src="../../static/img/message.png" alt=""/>
+
+                    <p>消息</p>
+                </div>
+                <img class="mySs_person" src="../../static/img/img_bitmap.png" alt=""/>
             </div>
             <div class="my-right">
                 <div class="right-top">
@@ -125,7 +60,7 @@
                 </div>
                 <div class="right-content-2">
                     <div class="asset_record">
-                        2017-10-18&nbsp;通过活动获得XXX星星../../
+                        2017-10-18&nbsp;通过活动获得XXX星星
                     </div>
                     <div class="asset_record">
                         2017-10-18&nbsp;通过活动获得XXX星星

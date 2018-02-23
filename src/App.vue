@@ -12,7 +12,7 @@
 
   import headPart from './components/headandfoot/headPart'
   import footPart from './components/headandfoot/footPart'
-  import userPart from './components/userPart.vue'
+  import userPart from './components/userPart'
 
   import router from './router';
 
@@ -21,11 +21,19 @@
     data (){
       return {
         fileURL: 'http://192.168.0.103:9000/',
-        currentView: 'headPart'
+        currentView: ''
       }
     },
     watch:{
        "$route":"changeHead",
+    },
+    created() {
+      const url = location.href;
+      if(url.indexOf("user") > -1){
+        this.currentView = 'userPart'
+      } else{
+        this.currentView = 'headPart'
+      }
     },
     methods: {
       changeHead() {
