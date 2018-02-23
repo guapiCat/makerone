@@ -62,7 +62,7 @@
                 console.log(index);
                 //可以根据index跳转对应的组件
                 if(index==0){
-                    this.$router.push({ path: '/user/psonData' })
+                    this.$router.push({ path: '/user/psonAsset' })
                 }else if(index==2){
                     this.$router.push({ path: '/user/myGroup' })
                 }else if(index==4){
