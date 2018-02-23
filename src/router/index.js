@@ -22,7 +22,6 @@ import upmaterial from '@/components/material/upmaterial'
 import allcourse from '@/components/makercourse/allcourse'
 import activitydetail from '@/components/makeractivity/activitydetail'
 // 评价
-//import userHeader from '@/components/personal_space/userPart'
 import CollMaterial from '@/components/personal_space/CollMaterial'
 import CollCousera from '@/components/personal_space/CollCousera'
 import CollWorks from '@/components/personal_space/CollWorks'
@@ -233,14 +232,5 @@ const RouterConfig = {
   routes: Routers
 };
 const router = new Router(RouterConfig);
-
-router.beforeEach((to, from, next) => {
-  if(to.path.indexOf("user") > -1){
-    global.headNum = 1;
-  }else{
-    global.headNum = 0;
-  }
-  next();
-});
 
 export default router

@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <keep-alive>
-      <userPart v-if="headNum === 1"></userPart>
-      <headPart v-else></headPart>
-    </keep-alive>
+    <component :is="currentView"></component>
     <router-view/>
     <footPart></footPart>
 
@@ -15,7 +12,7 @@
 
   import headPart from './components/headandfoot/headPart'
   import footPart from './components/headandfoot/footPart'
-  import userPart from './components/userPart'
+  import userPart from './components/userPart.vue'
 
   import router from './router';
 
@@ -23,17 +20,29 @@
     name: 'app',
     data (){
       return {
-        headNum: global.headNum
+        currentView: 'headPart'
+      }
+    },
+    watch:{
+       "$route":"changeHead",
+    },
+    methods: {
+      changeHead() {
+        const url = location.href;
+        if(url.indexOf("user") > -1){
+          this.currentView = 'userPart'
+        } else{
+          this.currentView = 'headPart'
+        }
       }
     },
     components: {
       headPart: headPart,
       footPart: footPart,
-      userPart:userPart
+      userPart: userPart
     }
   }
 </script>
 
 <style>
 </style>
-
