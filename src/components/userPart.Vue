@@ -2,7 +2,7 @@
 <template>
     <div class="hello">
         <div class="myHeaderMsg">
-            <img class="myLogo" src="../../../static/img/logo.png" alt=""/>
+            <img class="myLogo" src="../../static/img/logo.png" alt=""/>
 
 
             <div v-for="value,index in myHeader" v-on:click="hdClick(index)" v-bind:class="{on:index==guigeSpan}">
@@ -26,15 +26,15 @@
             <!--<p><a href="">我的收藏</a></p>-->
 
             <div class="mySs">
-                <img class="mySs_img" src="../../../static/img/nav_serch.png" alt=""/>
+                <img class="mySs_img" src="../../static/img/nav_serch.png" alt=""/>
                 <input class="mySs_inp" type="text" placeholder="请输入关键字"/>
 
                 <div class="mySs_xx">
-                    <img src="../../../static/img/message.png" alt=""/>
+                    <img src="../../static/img/message.png" alt=""/>
 
                     <p>消息</p>
                 </div>
-                <img class="mySs_person" src="../../../static/img/img_bitmap.png" alt=""/>
+                <img class="mySs_person" src="../../static/img/img_bitmap.png" alt=""/>
             </div>
         </div>
     </div>
@@ -79,19 +79,23 @@
 
 <style scoped>
     /*改动的样式-yzh*/
+    span{
+        color:white;
+    }
     .myHeadP{
         border-right: dotted 2px white;
+        margin-top: 15px;
+        margin-left: 30px;
     }
-    .on p a {
+    .on p a span{
         color: yellow;
     }
-
     a {
         cursor: pointer;
     }
     /*改动样式结束*/
     .myHeaderMsg {
-        background: url("../../../static/img/img_mynav.png");
+        background: url("../../static/img/img_mynav.png");
         width: 100%;
         height: 60px;
         display: flex;
@@ -99,25 +103,26 @@
         background-position: 50% -14px;
     }
 
-    .myHeaderMsg > p {
+    .myHeaderMsg  p {
         border-right: dashed 2px white;
         font-size: 18px;
         margin-right: 20px;
         margin-left: 20px;
+        margin-top: 8px;
         padding-right: 20px;
         cursor: pointer;
         line-height: 40px;
     }
 
-    .myHeaderMsg > p > a {
-        color: white;
-    }
+    /*.myHeaderP span{*/
+        /*color: white;*/
+    /*}*/
 
-    .myHeaderMsg > p > a:link {
+    .myHeaderMsg  p  a:link {
         text-decoration: none;
     }
 
-    .myHeaderMsg > p > a:hover {
+    .myHeaderMsg  p  a:hover {
         border-bottom: 1px solid yellow;
         color: yellow;
     }
@@ -127,7 +132,7 @@
         position: relative;
         width: 180px;
         height: 50px;
-        left: -8%;
+        left: -4%;
         top: 5px;
     }
 
@@ -181,7 +186,7 @@
     .mySs .mySs_xx > p {
         float: left;
         color: white;
-        margin-top: 10px;
+        margin-top: 6px;
         margin-left: -28px;
         border:none;
     }
