@@ -35,9 +35,14 @@
 
     export default {
         name: "life-detail",
+        props: {
+        fileURL: {
+          type: String,
+          required: true
+        }
+      },
         data(){
           return{
-            fileURL: "http://192.168.1.100:9000/",
             workId: this.$route.params.workId,
             makelifelist:[],
             contentbox:[]

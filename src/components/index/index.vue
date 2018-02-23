@@ -132,10 +132,15 @@
 
   export default {
     name: 'index',
+    props: {
+      fileURL: {
+        type: String,
+        required: true
+      }
+    },
     data () {
       return {
         banners: [],
-        fileURL: "http://192.168.0.104:9000/",
         ImplementationNotes:[],
         teams:[],
         courses:[],

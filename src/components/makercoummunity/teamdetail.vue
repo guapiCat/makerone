@@ -86,12 +86,17 @@
     import {AXIOS} from '../../http-common'
     export default {
         name: "makerteam",
+        props: {
+        fileURL: {
+          type: String,
+          required: true
+        }
+      },
         data: function () {
             return {
                 allMsg: [],
                 teamMemb:[],
                 teamId: this.$route.params.teamId,
-                fileURL: "http://192.168.0.105:9000/",
                 contOne: true,
                 contTwo: true,
                 creTrue:true,

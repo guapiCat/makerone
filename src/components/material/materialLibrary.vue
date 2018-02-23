@@ -70,9 +70,14 @@
     import {AXIOS} from '../../http-common'
     export default {
         name: "material-library",
+      props: {
+        fileURL: {
+          type: String,
+          required: true
+        }
+      },
         data () {
             return {
-                fileURL: "http://192.168.1.110:9000/",//图片地址
                 allMet: [],//所有素材
                 metClass: [],//素材分类
                 metSee: ["最新", "下载量"],//查看素材分类（2级）

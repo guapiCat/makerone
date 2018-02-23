@@ -90,10 +90,15 @@
     import {AXIOS} from '../../http-common'
     export default {
         name: "communitydetail",
+      props: {
+        fileURL: {
+          type: String,
+          required: true
+        }
+      },
         data:function(){
             return {
                 allMsg:[],
-                fileURL: "http://192.168.0.103:9000/",
                 clubId:this.$route.params.workId,
                 allImg:[],
                 allVideo:[],

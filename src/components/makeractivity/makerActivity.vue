@@ -48,9 +48,14 @@
   import {AXIOS} from '../../http-common'
     export default {
         name: "maker-activity",
+      props: {
+        fileURL: {
+          type: String,
+          required: true
+        }
+      },
       data(){
        return{
-         fileURL:"http://192.168.0.104:9000/",
          activity:[],
          background:{
            backgroundImage: '',

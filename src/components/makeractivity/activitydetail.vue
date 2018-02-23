@@ -25,9 +25,14 @@
   import {AXIOS} from "../../http-common";
     export default {
         name: "activitydetail",
+        props: {
+        fileURL: {
+          type: String,
+          required: true
+        }
+      },
       data(){
           return{
-            fileURL: "http://192.168.0.104:9000/",
             id: this.$route.params.id,
             activity:[]
           }
