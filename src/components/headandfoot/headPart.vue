@@ -10,7 +10,7 @@
         <p><router-link to="/makerCommunity/list"><span>创客社团</span><i>GROUP</i></router-link></p>
         <p><router-link to="/makerActivity/list"><span>创客活动</span><i>ACTIVITY</i></router-link></p>
         <p><router-link to="/materialLibrary/list"><span>素材库</span><i style="margin-left: -26px;">MATERIAL LIBRARY</i></router-link></p>
-        <p><a href=""><span>个人空间</span><i style="margin-left: -13px;">PERSONAL SPACE</i></a></p>
+        <p><router-link to="/user/psonAsset"><span>个人空间</span><i style="margin-left: -13px;">PERSONAL SPACE</i></router-link></p>
         <p><router-link to="/makerLife/list"><span>创客生活</span><i style="margin-left: -3px;">CREATIVE LIFE</i></router-link></p>
         <div class="mySs">
             <img class="mySs_img" src="../../../static/img/nav_serch.png" alt=""/>
