@@ -51,7 +51,7 @@
 					 </span>
               </div>
               <div style="text-align: right;padding-top: 5%;padding-right: 3%;">
-                   <router-link :to="{name: 'makerCourse',params:{ workId: item.id}}"  class="am-btn am-btn-primary" style="border-radius: 7px;width: 135px;">查看详情</router-link>
+                   <router-link :to="{name: 'makerCourse',params:{ workId: item.id,typeId:item.type}}"  class="am-btn am-btn-primary" style="border-radius: 7px;width: 135px;">查看详情</router-link>
               </div>
             </div>
           </div>

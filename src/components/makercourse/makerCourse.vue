@@ -6,8 +6,8 @@
     </div>
     <div class="center-box" style="border: solid 3px #f3f3f3 ;">
       <div class="centent-title">
-        <h1>防盗书包</h1>
-        <h5>分类:<span>创客项目</span></h5>
+        <h1>{{makercourse.courseName}}</h1>
+        <h5>分类:<span>{{makercourse.typeName}}</span></h5>
         <div class="centent-title-right">
           <img src="../../../static/img/icon_upvote.png" style="height: 30px; width: 30px; margin-right:20px ;" />
           <button type="button" class="am-btn am-btn-primary">我要收藏</button>
@@ -15,16 +15,16 @@
       </div>
       <div class="content-title-hand">
         <div class="content-title-hand-left">
-          <img src="../../../static/img/airplane.png" />
+          <img :src="fileURL+makercourse.courseCoverImage" class="default" />
+          <video  class="myvideo"  controls="controls" style="width: 100%;height: 100%;display: none"></video>
         </div>
 
         <div class="content-title-hand-right" style="float: left; width: 40%;" >
           <h5>课程信息</h5>
-          <p>开课时间：<span>2017-7-10</span></p>
-          <p>浏览人数：<span>1730</span>人</p>
-          <p>课程进度：<span>连载至第三件</span></p>
-          <p>主讲人：<span>free</span></p>
-          <p>课程介绍：<span>注重使用先进的教学方法和手段。精品课程要使用网络进行教学与管理，相关的教学大纲、教案、习题、实验指导、参考文献目录等要上网并免费开放，鼓励将网络课件、授课录像等上网开放，实现优质教学资源共享，带动其他课程的建设</span></p>
+          <p>开课时间：<span>{{makercourse.createDate}}</span></p>
+          <p>浏览人数：<span>{{makercourse.courseScanNum}}</span>人</p>
+          <p>课程进度：<span>{{makercourse.chapterName}}</span></p>
+          <p>课程介绍：<span>{{makercourse.courseIntro}}</span></p>
         </div>
 
       </div>
@@ -47,26 +47,20 @@
           </div>
           <div class="content-box-right-body">
             <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-2 am-thumbnails">
-              <li><img class="am-thumbnail" src="../../../static/img/last-2.png" />
-                <p class="q_coverName">创客作品</p>
-                <div class="q_worksCn">
-                  <img class="q_head" src="../../../static/img/img_head.png" />
-                  <a class="q_works_user">小王</a>
-                  <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
-                  <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
+              <li v-for="item in relatedworks ">
+                <router-link :to="{name: 'workshowdetail', params: {workId: item.makerWorks.id}}">
+                <img class="am-thumbnail workimg" :src="fileURL+item.makerWorks.worksCoverImage"  />
+                <p class="q_coverName">{{item.makerWorks.worksName}}</p>
+                <div class="q_worksCn" style="overflow: hidden">
+                  <img class="q_head" :src="fileURL+item.makerWorks.worksCoverImage"  />
+                  <a class="q_works_user">{{item.realName}}</a>
+                  <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>{{item.makerWorks.worksThumbsUpNum}}</span></a>
+                  <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>{{item.makerWorks.worksScanNum}}</span></a>
                   <div class="clear"></div>
                 </div>
+                  </router-link>
               </li>
-              <li><img class="am-thumbnail" src="../../../static/img/last-2.png" />
-                <p class="q_coverName">创客作品</p>
-                <div class="q_worksCn">
-                  <img class="q_head" src="../../../static/img/img_head.png" />
-                  <a class="q_works_user">小王</a>
-                  <a class="q_dianzan"><img src="../../../static/img/upvote.png" /><span>5537</span></a>
-                  <a class="q_liulan"><img src="../../../static/img/browse.png" /><span>5537</span></a>
-                  <div class="clear"></div>
-                </div>
-              </li>
+
             </ul>
 
           </div>
@@ -84,20 +78,50 @@
 </template>
 
 <script>
-   // import '../../../static/css/demo.css'
+  import '../../../static/css/demo.css'
   import '../../../static/css/zTreeStyle.css'
   import '../../../static/js/jquery.ztree.core'
+   import {AXIOS} from "../../http-common";
   export default {
-        name: "maker-course",
-       methods:{
-
-      },
-    mounted:function () {
+    name: "maker-course",
+    props: {
+      fileURL: {
+        type: String,
+        required: true
+      }
+    },
+    data() {
+      return {
+        courseId:this.$route.params.workId,
+        typeId:this.$route.params.typeId,
+        makercourse:[],
+        relatedworks:[]
+      }
+    },
+   methods:{
+     playResource: function(type, url){
+       console.log(type+url);
+     }
+   },
+    created:function(){
+      // 相关作品
+      AXIOS.get('makerCourse/relatedWorks?pageSize=3',{
+        params:{
+          type:this.typeId
+        },
+      }).then(response=>{
+        this.relatedworks=response.data;
+        console.log(response)
+      }).catch(response=>{
+        this.errors.push(response)
+      });
+      // 边栏
       var curMenu = null, zTree_Menu = null;
       var pageid=[];
       var pagepId=[];
       var pagename=[];
       var zNodes=[];
+      var vueObj = this;
       var setting = {
         view: {
           showLine: false,
@@ -112,7 +136,8 @@
           }
         },
         callback: {
-          beforeClick: beforeClick
+          beforeClick: beforeClick,
+          onClick:zTreeOnClick
         }
       };
       $.ajax({
@@ -120,35 +145,38 @@
         cache:false,
         type:'get',
         dataType:'json',
-        url:"http://192.168.0.106:8080/makerCourse/makerCourseInfo?courseId=1&courseGrade=1&type=1",
+        url:"http://192.168.0.106:8080/makerCourse/makerCourseInfo",
+        data:{
+          courseId:this.courseId
+        },
         error:function(){
           alert('请求失败');
         },
         success:function(data){
           var response=data.makerCourseChapterList;
-          // pageid=response.id;
-          // pagepId=response.parentId;
-          // pagename=response.chapterName;
-         // for (var i in response){
-         //   pageid=response[i].id;
-         //   pagepId=response[i].parentId;
-         //   pagename=response[i].chapterName;
-         //   i++
-         // }
           for(var i=0;i<response.length;i++){
             pageid=(response[i].id);
             pagepId=(response[i].parentId);
             pagename=(response[i].chapterName);
-            console.log(response.length)
-            zNodes.push({id:pageid,pId:pagepId, name:pagename, open:true})
+            zNodes.push({id:pageid,pId:pagepId, name:pagename, resourceType:response[i].resourceType,chapterResource:response[i].chapterResource,open:false})
           };
           // zNodes =response;
-
+          console.log(zNodes);
         }
       });
-      console.log(zNodes)
+      function zTreeOnClick(event, treeId, treeNode) {
+        console.log(zTree_Menu.getNodeByTId(treeNode.tId).chapterResource + ", " +zTree_Menu.getNodeByTId(treeNode.tId).resourceType)
+        if(zTree_Menu.getNodeByTId(treeNode.tId).resourceType==1){
+          $('.default').hide();
+          $('.myvideo').show();
+          $('.myvideo').attr('src',vueObj.fileURL+zTree_Menu.getNodeByTId(treeNode.tId).chapterResource)
+        }else {
+          $('.default').show()
+          $('.default').attr('src',vueObj.fileURL+zTree_Menu.getNodeByTId(treeNode.tId).chapterResource)
+          $('.myvideo').hide();
+        }
 
-
+      };
       function addDiyDom(treeId, treeNode) {
         var spaceWidth = 5;
         var switchObj = $("#" + treeNode.tId + "_switch"),
@@ -175,7 +203,7 @@
         var treeObj = $("#treeDemo");
         $.fn.zTree.init(treeObj, setting, zNodes);
         zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
-          curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
+        //curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
         zTree_Menu.selectNode(curMenu);
 
         treeObj.hover(function () {
@@ -187,14 +215,37 @@
         });
       });
 
-    }
 
+     },
+    updated:function () {
+
+    },
+    mounted:function () {
+      // this.refresh();
+      // 展示加载
+      AXIOS.get('makerCourse/makerCourseInfo',{
+        params:{
+          courseId:this.courseId
+        }
+      }).then(response=>{
+        this.makercourse=response.data.makerCourseDTO
+      }).catch(response => {
+        this.errors.push(response)
+      });
+
+
+    }
 
 
     }
 </script>
 
 <style scoped>
+
+  .workimg {
+    height: 220px !important;
+    width: 290px !important;
+  }
   .center-title i{
     margin-left: 15px;
   }
@@ -274,16 +325,6 @@
   }
   /*三级联动*/
 
-  #menu h1 { font-size:12px;  background-color:#eee; height: 50px; line-height: 38px; padding: 0; margin: 0;}
-  #menu h2 { font-size:12px; border:#E7E7E7 1px solid; border-top-color:#FFF; background-color:#F4F4F4; padding: 0; margin: 0;}
-  #menu ul { padding-left:15px;border:#E7E7E7 1px solid; border-top:none;overflow:auto; margin: 0; padding: 0;}
-  #menu a { display:block; padding:5px 0 3px 10px; text-decoration:none; overflow:hidden;border-bottom: solid 1px #eee;    height: 42px;
-    line-height: 34px;}
-
-  #menu .no {display:none;}
-  #menu .h1 a{color:#000;}
-  #menu .h2 a{color:#000;}
-  #menu  h1 a{color:#000;}
   .content-box-right{
     width: 44%;
     float: left;
@@ -329,28 +370,9 @@
   .comment-conten span{
     color: #7394CA;
   }
-  /*ztree*/
-  .ztree * {font-size: 10pt;font-family:"Microsoft Yahei",Verdana,Simsun,"Segoe UI Web Light","Segoe UI Light","Segoe UI Web Regular","Segoe UI","Segoe UI Symbol","Helvetica Neue",Arial}
-  .ztree li ul{ margin:0; padding:0}
-  .ztree li {line-height:30px;}
-  .ztree li a {width:200px;height:30px;padding-top: 0px;}
-  .ztree li a:hover {text-decoration:none; background-color: #E7E7E7;}
-  .ztree li a span.button.switch {visibility:hidden}
-  .ztree.showIcon li a span.button.switch {visibility:visible}
-  .ztree li a.curSelectedNode {background-color:#D4D4D4;border:0;height:30px;}
-  .ztree li span {line-height:30px;}
-  .ztree li span.button {margin-top: -7px;}
-  .ztree li span.button.switch {width: 16px;height: 16px;}
 
-  .ztree li a.level0 span {font-size: 150%;font-weight: bold;}
-  .ztree li span.button {background-image:url("../../../static/img/left_menuForOutLook.png"); *background-image:url("../../../static/img/left_menuForOutLook.gif")}
-  .ztree li span.button.switch.level0 {width: 20px; height:20px}
-  .ztree li span.button.switch.level1 {width: 20px; height:20px}
-  .ztree li span.button.noline_open {background-position: 0 0;}
-  .ztree li span.button.noline_close {background-position: -18px 0;}
-  .ztree li span.button.noline_open.level0 {background-position: 0 -18px;}
-  .ztree li span.button.noline_close.level0 {background-position: -18px -18px;}
 
 
 
 </style>
+
