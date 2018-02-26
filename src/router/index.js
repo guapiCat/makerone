@@ -68,7 +68,7 @@ const Routers = [
   component:workshowdetail
   },
   {
-    path:'/makerCourse/list',
+    path:'/makerCourse/list/:workId/:typeId',
     name:'makerCourse',
     component:makerCourse
 
