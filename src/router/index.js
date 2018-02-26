@@ -176,7 +176,7 @@ const Routers = [
     path:"/user/myColl",
     component:MyColl
   },{
-    path:"/user/myGroup",
+    path:"/user/myGroup/:userId",
     component:MyGroup
   },{
     path:"/user/myMsg",
@@ -185,7 +185,7 @@ const Routers = [
     path:"/user/myClass",
     component:MyClass
   },{
-    path:"/user/myTeam",
+    path:"/user/myTeam/:userId",
     component:MyTeam
   },{
     path:"/user/myWorks",
@@ -197,13 +197,15 @@ const Routers = [
     path:"/user/psonAsset",
     component:PsonAsset
   },{
-    path:"/user/psonData",
+    path:"/user/psonData/:userId",
     component:PsonData
   },{
-    path:"/user/psonSet",
+    path:"/user/psonSet/:userId",
+    name:"PsonSet",
     component:PsonSet
   },{
-    path:"/user/psonSpace",
+    path:"/user/psonSpace/:userId",
+    name:"PsonSpace",
     component:PsonSpace
   },{
     path:"/user/sclCource",
@@ -216,6 +218,7 @@ const Routers = [
     component:SubPro
   },{
     path:"/user/temCre",
+    name:"TemCre",
     component:TemCre
   },{
     path:"/user/temJoin",
