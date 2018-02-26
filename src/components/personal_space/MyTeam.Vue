@@ -56,16 +56,23 @@
         <!--content-->
         <div class="workshow compon_center" style="width: 1200px;margin: 50px auto; ">
             <div class="center-title" style="margin-bottom: 20px; color: #969696;">
-                <span> <img src="../../../static/img/icon_address.png" alt="" /><i style="margin-left: 15px;">益谷创客平台-作品展示-<span>我的团队</span></i></span>
+                <span> <img src="../../../static/img/icon_address.png" alt="" /><i style="margin-left: 15px;">益谷创客平台-作品展示-<span>我的社团</span></i></span>
             </div>
             <div class="am-panel-group" id="accordion">
                 <div class="am-panel am-panel-default">
                     <div class="am-panel-hd">
-                        <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">
-                            元气社团
+
+                        <h4 v-for="item in allMsg" class="am-panel-title"
+                            :data-am-collapse="{parent: '#accordion', target: '#'+item.makerCommunityDTO.id}">
+                            社团-{{item.makerCommunityDTO.communityName}}
                         </h4>
+
+
                     </div>
-                    <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
+
+
+
+                    <div v-for="item in allMsg" :id="item.makerCommunityDTO.id" class="am-panel-collapse am-collapse">
                         <div class="am-panel-bd">
                             <div class="center-box" style="padding: 20px ;width: 100%;height: 100%;">
                                 <h1>社团信息</h1>
@@ -175,12 +182,29 @@
 </template>
 
 <script type="es6">
-export default {
+    import {AXIOS} from '../../http-common'
+
+    export default {
     name: 'hello',
     data () {
         return {
-            msg: 'Welcome to Your Vue.js App'
+            msg: 'Welcome to Your Vue.js App',
+            userId:this.$route.params.userId,
+            allMsg:""
         }
+    },
+    created:function(){
+        var params = new URLSearchParams();
+        AXIOS.get('user/getUserCommunity', {
+            params: {
+                userId:this.userId
+            }
+        }).then(response => {
+            //console.log(response);
+            this.allMsg=response.data;
+        }).catch(e => {
+            this.errors.push(e)
+        });
     }
 }
 

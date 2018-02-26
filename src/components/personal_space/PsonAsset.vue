@@ -28,15 +28,15 @@
             <!--<p><a href="">我的收藏</a></p>-->
 
             <div class="mySs">
-                <img class="mySs_img" src="../../static/img/nav_serch.png" alt=""/>
+                <img class="mySs_img" src="../../../static/img/nav_serch.png" alt=""/>
                 <input class="mySs_inp" type="text" placeholder="请输入关键字"/>
 
                 <div class="mySs_xx">
-                    <img src="../../static/img/message.png" alt=""/>
+                    <img src="../../../static/img/message.png" alt=""/>
 
                     <p>消息</p>
                 </div>
-                <img class="mySs_person" src="../../static/img/img_bitmap.png" alt=""/>
+                <img class="mySs_person" src="../../../static/img/img_bitmap.png" alt=""/>
             </div>
             <div class="my-right">
                 <div class="right-top">
