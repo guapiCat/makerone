@@ -35,15 +35,15 @@
                             <!--<iframe id="change_password" src="change_pwd.html" width="100%" height="100%"-->
                                     <!--style="border: 0px;" scrolling="no" onload="iframeLoad_2()"></iframe>-->
                             <div>
-                                <span>当前密码</span><input type="text"/>
+                                <span>当前密码</span><input v-model="nowPassword" type="text"/>
                             </div>
                             <div>
-                                <span style="margin-left: 5px">新密码 </span><input type="password"/>
+                                <span style="margin-left: 5px">新密码 </span><input v-model="newPassword" type="password"/>
                             </div>
                             <div style="margin-bottom: 100px">
-                                <span>确认密码</span><input type="password"/>
+                                <span>确认密码</span><input v-model="cofirmPassword" type="password"/>
                             </div>
-                            <button style="margin-left: 30%;margin-right: 30%" type="button" class="am-btn am-btn-primary">提交</button>
+                            <button v-on:click="submitPassword" style="margin-left: 30%;margin-right: 30%" type="button" class="am-btn am-btn-primary">提交</button>
                             <button type="button" class="am-btn am-btn-primary">取消</button>
                         </div>
                     </div>
@@ -55,6 +55,7 @@
 </template>
 
 <script type="es6">
+    import {AXIOS} from '../../http-common'
     import psonset from './PsonSet'
 
     export default {
@@ -62,7 +63,24 @@
         components:{psonset},
         data () {
             return {
-                msg: 'Welcome to Your Vue.js App'
+                msg: 'Welcome to Your Vue.js App',
+                userId:this.$route.params.userId,
+                nowPassword:"",
+                newPassword:"",
+                cofirmPassword:""
+            }
+        },
+        methods:{
+            submitPassword:function(){
+                var params = new URLSearchParams();
+                params.append("userId",this.userId);
+                params.append("oldPwd",this.nowPassword);
+                params.append("password",this.newPassword);
+                AXIOS.post('user/changePwd', params).then(response => {
+                    alert(response.data);
+                }).catch(e => {
+                    this.errors.push(e)
+                });
             }
         }
     }

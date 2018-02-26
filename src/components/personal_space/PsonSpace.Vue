@@ -4,10 +4,11 @@
         <div class="am-slider am-slider-default" data-am-flexslider>
             <img src="../../../static/img/img_bitmap.png" alt=""
                  style="float: left;margin-left: 20%;height: 150px;width: 150px;margin-top:1%;"/>
-            <h5>昵称：<span>free</span></h5>
+            <h5>昵称：<span>{{allMsg.sysUser.username}}</span></h5>
 
-            <p>去编辑 <span><img src="../../../static/img/arrow_1.png"
-                              style="height: 24px;width: 17px; margin-left: 15px; cursor: pointer;"/></span></p>
+            <p style="cursor: pointer" v-on:click="goEdit">
+                去编辑
+                <span><img src="../../../static/img/arrow_1.png" style="height: 24px;width: 17px; margin-left: 15px; cursor: pointer;"/></span></p>
         </div>
         <!--content-->
         <div class="workshow" style="width: 1200px;margin: 50px auto; ">
@@ -18,73 +19,73 @@
             <div class="person-data">
                 <p class="pdata">个人资料</p>
 
-                <p class="p-data"><img src="../../../static/img/personname.png"/>昵称：<span>free</span></p>
+                <p class="p-data"><img src="../../../static/img/personname.png"/>昵称：<span>{{allMsg.sysUser.username}}</span></p>
 
-                <p class="p-data"><img src="../../../static/img/school.png"/>学号：<span>1581545454545</span></p>
+                <p class="p-data"><img src="../../../static/img/school.png"/>学号：<span>{{allMsg.sysUser.stuNum}}</span></p>
 
-                <p class="p-data"><img src="../../../static/img/telphone.png"/>电话：<span>1581545454545</span></p>
+                <p class="p-data"><img src="../../../static/img/telphone.png"/>电话：<span>{{allMsg.sysUser.mobile}}</span></p>
 
-                <p class="p-data p-noimg">学校：<span>沌口小学</span></p>
+                <p class="p-data p-noimg">学校：<span>{{allMsg.schoolName}}</span></p>
 
-                <p class="p-data p-noimg">班级：<span>一年级(2)班</span></p>
+                <p class="p-data p-noimg">班级：<span>{{allMsg.fullClassName}}</span></p>
 
                 <p style="height: 25rem;padding-top: 57%;padding-left: 20%;cursor: pointer;">查看更多资料</p>
             </div>
             <div class="my-right">
                 <div class="right-top">
-                    <p>我的团队(
-                        <small>0</small>
+                    <p>最近加入的团队(
+                        <small>N</small>
                         )
                     </p>
                     <a><span>查看全部<i><img src="../../../static/img/arrow_2.png"/></i></span></a>
                 </div>
                 <div class="right-content">
                     <ul class="am-avg-sm-4 am-thumbnails">
-                        <li><img class="am-thumbnail" src="../../../static/img/airplane.png"/>
+                        <li v-for="item in myLatelyTm"><img class="am-thumbnail" :src="fileURL+item.teamLogo"/>
 
-                            <p>元气社团</p>
+                            <p>{{item.teamName}}</p>
                         </li>
-                        <li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>
+                        <!--<li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>-->
 
-                            <p>元气社团</p>
-                        </li>
-                        <li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>
+                            <!--<p>元气社团</p>-->
+                        <!--</li>-->
+                        <!--<li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>-->
 
-                            <p>元气社团</p>
-                        </li>
-                        <li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>
+                            <!--<p>元气社团</p>-->
+                        <!--</li>-->
+                        <!--<li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>-->
 
-                            <p>元气社团</p>
-                        </li>
+                            <!--<p>元气社团</p>-->
+                        <!--</li>-->
                     </ul>
                 </div>
             </div>
             <div class="my-right">
                 <div class="right-top">
-                    <p>我的学习 (
-                        <small>0</small>
+                    <p>最近的作品 (
+                        <small>N</small>
                         )
                     </p>
                     <a><span>查看全部<i><img src="../../../static/img/arrow_2.png"/></i></span></a>
                 </div>
                 <div class="right-content">
                     <ul class="am-avg-sm-4 am-thumbnails">
-                        <li><img class="am-thumbnail" src="../../../static/img/airplane.png"/>
+                        <li v-for="item in myLatelyWorks"><img class="am-thumbnail" :src="fileURL+item.worksCoverImage"/>
 
-                            <p>彩虹鱼</p>
+                            <p>{{item.worksName}}</p>
                         </li>
-                        <li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>
+                        <!--<li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>-->
 
-                            <p>彩虹鱼</p>
-                        </li>
-                        <li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>
+                            <!--<p>彩虹鱼</p>-->
+                        <!--</li>-->
+                        <!--<li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>-->
 
-                            <p>彩虹鱼</p>
-                        </li>
-                        <li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>
+                            <!--<p>彩虹鱼</p>-->
+                        <!--</li>-->
+                        <!--<li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>-->
 
-                            <p>彩虹鱼</p>
-                        </li>
+                            <!--<p>彩虹鱼</p>-->
+                        <!--</li>-->
                     </ul>
 
                 </div>
@@ -92,27 +93,27 @@
             </div>
             <div class="my-right">
                 <div class="right-top">
-                    <p>我的作品 </p>
+                    <p>最近的收藏（N） </p>
                     <a><span>查看全部<i><img src="../../../static/img/arrow_2.png"/></i></span></a>
                 </div>
                 <div class="right-content">
                     <ul class="am-avg-sm-4 am-thumbnails">
-                        <li><img class="am-thumbnail" src="../../../static/img/airplane.png"/>
+                        <li v-for="item in myLatelyCol"><img class="am-thumbnail" :src="fileURL+item.coverImage"/>
 
-                            <p>彩虹鱼</p>
+                            <p>{{item.objectType===0?"课程":item.objectType===1?"作品":"素材"}}-{{item.objectName}}</p>
                         </li>
-                        <li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>
+                        <!--<li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>-->
 
-                            <p>彩虹鱼</p>
-                        </li>
-                        <li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>
+                            <!--<p>彩虹鱼</p>-->
+                        <!--</li>-->
+                        <!--<li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>-->
 
-                            <p>彩虹鱼</p>
-                        </li>
-                        <li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>
+                            <!--<p>彩虹鱼</p>-->
+                        <!--</li>-->
+                        <!--<li><img class="am-thumbnail" src="../../../static/img/windmill.png"/>-->
 
-                            <p>彩虹鱼</p>
-                        </li>
+                            <!--<p>彩虹鱼</p>-->
+                        <!--</li>-->
                     </ul>
 
                 </div>
@@ -126,12 +127,73 @@
 </template>
 
 <script type="es6">
+    import {AXIOS} from '../../http-common'
     export default {
         name: 'hello',
         data () {
             return {
-                msg: 'Welcome to Your Vue.js App'
+                userId:this.$route.params.userId,
+                fileURL:"http://192.168.0.103:9000/",
+                allMsg:[],
+                myLatelyTm:[],
+                myLatelyWorks:[],
+                myLatelyCol:[]
             }
+        },
+        methods:{
+            goEdit:function(){
+                this.$router.push({ path: '/user/psonData' })
+            }
+        },
+        created:function(){
+            //获取用户的部分信息1
+            var params = new URLSearchParams();
+            AXIOS.get('user/getUserInfo', {
+                params: {
+                    userId:this.userId
+                }
+            }).then(response => {
+                //console.log(response);
+                this.allMsg=response.data;
+            }).catch(e => {
+                this.errors.push(e)
+            });
+            //获取用户的部分信息2（最近团队）
+            AXIOS.get('user/latelyJoinTeam', {
+                params: {
+                    userId:this.userId,
+                    pageSize:4
+                }
+            }).then(response => {
+                //console.log(response);
+                this.myLatelyTm=response.data;
+            }).catch(e => {
+                this.errors.push(e)
+            });
+            //获取部分信息3（最近作品）
+            AXIOS.get('user/latelyWorks', {
+                params: {
+                    userId:this.userId,
+                    pageSize:4
+                }
+            }).then(response => {
+                //console.log(response);
+                this.myLatelyWorks=response.data;
+            }).catch(e => {
+                this.errors.push(e)
+            });
+            //获取用户部分信息4（最近收藏）
+            AXIOS.get('user/latelyFavorite', {
+                params: {
+                    userId:this.userId,
+                    pageSize:4
+                }
+            }).then(response => {
+                //console.log(response);
+                this.myLatelyCol=response.data;
+            }).catch(e => {
+                this.errors.push(e)
+            });
         }
     }
 
