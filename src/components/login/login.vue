@@ -44,13 +44,14 @@
         var params = new URLSearchParams();
         params.append("username", $("#phone_studentId").val());
         params.append("password",$("#password").val());
-        AXIOS.post('user/login', params)
+        AXIOS.post('preUser/login', params)
           .then(response => {
             // JSON responses are automatically parsed.
             var jsonResult = eval(response.data);
               sessionStorage.setItem("TID", jsonResult["token"]);
+              sessionStorage.setItem("UID", jsonResult["sysUser"]["id"]);
               alert("登录成功");
-            // location.href = "/";
+             location.href = "/";
           })
           .catch(e => {
             alert("登录失败");
