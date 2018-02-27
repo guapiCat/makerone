@@ -1,48 +1,30 @@
 <template>
     <div class="hello compon_center">
 
+
         <!--===========layout-container================-->
-        <div class="am-slider am-slider-default" data-am-flexslider>
-            <img src="../../../static/img/img_bitmap.png" alt=""
-                 style="float: left;margin-left: 20%;height: 150px;width: 150px;margin-top:1%;"/>
-            <h5>昵称：<span>free</span></h5>
-
-            <div v-for="value,index in myHeader" v-on:click="hdClick(index)" v-bind:class="{on:index==guigeSpan}">
-                <p class="myHeadP">
-                    <a>
-                        <span>{{value}}</span>
-                    </a>
-                </p>
+        <div class="am-slider am-slider-default"data-am-flexslider>
+            <img :src="fileURL+allMsg.sysUser.avatar" alt=""  style="border-radius: 50%;float: left;margin-left: 20%;height: 150px;width: 150px;margin-top:1%;"/>
+            <h5>昵称：<span>{{allMsg.sysUser.realName}}</span></h5>
+            <p style="cursor: pointer" v-on:click="goEdit">去编辑 <span><a href=""><img src="../../../static/img/arrow_1.png" style="height: 24px;width: 17px; margin-left: 15px; cursor: pointer;"/></a> </span></p>
+        </div>
+        <!--content-->
+        <div class="workshow" style="width: 1200px;margin: 50px auto; ">
+            <div class="center-title" style="margin-bottom: 20px; color: #969696;">
+                <span> <img src="../../../static/img/icon_address.png" alt="" /><i style="margin-left: 15px;">益谷创客平台-作品展示-<span>我的首页</span></i></span>
             </div>
-
-            <!--<p><a href="">个人信息</a></p>-->
-
-            <!--<p><a href="">我的社团</a></p>-->
-
-            <!--<p><a href="">我的团队</a></p>-->
-
-            <!--<p><a href="">个人资产</a></p>-->
-
-            <!--<p><a href="">我的作品</a></p>-->
-
-            <!--<p><a href="">我的收藏</a></p>-->
-
-            <div class="mySs">
-                <img class="mySs_img" src="../../../static/img/nav_serch.png" alt=""/>
-                <input class="mySs_inp" type="text" placeholder="请输入关键字"/>
-
-                <div class="mySs_xx">
-                    <img src="../../../static/img/message.png" alt=""/>
-
-                    <p>消息</p>
-                </div>
-                <img class="mySs_person" src="../../../static/img/img_bitmap.png" alt=""/>
+            <div class="person-data">
+                <p class="pdata">个人资料</p>
+                <p class="p-data"><img src="../../../static/img/personname.png"/>昵称：<span>{{allMsg.sysUser.realName}}</span></p>
+                <p class="p-data"><img src="../../../static/img/telphone.png"/>电话：<span>{{allMsg.sysUser.mobile}}</span></p>
+                <p class="p-data"><img src="../../../static/img/school.png"/>学校：<span>{{allMsg.schoolName}}</span></p>
+                <p class="p-data p-noimg">班级：<span>{{allMsg.className}}}</span></p>
+                <p class="p-data p-noimg">学号：<span>{{allMsg.sysUser.stuNum}}</span></p>
+                <p style="height: 25rem;padding-top: 57%;padding-left: 20%;cursor: pointer;"><a href="../personal_data.html">查看更多资料</a></p>
             </div>
             <div class="my-right">
                 <div class="right-top">
-                    <p>我的资产
-                        <small></small>
-                    </p>
+                    <p>我的资产<small></small></p>
                 </div>
                 <div class="right-content-1">
                     <div style="margin-bottom: 5%;">
@@ -55,8 +37,8 @@
             </div>
             <div class="my-right">
                 <div class="right-top">
-                    <p>我的资产获得记录</p>
-                    <span><a href="../my_collections.html">查看全部</a> <i><img src="../../../static/img/arrow_2.png"/></i></span>
+                    <p >我的资产获得记录</p>
+                    <span><a href="">查看全部</a> <i><img src="../../../static/img/arrow_2.png"/></i></span>
                 </div>
                 <div class="right-content-2">
                     <div class="asset_record">
@@ -75,16 +57,39 @@
         </div>
 
         <!--foot-->
+
     </div>
 </template>
 
 <script type="es6">
+    import {AXIOS} from '../../http-common'
     export default {
         name: 'hello',
         data () {
             return {
-                msg: 'Welcome to Your Vue.js App'
+                msg: 'Welcome to Your Vue.js App',
+                userId:this.$route.params.userId,
+                allMsg:"",
+                fileURL:"http://192.168.0.103:9000/"
             }
+        },
+        methods:{
+            goEdit:function(){
+                this.$router.push({ path: '/user/psonData' })
+            }
+        },
+        created:function(){
+            var params = new URLSearchParams();
+            AXIOS.get('user/getUserInfo', {
+                params: {
+                    userId:this.userId
+                }
+            }).then(response => {
+                //console.log(response);
+                this.allMsg=response.data;
+            }).catch(e => {
+                this.errors.push(e)
+            });
         }
     }
 
