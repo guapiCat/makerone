@@ -194,7 +194,7 @@ const Routers = [
     path:"/user/newMsg",
     component:NewMsg
   },{
-    path:"/user/psonAsset",
+    path:"/user/psonAsset/:userId",
     component:PsonAsset
   },{
     path:"/user/psonData/:userId",
