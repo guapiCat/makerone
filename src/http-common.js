@@ -1,17 +1,15 @@
 import axios from 'axios'
 
-var token = sessionStorage.getItem("TID");
-var userId = sessionStorage.getItem("UID");
-if (typeof (token) == "undefined" || typeof (userId) == "undefined"){
-  token = '';
-  userId = '';
-}
-
 export const AXIOS = axios.create({
-  baseURL: `http://192.168.0.103:8080`,
-  withCredentials:false,
-  headers:{
-    token: token,
-    userId: userId
-  }
+  baseURL: `http://192.168.0.102:8080`,
+  withCredentials:false
 })
+AXIOS.interceptors.request.use(config =>{
+  if (sessionStorage.getItem("TID") && sessionStorage.getItem("UID")){
+    config.headers.token = sessionStorage.getItem("TID");
+    config.headers.UID = sessionStorage.getItem("UID");
+  }
+  return config
+}, error => {
+  return promise.reject(error)
+});
