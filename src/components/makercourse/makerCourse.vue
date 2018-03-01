@@ -9,7 +9,7 @@
         <h1>{{makercourse.courseName}}</h1>
         <h5>分类:<span>{{makercourse.typeName}}</span></h5>
         <div class="centent-title-right">
-          <img src="../../../static/img/icon_upvote.png" style="height: 30px; width: 30px; margin-right:20px ;" />
+          <img src="../../../static/img/icon_upvote.png" v-on:click="vote()" style="height: 30px; width: 30px; margin-right:20px ;" />
           <button type="button" class="am-btn am-btn-primary">我要收藏</button>
         </div>
       </div>
@@ -101,6 +101,10 @@
    methods:{
      playResource: function(type, url){
        console.log(type+url);
+     },
+     vote: function () {
+       alert('click');
+       this.$emit('voteReq', {voteObjId:this.courseId, voteObjType:1, voteStatus:1});
      }
    },
     created:function(){
@@ -375,4 +379,3 @@
 
 
 </style>
-
