@@ -2,7 +2,7 @@
 <template>
     <div class="hello">
         <div class="myHeaderMsg">
-            <img class="myLogo" src="../../static/img/logo.png" alt=""/>
+            <img v-on:click="goHome" class="myLogo" style="cursor: pointer" src="../../static/img/logo.png" alt=""/>
 
 
             <div v-for="value,index in myHeader" v-on:click="hdClick(index)" v-bind:class="{on:index==guigeSpan}">
@@ -29,18 +29,19 @@
                 <img class="mySs_img" src="../../static/img/nav_serch.png" alt=""/>
                 <input class="mySs_inp" type="text" placeholder="请输入关键字"/>
 
-                <div class="mySs_xx">
+                <div v-on:click="goSeeMsg" class="mySs_xx">
                     <img src="../../static/img/message.png" alt=""/>
 
                     <p>消息</p>
                 </div>
-                <img class="mySs_person" src="../../static/img/img_bitmap.png" alt=""/>
+                <img v-if="allMsg" class="mySs_person" :src="fileURL+allMsg.sysUser.avatar" style="border-radius: 50%" alt=""/>
             </div>
         </div>
     </div>
 </template>
 
 <script type="es6">
+    import {AXIOS} from '../http-common'
     export default {
         name: 'hello',
         data () {
@@ -53,13 +54,35 @@
                     "我的作品",
                     "我的收藏"
                 ],
-                guigeSpan: -1
+                guigeSpan: -1,
+                allMsg:"",
+                fileURL:"http://192.168.0.103:9000/"
             }
         },
+        created:function(){
+            var params = new URLSearchParams();
+            AXIOS.get('user/getUserInfo', {
+                params: {}
+            }).then(response => {
+                //console.log(response);
+                if(response.data){
+                    this.allMsg=response.data;
+                }else{
+                    alert(response.data);
+                }
+            }).catch(e => {
+                this.errors.push(e)
+            });
+        },
         methods: {
+            goHome:function(){
+                this.$router.push({ path: '/' })
+            },
+            goSeeMsg:function(){
+                this.$router.push({ path: '/user/myMsg' })
+            },
             hdClick: function (index) {
                 this.guigeSpan = index;
-                console.log(index);
                 //可以根据index跳转对应的组件
                 if(index==0){
                     this.$router.push({ path: '/user/psonSpace' })
