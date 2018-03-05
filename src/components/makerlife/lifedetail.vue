@@ -23,7 +23,8 @@
           </div>
         </div>
         </div>
-        <comment></comment>
+          <comment :disId="workId"></comment>
+
 
       </div>
 
@@ -32,9 +33,12 @@
 
 <script>
     import {AXIOS} from "../../http-common";
+    import comment from '../comment/comment'
+
 
     export default {
         name: "life-detail",
+        component:{comment},
         props: {
         fileURL: {
           type: String,

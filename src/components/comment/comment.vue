@@ -6,22 +6,40 @@
                       placeholder="写点评论支持下载资源贡献者，注意字数不要超过70字~"></textarea>
 
             <div class="am-btn-group" style="float: right;margin-top:10px;">
-                <button type="button" class="am-btn am-btn-default">发表评论</button>
+                <button v-on:click="goDis" type="button" class="am-btn am-btn-default">发表评论</button>
             </div>
             <div class="all-comment-list">
                 <h1 style="margin-left: 15px;">作品评论</h1>
 
-                <div v-for="item in allMsg.list" class="comment-list-detail">
+                <div v-for="item,index in allMsg.list" class="comment-list-detail">
                     <img style="width:70px;height:70px;border-radius: 50%" :src="fileURL+item.avatar"/>
 
                     <div class="comment-conten">
-                        <span>{{item.realName}}</span>
+                        <span class="replayCss">
+                            {{item.realName}}
+                            <span v-if="item.objectType==3">&nbsp;回复&nbsp;{{item.replyRealName}} : {{item.replyComment}}</span>
+                        </span>
 
-                        <p>{{item.content}}</p>
+                        <p style="width: 1000px;word-wrap:break-word;">{{item.content}}</p>
                     </div>
-                    <div class="comment-right" style="float: right;margin-top: -8%;">
-                        <button type="button" class="am-btn am-btn-primary" style="margin-left: 40%;">回复</button>
-                        <p>{{item.createTime}}</p>
+                    <div class="comment-right" style="width: 100%;text-align: right">
+                        <button type="button" :data-am-modal="`{target: '#my-alert`+index+`'}`" class="am-btn am-btn-primary" style="margin-left: 40%;">回复</button>
+                        <p>{{item.createDate}}</p>
+                    </div>
+                    <!--评论回复-->
+
+                    <!--模态框弹出层-->
+                    <div class="am-modal am-modal-alert" tabindex="-1" :id="`my-alert`+index">
+                        <div class="am-modal-dialog">
+                            <textarea v-model="replyCont" placeholder="请输入回复的内容(*^▽^*)" name="" id="" cols="60" rows="10"></textarea>
+                            <!--<div class="am-modal-bd">-->
+                            <!--Hello world！-->
+                            <!--</div>-->
+                            <div class="am-modal-footer">
+                                <span class="am-modal-btn">取消</span>
+                                <span v-on:click="goReplay(item.id,item.objectId)" class="am-modal-btn">确定</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!--<div class="comment-list-detail">-->
@@ -67,10 +85,40 @@
             return {
                 fileURL:"http://192.168.0.103:9000/",
                 discuss: "",
-                allMsg:""
+                allMsg:"",
+                replyCont:""
             }
         },
         methods:{
+            goReplay:function(userCommentId,objectId){
+                var params = new URLSearchParams();
+                AXIOS.get('common/replyComment', {
+                    params: {
+                        userCommentId:userCommentId,
+                        objectId:objectId,
+                        content:this.replyCont
+                    }
+                }).then(response => {
+                    alert(response.data);
+                    location.reload();
+                }).catch(e => {
+                    this.errors.push(e)
+                });
+            },
+            goDis:function(){
+                var params = new URLSearchParams();
+                AXIOS.get('common/comment', {
+                    params: {
+                        objectId:this.disId,
+                        content:this.discuss
+                    }
+                }).then(response => {
+                    alert(response.data);
+                    location.reload();
+                }).catch(e => {
+                    this.errors.push(e)
+                });
+            },
             showAllDis:function(){
                 var params = new URLSearchParams();
                 AXIOS.get('common/commentShow', {
@@ -96,6 +144,15 @@
 </script>
 
 <style scoped>
+    /*添加样式*/
+    .replayCss{
+        display:inline-block;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        white-space:nowrap;
+        width:500px;
+    }
+    /*结束添加*/
     .center-box textarea {
         margin-top: 40px;
     }

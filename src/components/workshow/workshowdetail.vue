@@ -74,6 +74,7 @@
                 </div>
 
             </div>
+            <comment :disId="workId"></comment>
 
 
         </div>
@@ -83,8 +84,11 @@
 
 <script type="es6">
     import {AXIOS} from '../../http-common'
+    import comment from '../comment/comment'
+
     export default {
         name: "workshowdetail",
+        component:{comment},
         data () {
             return {
                 workId: this.$route.params.workId,

@@ -9,7 +9,7 @@
                 <div style="padding-top:25px;padding-bottom: 45px;margin-left: 13%">
                     <div class="center-left">
                         <i style="color:#000;">分类:</i>&nbsp;&nbsp;&nbsp;
-                        <span v-on:click="one(index)" v-bind:class="{on:index==type}"
+                        <span v-on:click="one(index)" v-bind:class="{onOne:index==type}"
                               v-for="item,index in metClass" class="titleOne" style="margin-left: 10px">{{item}}</span>
                         <!--<span class="title">Scratch编程</span>&nbsp;&nbsp;&nbsp;-->
                         <!--<span class="title">电子书籍</span>&nbsp;&nbsp;&nbsp;-->
@@ -133,8 +133,8 @@
 </script>
 
 <style>
-    .on {
-        background: #FFCA57 !important;
+    .onOne {
+        background: #FFCA57;
     }
 
     .goMetDel{
