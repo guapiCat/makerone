@@ -88,12 +88,25 @@
         data () {
             return {
                 workId: this.$route.params.workId,
+                typeId: this.$route.params.typeId,
                 allMsg:"",
                 allStep:[]
             }
         },
         created: function(){
             var params = new URLSearchParams();
+            //访问记录
+            AXIOS.get('common/view', {
+                params:{
+                    voteObjId:this.workId,
+                    voteObjType:1
+                }
+            }).then(response => {
+                console.log("这是访问记录返回的消息："+response.data);
+            }).catch(e => {
+                this.errors.push(e)
+            });
+            //请求页面信息
             AXIOS.get('makerWorks/makerWorksParticulars', {
                 params:{
                     makerWorksId:this.workId

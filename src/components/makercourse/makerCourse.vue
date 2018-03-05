@@ -66,7 +66,7 @@
           </div>
         </div>
         <div class="clear"></div>
-            <comment></comment>
+            <comment :disId="courseId"></comment>
       </div>
       <!--分页-->
 

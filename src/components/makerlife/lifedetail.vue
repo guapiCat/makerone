@@ -49,6 +49,17 @@
           }
          },
         created:function () {
+//            申请记录
+            AXIOS.get('common/view', {
+                params:{
+                    voteObjId:this.workId,
+                    voteObjType:3
+                }
+            }).then(response => {
+                console.log("这是访问记录返回的消息："+response.data);
+            }).catch(e => {
+                this.errors.push(e)
+            });
         AXIOS.get('makerLive/makerLiveInfo',{
           params:{
             id:this.workId
