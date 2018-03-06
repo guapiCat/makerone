@@ -37,13 +37,17 @@
 </template>
 <script>
   import {AXIOS} from '../../http-common'
+  import '../../../static/js/md5'
   export default {
     name: "login",
     methods: {
       login() {
         var params = new URLSearchParams();
+        var mad5password=$('#password').val();
+        var mad5pass=$.md5(mad5password).substring(8, 24);
+        console.log(mad5pass);
         params.append("username", $("#phone_studentId").val());
-        params.append("password",$("#password").val());
+        params.append("password",mad5pass);
         AXIOS.post('preUser/login', params)
           .then(response => {
             // JSON responses are automatically parsed.
