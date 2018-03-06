@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <component :is="currentView"></component>
-    <router-view :fileURL="fileURL"/>
+    <router-view :fileURL="fileURL" v-on:voteReq="voteReq"/>
     <footPart></footPart>
 
 
@@ -13,6 +13,7 @@
   import headPart from './components/headandfoot/headPart'
   import footPart from './components/headandfoot/footPart'
   import userPart from './components/userPart'
+  import {AXIOS} from './http-common'
 
   import router from './router';
 
@@ -43,6 +44,21 @@
         } else{
           this.currentView = 'headPart'
         }
+      },
+      voteReq(data) {
+        alert(data.voteObjId+data.voteObjType+data.voteStatus);
+        // AXIOS.get('common/vote', {
+        //     params: {
+        //         "voteObjId": voteObjId,
+        //         "voteObjType": voteObjType,
+        //         "voteStatus": voteStatus,
+        //     }
+        // }).then(response => {
+        //
+        //     //console.log(response.data.list);
+        // }).catch(e => {
+        //     this.errors.push(e);
+        // });
       }
     },
     components: {

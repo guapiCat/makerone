@@ -20,7 +20,7 @@
 
                     <div class="content-box-body" style="overflow: hidden;">
                         <div class="content-title-hand-left">
-                            <img :src="fileURL+allMsg.teamLogo"/>
+                            <img src="../../../static/img/airplane.png"/>
                         </div>
                         <div class="content-title-hand-right">
                             <h5>{{allMsg.teamName}}</h5>
@@ -40,8 +40,8 @@
                     <span class="content-title">团队作品</span>
 
                     <div class="content-box-body" style="overflow: hidden;">
-                        <p style="margin-bottom: 40px;"><span v-on:click="switchBol(contOne)"
-                                style="float: right; color: #008bbe; cursor: pointer;">查看全部<img
+                        <p style="margin-bottom: 40px;"><span v-on:click="seeOneCont"
+                                                              style="float: right; color: #008bbe; cursor: pointer;">查看全部<img
                                 src="../../../static/img/arrow_2.png"
                                 style="margin-left: 10px;margin-top: -3px;"/> </span></p>
                         <ul :class="{'am-avg-sm-4':creTrue,'am-thumbnails':creTrue,'seeAll':contOne,'noCont':jugCont}">
@@ -58,8 +58,8 @@
                     <span class="content-title">团队成员</span>
 
                     <div class="content-box-body" style="overflow: hidden;">
-                        <p style="margin-bottom: 40px;"><span v-on:click="switchBol(contTwo)"
-                                style="float: right; color: #008bbe; cursor: pointer;">查看全部<img
+                        <p style="margin-bottom: 40px;"><span v-on:click="seeTwoCont"
+                                                              style="float: right; color: #008bbe; cursor: pointer;">查看全部<img
                                 src="../../../static/img/arrow_2.png"
                                 style="margin-left: 10px;margin-top: -3px;"/> </span></p>
                         <ul :class="{'am-avg-sm-4':true,'am-thumbnails':true,'seeAll':contTwo}">
@@ -75,9 +75,44 @@
                 </div>
 
             </div>
-            <a style="display: block;margin-left: 50%; margin-top: 5%;">
-                <button type="button" class="am-btn am-btn-primary">申请加入</button>
+            <!--模态框按钮发起层-->
+            <a style="display: block;margin-left: 30%; margin-top: 5%;">
+                <button style="margin-right: 30%" type="button" class="am-btn am-btn-primary"
+                        data-am-modal="{target: '#my-alert1'}">解散团队</button>
+                <button type="button" class="am-btn am-btn-primary"
+                        data-am-modal="{target: '#my-alert2'}">发送消息</button>
             </a>
+
+            <!--模态框弹出层-->
+            <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert1">
+                <div class="am-modal-dialog">
+                    <div class="am-modal-hd">是否确认解散团队</div>
+                    <!--<div class="am-modal-bd">-->
+                        <!--Hello world！-->
+                    <!--</div>-->
+                    <div class="am-modal-footer">
+                        <span class="am-modal-btn">取消</span>
+                        <span v-on:click="outTeam" class="am-modal-btn">确定</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert2">
+                <div class="am-modal-dialog">
+
+                    <div class="am-modal-hd">发送消息内容</div>
+                    <div class="am-modal-bd">
+                        <textarea v-model="sendMsgTxt" placeholder="请填写要发送的消息(*^▽^*)" name="" id="" cols="60" rows="10"></textarea>
+                    </div>
+                    <div class="am-modal-footer">
+                        <span class="am-modal-btn">取消</span>
+                        <span v-on:click="sendMsg" class="am-modal-btn">发送</span>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
     </div>
 </template>
@@ -86,43 +121,60 @@
     import {AXIOS} from '../../http-common'
     export default {
         name: "makerteam",
-        props: {
-        fileURL: {
-          type: String,
-          required: true
-        }
-      },
         data: function () {
             return {
                 allMsg: [],
                 teamMemb:[],
                 teamId: this.$route.params.teamId,
+                fileURL:"http://192.168.0.103:9000/",
+                //修改css的控件数据
                 contOne: true,
                 contTwo: true,
                 creTrue:true,
-                jugCont:false
+                jugCont:false,
+                //end
+                sendMsgTxt:""
             }
         },
         methods:{
-            switchBol:function(goSwich){
-                goSwich = !goSwich;
-            }
-            /*seeAllOne:function(){
-                //this.switchBol(this.contOne);
-                if(this.contOne==false){
-                    this.contOne=true;
-                }else{
-                    this.contOne=false;
-                }
+            sendMsg:function(){
+                var params = new URLSearchParams();
+                AXIOS.get('user/messageToAllTeamMember', {
+                    params: {
+                        makerTeamId:this.teamId,
+                        content:this.sendMsgTxt
+                    }
+                }).then(response => {
+                    //console.log(response);
+                    alert(response.data);
+                }).catch(e => {
+                    this.errors.push(e)
+                });
             },
-            seeAllTwo:function(){
-                //this.switchBol(this.contTwo);
-                if(this.contTwo==false){
-                    this.contTwo=true;
-                }else{
-                    this.contTwo=false;
-                }
-            }*/
+            seeOneCont:function(){
+                this.oneCont=!this.oneCont;
+            },
+            seeTwoCont:function(){
+                this.twoCont=!this.twoCont;
+            },
+            outTeam:function(){
+                var params = new URLSearchParams();
+                AXIOS.get('user/dissolveTeam',{
+                    params:{
+                        makerTeamId:this.teamId
+                    }
+                }).then(response => {
+                    //console.log(response);
+                    if(response.data){
+                        alert(response.data);
+                        this.$router.push({ path: '/user/myGroup' })
+                    }else{
+                        alert(response.data);
+                    }
+                }).catch(e => {
+                    this.errors.push(e)
+                });
+            }
         },
         created: function () {
             var params = new URLSearchParams();
@@ -145,8 +197,7 @@
                 this.errors.push(e);
             });
         },
-        mounted:function(){
-        }
+        mounted:function(){}
     }
 </script>
 

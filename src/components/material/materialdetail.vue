@@ -9,21 +9,20 @@
                 </div>
             </div>
 
-            <div class="am-u-sm-9 am-u-sm-centered"
-                 style="height: 1300px;padding-top: 10px;border: 1px solid #BFBFBF;margin-bottom: 15%;padding-left: 0;padding-right: 0px;">
-
-                <div class="am-u-sm-8" style="margin-left: 0px;margin-top: 5%;padding-left: 0px;">
+            <div class="am-u-sm-9 am-u-sm-centered" style="height: 1300px;padding-top: 10px;border: 1px solid #BFBFBF;margin-bottom: 15%;padding-left: 0;padding-right: 0px;">
+                <p style="width: 100%;text-align: center;font-size: 20px;color:gray;">{{allMsg.materialName}}</p>
+                <div class="am-u-sm-8" style="margin-left: 0px;padding-left: 0px;">
                     <div id="material_img"
-                         style="border-right: 1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;border-top:1px solid #BFBFBF;padding-top: 5%;padding-left: 6%;padding-bottom: 6%;margin-bottom: 3%;">
-                        <img src="../../../static/img/img_sucai_01.png"/>
+                         style="width:100%;text-align:center;border-right: 1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;border-top:1px solid #BFBFBF;padding-top: 5%;padding-left: 6%;padding-bottom: 6%;margin-bottom: 3%;">
+                        <img :src="fileURL+allMsg.materialCoverImage"/>
                     </div>
                     <div style="text-align: center;">
                         <span style="color: #818181">上传图片</span>
+
                     </div>
                 </div>
 
-                <div class="am-u-sm-4"
-                     style="height:70%;margin-right: 0px;margin-top: 5%;padding-left: 0px;border-left: 1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;border-top:1px solid #BFBFBF;padding-top: 4%;margin-bottom: 10%;">
+                <div class="am-u-sm-4" style="height:70%;margin-right: 0px;padding-left: 0px;border-left: 1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;border-top:1px solid #BFBFBF;padding-top: 4%;margin-bottom: 10%;">
                     <div style="height: 50px;text-align: center;margin-left: 13%;">
                         <a class="am-btn am-btn-primary" href="javascript:;"
                            style="width: 300px;display: -webkit-box;padding-left: 30%;">下载&nbsp;<img
@@ -45,11 +44,11 @@
 
                         <div style="margin-bottom: 5%;">
                             <span style="color: #818181">素材名称</span>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                                style="color: #818181">{{allMsg.worksName}}</span>
+                                style="color: #818181">{{allMsg.materialName}}</span>
                         </div>
                         <div style="margin-bottom: 5%;">
                             <span style="color: #818181">素材类型</span>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                                style="color: #818181">{{allMsg.materialName}}</span>
+                                style="color: #818181">{{nowMetClass}}</span>
                         </div>
                         <div class="am-g" style="margin-bottom: 5%;">
                             <div class="am-u-sm-4" style="margin-right: 0px;">
@@ -87,7 +86,10 @@
         data () {
             return {
                 metId: this.$route.params.metId,
-                allMsg:""
+                allMsg:"",
+                fileURL:"http://192.168.0.103:9000/",
+                metClass:[],
+                nowMetClass:""
             }
         },
         methods:{
@@ -96,14 +98,25 @@
             }
         },
         created:function(){
+            //先获取分类，然后查询素材详情，得到‘当前素材分类’
             var params = new URLSearchParams();
-            AXIOS.get('makerMaterial/makerMaterialParticulars', {
-                params:{
-                    id:this.metId
-                }
+            AXIOS.get('common/getGlobalType', {
+                params: {}
             }).then(response => {
-                console.log(response);
-                this.allMsg=response.data;
+                for (var i = 0;i<response.data.length; i++) {
+                    this.metClass.push(response.data[i].desc);
+                }
+                AXIOS.get('makerMaterial/makerMaterialParticulars', {
+                    params:{
+                        id:this.metId
+                    }
+                }).then(response => {
+                    console.log(response);
+                    this.allMsg=response.data;
+                    this.nowMetClass=this.metClass[this.allMsg.type];
+                }).catch(e => {
+                    this.errors.push(e)
+                });
             }).catch(e => {
                 this.errors.push(e)
             });

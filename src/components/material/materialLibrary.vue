@@ -9,7 +9,7 @@
                 <div style="padding-top:25px;padding-bottom: 45px;margin-left: 13%">
                     <div class="center-left">
                         <i style="color:#000;">分类:</i>&nbsp;&nbsp;&nbsp;
-                        <span v-on:click="one(index)" v-bind:class="{on:index==type}"
+                        <span v-on:click="one(index)" v-bind:class="{onOne:index==type}"
                               v-for="item,index in metClass" class="titleOne" style="margin-left: 10px">{{item}}</span>
                         <!--<span class="title">Scratch编程</span>&nbsp;&nbsp;&nbsp;-->
                         <!--<span class="title">电子书籍</span>&nbsp;&nbsp;&nbsp;-->
@@ -29,17 +29,17 @@
         </div>
         <div style="margin-left: 13%;position: relative;cursor: pointer">
             <!--<input type="file" multiple name="file_0" class="input-file">-->
-            <span v-on:click="postMet" class="am-btn am-btn-default" style="margin-right: 45px;margin-top: 35px;">我要上传</span>
+            <span v-on:click="postMet" class="am-btn am-btn-primary" style="margin-right: 45px;margin-top: 35px;">我要上传</span>
         </div>
-        <div class="am-u-sm-10 am-avg-sm-5  am-thumbnails pic_content" style="margin-top: 60px;margin-left: 12%;">
+        <div class="pic_content" style="margin-top: 60px;margin-left: 12%;">
 
             <li v-for="item,index in allMet" class="testLi">
                 <router-link class="goMetDel" :to="{name: 'meterialdetail',params: {metId: item.id}}">
-                    <div class="img-content" style="margin-left: 1px;margin-top: 13px;position: relative;">
+                    <div class="img-content" style="">
                         <!--图片未做处理-->
-                        <img class="am-thumbnail" src="../../../static/img/img_fodder_03.png" style="height: 245px"/>
+                        <img class="am-thumbnail" :src="fileURL+item.materialCoverImage" style="width: 240px;height: 240px"/>
                     </div>
-                    <span style="border-radius: 0;color: #000;border: 0px">{{item.materialIntro}}</span>
+                    <span style="border:0;color: #000;">{{item.materialName}}</span>
                 </router-link>
             </li>
             <!--<li>-->
@@ -121,7 +121,7 @@
             AXIOS.get('common/getGlobalType', {
                 params: {}
             }).then(response => {
-                for (var i = 0; response.data; i++) {
+                for (var i = 0; i<response.data.length; i++) {
                     this.metClass.push(response.data[i].desc);
                 }
             }).catch(e => {
@@ -133,8 +133,8 @@
 </script>
 
 <style>
-    .on {
-        background: #FFCA57 !important;
+    .onOne {
+        background: #FFCA57;
     }
 
     .goMetDel{

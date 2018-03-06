@@ -41,7 +41,7 @@
                     <!--作品展示-->
                     <li v-for="item in myProducts">
                         <router-link :to="{name: 'workshowdetail',params: {workId: item.makerWorks.id}}">
-                            <img class="am-thumbnail" :src="fileURL+item.makerWorks.worksCoverImage"/>
+                            <img style="width: 220px;height: 200px;" class="am-thumbnail" :src="fileURL+item.makerWorks.worksCoverImage"/>
 
                             <p class="q_coverName">{{item.makerWorks.worksName}}</p>
 

@@ -13,3 +13,11 @@ AXIOS.interceptors.request.use(config =>{
 }, error => {
   return promise.reject(error)
 });
+AXIOS.interceptors.response.use(response => {
+  if (response.data == 1000) {
+    console.log("未登录");
+  }
+  return response
+}, error => {
+  return promise.reject(error)
+});

@@ -2,7 +2,7 @@
     <div class="hello compon_center">
         <!--content start-->
         <div class="am-g">
-            <div class="am-u-sm-7 am-u-sm-centered" style="padding-top: 50px;padding-bottom: 70px">
+            <div class="am-u-sm-12 am-u-sm-centered" style="width:1200px;padding-top: 50px;padding-bottom: 70px">
                 <span style="float: left"><img src="../../../static/img/icon_address.png"></span>
 
                 <div style="float: left;padding-top: 6px;margin-left: 3px;">
@@ -64,7 +64,6 @@
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',
-                userId:this.$route.params.userId,
                 nowPassword:"",
                 newPassword:"",
                 cofirmPassword:""
@@ -73,7 +72,6 @@
         methods:{
             submitPassword:function(){
                 var params = new URLSearchParams();
-                params.append("userId",this.userId);
                 params.append("oldPwd",this.nowPassword);
                 params.append("password",this.newPassword);
                 AXIOS.post('user/changePwd', params).then(response => {

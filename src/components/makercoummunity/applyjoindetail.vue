@@ -4,7 +4,7 @@
     <div class="am-u-sm-8 am-u-sm-centered" style="padding-top: 50px;padding-bottom: 70px">
       <span style="float: left"><img src="../../../static/img/icon_address.png"></span>
       <div style="float: left;padding-top: 6px;margin-left: 3px;">
-        <span style="color: #999999;">益谷创客平台-创客项目-我要加入</span>
+        <span style="color: #999999;">益谷创客平台-创客项目-加入社团</span>
       </div>
     </div>
 
@@ -59,24 +59,22 @@
                 clubId:this.$route.params.clubJoinId,
                 myName:"",
                 myClass:"",
-                mySpecial:"",
-                userId:1
+                mySpecial:""
             }
         },
         methods:{
             sendMsg:function(){
-                alert("send ok");
                 var params = new URLSearchParams();
                 AXIOS.get('community/applyMakerCommunity', {
                     params:{
-                        userId:this.userId,
                         makerCommunityId:this.clubId,
                         userName:this.myName,
                         className:this.myClass,
                         content:this.mySpecial
                     }
                 }).then(response => {
-                    console.log(response.data);
+                    alert(response.data);
+                    window.history.go(-1);
                 }).catch(e => {
                     this.errors.push(e)
                 });

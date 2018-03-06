@@ -21,6 +21,7 @@ import materialdetail from '@/components/material/materialdetail'
 import upmaterial from '@/components/material/upmaterial'
 import allcourse from '@/components/makercourse/allcourse'
 import activitydetail from '@/components/makeractivity/activitydetail'
+import ApplyJoinTeam from '@/components/makercoummunity/applyJoinTeam'
 // 评价
 import CollMaterial from '@/components/personal_space/CollMaterial'
 import CollCousera from '@/components/personal_space/CollCousera'
@@ -45,22 +46,29 @@ import SubPro from '@/components/personal_space/SubPro'
 import TemCre from '@/components/personal_space/TemCre'
 import TemJoin from '@/components/personal_space/TemJoin'
 import WorkShow from '@/components/personal_space/WorkShow'
-
+import TemJoinDetail from '@/components/personal_space/TemJoinDetail'
+import TemCreDetail from '@/components/personal_space/TemCreDetail'
+import TemGoCre from '@/components/personal_space/TemGoCre'
 
 
 Vue.use(Router)
 global.headNum = 0;
 const Routers = [
+    {
+        path:"/community/applyJoinTeam/:teamId",//在此添加团队加入页面
+        name:"ApplyJoinTeam",
+        component:ApplyJoinTeam
+    },
   {
     path: '/',
     name: 'index',
-    component: index,
+    component: index
   },
 
   {
     path:'/worksShow/list',
     name:'worksShow',
-    component:worksShow,
+    component:worksShow
 
   },{
   path:'/workShow/detail/:workId',
@@ -176,7 +184,7 @@ const Routers = [
     path:"/user/myColl",
     component:MyColl
   },{
-    path:"/user/myGroup/:userId",
+    path:"/user/myGroup",
     component:MyGroup
   },{
     path:"/user/myMsg",
@@ -185,7 +193,7 @@ const Routers = [
     path:"/user/myClass",
     component:MyClass
   },{
-    path:"/user/myTeam/:userId",
+    path:"/user/myTeam",
     component:MyTeam
   },{
     path:"/user/myWorks",
@@ -194,17 +202,17 @@ const Routers = [
     path:"/user/newMsg",
     component:NewMsg
   },{
-    path:"/user/psonAsset/:userId",
+    path:"/user/psonAsset",
     component:PsonAsset
   },{
-    path:"/user/psonData/:userId",
+    path:"/user/psonData",
     component:PsonData
   },{
-    path:"/user/psonSet/:userId",
+    path:"/user/psonSet",
     name:"PsonSet",
     component:PsonSet
   },{
-    path:"/user/psonSpace/:userId",
+    path:"/user/psonSpace",
     name:"PsonSpace",
     component:PsonSpace
   },{
@@ -226,7 +234,19 @@ const Routers = [
   },{
     path:"/user/workShow",
     component:WorkShow
-  }
+  },{
+    path:"/user/temJoinDetail/:teamId",
+    name:"userTemJoinDetail",
+    component:TemJoinDetail
+    },{
+    path:"/user/temCreDetail/:teamId",
+    name:"userTemCreDetail",
+    component:TemCreDetail
+    },{
+    path:"/user/temGoCre",
+    name:"TemGoCre",
+    component:TemGoCre
+    }
 ]
 
 const RouterConfig = {
@@ -235,5 +255,20 @@ const RouterConfig = {
   routes: Routers
 };
 const router = new Router(RouterConfig);
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(res = >res.meta.requireAuth)) {
+    if (sessionStorage.getItem("UID") && sessionStorage.getItem("TID")) {
+      next()
+    } else {
+      next({
+        path: '/',
+        query: {redirect: to.fullPath}
+      })
+    }
+  } else {
+    next()
+  }
+});
 
 export default router

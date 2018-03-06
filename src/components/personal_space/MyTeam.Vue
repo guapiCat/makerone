@@ -1,60 +1,11 @@
 <template>
     <div class="hello">
-        <div class="layout">
-            <div class="layout-header am-hide-sm-only">
-                <!--<div class="header-box" data-am-sticky>-->
-                <!--&lt;!&ndash;nav start&ndash;&gt;-->
-                <!--<div id="x_bg">-->
-                <!--<div id="x_header_contain">-->
-                <!--<div class="nav_img">-->
-                <!--<img src="../../../static/img/logo.png" />-->
-                <!--</div>-->
-                <!--<div id="x_nav" style="margin-top: 18px;">-->
-                <!--<ul style="list-style: none;">-->
-                <!--<li id="x_shouye">-->
-                <!--<a >个人信息-->
-                <!--</a>-->
-                <!--</li>-->
-                <!--<li id="x_luntan">-->
-                <!--<a class="active" href="">我的社团</a>-->
-                <!--</li>-->
-                <!--<li id="x_newProgramming">-->
-                <!--<a href="">我的团队</a>-->
-                <!--</li>-->
-                <!--<li id="x_diyzuopin1">-->
-                <!--<a href="">个人资产</a>-->
-                <!--</li>-->
-                <!--<li id="x_diyzuopin2">-->
-                <!--<a>我的作品</a>-->
-                <!--</li>-->
-                <!--<li id="x_contest1">-->
-                <!--<a href="">我的收藏</a>-->
-                <!--</li>-->
-                <!--</ul>-->
-                <!--</div>-->
-                <!--<div class="nav-search">-->
-                <!--<img src="../../../static/img/nav_serch.png" />-->
-                <!--<input type="search" placeholder="请输入关键字" />-->
-                <!--</div>-->
-                <!--<div class="p_head_photo">-->
-                <!--<a id="btn_login2" class="q_btLogin" style="position: relative;"><img src="../../../static/img/message.png" style="height: 24px;-->
-                <!--margin-top: -8px;" /> <span style="position: absolute; left: -5px;width: 33px;top: 13px; color: #FFFFFF;">消息</span></a>-->
-                <!--<a id="btn_login3" class="q_btLogin"><img src="../../../static/img/img_bitmap.png" alt="" style="height: 39px; width: 39px;margin-top: 3px;margin-left: 12px;" /></a>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--</div>-->
 
-                <!--</div>-->
-            </div>
-        </div>
         <!--===========layout-container================-->
-        <div class="am-slider am-slider-default" data-am-flexslider>
-            <img src="../../../static/img/img_bitmap.png" alt=""
-                 style="float: left;margin-left: 20%;height: 150px;width: 150px;margin-top:1%;"/>
-            <h5>昵称：<span>free</span></h5>
-
-            <p>去编辑 <span><img src="../../../static/img/arrow_1.png"
-                              style="height: 24px;width: 17px; margin-left: 15px; cursor: pointer;"/></span></p>
+        <div class="am-slider am-slider-default"data-am-flexslider>
+            <img :src="fileURL+psonMsg.sysUser.avatar" alt=""  style="border-radius: 50%;float: left;margin-left: 20%;height: 150px;width: 150px;margin-top:1%;"/>
+            <h5>昵称：<span>{{psonMsg.sysUser.realName}}</span></h5>
+            <p style="cursor: pointer" v-on:click="goEdit">去编辑 <span><a href=""><img src="../../../static/img/arrow_1.png" style="height: 24px;width: 17px; margin-left: 15px; cursor: pointer;"/></a> </span></p>
         </div>
         <!--content-->
         <div class="workshow compon_center" style="width: 1200px;margin: 50px auto; ">
@@ -65,7 +16,7 @@
                 <div class="am-panel am-panel-default">
                     <div v-for="item,index in allMsg" class="am-panel-hd">
 
-                        <h4 class="am-panel-title"
+                        <h4 v-on:click="cgClubCss(index)" :class="index==clubCss?'am-panel-title on':'am-panel-title'"
                             :data-am-collapse="`{parent: '#accordion', target: '#`+item.makerCommunityDTO.id+`'}`">
                             社团-{{item.makerCommunityDTO.communityName}}
                         </h4>
@@ -74,11 +25,10 @@
                         <!--社团-{{item.makerCommunityDTO.communityName}}-->
                         <!--</h4>-->
 
-
                     </div>
 
 
-                    <div v-for="item in allMsg" :id="item.makerCommunityDTO.id" class="am-panel-collapse am-collapse">
+                    <div v-for="item,index in allMsg" :id="item.makerCommunityDTO.id" :class="index==0?'am-panel-collapse am-collapse am-in':'am-panel-collapse am-collapse'">
                         <div class="am-panel-bd">
                             <div class="center-box" style="padding: 20px ;width: 100%;height: 100%;">
                                 <h1>社团信息-{{item.makerCommunityDTO.communityName}}</h1>
@@ -143,12 +93,14 @@
                                     <span class="content-title">社团风采</span>
 
                                     <div class="content-box-body" style="overflow: hidden;">
-                                        <p><span style="color: #008bbe;font-weight: bold;">精彩图片</span><a href=""><span
-                                                style="float: right; color: #008bbe; cursor: pointer;">查看全部<img
-                                                src="../../../static/img/arrow_2.png"
-                                                style="margin-left: 10px;margin-top: -3px;"/> </span></a></p>
-                                        <ul class="am-avg-sm-4 am-thumbnails">
-                                            <li v-for="goodImg in item.imgResourceList"><img class="am-thumbnail"
+                                        <p>
+                                            <span style="color: #008bbe;font-weight: bold;">精彩图片</span>
+                                            <span v-on:click="clickOne" style="float: right; color: #008bbe; cursor: pointer;">
+                                                查看全部<img src="../../../static/img/arrow_2.png" style="margin-left: 10px;margin-top: -3px;"/>
+                                            </span>
+                                        </p>
+                                        <ul :class="contOne?'am-avg-sm-4 am-thumbnails contOne':'am-avg-sm-4 am-thumbnails'">
+                                            <li v-for="goodImg in item.imgResourceList"><img style="height: 250px;width: 250px" class="am-thumbnail"
                                                      :src="fileURL+goodImg.resourceUrl"/></li>
                                             <!--<li><img class="am-thumbnail"-->
                                                      <!--src="http://s.amazeui.org/media/i/demos/bing-2.jpg"/></li>-->
@@ -157,13 +109,13 @@
                                             <!--<li><img class="am-thumbnail"-->
                                                      <!--src="http://s.amazeui.org/media/i/demos/bing-4.jpg"/></li>-->
                                         </ul>
-                                        <p><span style="color: #008bbe;font-weight: bold;">精彩视频</span><a href=""><span
+                                        <p><span style="color: #008bbe;font-weight: bold;">精彩视频</span><span v-on:click="clickTwo"
                                                 style="float: right; color: #008bbe; cursor: pointer;">查看全部<img
                                                 src="../../../static/img/arrow_2.png"
-                                                style="margin-left: 10px;margin-top: -3px;"/> </span></a></p>
-                                        <ul class="am-avg-sm-4 am-thumbnails">
+                                                style="margin-left: 10px;margin-top: -3px;"/> </span></p>
+                                        <ul :class="contTwo?'am-avg-sm-4 am-thumbnails contTwo':'am-avg-sm-4 am-thumbnails'">
                                             <li v-for="goodVideo in item.videoResourceList">
-                                                <video controls="controls" :src="fileURL+goodVideo.resourceUrl" style="width:270px;height:270px"></video>
+                                                <video controls="controls" :src="fileURL+goodVideo.resourceUrl" style="width:250px;height:250px"></video>
                                             </li>
                                             <!--<li><img class="am-thumbnail"-->
                                                      <!--src="http://s.amazeui.org/media/i/demos/bing-2.jpg"/></li>-->
@@ -181,26 +133,26 @@
 
                     <!--申请退出社团部分-begin-->
                         <a class="lastbutton" style="">
-                            <button type="button" class="am-btn am-btn-primary" id="doc-confirm-toggle">申请退出</button>
-                            <button type="button" class="am-btn am-btn-primary" data-am-modal="{target: '#my-alert'}">
+                            <button type="button" class="am-btn am-btn-primary" :data-am-modal="`{target: '#my-confirm`+index+`'}`" id="doc-confirm-toggle">申请退出</button>
+                            <button type="button" class="am-btn am-btn-primary" :data-am-modal="`{target: '#my-alert`+index+`'}`">
                                 社团评分
                             </button>
                         </a>
                         <!--罩层-->
-                        <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+                        <div :class="`am-modal am-modal-confirm`+index" tabindex="-1" :id="`my-confirm`+index">
                             <div class="am-modal-dialog">
 
                                 <div class="am-modal-bd">
                                     是否确认申请退出社团
                                 </div>
                                 <div class="am-modal-footer">
-                                    <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+                                    <span v-on:click="outClub(index)" class="am-modal-btn" data-am-modal-confirm>确定</span>
                                     <span class="am-modal-btn" data-am-modal-cancel>取消</span>
                                 </div>
                             </div>
                         </div>
                         <!--评分-->
-                        <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+                        <div class="am-modal am-modal-alert" tabindex="-1" :id="`my-alert`+index">
                             <div class="am-modal-dialog">
 
                                 <div class="am-modal-bd">
@@ -229,25 +181,72 @@
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',
-                userId: this.$route.params.userId,
                 fileURL:"http://192.168.0.103:9000/",
                 allMsg: "",
                 clubImg:[],
-                clubVideo:[]
+                clubVideo:[],
+                psonMsg:"",
+                clubCss:0,
+                //控制图片和视频是否查看全部
+                contOne:true,
+                contTwo:true,
+                //保存退出社团的post请求信息
+                receiverId:"",
+                communityName:"",
+                username:"",
+                communityId:""
+            }
+        },
+        methods:{
+            goEdit:function(){
+                this.$router.push({ path: '/user/psonData' })
+            },
+            cgClubCss:function(index){
+                this.clubCss=index;
+            },
+            clickOne:function(){
+                this.contOne=!this.contOne;
+            },
+            clickTwo:function(){
+                this.contTwo=!this.contTwo;
+            },
+            outClub:function(index){
+                this.receiverId=this.allMsg[index].sysUserDTO.id;
+                this.communityName=this.allMsg[index].makerCommunityDTO.communityName;
+                this.username=this.psonMsg.sysUser.realName;
+                this.communityId=this.allMsg[index].makerCommunityDTO.id;
+                var params = new URLSearchParams();
+                params.append("receiverId",this.receiverId );
+                params.append("communityName",this.communityName );
+                params.append("username", this.username);
+                params.append("communityId", this.communityId);
+                AXIOS.post('user/exitCommunity',params).then(response => {
+                    //console.log(response);
+                    alert(response.data);
+                }).catch(e => {
+                    this.errors.push(e)
+                });
             }
         },
         created: function () {
             var params = new URLSearchParams();
+            //获取社团的信息
             AXIOS.get('user/getUserCommunity', {
                 params: {
-                    userId: this.userId
                 }
             }).then(response => {
                 //console.log(response);
                 this.allMsg = response.data;
-                //添加图片和视频信息进入变量(判断类型 然后push进数组)
-
-
+            }).catch(e => {
+                this.errors.push(e)
+            });
+           //获取用户的信息
+            AXIOS.get('user/getUserInfo', {
+                params: {
+                }
+            }).then(response => {
+                //console.log(response);
+                this.psonMsg = response.data;
             }).catch(e => {
                 this.errors.push(e)
             });
@@ -259,7 +258,17 @@
 
 <style scoped>
     /*改动的样式-yzh*/
-
+    .on{
+        color: #E9D258;
+    }
+    .contOne{
+        height:262px;
+        transition: all .5s linear;
+    }
+    .contTwo{
+        height:268px;
+        transition: all .5s linear;
+    }
     /*改动样式结束*/
     #x_bg {
         background: url(../../../static/img/img_mynav.png) center center !important;

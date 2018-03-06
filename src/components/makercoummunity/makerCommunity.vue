@@ -5,7 +5,7 @@
             <div class="am-tabs-bd" style="border: 0px;width: 100%;height: 200px; background: #EEEEEE; ">
                 <div class="am-tab-panel am-active" id="tab1">
                     <div style="width: 90%;text-align: right;margin-top: 10px;">
-                        <a class="am-btn am-btn-primary" style="border-radius: 10px;">发起社团</a>
+                        <a class="am-btn am-btn-primary" style="border-radius: 10px;">发起团队</a>
                     </div>
                     <div style="text-align: center;margin-top: 1%;padding-left: 4%;">
                         <hr style="width:80%;border-top: 1px solid #ffffff;margin: 0 auto">
@@ -15,8 +15,8 @@
                         <span style="float: left;margin-right: 2%;">分类:</span>
 
                         <div id="classify_content" style="float: left">
-                            <a v-on:click="clickClub" class="am-btn am-btn-primary">创客社团</a>
-                            <a v-on:click="clickGroup" class="am-btn am-btn-primary">创客团队</a>
+                            <a v-on:click="clickClub" :class="controlTitle?'am-btn am-btn-primary':'am-btn am-btn-default'">创客社团</a>
+                            <a v-on:click="clickGroup" :class="controlTitle?'am-btn am-btn-default':'am-btn am-btn-primary'">创客团队</a>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <div style="background-color: #D8D8D8; border-bottom-left-radius:10px; border-bottom-right-radius:10px;">
                         <div class="am-g">
                             <div class="am-u-sm-5" style="padding: 10px;">
-                                <img src="../../../static/img/airplane.png" width="130%" height="130%"/>
+                                <img :src="fileURL+item.makerCommunity.communityLogo" style="margin-left:40px;width:200px;height:200px"/>
                             </div>
                             <div class="am-u-sm-6" style="padding-left: 25px;padding-top:10px;text-align: left">
                                 <span>{{item.makerCommunity.communityName}}</span><br/>
@@ -41,13 +41,13 @@
                                 团队介绍:<span>{{item.makerCommunity.communityIntro}}</span>
                             </div>
                         </div>
-                        <div style="margin-top: 1%;padding-bottom: 2%;margin-left: 15%;">
+                        <div style="margin-top: 1%;padding-bottom: 2%;">
                             <router-link :to="{name: 'communitydetail',params: {workId: item.makerCommunity.id}}"
-                                         class="am-btn am-btn-primary" style="border-radius: 7px;margin-right: 50%;">
+                                         class="am-btn am-btn-primary" style="margin:0 40px;border-radius: 7px;">
                                 查看社团详情
                             </router-link>
                             <router-link :to="{name: 'applyjoindetail',params: {clubJoinId: item.makerCommunity.id}}"
-                                         class="am-btn am-btn-primary" style="border-radius: 7px;">申请加入
+                                         class="am-btn am-btn-primary" style="margin:0 40px;border-radius: 7px;">申请加入
                             </router-link>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                     <div style="background-color: #D8D8D8; border-bottom-left-radius:10px; border-bottom-right-radius:10px;">
                         <div class="am-g">
                             <div class="am-u-sm-5" style="padding: 10px;">
-                                <img src="../../../static/img/airplane.png" width="130%" height="130%"/>
+                                <img :src="fileURL+item.teamLogo" style="margin-left:40px;width:200px;height:200px"/>
                             </div>
                             <div class="am-u-sm-6" style="padding-left: 25px;padding-top:10px;text-align: left">
                                 <span>{{item.teamName}}</span><br/>
@@ -91,13 +91,13 @@
                                 团队介绍:<span>{{item.teamIntro}}</span>
                             </div>
                         </div>
-                        <div style="margin-top: 1%;padding-bottom: 2%;margin-left: 15%;">
+                        <div style="margin-top: 1%;padding-bottom: 2%;">
                             <router-link :to="{name: 'teamdetail',params: {teamId: item.id}}"
-                                         class="am-btn am-btn-primary" style="border-radius: 7px;margin-right: 50%;">
+                                         class="am-btn am-btn-primary" style="margin:0 40px;border-radius: 7px;">
                                 查看团队详情
                             </router-link>
-                            <router-link to=""
-                                         class="am-btn am-btn-primary" style="border-radius: 7px;">申请加入
+                            <router-link  :to="{name: 'ApplyJoinTeam',params: {teamId: item.id}}"
+                                         class="am-btn am-btn-primary" style="margin:0 40px;border-radius: 7px;">申请加入
                             </router-link>
                         </div>
                     </div>
@@ -115,12 +115,15 @@
         data: function () {
             return {
                 clubMsg: [],
+                fileURL:"http://192.168.0.103:9000/",
                 groupMsg: [],
-                controlShow:true
+                controlShow:true,
+                controlTitle:true
             }
         },
         methods: {
             clickClub: function () {
+                this.controlTitle=true;
                 this.controlShow=true;
                 var params = new URLSearchParams();
                 AXIOS.get('community/MakerCommunityShow', {
@@ -133,6 +136,7 @@
                 });
             },
             clickGroup: function () {
+                this.controlTitle=false;
                 this.controlShow=false;
                 var params = new URLSearchParams();
                 AXIOS.get('team/MakerTeamShow', {

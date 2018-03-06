@@ -15,7 +15,7 @@
                 </div>
                 <div class="am-g">
                     <div class="am-u-sm-3" style="padding-top: 1%;padding-left: 4%;">
-                        <img src="../../../static/img/airplane.png" style="border: 1px solid #000000;width: 200px;margin-top: 15px;" />
+                        <img :src="fileURL+item.teamLogo" style="border: 1px solid #000000;width: 200px;margin-top: 15px;" />
                     </div>
                     <div class="am-u-sm-9" style="padding-top: 1%;padding-right: 10%;padding-left: 1%;">
                         <div style="width: 100%;padding-left: 2%;padding-top: 1%;">
@@ -28,7 +28,7 @@
                             <span>团队介绍&nbsp;:&nbsp;<p style="word-wrap: break-word;display: inline">{{item.teamIntro}}</p></span>
                         </div>
                         <div style="margin-top: 5%;">
-                            <router-link :to="{name: 'teamdetail',params: {teamId: item.id}}" class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;float: right">查看团队详情</router-link>
+                            <router-link :to="{name: 'userTemJoinDetail',params: {teamId: item.id}}" class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;float: right">查看团队详情</router-link>
                         </div>
                     </div>
                 </div>
@@ -109,10 +109,10 @@
     import {AXIOS} from '../../http-common'
     export default {
         name: 'hello',
-        props:["userId"],
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',
+                fileURL: "http://192.168.0.103:9000/",
                 allMsg:""
             }
         },
@@ -120,7 +120,6 @@
             var params = new URLSearchParams();
             AXIOS.get('user/joinTeam', {
                 params: {
-                    userId:this.userId
                 }
             }).then(response => {
                 //console.log(response);

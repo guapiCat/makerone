@@ -13,8 +13,7 @@
 
                     <tr>
                         <td>
-                            <div style="width:120px;height:120px;margin-right: 10px;"><img
-                                    src="../../../static/img/img_bitmap.png" width="100%" height="100%"></div>
+                            <div style="width:120px;height:120px;margin-right: 10px;"><img :src="fileURL+allMsg.sysUser.avatar" style="border-radius: 50%;width: 100%;height:100%;"></div>
                         </td>
                         <td style="width:650px;" valign="top">
                             <span style="font-size: 15px;color: #959595;">最佳尺寸为120*120像素的方形图片(支持JPG、PNG、GIF格式,图片尺寸不超过3MB)</span>
@@ -105,7 +104,6 @@
         data () {
             return {
                 allMsg:"",
-                userId:this.$route.params.userId,
                 param:[],
                 username:" ",
                 school:" ",
@@ -115,15 +113,14 @@
                 mobilephone:" ",
                 desc:" ",
                 file:"",
-                avatar:""
+                avatar:"",
+                fileURL:"http://192.168.0.103:9000/"
             }
         },
         created:function(){
             var params = new URLSearchParams();
             AXIOS.get('user/getUserInfo', {
-                params: {
-                    userId:this.userId
-                }
+                params: {}
             }).then(response => {
                 //console.log(response);
                 this.allMsg=response.data;
@@ -147,7 +144,6 @@
                 //提交图片文件，获取相对路径
                 var param = new FormData(); // 创建form对象
                 param.append('file', this.file, this.file.name); // 通过append向form对象添加数据
-                param.append("userId",this.userId);
                 //param.append("username",this.username);
                 //param.append("realName",this.name);
                 //param.append("mobile",this.mobilephone);
@@ -161,14 +157,13 @@
                     this.avatar=response.data;
                     //发送提交的修改信息
                     var params = new URLSearchParams();
-                    params.append("id",this.userId);
                     params.append("avatar",this.avatar);
                     params.append("username",this.username);
                     params.append("realName",this.name);
                     params.append("mobile",this.mobilephone);
                     params.append("intro",this.desc);
                     AXIOS.post('user/editUser', params).then(response => {
-                        console.log(response.data);
+                        alert(response.data);
                     }).catch(e => {
                         this.errors.push(e)
                     });

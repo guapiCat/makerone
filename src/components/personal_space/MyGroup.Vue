@@ -25,13 +25,13 @@
                         <div class="am-tab-panel am-fade am-in am-active" id="tab1">
                             <!--<iframe id="team_created" src="team_created.html" width="100%" height="100%"-->
                                     <!--style="border: 0px;" scrolling="no" onload="iframeLoad_1()"></iframe>-->
-                            <teamCre :userId="userId"></teamCre>
-                            <button class="am-btn am-btn-primary" style="margin-left:50%">+创建团队</button>
+                            <teamCre></teamCre>
+                            <button v-on:click="goCreTm" class="am-btn am-btn-primary" style="margin-left:50%">+创建团队</button>
                         </div>
                         <div class="am-tab-panel am-fade" id="tab2">
                             <!--<iframe id="team_joined" src="team_joined.html" width="100%" height="100%"-->
                                     <!--style="border: 0px;" scrolling="no" onload="iframeLoad_2()"></iframe>-->
-                            <teamJoin :userId="userId"></teamJoin>
+                            <teamJoin></teamJoin>
                         </div>
                     </div>
                 </div>
@@ -49,8 +49,12 @@
         components:{teamJoin,teamCre},
         data () {
             return {
-                msg: 'Welcome to Your Vue.js App',
-                userId:this.$route.params.userId
+                msg: 'Welcome to Your Vue.js App'
+            }
+        },
+        methods:{
+            goCreTm:function(){
+                this.$router.push({ path: '/user/temGoCre' })
             }
         }
     }
