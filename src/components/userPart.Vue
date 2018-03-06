@@ -5,7 +5,7 @@
             <img v-on:click="goHome" class="myLogo" style="cursor: pointer" src="../../static/img/logo.png" alt=""/>
 
 
-            <div v-for="value,index in myHeader" v-on:click="hdClick(index)" v-bind:class="{on:index==guigeSpan}">
+            <div v-for="value,index in myHeader" v-on:click="hdClick(index)" v-bind:class="{useron:index==guigeSpan}">
                 <p class="myHeadP">
                     <a>
                         <span>{{value}}</span>
@@ -114,7 +114,7 @@
         margin-top: 15px;
         margin-left: 30px;
     }
-    .on p a span{
+    .useron p a span{
         color: yellow;
     }
     a {
