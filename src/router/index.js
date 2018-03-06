@@ -21,7 +21,6 @@ import materialdetail from '@/components/material/materialdetail'
 import upmaterial from '@/components/material/upmaterial'
 import allcourse from '@/components/makercourse/allcourse'
 import activitydetail from '@/components/makeractivity/activitydetail'
-import ApplyJoinTeam from '@/components/makercoummunity/applyJoinTeam'
 // 评价
 import CollMaterial from '@/components/personal_space/CollMaterial'
 import CollCousera from '@/components/personal_space/CollCousera'
@@ -46,29 +45,29 @@ import SubPro from '@/components/personal_space/SubPro'
 import TemCre from '@/components/personal_space/TemCre'
 import TemJoin from '@/components/personal_space/TemJoin'
 import WorkShow from '@/components/personal_space/WorkShow'
-import TemJoinDetail from '@/components/personal_space/TemJoinDetail'
-import TemCreDetail from '@/components/personal_space/TemCreDetail'
-import TemGoCre from '@/components/personal_space/TemGoCre'
+import uploadAlltype from '@/components/personal_space/uploadAlltype'
+import LastPro from '@/components/personal_space/LastPro'
+import editor from '@/components/personal_space/editor'
 
 
 Vue.use(Router)
 global.headNum = 0;
 const Routers = [
-    {
+ /*   {
         path:"/community/applyJoinTeam/:teamId",//在此添加团队加入页面
         name:"ApplyJoinTeam",
         component:ApplyJoinTeam
-    },
+    },*/
   {
     path: '/',
     name: 'index',
-    component: index
+    component: index,
   },
 
   {
     path:'/worksShow/list',
     name:'worksShow',
-    component:worksShow
+    component:worksShow,
 
   },{
   path:'/workShow/detail/:workId',
@@ -184,7 +183,7 @@ const Routers = [
     path:"/user/myColl",
     component:MyColl
   },{
-    path:"/user/myGroup",
+    path:"/user/myGroup/:userId",
     component:MyGroup
   },{
     path:"/user/myMsg",
@@ -220,9 +219,11 @@ const Routers = [
     component:SclCourse
   },{
     path:"/user/second",
-    component:Second
+    component:Second,
+    name:'Second'
   },{
     path:"/user/subPro",
+    name:'Subpro',
     component:SubPro
   },{
     path:"/user/temCre",
@@ -234,19 +235,23 @@ const Routers = [
   },{
     path:"/user/workShow",
     component:WorkShow
-  },{
-    path:"/user/temJoinDetail/:teamId",
-    name:"userTemJoinDetail",
-    component:TemJoinDetail
-    },{
-    path:"/user/temCreDetail/:teamId",
-    name:"userTemCreDetail",
-    component:TemCreDetail
-    },{
-    path:"/user/temGoCre",
-    name:"TemGoCre",
-    component:TemGoCre
-    }
+  },
+  {
+    path:'/user/uploadAlltype',
+    name:'uploadAlltype',
+    component:uploadAlltype
+  },
+  {
+    path:'/user/editor',
+    name:'editor',
+    component:editor
+  },
+  {
+    path:'/user/LastPro',
+    name:'LastPro',
+    component:LastPro
+  }
+
 ]
 
 const RouterConfig = {
@@ -256,19 +261,5 @@ const RouterConfig = {
 };
 const router = new Router(RouterConfig);
 
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(res = >res.meta.requireAuth)) {
-    if (sessionStorage.getItem("UID") && sessionStorage.getItem("TID")) {
-      next()
-    } else {
-      next({
-        path: '/',
-        query: {redirect: to.fullPath}
-      })
-    }
-  } else {
-    next()
-  }
-});
 
 export default router
