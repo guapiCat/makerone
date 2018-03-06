@@ -44,7 +44,7 @@
       login() {
         var params = new URLSearchParams();
         var mad5password=$('#password').val();
-        var mad5pass=$.md5(mad5password).substring(8, 24);
+        var mad5pass=$.md5(mad5password);
         console.log(mad5pass);
         params.append("username", $("#phone_studentId").val());
         params.append("password",mad5pass);
