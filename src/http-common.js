@@ -11,7 +11,7 @@ AXIOS.interceptors.request.use(config =>{
   }
   return config
 }, error => {
-  return promise.reject(error)
+  return Promise.reject(error)
 });
 AXIOS.interceptors.response.use(response => {
   if (response.data == 1000) {
@@ -19,5 +19,5 @@ AXIOS.interceptors.response.use(response => {
   }
   return response
 }, error => {
-  return promise.reject(error)
+  return Promise.reject(error)
 });

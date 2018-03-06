@@ -67,7 +67,7 @@ const Routers = [
   {
     path:'/worksShow/list',
     name:'worksShow',
-    component:worksShow,
+    component:worksShow
 
   },{
   path:'/workShow/detail/:workId',
@@ -261,5 +261,19 @@ const RouterConfig = {
 };
 const router = new Router(RouterConfig);
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(res =>res.meta.requireAuth)) {
+    if (sessionStorage.getItem("UID") && sessionStorage.getItem("TID")) {
+      next()
+    } else {
+      next({
+        path: '/',
+        query: {redirect: to.fullPath}
+      })
+    }
+  } else {
+    next()
+  }
+});
 
 export default router
