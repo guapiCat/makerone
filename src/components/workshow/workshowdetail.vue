@@ -15,9 +15,9 @@
                         <span class="author">作者:</span><i>{{allMsg.username}}</i>
                         <span class="box-time">时间:</span><i>{{allMsg.createTime}}</i>
                     </div>
-                    <div class="box-right">
-                        <img src="../../../static/img/upvote.png" alt=""/>
-                        <i>0</i>
+                    <div class="box-right" v-if="thumbs">
+                        <img v-on:click="vote" src="../../../static/img/unvote.png" alt="" style="cursor: pointer"/>
+                        <i>{{thumbs}}</i>
                     </div>
 
                 </div>
@@ -94,11 +94,29 @@
                 workId: this.$route.params.workId,
                 typeId: this.$route.params.typeId,
                 allMsg:"",
-                allStep:[]
+                allStep:[],
+                thumbs:false,
+                voteStatus:""
+            }
+        },
+        methods:{
+            vote: function () {
+                alert('clickVote');
+                this.$emit('voteReq', {voteObjId:this.courseId, voteObjType:1, voteStatus:1});
             }
         },
         created: function(){
             var params = new URLSearchParams();
+            //获取点赞状态
+            AXIOS.get('common/upStatus', {
+                params:{
+                    voteObjId:this.workId
+                }
+            }).then(response => {
+                console.log("这是访问点赞状态返回的消息："+response.data);
+            }).catch(e => {
+                this.errors.push(e)
+            });
             //访问记录
             AXIOS.get('common/view', {
                 params:{
@@ -119,6 +137,7 @@
                 var jsonResult = eval(response.data);
                 this.allMsg=response.data;
                 this.allStep=response.data.makerWorksSteps;
+                this.thumbs=this.allMsg.worksScanNum;
             }).catch(e => {
                 this.errors.push(e)
             });
