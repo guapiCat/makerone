@@ -46,6 +46,7 @@ import TemCre from '@/components/personal_space/TemCre'
 import TemCreDetail from '@/components/personal_space/TemCreDetail'
 import TemJoin from '@/components/personal_space/TemJoin'
 import TemJoinDetail from '@/components/personal_space/TemJoinDetail'
+import TemGoCre from '@/components/personal_space/TemGoCre'
 import WorkShow from '@/components/personal_space/WorkShow'
 import uploadAlltype from '@/components/personal_space/uploadAlltype'
 import LastPro from '@/components/personal_space/LastPro'
@@ -261,6 +262,9 @@ const Routers = [
         path:"/user/temJoinDetail",
         name:"userTemJoinDetail",
         component:TemJoinDetail
+    },{
+        path:"/user/temGoCre",
+        component:TemGoCre
     }
 
 ]
