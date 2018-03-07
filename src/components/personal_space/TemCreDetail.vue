@@ -20,7 +20,7 @@
 
                     <div class="content-box-body" style="overflow: hidden;">
                         <div class="content-title-hand-left">
-                            <img src="../../../static/img/airplane.png"/>
+                            <img :src="fileURL+allMsg.teamLogo"/>
                         </div>
                         <div class="content-title-hand-right">
                             <h5>{{allMsg.teamName}}</h5>
@@ -63,10 +63,33 @@
                                 src="../../../static/img/arrow_2.png"
                                 style="margin-left: 10px;margin-top: -3px;"/> </span></p>
                         <ul :class="{'am-avg-sm-4':true,'am-thumbnails':true,'seeAll':contTwo}">
-                            <li v-for="item,index in teamMemb" class="am-thumbnail"><img
-                                    :src="fileURL+item[1]"/>
-
-                                <p>{{index?"组员":"组长"}}:<span>{{item[0]}}</span></p></li>
+                            <li v-for="item,index in teamMemb" class="am-thumbnail">
+                                <img style="border-radius: 50%" :src="fileURL+item[1]"/>
+                                <p>{{index?"组员":"组长"}}:<span>{{item[0]}}</span></p>
+                            </li>
+                            <!--添加成员（跳模态框）-->
+                            <li class="am-thumbnail">
+                                <img data-am-modal="{target: '#my-alertImg'}" style="border-radius: 50%;background: white;cursor: pointer" src="../../../static/img/icon_jiahao.png" alt=""/>
+                                <p>添加成员</p>
+                            </li>
+                            <div class="am-modal am-modal-alert" tabindex="-1" id="my-alertImg">
+                                <div class="am-modal-dialog">
+                                    <div class="am-modal-hd">
+                                        输入成员名字：<input v-model="findName" type="text"/>
+                                        <a v-on:click="goFindPson" class="am-btn am-btn-primary">查找</a>
+                                    </div>
+                                    <div class="am-modal-bd findPsonBody">
+                                        <div v-on:click="clickFindPson(index,item.sysUser.id)" :class="{'checkPson':index==addPsonClass}" class="findPsonDiv" v-for="item,index in findNameMsg">
+                                            <img class="findPsonImg" :src="fileURL+item.sysUser.avatar" alt=""/>
+                                            <p>{{item.sysUser.realName}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="am-modal-footer">
+                                        <span class="am-modal-btn">取消</span>
+                                        <span v-on:click="addPson" class="am-btn am-modal-btn">确定</span>
+                                    </div>
+                                </div>
+                            </div>
                             <!--<li class="am-thumbnail"><img  src="../../../static/img/img_bitmap.png" /><p>组员:<span>张华</span></p></li>-->
                             <!--<li class="am-thumbnail"><img  src="../../../static/img/img_bitmap.png" /><p>组员:<span>张华</span></p></li>-->
                             <!--<li class="am-thumbnail"><img  src="../../../static/img/img_bitmap.png" /><p>组员:<span>张华</span></p></li>-->
@@ -112,7 +135,6 @@
             </div>
 
 
-
         </div>
     </div>
 </template>
@@ -133,10 +155,48 @@
                 creTrue:true,
                 jugCont:false,
                 //end
-                sendMsgTxt:""
+                sendMsgTxt:"",
+                findName:"",
+                findNameMsg:"",
+                addPsonClass:-1,
+                findPsonId:""
             }
         },
         methods:{
+            addPson:function(){
+                var params = new URLSearchParams();
+                AXIOS.get('user/addMember', {
+                    params: {
+                        makerTeamId:this.teamId,
+                        teamUserId:this.findPsonId
+                    }
+                }).then(response => {
+                    alert(response.data);
+                }).catch(e => {
+                    this.errors.push(e);
+                });
+            },
+            clickFindPson:function(index,psonId){
+                this.addPsonClass=index;
+                this.findPsonId=psonId;
+            },
+            goFindPson:function(){
+                var params = new URLSearchParams();
+                AXIOS.get('user/likeMember', {
+                    params: {
+                        userName:this.findName
+                    }
+                }).then(response => {
+                    console.log("查找个人信息："+response.data);
+                    this.findNameMsg=response.data;
+                    if(this.findNameMsg.length>4){
+                        this.findNameMsg.length=4;
+                    }
+                }).catch(e => {
+                    this.errors.push(e);
+                });
+
+            },
             sendMsg:function(){
                 var params = new URLSearchParams();
                 AXIOS.get('user/messageToAllTeamMember', {
@@ -152,10 +212,10 @@
                 });
             },
             seeOneCont:function(){
-                this.oneCont=!this.oneCont;
+                this.contOne=!this.contOne;
             },
             seeTwoCont:function(){
-                this.twoCont=!this.twoCont;
+                this.contTwo=!this.contTwo;
             },
             outTeam:function(){
                 var params = new URLSearchParams();
@@ -202,6 +262,26 @@
 </script>
 
 <style scoped>
+    .checkPson{
+        border:1px solid #0E90D2;
+    }
+    .findPsonBody{
+        display: flex;
+        justify-content: center;
+        height: 200px;
+    }
+    .findPsonDiv{
+        padding-top: 10px;
+    }
+    .findPsonDiv:hover{
+        border: 1px dashed #0E90D2;
+    }
+    .findPsonImg{
+        width: 100px;
+        height:100px;
+        margin:10px;
+        border-radius: 50%;
+    }
     .noCont{
         display:none;
     }
