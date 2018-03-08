@@ -13,10 +13,26 @@
         <p><router-link to="/user/psonAsset"><span>个人空间</span><i style="margin-left: -13px;">PERSONAL SPACE</i></router-link></p>
         <p><router-link to="/makerLife/list"><span>创客生活</span><i style="margin-left: -3px;">CREATIVE LIFE</i></router-link></p>
         <div class="mySs">
-            <img class="mySs_img" src="../../../static/img/nav_serch.png" alt=""/>
-            <input class="mySs_inp" type="text" placeholder="请输入关键字"/>
+          <a @click="searchall()"><img class="mySs_img" src="../../../static/img/nav_serch.png" alt=""/></a>
+          <div class="seachlist" v-show="isHidden">
+            <ul><li>
+              <router-link :to="{name:'allcourse'}"><span @click="close()">课程</span></router-link>
+            </li><li>
+              <router-link :to="{name:'materialLibrary'}">
+                <span @click="close()">素材</span>
+                </router-link>
+            </li><li>
+              <router-link :to="{name:'worksShow'}"  >
+                <span @click="close()">作品</span>
+              </router-link>
+              </li><li>
+              <router-link :to="{name:'/makerLife'}"><span @click="close()">生活</span></router-link>
+              </li>
+            </ul>
+          </div>
+            <input v-model="searchInput" id="search"  class="mySs_inp" type="text" placeholder="请输入关键字"/>
             <div class="mySs_xx">
-                <p> <router-link to="/login"><span>登陆</span></router-link>&nbsp;|&nbsp;<router-link to="/register"> <span>注册</span></router-link></p>
+                <p> <router-link to="/login"><span>登陆</span></router-link></p>
             </div>
 
         </div>
@@ -26,14 +42,27 @@
 </template>
 
 <script>
+  import {AXIOS} from "../../http-common";
+
+
   export default {
     name: 'headPart',
+
     data () {
       return {
+        isHidden:false,
+        searchInput:'',
 
       }
     },
     methods: {
+     searchall(){
+       this.isHidden=!this.isHidden;
+     },
+      close(){
+       this.isHidden=false;
+       this.searchInput=''
+      }
 
     }
   }
@@ -44,4 +73,31 @@
 
 <style scoped>
   @import "../../../static/css/indexheader.css";
+  .seachlist{
+    position: absolute;
+    left: 74px;
+    top: 29px;
+    z-index: 999;
+    height: 100px;
+    width: 80px;
+    text-align: center;
+    background: #333333;
+  }
+  .seachlist ul{
+    list-style: none;
+    border: solid 1px #dfdfdf;
+    box-shadow: 0px 0px 3px #ccc;
+  }
+  .seachlist li{
+    background: #c3c3c3;
+    height: 27px;
+    width: 88px;
+    line-height: 27px;
+    text-align: center;
+    font-family: simhei;
+  }
+  .seachlist li:hover{
+    color: #FC7E8E;
+  }
+
 </style>

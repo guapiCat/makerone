@@ -31,6 +31,8 @@
       </div>
       <router-link :to="{name: 'lifedetail',params:{ workId: item.makerLive.id}}"class="see-details"><button type="button" class="am-btn am-btn-primary am-radius">查看详情</button></router-link>
     </div>
+    <div class="nodata" v-show="hiddendata">
+    </div>
 
   </div>
 </div>
@@ -49,6 +51,8 @@
       },
       data (){
           return{
+            search:'',
+            hiddendata:false,
             makerlife:[],
             titletype:[],
             classify: 0,
@@ -71,7 +75,23 @@
           this.classify = this.titletype[0].type;
 
         });
-        this.reqAxios(1, 1, 1, 10);
+        this.searchval;
+        if(this.search==''){
+          this.reqAxios(0, 1, 1, 10);
+        }else {
+         this.searchAxios(0,1,1,10,this.search)
+          if(this.makerlife.length<=0){
+           this.hiddendata=true
+          }
+        }
+
+      },
+      computed:{
+        searchval:function(){
+          var searchval=document.getElementById("search").value
+          return this.search=searchval
+        }
+
       },
       methods:{
         reqAxios:function (type,sortType,pageNum, pageSize) {
@@ -87,6 +107,35 @@
             for (var i=0;i<this.makerlife.length;i++){
               this.contentbox=this.makerlife[i].makerLive.liveContent;
             };
+            if(this.contentbox.length<1){
+              this.hiddendata=true;
+            }else {
+              this.hiddendata=false
+            }
+
+          }).catch(response=>{
+            this.errors.push(response);
+          })
+        },
+        searchAxios:function (type,sortType,pageNum, pageSize,liveTitle) {
+          AXIOS.get('makerLive/makerLiveShow',{
+            params:{
+              "type":type,
+              "sortType":sortType,
+              "pageNum":pageNum,
+              "pageSize":pageSize,
+              "liveTitle":liveTitle
+            }
+          }).then(response=>{
+            this.makerlife=response.data.list;
+            for (var i=0;i<this.makerlife.length;i++){
+              this.contentbox=this.makerlife[i].makerLive.liveContent;
+            };
+            if(this.contentbox.length<1){
+              this.hiddendata=true;
+            }else {
+              this.hiddendata=false
+            }
 
           }).catch(response=>{
             this.errors.push(response);
@@ -103,6 +152,7 @@
           this.reqAxios(this.classify,this.sort ,1 ,8)
         }
       },
+
       mounted:function () {
         $(function(){
           $(".work-content").each(function (i) {
@@ -122,6 +172,12 @@
    .on {
     background: #FFCA57 !important;
   }
+   .nodata{
+     width: 99%;
+     height: 400px;
+     margin: 0 auto;
+     background: url(../../../static/img/nodata.png) top center no-repeat;
+   }
 
   .classify{
     padding-left: 18%;

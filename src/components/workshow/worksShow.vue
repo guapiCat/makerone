@@ -58,6 +58,8 @@
                     </li>
 
                 </ul>
+              <div class="nodata" v-show="hiddendata">
+              </div>
 
             </div>
         </div>
@@ -77,6 +79,8 @@
       },
         data () {
             return {
+              search:'',
+              hiddendata:false,
                 proClass: [],
                 proSee: [
                     "时间",
@@ -97,6 +101,7 @@
             two: function (index) {
                 //console.log(index);
                 this.reqAxios(this.clickOne, index, 1, 10);
+
             },
             reqAxios: function (makeWorType, sortType, pageNum, pageSize) {
                 AXIOS.get('makerWorks/sortMakerWorks', {
@@ -109,13 +114,54 @@
                 }).then(response => {
                     this.myProducts = response.data.list;//将zuopins转为为后台数据
                     //console.log(response.data.list);
+                  if(this.myProducts.length<=0){
+                    this.hiddendata=true
+                  }else {
+                    this.hiddendata=false
+                  }
                 }).catch(e => {
                     this.errors.push(e);
                 });
-            }
+            },
+          searchAxios: function (makeWorType, sortType, pageNum, pageSize,makerWorksName) {
+            AXIOS.get('makerWorks/sortMakerWorks', {
+              params: {
+                "makeWorType": makeWorType,
+                "sortType": sortType,
+                "pageNum": pageNum,
+                "pageSize": pageSize,
+                "makerWorksName":makerWorksName
+              }
+            }).then(response => {
+              this.myProducts = response.data.list;//将zuopins转为为后台数据
+              //console.log(response.data.list);
+              if(this.myProducts.length<=0){
+                this.hiddendata=true
+              }else {
+                this.hiddendata=false
+              }
+            }).catch(e => {
+              this.errors.push(e);
+            });
+          }
         },
+      computed:{
+        searchval:function(){
+          var searchval=document.getElementById("search").value
+          return this.search=searchval
+        }
+
+      },
         created: function () {
+          this.searchval;
+          if (this.search==''){
             this.reqAxios(0, 0, 1, 10);
+          }else {
+          this.searchAxios(0,0,1,10,this.search)
+            
+          }
+
+
             var params = new URLSearchParams();
             AXIOS.get('common/getGlobalType', {
                 params:{}
@@ -138,7 +184,12 @@
     .on {
         background: #FFCA57 !important;
     }
-
+    .nodata{
+      width: 99%;
+      height: 400px;
+      margin: 0 auto;
+      background: url(../../../static/img/nodata.png) top center no-repeat;
+    }
     .classify img {
         height: 25px;
         width: 29px;

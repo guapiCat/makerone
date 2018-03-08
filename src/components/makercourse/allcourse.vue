@@ -56,9 +56,12 @@
             </div>
           </div>
 
+
           <div style="margin-top: 3%;margin-bottom: 3%;">
             <hr style="border-top:3px solid #eeeeee;"/>
           </div>
+        </div>
+        <div class="nodata" v-show="hiddendata">
         </div>
 
         <div>
@@ -71,6 +74,7 @@
 
 <script>
   import {AXIOS} from '../../http-common'
+  // import bus from '../../assets/eventBus';
     export default {
         name: "allcourse",
         props: {
@@ -81,6 +85,8 @@
       },
       data(){
           return{
+            search:'',
+            hiddendata:false,
             courseslist:[],
             titletype:[],
             sorttitle:[
@@ -100,6 +106,21 @@
             classes:0
           }
       },
+      mounted(){
+        this.searchval;
+        if(this.search==""){
+          this.reqAXIOS(1, 0, 1, 8,8);
+        }else {
+          this.searchAXIOS(1, 0, 1, 8,8,this.search);
+        }
+      },
+      computed:{
+        searchval:function(){
+          var searchval=document.getElementById("search").value
+          return this.search=searchval
+        }
+
+      },
       created:function () {
           AXIOS.get('common/getGlobalType',{}).then(response=>{
             this.titletype=response.data;
@@ -108,7 +129,8 @@
           }).catch(response=>{
             this.errors.push(response);
           });
-        this.reqAXIOS(1, 0, 1, 1,8);
+
+
       },
       methods:{
         reqAXIOS:function (courseGrade,type,sortType,pageNum,pageSize) {
@@ -122,18 +144,49 @@
             }
           }).then(response=>{
             this.courseslist=response.data.list;
+            if(this.courseslist.length<1){
+              this.hiddendata=true;
+            }else {
+              this.hiddendata=false
+            }
+
           }).catch(response=>{
             this.errors.push(response);
           });
 
         },
+        searchAXIOS:function (courseGrade,type,sortType,pageNum,pageSize,courseName) {
+          AXIOS.get('makerCourse/makerCourseShow',{
+            params:{
+              courseGrade:courseGrade,
+              type:type,
+              sortType:sortType,
+              pageNum:pageNum,
+              pageSize:pageSize,
+              courseName:courseName
+            }
+          }).then(response=>{
+            this.courseslist=response.data.list;
+            if(this.courseslist.length<=0){
+              this.hiddendata=true
+            }else {
+              this.hiddendata=false
+            }
+          }).catch(response=>{
+            this.errors.push(response);
+          });
+
+        },
+
         byClassify: function (type) {
           this.classify= type;
-          this.reqAXIOS(this.classes,this.classify,this.sort,1 ,8)
+          this.reqAXIOS(this.classes,this.classify,this.sort,8 ,8)
         },
         byclaass:function (index) {
           this.classes=index+1;
-          this.reqAXIOS(this.classes,this.classify,this.sort,1 ,8)
+          this.reqAXIOS(this.classes,this.classify,this.sort,8,8)
+          console.log(this.courseslist)
+
         },
         bysort:function (index) {
           this.sort=index;
@@ -146,6 +199,12 @@
 <style scoped>
   .lighton{
     background: #FFCA57 !important;
+  }
+  .nodata{
+    width: 99%;
+    height: 400px;
+    margin: 0 auto;
+    background: url(../../../static/img/nodata.png) top center no-repeat;
   }
   .course_span{
     padding-bottom: 3%;

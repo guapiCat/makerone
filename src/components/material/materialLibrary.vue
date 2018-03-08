@@ -51,6 +51,8 @@
 
 
         </div>
+      <div class="nodata" v-show="hiddendata">
+      </div>
 
         <div class="am-u-sm-10 am-u-sm-centered" style="margin-top: 100px;margin-right: 11%; clear: both;">
             <ul class="am-pagination am-pagination-right">
@@ -69,7 +71,7 @@
 <script type="es6">
     import {AXIOS} from '../../http-common'
     export default {
-        name: "material-library",
+      name: "material-library",
       props: {
         fileURL: {
           type: String,
@@ -78,6 +80,8 @@
       },
         data () {
             return {
+              search:'',
+              hiddendata:false,
                 allMet: [],//所有素材
                 metClass: [],//素材分类
                 metSee: ["最新", "下载量"],//查看素材分类（2级）
@@ -85,6 +89,12 @@
                 orderStr: 0
             }
         },
+      computed:{
+        searchval:function(){
+          var searchval=document.getElementById("search").value
+          return this.search=searchval
+        }
+      },
         methods: {
             postMet:function(){
                 this.$router.push({ path: '/material/up' });
@@ -109,14 +119,47 @@
                     }
                 }).then(response => {
                     this.allMet = response.data.list;//将zuopins转为为后台数据
+                  if(this.allMet.length<1){
+                    this.hiddendata=true
+                  }else {
+                    this.hiddendata=false
+                  }
                     //console.log(response.data.list);
                 }).catch(e => {
                     this.errors.push(e);
                 });
-            }
+            },
+          searchAxios: function (type, orderStr, pageNum, pageSize,makerMaterialName) {
+            AXIOS.get('makerMaterial/MakerMaterialControllerShow', {
+              params: {
+                "type": type,
+                "orderStr": orderStr,
+                "pageNum": pageNum,
+                "pageSize": pageSize,
+                "makerMaterialName":makerMaterialName
+              }
+            }).then(response => {
+              this.allMet = response.data.list;//将zuopins转为为后台数据
+              if(this.allMet.length<1){
+                this.hiddendata=true
+              }else {
+                this.hiddendata=false
+              }
+              //console.log(response.data.list);
+            }).catch(e => {
+              this.errors.push(e);
+            });
+          },
         },
         created: function () {
-            this.reqAxios(0, 0, 1, 10);
+            this.searchval;
+            if (this.search==""){
+              this.reqAxios(0, 0, 1, 10)
+            }else {
+              this.searchAxios(0,0,1,10,this.search);
+
+            }
+
             var params = new URLSearchParams();
             AXIOS.get('common/getGlobalType', {
                 params: {}
@@ -136,7 +179,12 @@
     .onOne {
         background: #FFCA57;
     }
-
+    .nodata{
+      width: 99%;
+      height: 400px;
+      margin: 0 auto;
+      background: url(../../../static/img/nodata.png) top center no-repeat;
+    }
     .goMetDel{
         display: block;
     }

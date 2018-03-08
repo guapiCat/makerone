@@ -5,10 +5,10 @@
 </template>
 
 <script>
-  import '../../../static/ue/themes/default/css/umeditor.min.css'
-  import '../../../static/ue/umeditor.config'
-  import '../../../static/ue/umeditor.min'
-  import '../../../static/ue/lang/zh-cn/zh-cn'
+  // import '../../../static/ue/themes/default/css/umeditor.min.css'
+  // import '../../../static/ue/umeditor.config'
+  // import '../../../static/ue/umeditor.min'
+  // import '../../../static/ue/lang/zh-cn/zh-cn'
     export default {
         name: "editor",
         props: {
