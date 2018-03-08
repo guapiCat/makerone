@@ -10,7 +10,7 @@
         <div class="workshow" style="width: 1200px;margin: 50px auto; ">
             <div class="center-title" style="margin-bottom: 20px; color: #969696;">
                 <span> <img src="../../../static/img/icon_address.png" alt=""/><i
-                        style="margin-left: 15px;">益谷创客平台-作品展示-<span>我的首页</span></i></span>
+                        style="margin-left: 15px;">益谷创客平台-个人空间-<span>个人信息</span></i></span>
             </div>
             <div class="person-data">
                 <p class="pdata">个人资料</p>
