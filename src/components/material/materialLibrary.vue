@@ -69,7 +69,7 @@
 <script type="es6">
     import {AXIOS} from '../../http-common'
     export default {
-        name: "material-library",
+      name: "material-library",
       props: {
         fileURL: {
           type: String,
@@ -78,6 +78,7 @@
       },
         data () {
             return {
+              search:'',
                 allMet: [],//所有素材
                 metClass: [],//素材分类
                 metSee: ["最新", "下载量"],//查看素材分类（2级）
@@ -85,6 +86,12 @@
                 orderStr: 0
             }
         },
+      computed:{
+        searchval:function(){
+          var searchval=document.getElementById("search").value
+          return this.search=searchval
+        }
+      },
         methods: {
             postMet:function(){
                 this.$router.push({ path: '/material/up' });
@@ -113,10 +120,32 @@
                 }).catch(e => {
                     this.errors.push(e);
                 });
-            }
+            },
+          searchAxios: function (type, orderStr, pageNum, pageSize,makerMaterialName) {
+            AXIOS.get('makerMaterial/MakerMaterialControllerShow', {
+              params: {
+                "type": type,
+                "orderStr": orderStr,
+                "pageNum": pageNum,
+                "pageSize": pageSize,
+                "makerMaterialName":makerMaterialName
+              }
+            }).then(response => {
+              this.allMet = response.data.list;//将zuopins转为为后台数据
+              //console.log(response.data.list);
+            }).catch(e => {
+              this.errors.push(e);
+            });
+          },
         },
         created: function () {
-            this.reqAxios(0, 0, 1, 10);
+            this.searchval;
+            if (this.search==""){
+              this.reqAxios(0, 0, 1, 10)
+            }else {
+              this.searchAxios(0,0,1,10,this.search)
+            }
+
             var params = new URLSearchParams();
             AXIOS.get('common/getGlobalType', {
                 params: {}

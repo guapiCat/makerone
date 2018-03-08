@@ -71,6 +71,7 @@
 
 <script>
   import {AXIOS} from '../../http-common'
+  // import bus from '../../assets/eventBus';
     export default {
         name: "allcourse",
         props: {
@@ -81,6 +82,7 @@
       },
       data(){
           return{
+            search:'',
             courseslist:[],
             titletype:[],
             sorttitle:[
@@ -100,6 +102,22 @@
             classes:0
           }
       },
+      mounted(){
+        this.searchval;
+        if(this.search==""){
+          this.reqAXIOS(1, 0, 1, 1,8);
+        }else {
+          this.searchAXIOS(1, 0, 1, 1,8,this.search);
+
+        }
+      },
+      computed:{
+        searchval:function(){
+          var searchval=document.getElementById("search").value
+          return this.search=searchval
+        }
+
+      },
       created:function () {
           AXIOS.get('common/getGlobalType',{}).then(response=>{
             this.titletype=response.data;
@@ -108,7 +126,8 @@
           }).catch(response=>{
             this.errors.push(response);
           });
-        this.reqAXIOS(1, 0, 1, 1,8);
+
+
       },
       methods:{
         reqAXIOS:function (courseGrade,type,sortType,pageNum,pageSize) {
@@ -127,6 +146,24 @@
           });
 
         },
+        searchAXIOS:function (courseGrade,type,sortType,pageNum,pageSize,courseName) {
+          AXIOS.get('makerCourse/makerCourseShow',{
+            params:{
+              courseGrade:courseGrade,
+              type:type,
+              sortType:sortType,
+              pageNum:pageNum,
+              pageSize:pageSize,
+              courseName:courseName
+            }
+          }).then(response=>{
+            this.courseslist=response.data.list;
+          }).catch(response=>{
+            this.errors.push(response);
+          });
+
+        },
+
         byClassify: function (type) {
           this.classify= type;
           this.reqAXIOS(this.classes,this.classify,this.sort,1 ,8)

@@ -77,6 +77,7 @@
       },
         data () {
             return {
+              search:'',
                 proClass: [],
                 proSee: [
                     "时间",
@@ -112,10 +113,40 @@
                 }).catch(e => {
                     this.errors.push(e);
                 });
-            }
+            },
+          searchAxios: function (makeWorType, sortType, pageNum, pageSize,makerWorksName) {
+            AXIOS.get('makerWorks/sortMakerWorks', {
+              params: {
+                "makeWorType": makeWorType,
+                "sortType": sortType,
+                "pageNum": pageNum,
+                "pageSize": pageSize,
+                "makerWorksName":makerWorksName
+              }
+            }).then(response => {
+              this.myProducts = response.data.list;//将zuopins转为为后台数据
+              //console.log(response.data.list);
+            }).catch(e => {
+              this.errors.push(e);
+            });
+          }
         },
+      computed:{
+        searchval:function(){
+          var searchval=document.getElementById("search").value
+          return this.search=searchval
+        }
+
+      },
         created: function () {
+          this.searchval;
+          if (this.search==''){
             this.reqAxios(0, 0, 1, 10);
+          }else {
+          this.searchAxios(0,0,1,10,this.search)
+          }
+
+
             var params = new URLSearchParams();
             AXIOS.get('common/getGlobalType', {
                 params:{}
