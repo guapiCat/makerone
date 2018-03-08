@@ -101,6 +101,7 @@
             two: function (index) {
                 //console.log(index);
                 this.reqAxios(this.clickOne, index, 1, 10);
+
             },
             reqAxios: function (makeWorType, sortType, pageNum, pageSize) {
                 AXIOS.get('makerWorks/sortMakerWorks', {
@@ -113,6 +114,11 @@
                 }).then(response => {
                     this.myProducts = response.data.list;//将zuopins转为为后台数据
                     //console.log(response.data.list);
+                  if(this.myProducts.length<=0){
+                    this.hiddendata=true
+                  }else {
+                    this.hiddendata=false
+                  }
                 }).catch(e => {
                     this.errors.push(e);
                 });
@@ -129,6 +135,11 @@
             }).then(response => {
               this.myProducts = response.data.list;//将zuopins转为为后台数据
               //console.log(response.data.list);
+              if(this.myProducts.length<=0){
+                this.hiddendata=true
+              }else {
+                this.hiddendata=false
+              }
             }).catch(e => {
               this.errors.push(e);
             });
@@ -147,9 +158,7 @@
             this.reqAxios(0, 0, 1, 10);
           }else {
           this.searchAxios(0,0,1,10,this.search)
-            if(this.myProducts.length<=0){
-            this.hiddendata=true
-            }
+            
           }
 
 
