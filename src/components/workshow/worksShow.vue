@@ -58,6 +58,8 @@
                     </li>
 
                 </ul>
+              <div class="nodata" v-show="hiddendata">
+              </div>
 
             </div>
         </div>
@@ -78,6 +80,7 @@
         data () {
             return {
               search:'',
+              hiddendata:false,
                 proClass: [],
                 proSee: [
                     "时间",
@@ -144,6 +147,9 @@
             this.reqAxios(0, 0, 1, 10);
           }else {
           this.searchAxios(0,0,1,10,this.search)
+            if(this.myProducts.length<=0){
+            this.hiddendata=true
+            }
           }
 
 
@@ -169,7 +175,12 @@
     .on {
         background: #FFCA57 !important;
     }
-
+    .nodata{
+      width: 99%;
+      height: 400px;
+      margin: 0 auto;
+      background: url(../../../static/img/nodata.png) top center no-repeat;
+    }
     .classify img {
         height: 25px;
         width: 29px;

@@ -31,6 +31,8 @@
       </div>
       <router-link :to="{name: 'lifedetail',params:{ workId: item.makerLive.id}}"class="see-details"><button type="button" class="am-btn am-btn-primary am-radius">查看详情</button></router-link>
     </div>
+    <div class="nodata" v-show="hiddendata">
+    </div>
 
   </div>
 </div>
@@ -50,6 +52,7 @@
       data (){
           return{
             search:'',
+            hiddendata:false,
             makerlife:[],
             titletype:[],
             classify: 0,
@@ -77,6 +80,9 @@
           this.reqAxios(0, 1, 1, 10);
         }else {
          this.searchAxios(0,1,1,10,this.search)
+          if(this.makerlife.length<=0){
+           this.hiddendata=true
+          }
         }
 
       },
@@ -156,6 +162,12 @@
    .on {
     background: #FFCA57 !important;
   }
+   .nodata{
+     width: 99%;
+     height: 400px;
+     margin: 0 auto;
+     background: url(../../../static/img/nodata.png) top center no-repeat;
+   }
 
   .classify{
     padding-left: 18%;

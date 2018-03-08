@@ -51,6 +51,8 @@
 
 
         </div>
+      <div class="nodata" v-show="hiddendata">
+      </div>
 
         <div class="am-u-sm-10 am-u-sm-centered" style="margin-top: 100px;margin-right: 11%; clear: both;">
             <ul class="am-pagination am-pagination-right">
@@ -79,6 +81,7 @@
         data () {
             return {
               search:'',
+              hiddendata:false,
                 allMet: [],//所有素材
                 metClass: [],//素材分类
                 metSee: ["最新", "下载量"],//查看素材分类（2级）
@@ -143,7 +146,10 @@
             if (this.search==""){
               this.reqAxios(0, 0, 1, 10)
             }else {
-              this.searchAxios(0,0,1,10,this.search)
+              this.searchAxios(0,0,1,10,this.search);
+              if(this.metClass.length<=0){
+                this.hiddendata=true
+              }
             }
 
             var params = new URLSearchParams();
@@ -165,7 +171,12 @@
     .onOne {
         background: #FFCA57;
     }
-
+    .nodata{
+      width: 99%;
+      height: 400px;
+      margin: 0 auto;
+      background: url(../../../static/img/nodata.png) top center no-repeat;
+    }
     .goMetDel{
         display: block;
     }

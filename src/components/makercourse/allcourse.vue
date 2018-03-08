@@ -56,9 +56,12 @@
             </div>
           </div>
 
+
           <div style="margin-top: 3%;margin-bottom: 3%;">
             <hr style="border-top:3px solid #eeeeee;"/>
           </div>
+        </div>
+        <div class="nodata" v-show="hiddendata">
         </div>
 
         <div>
@@ -83,6 +86,7 @@
       data(){
           return{
             search:'',
+            hiddendata:false,
             courseslist:[],
             titletype:[],
             sorttitle:[
@@ -108,6 +112,9 @@
           this.reqAXIOS(1, 0, 1, 1,8);
         }else {
           this.searchAXIOS(1, 0, 1, 1,8,this.search);
+          if(this.courseslist.length<=0){
+           this.hiddendata=true
+          }
 
         }
       },
@@ -183,6 +190,12 @@
 <style scoped>
   .lighton{
     background: #FFCA57 !important;
+  }
+  .nodata{
+    width: 99%;
+    height: 400px;
+    margin: 0 auto;
+    background: url(../../../static/img/nodata.png) top center no-repeat;
   }
   .course_span{
     padding-bottom: 3%;
