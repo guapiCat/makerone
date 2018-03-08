@@ -10,29 +10,35 @@
             </div>
 
             <div class="am-u-sm-7 am-u-sm-centered" style="width:1200px;padding-top: 10px;">
-                <div class="am-g" style="background-color: #FFCA57;padding-top: 1%;">
-                    <div>
-                        <ul class="am-nav am-nav-pills am-g" id="select_page" >
-                            <li id="courseCollection" class="select_a"><a href="#"  id="courseCollection_a"><div>我收藏的课程</div></a></li>
-                            <li id="workCollection" class="select_a"><a href="#" id="workCollection_a"><div>我收藏的作品</div></a></li>
-                            <li id="materialCollection" class="select_a"><a href="#" id="materialCollection_a"><div>我收藏的素材</div></a></li>
-                        </ul>
-                    </div>
+              <div class="am-tabs" data-am-tabs>
+                <ul class="am-tabs-nav am-nav am-nav-tabs">
+                  <li class="am-active">
+                    <a href="#tab1"><span>我收藏的课程</span></a>
+                  </li>
+                  <li>
+                    <a href="#tab2"><span>我收藏的作品</span></a>
+                  </li>
+                  <li>
+                    <a href="#tab3"><span>我收藏的素材</span></a>
+                  </li>
+
+                </ul>
+
+                <div class="am-tabs-bd">
+                  <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                    <CollCoursera :fileURL="fileURL" ></CollCoursera>
+                  </div>
+                  <div class="am-tab-panel am-fade" id="tab2">
+                    <CollWorks :fileURL="fileURL"></CollWorks>
+                  </div>
+                  <div class="am-tab-panel am-fade" id="tab3">
+                   <CollMaterial :fileURL="fileURL"></CollMaterial>
+                  </div>
+
                 </div>
-                <div class="content am-g" style="height:90%;border:1px solid #f0f0f0;margin-bottom: 150px;padding-bottom: 1%;">
-                    <!--<iframe id="iframe" src="www.baidu.com" scrolling="no" frameborder="0" style="width: 100%;"  onload="iframeLoad()"></iframe>-->
-                    <div>
-                        <ul class="am-pagination am-pagination-right" style="margin-right: 2%;" >
-                            <li class="am-disabled"><a href="#">&laquo;</a></li>
-                            <li class="am-active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul>
-                    </div>
-                </div>
+              </div>
+
+
             </div>
         </div>
         <!--foot-->
@@ -40,11 +46,22 @@
 </template>
 
 <script type="es6">
-export default {
+  import CollCoursera from './CollCousera'
+  import CollWorks from './CollWorks'
+  import CollMaterial from './CollMaterial'
+  export default {
     name: 'hello',
+    props: {
+      fileURL: {
+        type: String,
+        required: true
+      }
+    },
+    components:{CollCoursera,CollWorks,CollMaterial},
     data () {
         return {
-            msg: 'Welcome to Your Vue.js App'
+            msg: 'Welcome to Your Vue.js App',
+
         }
     }
 }
@@ -56,9 +73,41 @@ export default {
     /*改动的样式-yzh*/
 
     /*改动样式结束*/
-    .topbar{
-        background-color: #21252E;
+    .am-tabs-nav.am-nav.am-nav-tabs {
+      border: solid 1px #F3F3F3;
+      border-top: solid 5px #FECB56;
     }
+
+    .am-nav-tabs>li>a:hover {
+      border-color: #fff;
+    }
+
+    .am-nav-tabs>li>a {
+      width: 200px;
+      text-align: center;
+      height: 50px;
+      font-weight: bold;
+      line-height: 36px;
+    }
+
+    .am-nav-tabs>li.am-active>a,
+    .am-nav-tabs>li.am-active>a:hover,
+    .am-nav-tabs>li.am-active>a:focus {
+      border: 0;
+    }
+
+    .am-tabs-nav.am-nav.am-nav-tabs .am-active a {
+      background: #FECB56;
+      height: 50px;
+      line-height: 36px;
+      font-weight: bold;
+    }
+    .layout-footer{
+      margin-top: 30px;
+    }
+
+
+
     i{
         font-style: normal;
     }
