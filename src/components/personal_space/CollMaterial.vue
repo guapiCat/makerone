@@ -1,79 +1,28 @@
 <template>
     <div class="hello compon_center">
-        <div class="am-g">
+        <div class="am-g" style="margin-left: 0">
 
-            <div class="cousera" style="padding-top: 2%;border-bottom:5px solid #f0f0f0;padding-bottom: 2%; ">
+            <div class="cousera" v-for="item in material" style="padding-top: 2%;border-bottom:5px solid #f0f0f0;padding-bottom: 2%; ">
                 <div class="am-g">
                     <div class="am-u-sm-6" style="padding-top: 1%;padding-left: 2%;">
-                        <img src="../../../static/img/img_bitmap.png" style="border: 1px solid #000000; width:100%;"/>
+                        <img :src="fileURL+item.materialCoverImage" class="cous-img" style="border: 1px solid #000000; width:100%;"/>
                     </div>
                     <div class="am-u-sm-6" style="padding-top: 1%;padding-right: 10%;padding-left: 1%;">
                         <span style="font-size: 23px;color: #378695">课程信息</span><br/>
-
                         <div style="width: 100%;padding-left: 2%;padding-top: 1%;">
-                            <span>课程名称&nbsp;:&nbsp;<span>Scratch编程</span></span><br/>
-                            <span>开课时间&nbsp;:&nbsp;<span>2017-05-04&nbsp;17:12</span></span><br/>
-                            <span>主讲人&nbsp;:&nbsp;<span>free</span></span><br/>
-                            <span>课程简介&nbsp;:&nbsp;<p style="word-wrap: break-word;display: inline">
-                                啊实打实大声大声打我大是大非热话题也会让更多购房人的特特瑞特日光灯管凤尾菇</p></span>
+                            <span>素材名称&nbsp;:&nbsp;<span>{{item.materialName}}</span></span><br/>
+                            <span>创建时间&nbsp;:&nbsp;<span>{{item.createDate}}</span></span><br/>
+                            <span>上传者&nbsp;:&nbsp;<span>{{item.username}}</span></span><br/>
+                            <span>素材介绍&nbsp;:&nbsp;<p style="word-wrap: break-word;display: inline">
+                            {{item.materialIntro}}
+                            </p></span>
                         </div>
                     </div>
                 </div>
                 <div class="am-g">
                     <div class="am-u-sm-6 am-u-sm-offset-6" style="margin-top: 2%;">
-                        <a class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;">移除收藏</a>
-                        <a class="am-btn am-btn-primary"
-                           style="border-radius: 7px;width: 130px;float: right;margin-right: 17%;">查看详情</a>
-                    </div>
-                </div>
-            </div>
-            <div class="cousera" style="padding-top: 2%;border-bottom:5px solid #f0f0f0;padding-bottom: 2%; ">
-                <div class="am-g">
-                    <div class="am-u-sm-6" style="padding-top: 1%;padding-left: 2%;">
-                        <img src="../../../static/img/img_bitmap.png" style="border: 1px solid #000000; width:100%;"/>
-                    </div>
-                    <div class="am-u-sm-6" style="padding-top: 1%;padding-right: 10%;padding-left: 1%;">
-                        <span style="font-size: 23px;color: #378695">课程信息</span><br/>
-
-                        <div style="width: 100%;padding-left: 2%;padding-top: 1%;">
-                            <span>课程名称&nbsp;:&nbsp;<span>Scratch编程</span></span><br/>
-                            <span>开课时间&nbsp;:&nbsp;<span>2017-05-04&nbsp;17:12</span></span><br/>
-                            <span>主讲人&nbsp;:&nbsp;<span>free</span></span><br/>
-                            <span>课程简介&nbsp;:&nbsp;<p style="word-wrap: break-word;display: inline">
-                                啊实打实大声大声打我大是大非热话题也会让更多购房人的特特瑞特日光灯管凤尾菇</p></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="am-g">
-                    <div class="am-u-sm-6 am-u-sm-offset-6" style="margin-top: 2%;">
-                        <a class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;">移除收藏</a>
-                        <a class="am-btn am-btn-primary"
-                           style="border-radius: 7px;width: 130px;float: right;margin-right: 17%;">查看详情</a>
-                    </div>
-                </div>
-            </div>
-            <div class="cousera" style="padding-top: 2%;border-bottom:5px solid #f0f0f0;padding-bottom: 2%; ">
-                <div class="am-g">
-                    <div class="am-u-sm-6" style="padding-top: 1%;padding-left: 2%;">
-                        <img src="../../../static/img/img_bitmap.png" style="border: 1px solid #000000; width:100%;"/>
-                    </div>
-                    <div class="am-u-sm-6" style="padding-top: 1%;padding-right: 10%;padding-left: 1%;">
-                        <span style="font-size: 23px;color: #378695">课程信息</span><br/>
-
-                        <div style="width: 100%;padding-left: 2%;padding-top: 1%;">
-                            <span>课程名称&nbsp;:&nbsp;<span>Scratch编程</span></span><br/>
-                            <span>开课时间&nbsp;:&nbsp;<span>2017-05-04&nbsp;17:12</span></span><br/>
-                            <span>主讲人&nbsp;:&nbsp;<span>free</span></span><br/>
-                            <span>课程简介&nbsp;:&nbsp;<p style="word-wrap: break-word;display: inline">
-                                啊实打实大声大声打我大是大非热话题也会让更多购房人的特特瑞特日光灯管凤尾菇</p></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="am-g">
-                    <div class="am-u-sm-6 am-u-sm-offset-6" style="margin-top: 2%;">
-                        <a class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;">移除收藏</a>
-                        <a class="am-btn am-btn-primary"
-                           style="border-radius: 7px;width: 130px;float: right;margin-right: 17%;">查看详情</a>
+                        <a class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;" @click="delect(item.id)" >移除收藏</a>
+                      <router-link :to="{name: 'meterialdetail',params:{ metId: item.id}}"  class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;float: right;margin-right: 17%;">查看详情</router-link>
                     </div>
                 </div>
             </div>
@@ -82,13 +31,48 @@
 </template>
 
 <script type="es6">
+  import {AXIOS} from "../../http-common";
     export default {
         name: 'hello',
+        props: {
+        fileURL: {
+          type: String,
+          required: true
+        }
+      },
         data () {
             return {
-                msg: 'Welcome to Your Vue.js App'
+                msg: 'Welcome to Your Vue.js App',
+               material:[]
             }
-        }
+        },
+      mounted:function () {
+        AXIOS.get('user/favoriteMaterial',{
+          params:{
+            pageNum:1,
+            pageSize:4
+
+          }
+        }).then(response=>{
+          this.material=response.data.list;
+        }).catch(response=>{
+          this.errors.push(response)
+        })
+      },
+      methods:{
+          delect(objectId){
+            AXIOS.get('user/deleteFavorite',{
+              params:{
+                objectId:objectId
+              }
+            }).then(response=>{
+              console.log(response.data);
+              window.location.reload();
+              alert('删除成功')
+            })
+          }
+          }
+
     }
 
 
@@ -97,6 +81,10 @@
 <style scoped>
     /*改动的样式-yzh*/
     /*改动样式结束*/
+    .cous-img{
+      height: 300px;
+      width: 500px;
+    }
     i {
         font-style: normal;
     }
