@@ -47,18 +47,24 @@
       },
       voteReq(data) {
         alert(data.voteObjId+data.voteObjType+data.voteStatus);
-        // AXIOS.get('common/vote', {
-        //     params: {
-        //         "voteObjId": voteObjId,
-        //         "voteObjType": voteObjType,
-        //         "voteStatus": voteStatus,
-        //     }
-        // }).then(response => {
-        //
-        //     //console.log(response.data.list);
-        // }).catch(e => {
-        //     this.errors.push(e);
-        // });
+         var params = new URLSearchParams();
+         AXIOS.get('common/vote', {
+             params: {
+                 voteObjId: data.voteObjId,
+                 voteObjType: data.voteObjType,
+                 voteStatus: data.voteStatus
+             }
+         }).then(response => {
+                if(response.data==0){
+                    console.log("vote ok");
+                }else if(response.data==-1){
+                    console.log("out vote");
+                }
+             //console.log(response.data.list);
+                
+         }).catch(e => {
+             this.errors.push(e);
+         });
       }
     },
     components: {

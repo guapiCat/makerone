@@ -15,9 +15,13 @@
                         <span class="author">作者:</span><i>{{allMsg.username}}</i>
                         <span class="box-time">时间:</span><i>{{allMsg.createTime}}</i>
                     </div>
-                    <div class="box-right" v-if="thumbs">
+                    <div class="box-right" v-if="voteStatus==1">
                         <img v-on:click="vote" src="../../../static/img/unvote.png" alt="" style="cursor: pointer"/>
                         <i>{{thumbs}}</i>
+                    </div>
+                    <div class="box-right" v-if="voteStatus==0">
+                        <img v-on:click="outVote" src="../../../static/img/upvote.png" alt="" style="cursor: pointer"/>
+                        <i>{{thumbs+1}}</i>
                     </div>
 
                 </div>
@@ -92,17 +96,20 @@
         data () {
             return {
                 workId: this.$route.params.workId,
-                typeId: this.$route.params.typeId,
+                //typeId: this.$route.params.typeId,
                 allMsg:"",
                 allStep:[],
-                thumbs:false,
                 voteStatus:""
             }
         },
         methods:{
             vote: function () {
-                alert('clickVote');
-                this.$emit('voteReq', {voteObjId:this.courseId, voteObjType:1, voteStatus:1});
+                this.$emit('voteReq', {voteObjId:this.workId, voteObjType:1, voteStatus:1});
+                this.voteStatus=0;
+            },
+            outVote:function(){
+                this.$emit('voteReq', {voteObjId:this.workId, voteObjType:1, voteStatus:0});
+                this.voteStatus=1;
             }
         },
         created: function(){
@@ -110,10 +117,16 @@
             //获取点赞状态
             AXIOS.get('common/upStatus', {
                 params:{
-                    voteObjId:this.workId
+                    objectId:this.workId
                 }
             }).then(response => {
                 console.log("这是访问点赞状态返回的消息："+response.data);
+                if(response.data==false){
+                    //没点赞就是1，点赞就是0。。点赞成功得到0，取消点赞成功得到-1
+                    this.voteStatus=1;
+                }else if(response.data==true){
+                    this.voteStatus=0;
+                }
             }).catch(e => {
                 this.errors.push(e)
             });
