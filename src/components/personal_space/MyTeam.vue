@@ -2,7 +2,7 @@
     <div class="hello">
 
         <!--===========layout-container================-->
-        <div class="am-slider am-slider-default"data-am-flexslider>
+        <div class="am-slider am-slider-default" data-am-flexslider>
             <img :src="fileURL+psonMsg.sysUser.avatar" alt=""  style="border-radius: 50%;float: left;margin-left: 20%;height: 150px;width: 150px;margin-top:1%;"/>
             <h5>昵称：<span>{{psonMsg.sysUser.realName}}</span></h5>
             <p style="cursor: pointer" v-on:click="goEdit">去编辑 <span><a href=""><img src="../../../static/img/arrow_1.png" style="height: 24px;width: 17px; margin-left: 15px; cursor: pointer;"/></a> </span></p>
@@ -10,7 +10,7 @@
         <!--content-->
         <div class="workshow compon_center" style="width: 1200px;margin: 50px auto; ">
             <div class="center-title" style="margin-bottom: 20px; color: #969696;">
-                <span> <img src="../../../static/img/icon_address.png" alt=""/><i style="margin-left: 15px;">益谷创客平台-作品展示-<span>我加入的社团</span></i></span>
+                <span> <img src="../../../static/img/icon_address.png" alt=""/><i style="margin-left: 15px;">益谷创客平台-我的社团-<span>我加入的社团</span></i></span>
             </div>
             <div class="am-panel-group" id="accordion">
                 <div class="am-panel am-panel-default">
@@ -77,11 +77,11 @@
                                     <div class="content-box-body" style="overflow: hidden;">
                                         <ul class="am-avg-sm-4 am-thumbnails">
                                             <li class="am-thumbnail"><img :src="fileURL+item.sysUserDTO.avatar"/>
-
-                                                <p>组长:<span>{{item.sysUserDTO.realName}}</span></p></li>
+                                                <p>组长:<span>{{item.sysUserDTO.realName}}</span></p>
+                                            </li>
                                             <li v-for="member in item.sysUserList" class="am-thumbnail"><img :src="fileURL+member.avatar"/>
-
-                                                <p>组员:<span>{{member.realName}}</span></p></li>
+                                                <p>组员:<span>{{member.realName}}</span></p>
+                                            </li>
                                             <!--<li class="am-thumbnail"><img src="../../../static/img/img_bitmap.png"/>-->
 
                                                 <!--<p>组员:<span>张华</span></p></li>-->
@@ -177,7 +177,7 @@
     import {AXIOS} from '../../http-common'
 
     export default {
-        name: 'hello',
+        name: 'myTeam',
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',

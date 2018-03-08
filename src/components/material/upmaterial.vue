@@ -169,8 +169,11 @@
                                         }
                                     }).then(response => {
                                         //console.log(response);
-                                        alert(response.data);
-
+                                        console.log("上传素材返回的数据"+response.data);
+                                        if(response.data.code==0){
+                                            alert("上传成功");
+                                            window.history.go(-1);
+                                        }
                                     }).catch(e => {
                                         this.errors.push(e)
                                     });

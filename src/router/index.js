@@ -43,7 +43,10 @@ import SclCourse from '@/components/personal_space/SclCourse'
 import Second from '@/components/personal_space/Second'
 import SubPro from '@/components/personal_space/SubPro'
 import TemCre from '@/components/personal_space/TemCre'
+import TemCreDetail from '@/components/personal_space/TemCreDetail'
 import TemJoin from '@/components/personal_space/TemJoin'
+import TemJoinDetail from '@/components/personal_space/TemJoinDetail'
+import TemGoCre from '@/components/personal_space/TemGoCre'
 import WorkShow from '@/components/personal_space/WorkShow'
 import uploadAlltype from '@/components/personal_space/uploadAlltype'
 import LastPro from '@/components/personal_space/LastPro'
@@ -183,7 +186,7 @@ const Routers = [
     path:"/user/myColl",
     component:MyColl
   },{
-    path:"/user/myGroup/:userId",
+    path:"/user/myGroup",
     component:MyGroup
   },{
     path:"/user/myMsg",
@@ -193,6 +196,7 @@ const Routers = [
     component:MyClass
   },{
     path:"/user/myTeam",
+    name:"myTeam",
     component:MyTeam
   },{
     path:"/user/myWorks",
@@ -250,7 +254,18 @@ const Routers = [
     path:'/user/LastPro',
     name:'LastPro',
     component:LastPro
-  }
+  },{
+        path:"/user/temCreDetail",
+        name:"userTemCreDetail",
+        component:TemCreDetail
+    },{
+        path:"/user/temJoinDetail",
+        name:"userTemJoinDetail",
+        component:TemJoinDetail
+    },{
+        path:"/user/temGoCre",
+        component:TemGoCre
+    }
 
 ]
 
