@@ -11,7 +11,7 @@
         <div class="center-box" style="border: solid 3px #f3f3f3 ; padding: 20px ;width: 100%;height: 100%;">
           <h1>社团信息</h1>
           <div class="content-center">
-            <span class="content-title">{{allMsg.makerCommunityDTO.communityIntro}}</span>
+            <span class="content-title">社团介绍</span>
             <div class="content-box-body" style="overflow: hidden;">
               <div class="content-title-hand-left">
                 <img src="../../../static/img/airplane.png" />
