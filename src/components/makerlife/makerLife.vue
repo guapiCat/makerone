@@ -107,6 +107,11 @@
             for (var i=0;i<this.makerlife.length;i++){
               this.contentbox=this.makerlife[i].makerLive.liveContent;
             };
+            if(this.contentbox.length<1){
+              this.hiddendata=true;
+            }else {
+              this.hiddendata=false
+            }
 
           }).catch(response=>{
             this.errors.push(response);
@@ -126,6 +131,11 @@
             for (var i=0;i<this.makerlife.length;i++){
               this.contentbox=this.makerlife[i].makerLive.liveContent;
             };
+            if(this.contentbox.length<1){
+              this.hiddendata=true;
+            }else {
+              this.hiddendata=false
+            }
 
           }).catch(response=>{
             this.errors.push(response);

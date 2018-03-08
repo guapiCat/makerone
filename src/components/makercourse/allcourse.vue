@@ -109,13 +109,9 @@
       mounted(){
         this.searchval;
         if(this.search==""){
-          this.reqAXIOS(1, 0, 1, 1,8);
+          this.reqAXIOS(1, 0, 1, 8,8);
         }else {
-          this.searchAXIOS(1, 0, 1, 1,8,this.search);
-          if(this.courseslist.length<=0){
-           this.hiddendata=true
-          }
-
+          this.searchAXIOS(1, 0, 1, 8,8,this.search);
         }
       },
       computed:{
@@ -148,6 +144,12 @@
             }
           }).then(response=>{
             this.courseslist=response.data.list;
+            if(this.courseslist.length<1){
+              this.hiddendata=true;
+            }else {
+              this.hiddendata=false
+            }
+
           }).catch(response=>{
             this.errors.push(response);
           });
@@ -165,6 +167,11 @@
             }
           }).then(response=>{
             this.courseslist=response.data.list;
+            if(this.courseslist.length<=0){
+              this.hiddendata=true
+            }else {
+              this.hiddendata=false
+            }
           }).catch(response=>{
             this.errors.push(response);
           });
@@ -173,11 +180,13 @@
 
         byClassify: function (type) {
           this.classify= type;
-          this.reqAXIOS(this.classes,this.classify,this.sort,1 ,8)
+          this.reqAXIOS(this.classes,this.classify,this.sort,8 ,8)
         },
         byclaass:function (index) {
           this.classes=index+1;
-          this.reqAXIOS(this.classes,this.classify,this.sort,1 ,8)
+          this.reqAXIOS(this.classes,this.classify,this.sort,8,8)
+          console.log(this.courseslist)
+
         },
         bysort:function (index) {
           this.sort=index;

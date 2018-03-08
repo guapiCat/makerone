@@ -119,6 +119,11 @@
                     }
                 }).then(response => {
                     this.allMet = response.data.list;//将zuopins转为为后台数据
+                  if(this.allMet.length<1){
+                    this.hiddendata=true
+                  }else {
+                    this.hiddendata=false
+                  }
                     //console.log(response.data.list);
                 }).catch(e => {
                     this.errors.push(e);
@@ -135,6 +140,11 @@
               }
             }).then(response => {
               this.allMet = response.data.list;//将zuopins转为为后台数据
+              if(this.allMet.length<1){
+                this.hiddendata=true
+              }else {
+                this.hiddendata=false
+              }
               //console.log(response.data.list);
             }).catch(e => {
               this.errors.push(e);
@@ -147,9 +157,7 @@
               this.reqAxios(0, 0, 1, 10)
             }else {
               this.searchAxios(0,0,1,10,this.search);
-              if(this.metClass.length<=0){
-                this.hiddendata=true
-              }
+
             }
 
             var params = new URLSearchParams();
