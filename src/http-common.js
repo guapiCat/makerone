@@ -1,8 +1,9 @@
 import axios from 'axios'
 
 export const AXIOS = axios.create({
-  baseURL: `http://192.168.0.102:8080`,
-  withCredentials:false
+  baseURL: `http://192.168.0.103:8080`,
+  withCredentials:false,
+    test:1
 })
 AXIOS.interceptors.request.use(config =>{
   if (sessionStorage.getItem("TID") && sessionStorage.getItem("UID")){
@@ -15,7 +16,7 @@ AXIOS.interceptors.request.use(config =>{
 });
 AXIOS.interceptors.response.use(response => {
   if (response.data == 1000) {
-    console.log("未登录");
+        location.href='/login/1';
   }
   return response
 }, error => {

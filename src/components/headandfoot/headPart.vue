@@ -10,7 +10,7 @@
         <p><router-link to="/makerCommunity/list"><span>创客社团</span><i>GROUP</i></router-link></p>
         <p><router-link to="/makerActivity/list"><span>创客活动</span><i>ACTIVITY</i></router-link></p>
         <p><router-link to="/materialLibrary/list"><span>素材库</span><i style="margin-left: -26px;">MATERIAL LIBRARY</i></router-link></p>
-        <p><router-link to="/user/psonAsset"><span>个人空间</span><i style="margin-left: -13px;">PERSONAL SPACE</i></router-link></p>
+        <p><router-link to="/user/psonSpace"><span>个人空间</span><i style="margin-left: -13px;">PERSONAL SPACE</i></router-link></p>
         <p><router-link to="/makerLife/list"><span>创客生活</span><i style="margin-left: -3px;">CREATIVE LIFE</i></router-link></p>
         <div class="mySs">
           <a @click="searchall()"><img class="mySs_img" src="../../../static/img/nav_serch.png" alt=""/></a>
@@ -32,7 +32,7 @@
           </div>
             <input v-model="searchInput" id="search"  class="mySs_inp" type="text" placeholder="请输入关键字"/>
             <div class="mySs_xx">
-                <p> <router-link to="/login"><span>登陆</span></router-link></p>
+                <p> <router-link :to="{name: 'login',params: {loginType: 2}}"><span>登陆</span></router-link></p>
             </div>
 
         </div>

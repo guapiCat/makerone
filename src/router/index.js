@@ -106,7 +106,7 @@ const Routers = [
   name:'/makerLife',
   component:makerLife
   },{
-  path:'/login',
+  path:'/login/:loginType',
   name:'login',
   component:login
   },{

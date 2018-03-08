@@ -16,7 +16,7 @@
             <img class="mySs_img" src="../../static/img/nav_serch.png" alt=""/>
             <input class="mySs_inp" type="text" placeholder="请输入关键字"/>
             <div class="mySs_xx">
-                <p> <router-link to="/login"><span>登陆</span></router-link>&nbsp;|&nbsp;<router-link to="/register"> <span>注册</span></router-link></p>
+                <p> <router-link :to="{name: 'login',params: {loginType: 2}}"><span>登陆</span></router-link>&nbsp;|&nbsp;<router-link to="/register"> <span>注册</span></router-link></p>
             </div>
 
         </div>

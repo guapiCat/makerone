@@ -40,6 +40,12 @@
   import '../../../static/js/md5'
   export default {
     name: "login",
+      data(){
+        return {
+            loginType:this.$route.params.loginType,
+
+  }
+  },
     methods: {
       login() {
         var params = new URLSearchParams();
@@ -62,6 +68,11 @@
             this.errors.push(e)
           })
       }
+    },
+    created:function(){
+        if(this.loginType==1){
+            alert("请先登录");
+        }
     },
     mounted:function () {
       $(function(){
