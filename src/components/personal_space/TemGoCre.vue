@@ -16,7 +16,7 @@
                     <form action="" method="post">
                         <div class="am-form-group">
                             <label>团队名称：</label>
-                            <input v-model="teamName" type="text" style="width: 750px;" class="" id="team-name">
+                            <input maxlength="8" v-model="teamName" type="text" style="width: 750px;" class="" id="team-name">
                         </div>
                         <div class="am-form-group">
                             <label>需要人数：</label>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="am-form-group">
                             <label for="doc-ta-1">团队介绍：</label>
-                            <textarea v-model="teamIntro" class="" cols="91" rows="5" id="doc-ta-1"></textarea>
+                            <textarea maxlength="100" v-model="teamIntro" class="" cols="91" rows="5" id="doc-ta-1"></textarea>
                         </div>
                         <div class="am-form-group" style="overflow: hidden;">
                             <label for="doc-ta-1" style="float: left;">上传logo：</label>
@@ -91,36 +91,40 @@
                 console.log(this.file);
             },
             creTeam:function(){
-                //提交图片文件，获取相对路径
-                var param = new FormData(); // 创建form对象
-                param.append('file', this.file, this.file.name); // 通过append向form对象添加数据
-                let config = {
-                    headers: {'Content-Type': 'multipart/form-data'}
-                };
-                // 添加请求头
-                AXIOS.post('common/upload', param, config).then(response => {
-                    //console.log(response.data);
-                    this.teamLogo=response.data;
-                    //发送提交的修改信息
-                    var params = new URLSearchParams();
-                    AXIOS.get('user/newCreateTeam', {
-                        params:{
-                            teamLogo:this.teamLogo,
-                            teamIntro:this.teamIntro,
-                            teamName:this.teamName,
-                            schoolId:this.schoolId
-                        }
-                    }).then(response => {
-                        console.log(response.data);
-                        if(response.data){
-                            this.$router.push({ path: '/user/myGroup' });
-                        }else{
-                            alert(response.data);
-                        }
-                    }).catch(e => {
-                        this.errors.push(e)
-                    });
-                })
+                if(this.teamName.length<3){
+                    alert("团队名字长度过低");
+                }else{
+                    //提交图片文件，获取相对路径
+                    var param = new FormData(); // 创建form对象
+                    param.append('file', this.file, this.file.name); // 通过append向form对象添加数据
+                    let config = {
+                        headers: {'Content-Type': 'multipart/form-data'}
+                    };
+                    // 添加请求头
+                    AXIOS.post('common/upload', param, config).then(response => {
+                        //console.log(response.data);
+                        this.teamLogo=response.data;
+                        //发送提交的修改信息
+                        var params = new URLSearchParams();
+                        AXIOS.get('user/newCreateTeam', {
+                            params:{
+                                teamLogo:this.teamLogo,
+                                teamIntro:this.teamIntro,
+                                teamName:this.teamName,
+                                schoolId:this.schoolId
+                            }
+                        }).then(response => {
+                            console.log(response.data);
+                            if(response.data){
+                                this.$router.push({ path: '/user/myGroup' });
+                            }else{
+                                alert(response.data);
+                            }
+                        }).catch(e => {
+                            this.errors.push(e)
+                        });
+                    })
+                }
             }
         }
     }

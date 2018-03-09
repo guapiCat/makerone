@@ -42,14 +42,14 @@
                         <td style="width: 900px;"><span>{{allMsg.userType}}</span></td>
                     </tr>
 
-                    <tr>
-                        <td style="width: 130px;"><span>性别:</span></td>
-                        <td style="width: 900px;">
-                            <input type="radio" name="sex" id="secret"/><span style="margin-right: 20px;">保密</span>
-                            <input type="radio" name="sex" id="male"/><span style="margin-right: 20px;">男</span>
-                            <input type="radio" name="sex" id="femal"/><span>女</span>
-                        </td>
-                    </tr>
+                    <!--<tr>-->
+                        <!--<td style="width: 130px;"><span>性别:</span></td>-->
+                        <!--<td style="width: 900px;">-->
+                            <!--<input value="保密" type="radio" name="sex" id="secret"/><span style="margin-right: 20px;">保密</span>-->
+                            <!--<input value="男" type="radio" name="sex" id="male"/><span style="margin-right: 20px;">男</span>-->
+                            <!--<input value="女" type="radio" name="sex" id="femal"/><span>女</span>-->
+                        <!--</td>-->
+                    <!--</tr>-->
 
                     <tr>
                         <td style="width: 130px;"><span>所属学校:</span></td>
@@ -63,7 +63,7 @@
 
                     <tr>
                         <td style="width: 130px;"><span>真实姓名:</span></td>
-                        <td style="width: 900px;"><input placeholder="name" v-model="name" type="text" name="name" id="name"/></td>
+                        <td style="width: 900px;"><input maxlength="16" placeholder="name" v-model="name" type="text" name="name" id="name"/></td>
                     </tr>
 
                     <tr>
@@ -77,7 +77,7 @@
                     </tr>
                     <tr>
                         <td style="width: 130px;" valign="top"><span>简介:</span></td>
-                        <td style="width: 900px;"><textarea placeholder="desc" v-model="desc" type="text" name="desc" id="desc"
+                        <td style="width: 900px;"><textarea maxlength="100" placeholder="desc" v-model="desc" type="text" name="desc" id="desc"
                                                             style="width: 100%;height: 200px;"></textarea></td>
                     </tr>
                     <tr>
@@ -141,33 +141,37 @@
                 console.log(this.file);
             },
             postAllMsg:function(){
-                //提交图片文件，获取相对路径
-                var param = new FormData(); // 创建form对象
-                param.append('file', this.file, this.file.name); // 通过append向form对象添加数据
-                //param.append("username",this.username);
-                //param.append("realName",this.name);
-                //param.append("mobile",this.mobilephone);
-                //param.append("intro",this.desc);
-                let config = {
-                    headers: {'Content-Type': 'multipart/form-data'}
-                };
-                // 添加请求头
-                AXIOS.post('common/upload', param, config).then(response => {
-                    //console.log(response.data);
-                    this.avatar=response.data;
-                    //发送提交的修改信息
-                    var params = new URLSearchParams();
-                    params.append("avatar",this.avatar);
-                    params.append("username",this.username);
-                    params.append("realName",this.name);
-                    params.append("mobile",this.mobilephone);
-                    params.append("intro",this.desc);
-                    AXIOS.post('user/editUser', params).then(response => {
-                        alert(response.data);
-                    }).catch(e => {
-                        this.errors.push(e)
-                    });
-                })
+                if(this.username.length<2||this.name.length<2){
+                    alert("请输入一个更长的用户名");
+                }else{
+                    //提交图片文件，获取相对路径
+                    var param = new FormData(); // 创建form对象
+                    param.append('file', this.file, this.file.name); // 通过append向form对象添加数据
+                    //param.append("username",this.username);
+                    //param.append("realName",this.name);
+                    //param.append("mobile",this.mobilephone);
+                    //param.append("intro",this.desc);
+                    let config = {
+                        headers: {'Content-Type': 'multipart/form-data'}
+                    };
+                    // 添加请求头
+                    AXIOS.post('common/upload', param, config).then(response => {
+                        //console.log(response.data);
+                        this.avatar=response.data;
+                        //发送提交的修改信息
+                        var params = new URLSearchParams();
+                        params.append("avatar",this.avatar);
+                        params.append("username",this.username);
+                        params.append("realName",this.name);
+                        params.append("mobile",this.mobilephone);
+                        params.append("intro",this.desc);
+                        AXIOS.post('user/editUser', params).then(response => {
+                            alert(response.data);
+                        }).catch(e => {
+                            this.errors.push(e)
+                        });
+                    })
+                }
             }
 
         },

@@ -125,7 +125,7 @@
 
                     <div class="am-modal-hd">发送消息内容</div>
                     <div class="am-modal-bd">
-                        <textarea v-model="sendMsgTxt" placeholder="请填写要发送的消息(*^▽^*)" name="" id="" cols="60" rows="10"></textarea>
+                        <textarea maxlength="100" v-model="sendMsgTxt" placeholder="请填写要发送的消息(*^▽^*)" name="" id="" cols="60" rows="10"></textarea>
                     </div>
                     <div class="am-modal-footer">
                         <span class="am-modal-btn">取消</span>
