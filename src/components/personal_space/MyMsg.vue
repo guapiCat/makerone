@@ -31,7 +31,7 @@
                                         <div>
                                             <div style="float: left;width: 12%;text-align: right;margin-right: 10px;margin-top: 20px;"><span>{{itemNew.createTime}}</span>
                                             </div>
-                                            <div style="float: left;width: 86%;">
+                                            <div style="float: left;width: 800px;word-wrap:break-word;">
                                                 <p style="display: inline;">
                                                     {{itemNew.content}}
                                                 </p>
@@ -58,7 +58,7 @@
                                         <div>
                                             <div style="float: left;width: 12%;text-align: right;margin-right: 10px;margin-top: 20px;"><span>{{itemOld.createTime}}</span>
                                             </div>
-                                            <div style="float: left;width: 86%;clear: both;margin-left: 4%">
+                                            <div style="float: left;width: 800px;clear: both;margin-left: 4%;word-wrap:break-word;">
                                                 <p style="display: inline;">
                                                     {{itemOld.content}}
                                                 </p>
@@ -106,7 +106,7 @@
             //拒绝申请
             refuseHim:function(getId){
                 var params = new URLSearchParams();
-                AXIOS.get('mesdage/ignoreMessage', {
+                AXIOS.get('message/ignoreMessage', {
                     params: {
                         messageId:getId
                     }
@@ -120,7 +120,7 @@
             //同意申请
             agreeHim:function(getId){
                 var params = new URLSearchParams();
-                AXIOS.get('mesdage/agreeMessage', {
+                AXIOS.get('message/agreeMessage', {
                     params: {
                         messageId:getId
                     }
@@ -135,7 +135,7 @@
         created:function(){
             var params = new URLSearchParams();
             //获取type为0的信息（新消息）
-            AXIOS.get('mesdage/messageList', {
+            AXIOS.get('message/messageList', {
                 params: {
                     messagesType:0
                 }
@@ -146,7 +146,7 @@
                 this.errors.push(e)
             });
             //获取type为1的信息（历史消息）
-            AXIOS.get('mesdage/messageList', {
+            AXIOS.get('message/messageList', {
                 params: {
                     messagesType:1
                 }

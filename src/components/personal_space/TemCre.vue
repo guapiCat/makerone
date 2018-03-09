@@ -16,7 +16,7 @@
                 <div class="am-g">
                     <div class="am-u-sm-3" style="padding-top: 1%;padding-left: 4%;">
                         <img :src="fileURL+item.teamLogo"
-                             style="border: 1px solid #000000;width: 200px;margin-top: 15px;"/>
+                             style="border: 1px solid #000000;width: 200px;height: 200px;margin-top: 15px;"/>
                     </div>
                     <div class="am-u-sm-9" style="padding-top: 1%;padding-right: 10%;padding-left: 1%;">
                         <div style="width: 100%;padding-left: 2%;padding-top: 1%;">
