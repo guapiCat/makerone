@@ -4,7 +4,7 @@
         <!--===========layout-container================-->
         <div class="am-slider am-slider-default" data-am-flexslider>
             <img :src="fileURL+psonMsg.sysUser.avatar" alt=""  style="border-radius: 50%;float: left;margin-left: 20%;height: 150px;width: 150px;margin-top:1%;"/>
-            <h5>昵称：<span>{{psonMsg.sysUser.realName}}</span></h5>
+                <h5>昵称：<span>{{psonMsg.sysUser.realName}}</span></h5>
             <p style="cursor: pointer" v-on:click="goEdit">去编辑 <span><a href=""><img src="../../../static/img/arrow_1.png" style="height: 24px;width: 17px; margin-left: 15px; cursor: pointer;"/></a> </span></p>
         </div>
         <!--content-->
@@ -75,11 +75,11 @@
 
                                     <div class="content-box-body" style="overflow: hidden;">
                                         <ul class="am-avg-sm-4 am-thumbnails">
-                                            <li class="am-thumbnail"><img :src="fileURL+item.sysUserDTO.avatar"/>
-                                                <p>组长:<span>{{item.sysUserDTO.realName}}</span></p>
+                                            <li style="margin-right: 10px" v-if="item.sysUserDTO" class="am-thumbnail"><img class="cg-img" :src="fileURL+item.sysUserDTO.avatar"/>
+                                                <p style="padding-left: 30px">组长:<span>{{item.sysUserDTO.realName}}</span></p>
                                             </li>
-                                            <li v-for="member in item.sysUserList" class="am-thumbnail"><img :src="fileURL+member.avatar"/>
-                                                <p>组员:<span>{{member.realName}}</span></p>
+                                            <li  style="margin-right: 10px" v-for="member in item.sysUserList" class="am-thumbnail"><img class="cg-img" v-if="member.avatar" :src="fileURL+member.avatar"/>
+                                                <p style="padding-left: 30px">组员:<span>{{member.realName}}</span></p>
                                             </li>
                                             <!--<li class="am-thumbnail"><img src="../../../static/img/img_bitmap.png"/>-->
 
@@ -192,7 +192,8 @@
                 receiverId:"",
                 communityName:"",
                 username:"",
-                communityId:""
+                communityId:"",
+                teamLeader:[]
             }
         },
         methods:{
@@ -256,6 +257,13 @@
 
 <style scoped>
     /*改动的样式-yzh*/
+    .cg-img{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin-top: 20px;
+        margin-left: 40px;
+    }
     .on{
         color: #E9D258;
     }

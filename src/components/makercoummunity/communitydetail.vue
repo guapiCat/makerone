@@ -14,7 +14,7 @@
             <span class="content-title">社团介绍</span>
             <div class="content-box-body" style="overflow: hidden;">
               <div class="content-title-hand-left">
-                <img src="../../../static/img/airplane.png" />
+                <img style="width: 300px;height: 300px;" :src="fileURL+allMsg.makerCommunityDTO.communityLogo" />
               </div>
               <div class="content-title-hand-right">
                 <h5>{{allMsg.makerCommunityDTO.communityName}}</h5>
