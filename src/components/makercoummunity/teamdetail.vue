@@ -76,7 +76,7 @@
 
             </div>
             <a style="display: block;margin-left: 50%; margin-top: 5%;">
-                <button type="button" class="am-btn am-btn-primary">申请加入</button>
+                <button v-on:click="applyJoin" type="button" class="am-btn am-btn-primary">申请加入</button>
             </a>
         </div>
     </div>
@@ -104,6 +104,9 @@
             }
         },
         methods:{
+            applyJoin:function(){
+                this.$router.push({ path: '/community/applyJoinTeam/'+this.teamId });
+            },
             switchBol:function(goSwich){
                 goSwich = !goSwich;
             }

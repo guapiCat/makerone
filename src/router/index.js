@@ -6,6 +6,7 @@ import makerCourse from '@/components/makercourse/makerCourse'
 import makerCommunity from '@/components/makercoummunity/makerCommunity'
 import makerActivity from '@/components/makeractivity/makerActivity'
 import applyjoindetail from '@/components/makercoummunity/applyjoindetail'
+import applyJoinTeam from '@/components/makercoummunity/applyJoinTeam'
 import joionactivity from '@/components/makeractivity/joindetail'
 import materialLibrary from'@/components/material/materialLibrary'
 import makerLife from'@/components/makerlife/makerLife'
@@ -56,11 +57,11 @@ import editor from '@/components/personal_space/editor'
 Vue.use(Router)
 global.headNum = 0;
 const Routers = [
- /*   {
+    {
         path:"/community/applyJoinTeam/:teamId",//在此添加团队加入页面
-        name:"ApplyJoinTeam",
-        component:ApplyJoinTeam
-    },*/
+        name:"applyJoinTeam",
+        component:applyJoinTeam
+    },
   {
     path: '/',
     name: 'index',

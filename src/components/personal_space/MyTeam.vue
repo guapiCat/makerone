@@ -14,8 +14,8 @@
             </div>
             <div class="am-panel-group" id="accordion">
                 <div class="am-panel am-panel-default">
-                    <div v-for="item,index in allMsg" class="am-panel-hd">
 
+                    <div v-for="item,index in allMsg" class="am-panel-hd">
                         <h4 v-on:click="cgClubCss(index)" :class="index==clubCss?'am-panel-title on':'am-panel-title'"
                             :data-am-collapse="`{parent: '#accordion', target: '#`+item.makerCommunityDTO.id+`'}`">
                             社团-{{item.makerCommunityDTO.communityName}}
@@ -26,7 +26,6 @@
                         <!--</h4>-->
 
                     </div>
-
 
                     <div v-for="item,index in allMsg" :id="item.makerCommunityDTO.id" :class="index==0?'am-panel-collapse am-collapse am-in':'am-panel-collapse am-collapse'">
                         <div class="am-panel-bd">
@@ -130,7 +129,6 @@
                             </div>
 
                         </div>
-
                     <!--申请退出社团部分-begin-->
                         <a class="lastbutton" style="">
                             <button type="button" class="am-btn am-btn-primary" :data-am-modal="`{target: '#my-confirm`+index+`'}`" id="doc-confirm-toggle">申请退出</button>

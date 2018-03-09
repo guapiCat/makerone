@@ -18,7 +18,7 @@
                 <p class="p-data"><img src="../../../static/img/personname.png"/>昵称：<span>{{allMsg.sysUser.realName}}</span></p>
                 <p class="p-data"><img src="../../../static/img/telphone.png"/>电话：<span>{{allMsg.sysUser.mobile}}</span></p>
                 <p class="p-data"><img src="../../../static/img/school.png"/>学校：<span>{{allMsg.schoolName}}</span></p>
-                <p class="p-data p-noimg">班级：<span>{{allMsg.className}}}</span></p>
+                <p class="p-data p-noimg">班级：<span>{{allMsg.className}}</span></p>
                 <p class="p-data p-noimg">学号：<span>{{allMsg.sysUser.stuNum}}</span></p>
                 <p style="height: 25rem;padding-top: 57%;padding-left: 20%;cursor: pointer;"><a href="../personal_data.html">查看更多资料</a></p>
             </div>

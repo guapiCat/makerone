@@ -47,10 +47,10 @@
                 <div class="box-team">
                     <h5>制作过程:</h5>
                     <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 am-thumbnails"
-                        style="margin-top: 50px; margin-bottom: 10rem;">
+                        style="margin-top: 50px; margin-bottom: 10rem;margin-left: 30px;">
                         <li v-for="item in allStep" class="stepLi">
                             <div class="stepMsg">{{item.content}}</div>
-                            <img class="am-thumbnail stepImg" src="http://s.amazeui.org/media/i/demos/bing-1.jpg"/>
+                            <img class="am-thumbnail stepImg" :src="fileURL+item.stepUrl"/>
 
                         </li>
                         <!--<li class="stepLi">-->
@@ -97,6 +97,7 @@
             return {
                 workId: this.$route.params.workId,
                 //typeId: this.$route.params.typeId,
+                fileURL:"http://192.168.0.103:9000/",
                 allMsg:"",
                 allStep:[],
                 voteStatus:""
@@ -160,9 +161,8 @@
 
 <style scoped>
     .stepMsg{
-        height: 160px;
-        width:280px;
-
+        height: 220px;
+        width:220px;
         position: absolute;
         background:  rgba(192, 192, 192, .6);
         opacity: 0;
@@ -170,6 +170,10 @@
     }
     .stepMsg:hover{
         opacity: 1;
+    }
+    .stepImg{
+        height: 220px;
+        width: 220px;
     }
 
 

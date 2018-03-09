@@ -2,7 +2,7 @@
     <div>
         <div class="center-box"
              style=" margin-top: 30px; border: solid 3px #f3f3f3 ; padding: 20px ; background-color: #fbfbfb;width: 100%;">
-            <textarea v-model="discuss" rows="5" cols="140" value="" name=""
+            <textarea v-model="discuss" rows="5" cols="140" value="" name="" maxlength="70"
                       placeholder="写点评论支持下载资源贡献者，注意字数不要超过70字~"></textarea>
 
             <div class="am-btn-group" style="float: right;margin-top:10px;">

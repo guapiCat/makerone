@@ -96,7 +96,7 @@
                                          class="am-btn am-btn-primary" style="margin:0 40px;border-radius: 7px;">
                                 查看团队详情
                             </router-link>
-                            <router-link  :to="{name: 'ApplyJoinTeam',params: {teamId: item.id}}"
+                            <router-link  :to="{name: 'applyJoinTeam',params: {teamId: item.id}}"
                                          class="am-btn am-btn-primary" style="margin:0 40px;border-radius: 7px;">申请加入
                             </router-link>
                         </div>

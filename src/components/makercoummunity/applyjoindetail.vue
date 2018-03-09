@@ -20,17 +20,17 @@
 
             <tr>
               <td><span>姓名:</span></td>
-              <td style="width:500px"><input v-model="myName" type="text" name="username" id="username" style="width: 100%;border-radius: 4px"/></td>
+              <td style="width:500px"><input disabled="disabled" v-model="myName" type="text" name="username" id="username" style="width: 100%;border-radius: 4px"/></td>
             </tr>
 
             <tr>
               <td><span>班级:</span></td>
-              <td style="width:500px"><input type="text" v-model="myClass" name="class" id="class" style="width: 100%;border-radius: 4px"/></td>
+              <td style="width:500px"><input disabled="disabled" type="text" v-model="myClass" name="class" id="class" style="width: 100%;border-radius: 4px"/></td>
             </tr>
 
             <tr style="padding-bottom: 70px;">
               <td class="desc" valign="top"><span>自我介绍:</span></td>
-              <td style="width:500px"><textarea v-model="mySpecial" name="self_desc" id="self_desc" style="width: 100%;height: 300px;border-radius: 4px" placeholder="介绍自己特长......"></textarea></td>
+              <td style="width:500px"><textarea maxlength="100" v-model="mySpecial" name="self_desc" id="self_desc" style="width: 100%;height: 300px;border-radius: 4px" placeholder="介绍自己的特长，不能超过一百字哦......"></textarea></td>
             </tr>
 
             <tr>
@@ -52,14 +52,15 @@
 <script type="es6">
     import {AXIOS} from '../../http-common'
     export default {
-        name: "applyjoin",
+        name: "applyjoindetail",
         data:function(){
             return {
                 //初始化数据包括社团id，传过去的信息等
                 clubId:this.$route.params.clubJoinId,
                 myName:"",
                 myClass:"",
-                mySpecial:""
+                mySpecial:"",
+                allMsg:""
             }
         },
         methods:{
@@ -79,6 +80,18 @@
                     this.errors.push(e)
                 });
             }
+        },
+        created:function(){
+            var params = new URLSearchParams();
+            AXIOS.get('user/getUserInfo', {
+                params: {}
+            }).then(response => {
+                this.allMsg=response.data;
+                this.myName=this.allMsg.sysUser.realName;
+                this.myClass=this.allMsg.className;
+            }).catch(e => {
+                this.errors.push(e);
+            });
         }
     }
 </script>

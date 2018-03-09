@@ -46,7 +46,7 @@
         }
       },
       voteReq(data) {
-        alert(data.voteObjId+data.voteObjType+data.voteStatus);
+//        alert(data.voteObjId+data.voteObjType+data.voteStatus);
          var params = new URLSearchParams();
          AXIOS.get('common/vote', {
              params: {

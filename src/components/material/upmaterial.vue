@@ -56,14 +56,14 @@
                                 <tr>
                                     <td style="color: #aaaaaa;width: 95px;">素材名称:</td>
                                     <td style="width: 700px;">
-                                        <input v-model="metName" type="text" name="material_name" style="width: 65%;border-radius: 5px;"/>
+                                        <input maxlength="15" v-model="metName" type="text" name="material_name" style="width: 65%;border-radius: 5px;"/>
                                     </td>
                                 </tr>
 
                                 <tr style="margin-bottom: 10%;">
                                     <td style="color: #aaaaaa;width:95px;" valign="top">素材介绍:</td>
                                     <td style="width: 700px;">
-                                        <textarea v-model="metIntro" name="material_desc"
+                                        <textarea maxlength="100" placeholder="最多输入100字哦" v-model="metIntro" name="material_desc"
                                                   style="width: 65%;height: 200px;border-radius: 8px;"></textarea>
                                     </td>
                                 </tr>

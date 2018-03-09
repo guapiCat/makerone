@@ -54,17 +54,17 @@
       <div class="nodata" v-show="hiddendata">
       </div>
 
-        <div class="am-u-sm-10 am-u-sm-centered" style="margin-top: 100px;margin-right: 11%; clear: both;">
-            <ul class="am-pagination am-pagination-right">
-                <li class="am-disabled"><a href="#">&laquo;</a></li>
-                <li class="am-active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
-            </ul>
-        </div>
+        <!--<div class="am-u-sm-10 am-u-sm-centered" style="margin-top: 100px;margin-right: 11%; clear: both;">-->
+            <!--<ul class="am-pagination am-pagination-right">-->
+                <!--<li class="am-disabled"><a href="#">&laquo;</a></li>-->
+                <!--<li class="am-active"><a href="#">1</a></li>-->
+                <!--<li><a href="#">2</a></li>-->
+                <!--<li><a href="#">3</a></li>-->
+                <!--<li><a href="#">4</a></li>-->
+                <!--<li><a href="#">5</a></li>-->
+                <!--<li><a href="#">&raquo;</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
     </div>
 </template>
 
