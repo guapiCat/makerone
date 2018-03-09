@@ -52,6 +52,8 @@ import WorkShow from '@/components/personal_space/WorkShow'
 import uploadAlltype from '@/components/personal_space/uploadAlltype'
 import LastPro from '@/components/personal_space/LastPro'
 import editor from '@/components/personal_space/editor'
+import uncompleteWork from '@/components/personal_space/uncompletedWork'
+import completeWork from '@/components/personal_space/completeWork'
 
 
 Vue.use(Router)
@@ -266,7 +268,18 @@ const Routers = [
     },{
         path:"/user/temGoCre",
         component:TemGoCre
-    }
+    },
+  {
+    path:"/user/completeWork",
+    component:completeWork,
+    name:'completeWork'
+  },
+  {
+    path:"/user/uncompleteWork",
+    component:uncompleteWork,
+    name:'uncompleteWork'
+  }
+
 
 ]
 
