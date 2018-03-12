@@ -93,7 +93,7 @@
                 }else if(index==3){
                     this.$router.push({ path: '/user/psonAsset' })
                 }else if(index==4){
-                    this.$router.push({ path: '/user/subPro' })
+                    this.$router.push({ path: '/user/MyWorks' })
                 }else if(index==5){
                     this.$router.push({ path: '/user/myColl' })
                 }
