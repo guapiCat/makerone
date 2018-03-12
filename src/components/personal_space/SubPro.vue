@@ -65,6 +65,7 @@
 
             </div>
           </div>
+
           <div class="am-form-group">
             <label v-if="getMakerWorkDisplay[3]" >{{this.getMakerWorkDisplay[3].dictDesc}}</label>
             <textarea v-model="productIdeas" class="" rows="4" cols="136"  placeholder="给我们渗透渗透你们的创意闪光点来自哪里，有怎样的光明前程吧！"></textarea>
@@ -194,21 +195,13 @@
         $("input[name='workLaborValue']").each(function (i,item) {
           vue.workLabor[i] = {key: idArray[i].value,value:item.value}
         });
-        this.workDisplay.push( {key: this.getMakerWorkDisplay[0].dictDesc, value:this.workName});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[3].dictDesc, value:this.productIdeas});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[4].dictDesc, value:this.referenceData});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[5].dictDesc, value:this.knowledgeApplication});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[6].dictDesc, value:this.fileCover});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[2].dictDesc, value:this.teacheruserId});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[1].dictDesc, value:this.selectionTeam})
-     /*   var params = new URLSearchParams();
-        params.append('makerWorkDisplays', JSON.stringify( this.workDisplay));
-        params.append('userLabors', JSON.stringify(this.workLabor));
-        AXIOS.post('makerWorks/makerWorksSubmit',params
-        ).then(response=>{
-          console.log(response.data)
-        })*/
-
+        this.workDisplay.push( {key: this.getMakerWorkDisplay[0].dictValue, value:this.workName});
+        this.workDisplay.push({key: this.getMakerWorkDisplay[3].dictValue, value:this.productIdeas});
+        this.workDisplay.push({key: this.getMakerWorkDisplay[4].dictValue, value:this.referenceData});
+        this.workDisplay.push({key: this.getMakerWorkDisplay[5].dictValue, value:this.knowledgeApplication});
+        this.workDisplay.push({key: this.getMakerWorkDisplay[6].dictValue, value:this.fileCover});
+        this.workDisplay.push({key: this.getMakerWorkDisplay[2].dictValue, value:this.teacheruserId});
+        this.workDisplay.push({key: this.getMakerWorkDisplay[1].dictValue, value:this.selectionTeam})
         this.$emit('firstType',this.workDisplay,this.workLabor,this.firsthiden);
       },
 

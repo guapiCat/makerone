@@ -5,8 +5,9 @@
 		<span> <img src="../../../static/img/icon_address.png" alt="" /><i style="margin-left: 15px;">益谷创客平台-作品展示-<span>提交作品</span></i>
 		</span>
     </div>
-    <SubPro  v-on:firstType="firstmessage" :fileURL="fileURL" v-show="!hidden" ></SubPro>
-     <Second v-show="hidden" :fileURL="fileURL" v-on:secondType="secondmessage" ></Second>
+    <SubPro  v-on:firstType="firstmessage" :fileURL="fileURL":firstdisplay="firstdisplay" v-show="firsthidden" ></SubPro>
+     <Second v-show="secondhidden"  v-on:secondType="secondmessage" ></Second>
+    <LastPro v-show="lasthidden" :firstdisplay="firstdisplay" :firstdisplayname="firstdisplayname" :seconddata="seconddata" :secondtype="secondtype"></LastPro>
 
   </div>
 </div>
@@ -14,12 +15,18 @@
 <script>
   import SubPro from './SubPro'
   import Second from './Second'
-
+  import LastPro from './LastPro'
     export default {
         name: "upload-alltype",
         data(){
           return{
-            hidden:false,//是否展示子组件内容
+            firsthidden:true,//是否展示子组件内容
+            secondhidden:false,
+            lasthidden:false,
+            firstdisplay:[],
+            firstdisplayname:[],
+            seconddata:[],
+            secondtype:[]
           }
        },
          props: {
@@ -29,18 +36,22 @@
         }
       },
       methods:{
-        firstmessage:function (firstdata,firstdata1,firsthiden) {
-          console.log(firstdata);
-          console.log(firstdata1)
-          this.hidden=firsthiden
+        firstmessage:function (firstdata,firstdata1,firsthide,lasthide) {
+          this.firstdisplay=firstdata;
+          this.firstdisplayname=firstdata1
+          this.secondhidden=firsthide;
+          this.firsthidden=lasthide;
+          this.lasthide=lasthide
         },
-        secondmessage:function (seconddata,secondtype,secondhiden) {
-          console.log(seconddata);
-          console.log(secondtype);
-          this.hidden=secondhiden
+        secondmessage:function (seconddata,secondtype,firsthide,lasthide) {
+          this.seconddata=seconddata,
+          this.secondtype=secondtype,
+          this.secondhidden=firsthide,
+          this.lasthidden=lasthide
+
         }
       },
-        components:{SubPro,Second}
+        components:{SubPro,Second,LastPro}
     }
 </script>
 

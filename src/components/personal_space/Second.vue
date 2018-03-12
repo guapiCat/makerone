@@ -77,7 +77,9 @@
               designThought:'',
               timeArrangement:'',
               equipment:'',
-              secondDisplay:[]
+              secondDisplay:[],
+              firsthiden:false,
+              lasthide:true
 
             }
         },
@@ -115,10 +117,10 @@
 
           },
           next:function () {
-             this.secondDisplay.push({key: this.getMakerWorkDisplay[7].dictDesc, value:this.designThought})
-            this.secondDisplay.push({key: this.getMakerWorkDisplay[8].dictDesc, value:this.timeArrangement})
-            this.secondDisplay.push({key:this.getMakerWorkDisplay[9].dictDesc, value:this.equipment})
-            this.$emit('secondType',this.secondDisplay,this.stepX,this.firsthiden);
+             this.secondDisplay.push({key: this.getMakerWorkDisplay[7].dictValue, value:this.designThought})
+            this.secondDisplay.push({key: this.getMakerWorkDisplay[8].dictValue, value:this.timeArrangement})
+            this.secondDisplay.push({key:this.getMakerWorkDisplay[9].dictValue, value:this.equipment})
+            this.$emit('secondType',this.secondDisplay,this.stepX,this.firsthiden, this.lasthide);
           }
         },
       created:function () {
