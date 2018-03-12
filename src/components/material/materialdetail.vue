@@ -67,6 +67,12 @@
                             <span style="color: #818181">上传时间</span>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
                                 style="color: #818181">{{allMsg.createTime}}</span>
                         </div>
+                        <div style="text-align: center;width: 100%;">
+                            <button v-on:click="addColl" class="am-btn am-btn-primary">
+                                添加收藏
+                                <span class="am-icon-star"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -95,6 +101,16 @@
         methods:{
             returnMet:function(){
                 this.$router.push({ path: '/materialLibrary/list' });
+            },
+            addColl:function(){
+                var params = new URLSearchParams();
+                params.append("objectId", this.metId);
+                params.append("type", 2);
+                AXIOS.post('common/joinFavorite', params).then(response => {
+                    alert(response.data);
+                }).catch(e => {
+                    this.errors.push(e)
+                });
             }
         },
         created:function(){
