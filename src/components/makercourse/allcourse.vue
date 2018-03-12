@@ -190,7 +190,7 @@
         },
         bysort:function (index) {
           this.sort=index;
-          this.reqAXIOS(this.classes,this.classify,this.sort,1 ,8)
+          this.reqAXIOS(this.classes,this.classify,this.sort,8 ,8)
         }
       }
     }
