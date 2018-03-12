@@ -63,7 +63,7 @@
                                 src="../../../static/img/arrow_2.png"
                                 style="margin-left: 10px;margin-top: -3px;"/> </span></p>
                         <ul :class="{'am-avg-sm-4':true,'am-thumbnails':true,'seeAll':contTwo}">
-                            <li v-for="item,index in teamMemb" class="am-thumbnail"><img
+                            <li v-for="item,index in teamMemb" class="am-thumbnail"><img style="border-radius: 50%;"
                                     :src="fileURL+item[1]"/>
 
                                 <p>{{index?"组员":"组长"}}:<span>{{item[0]}}</span></p></li>

@@ -100,7 +100,8 @@
                 fileURL:"http://192.168.0.103:9000/",
                 allMsg:"",
                 allStep:[],
-                voteStatus:""
+                voteStatus:"",
+                thumbs:""
             }
         },
         methods:{

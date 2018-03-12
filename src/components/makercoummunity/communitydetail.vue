@@ -185,6 +185,7 @@
     .psonImg{
         width:250px;
         height:250px;
+        border-radius: 50%;
     }
   .content-title-hand-left{
     float: left;width: 30%;
