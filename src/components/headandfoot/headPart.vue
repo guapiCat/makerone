@@ -1,103 +1,141 @@
 <template>
-	<div>
-		<div class="nav-container">
-				<img src="../../../static/img/logo.png" />
-			</div>
-    <div class="myHeaderMsg">
-        <p><router-link to="/"><span>网站首页</span><i>HOME</i></router-link></p>
-        <p><router-link to="/worksShow/list"><span >作品展示</span><i style="margin-left: -5px">WORK SHOW</i></router-link></p>
-        <p><router-link to="/makercourse/allcourse"><span>创客课程</span><i>COURSES</i></router-link> </p>
-        <p><router-link to="/makerCommunity/list"><span>创客社团</span><i>GROUP</i></router-link></p>
-        <p><router-link to="/makerActivity/list"><span>创客活动</span><i>ACTIVITY</i></router-link></p>
-        <p><router-link to="/materialLibrary/list"><span>素材库</span><i style="margin-left: -26px;">MATERIAL LIBRARY</i></router-link></p>
-        <p><router-link to="/user/psonSpace"><span>个人空间</span><i style="margin-left: -13px;">PERSONAL SPACE</i></router-link></p>
-        <p><router-link to="/makerLife/list"><span>创客生活</span><i style="margin-left: -3px;">CREATIVE LIFE</i></router-link></p>
-        <div class="mySs">
-          <a @click="searchall()"><img class="mySs_img" src="../../../static/img/nav_serch.png" alt=""/></a>
-          <div class="seachlist" v-show="isHidden">
-            <ul><li>
-              <router-link :to="{name:'allcourse'}"><span @click="close()">课程</span></router-link>
-            </li><li>
-              <router-link :to="{name:'materialLibrary'}">
-                <span @click="close()">素材</span>
+    <div>
+        <div class="nav-container">
+            <img src="../../../static/img/logo.png"/>
+        </div>
+        <div class="myHeaderMsg">
+            <p>
+                <router-link to="/"><span>网站首页</span><i>HOME</i></router-link>
+            </p>
+            <p>
+                <router-link to="/worksShow/list"><span>作品展示</span><i style="margin-left: -5px">WORK SHOW</i>
                 </router-link>
-            </li><li>
-              <router-link :to="{name:'worksShow'}"  >
-                <span @click="close()">作品</span>
-              </router-link>
-              </li><li>
-              <router-link :to="{name:'/makerLife'}"><span @click="close()">生活</span></router-link>
-              </li>
-            </ul>
-          </div>
-            <input v-model="searchInput" id="search"  class="mySs_inp" type="text" placeholder="请输入关键字"/>
-            <div class="mySs_xx">
-                <p> <router-link :to="{name: 'login',params: {loginType: 2}}"><span>登陆</span></router-link></p>
-            </div>
+            </p>
+            <p>
+                <router-link to="/makercourse/allcourse"><span>创客课程</span><i>COURSES</i></router-link>
+            </p>
+            <p>
+                <router-link to="/makerCommunity/list"><span>创客社团</span><i>GROUP</i></router-link>
+            </p>
+            <p>
+                <router-link to="/makerActivity/list"><span>创客活动</span><i>ACTIVITY</i></router-link>
+            </p>
+            <p>
+                <router-link to="/materialLibrary/list"><span>素材库</span><i style="margin-left: -26px;">MATERIAL
+                    LIBRARY</i></router-link>
+            </p>
+            <p>
+                <router-link to="/user/psonSpace"><span>个人空间</span><i style="margin-left: -13px;">PERSONAL SPACE</i>
+                </router-link>
+            </p>
+            <p>
+                <router-link to="/makerLife/list"><span>创客生活</span><i style="margin-left: -3px;">CREATIVE LIFE</i>
+                </router-link>
+            </p>
+            <div class="mySs">
+                <a @click="searchall()"><img class="mySs_img" src="../../../static/img/nav_serch.png" alt=""/></a>
 
+                <div class="seachlist" v-show="isHidden">
+                    <ul>
+                        <li>
+                            <router-link :to="{name:'allcourse'}"><span @click="close()">课程</span></router-link>
+                        </li>
+                        <li>
+                            <router-link :to="{name:'materialLibrary'}">
+                                <span @click="close()">素材</span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link :to="{name:'worksShow'}">
+                                <span @click="close()">作品</span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link :to="{name:'/makerLife'}"><span @click="close()">生活</span></router-link>
+                        </li>
+                    </ul>
+                </div>
+                <input v-model="searchInput" id="search" class="mySs_inp" type="text" placeholder="请输入关键字"/>
+
+                <div class="mySs_xx">
+                    <p>
+                        <router-link v-if="!psonImg" :to="{name: 'login',params: {loginType: 2}}"><span>登陆</span></router-link>
+                        <img v-if="psonImg" style="width: 50px;height: 50px;border-radius: 50%;display: block;margin-top: -12px;" :src="fileURL+psonImg" alt=""/>
+                    </p>
+                </div>
+
+            </div>
         </div>
     </div>
-	</div>
 
 </template>
 
-<script>
-  import {AXIOS} from "../../http-common";
+<script type="es6">
+    import {AXIOS} from "../../http-common";
 
 
-  export default {
-    name: 'headPart',
+    export default {
+        name: 'headPart',
 
-    data () {
-      return {
-        isHidden:false,
-        searchInput:'',
-
-      }
-    },
-    methods: {
-     searchall(){
-       this.isHidden=!this.isHidden;
-     },
-      close(){
-       this.isHidden=false;
-       this.searchInput=''
-      }
-
+        data () {
+            return {
+                isHidden: false,
+                searchInput: '',
+                allMsg:"",
+                fileURL:"http://192.168.0.103:9000/",
+                psonImg:false
+            }
+        },
+        methods: {
+            searchall(){
+                this.isHidden = !this.isHidden;
+            },
+            close(){
+                this.isHidden = false;
+                this.searchInput = ''
+            }
+        },
+        created:function(){
+            this.psonImg=sessionStorage.getItem("psonImg");
+            console.log(psonImg);
+        }
     }
-  }
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 
 <style scoped>
-  @import "../../../static/css/indexheader.css";
-  .seachlist{
-    position: absolute;
-    left: 74px;
-    top: 29px;
-    z-index: 999;
-    height: 100px;
-    width: 80px;
-    text-align: center;
-    background: #333333;
-  }
-  .seachlist ul{
-    list-style: none;
-    border: solid 1px #dfdfdf;
-    box-shadow: 0px 0px 3px #ccc;
-  }
-  .seachlist li{
-    background: #c3c3c3;
-    height: 27px;
-    width: 88px;
-    line-height: 27px;
-    text-align: center;
-    font-family: simhei;
-  }
-  .seachlist li:hover{
-    color: #FC7E8E;
-  }
+    @import "../../../static/css/indexheader.css";
+
+    .seachlist {
+        position: absolute;
+        left: 74px;
+        top: 29px;
+        z-index: 999;
+        height: 100px;
+        width: 80px;
+        text-align: center;
+        background: #333333;
+    }
+
+    .seachlist ul {
+        list-style: none;
+        border: solid 1px #dfdfdf;
+        box-shadow: 0px 0px 3px #ccc;
+    }
+
+    .seachlist li {
+        background: #c3c3c3;
+        height: 27px;
+        width: 88px;
+        line-height: 27px;
+        text-align: center;
+        font-family: simhei;
+    }
+
+    .seachlist li:hover {
+        color: #FC7E8E;
+    }
 
 </style>

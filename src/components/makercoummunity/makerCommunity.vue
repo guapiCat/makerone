@@ -5,7 +5,7 @@
             <div class="am-tabs-bd" style="border: 0px;width: 100%;height: 200px; background: #EEEEEE; ">
                 <div class="am-tab-panel am-active" id="tab1">
                     <div style="width: 90%;text-align: right;margin-top: 10px;">
-                        <a class="am-btn am-btn-primary" style="border-radius: 10px;">发起团队</a>
+                        <a v-on:click="goCreTeam" class="am-btn am-btn-primary" style="border-radius: 10px;">发起团队</a>
                     </div>
                     <div style="text-align: center;margin-top: 1%;padding-left: 4%;">
                         <hr style="width:80%;border-top: 1px solid #ffffff;margin: 0 auto">
@@ -122,6 +122,9 @@
             }
         },
         methods: {
+            goCreTeam:function(){
+                this.$router.push({ path: '/user/temGoCre' });
+            },
             clickClub: function () {
                 this.controlTitle=true;
                 this.controlShow=true;
