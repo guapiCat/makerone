@@ -35,13 +35,13 @@
                             <!--<iframe id="change_password" src="change_pwd.html" width="100%" height="100%"-->
                                     <!--style="border: 0px;" scrolling="no" onload="iframeLoad_2()"></iframe>-->
                             <div>
-                                <span>当前密码</span><input v-model="nowPassword" type="text"/>
+                                <span>当前密码</span><input maxlength="20" v-model="nowPassword" type="text"/>
                             </div>
                             <div>
-                                <span style="margin-left: 5px">新密码 </span><input v-model="newPassword" type="password"/>
+                                <span style="margin-left: 5px">新密码 </span><input maxlength="20" v-model="newPassword" type="password"/>
                             </div>
                             <div style="margin-bottom: 100px">
-                                <span>确认密码</span><input v-model="cofirmPassword" type="password"/>
+                                <span>确认密码</span><input maxlength="20" v-model="cofirmPassword" type="password"/>
                             </div>
                             <button v-on:click="submitPassword" style="margin-left: 30%;margin-right: 30%" type="button" class="am-btn am-btn-primary">提交</button>
                             <button type="button" class="am-btn am-btn-primary">取消</button>

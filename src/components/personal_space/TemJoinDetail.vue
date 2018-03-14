@@ -20,7 +20,7 @@
 
                     <div class="content-box-body" style="overflow: hidden;">
                         <div class="content-title-hand-left">
-                            <img src="../../../static/img/airplane.png"/>
+                            <img :src="fileURL+allMsg.teamLogo"/>
                         </div>
                         <div class="content-title-hand-right">
                             <h5>{{allMsg.teamName}}</h5>

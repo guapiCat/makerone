@@ -2,6 +2,8 @@
     <div class="hello compon_center">
         <div class="am-g">
 
+            <div style="margin-left: 20px;" v-if="allMsg.length==0">快去创建你的团队吧(*^▽^*)</div>
+
             <div v-for="item in allMsg" class="team" style="padding-top: 2%;padding-bottom: 2%; ">
                 <div class="am-g">
                     <div class="am-u-sm-12" style="margin-left: 1%;">
