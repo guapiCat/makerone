@@ -67,7 +67,7 @@
               objectId:objectId
             }
           }).then(response=>{
-            console.log(response.data);
+            //console.log(response.data);
             window.location.reload();
             alert('删除成功')
           })

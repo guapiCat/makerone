@@ -133,7 +133,7 @@
         var param = new FormData(); //创建form对象
         param.append('file', file, file.name);//通过append向form对象添加数据
         param.append('chunk', '0');//添加form表单中其他数据
-        console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
+        //console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
         let config = {
           headers: {'Content-Type': 'multipart/form-data'}
         };  //添加请求头
@@ -179,7 +179,7 @@
         var params1 = new URLSearchParams();
         params1.append('userId', userId);
         AXIOS.post('common/getOtherUser', params1).then(response => {
-          console.log(response.data);
+          //console.log(response.data);
           this.teacheruser = response.data;
           this.teacherdetail = response.data.sysUser
         })
@@ -216,7 +216,7 @@
       // 获取标题
       AXIOS.get('makerWorks/getMakerWorkDisplay', {}).then(response => {
         this.getMakerWorkDisplay = response.data;
-        console.log(this.getMakerWorkDisplay[0].dictDesc)
+        //console.log(this.getMakerWorkDisplay[0].dictDesc)
       }).catch(response => {
         this.errors.push(response)
       });

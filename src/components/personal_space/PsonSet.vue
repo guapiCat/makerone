@@ -138,7 +138,7 @@
         methods:{
             update:function(e){
                 this.file=e.target.files[0];
-                console.log(this.file);
+                //console.log(this.file);
             },
             postAllMsg:function(){
                 if(this.username.length<2||this.name.length<2){

@@ -88,7 +88,7 @@
             },
             update:function(e){
                 this.file=e.target.files[0];
-                console.log(this.file);
+                //console.log(this.file);
             },
             creTeam:function(){
                 if(this.teamName.length<3){
@@ -114,7 +114,7 @@
                                 schoolId:this.schoolId
                             }
                         }).then(response => {
-                            console.log(response.data);
+                            //console.log(response.data);
                             if(response.data){
                                 this.$router.push({ path: '/user/myGroup' });
                             }else{

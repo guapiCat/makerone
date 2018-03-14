@@ -129,7 +129,7 @@ export default {
       params.append('userLabors',JSON.stringify(this.firstdisplayname));
       params.append('makerWorksSteps',JSON.stringify(this.secondtype));
       AXIOS.post('makerWorks/makerWorksSubmit', params).then(response => {
-        console.log(response.data)
+//        console.log(response.data)
       })
     }
   }

@@ -187,7 +187,7 @@
                         userName:this.findName
                     }
                 }).then(response => {
-                    console.log("查找个人信息："+response.data);
+                    //console.log("查找个人信息："+response.data);
                     this.findNameMsg=response.data;
                     if(this.findNameMsg.length>4){
                         this.findNameMsg.length=4;
@@ -243,7 +243,7 @@
                     makerTeamId: this.teamId
                 }
             }).then(response => {
-                console.log(response.data);
+                //console.log(response.data);
                 this.allMsg = response.data;
                 this.teamMemb.push([this.allMsg.sysUser.username,this.allMsg.sysUser.avatar,this.allMsg.sysUser.id]);
                 for(var i=0;i<this.allMsg.teamMemberUserList.length;i++){
