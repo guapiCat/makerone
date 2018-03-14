@@ -190,7 +190,7 @@
         this.coursesecond.backgroundImage = "url('"+this.fileURL+this.courses[1].courseCoverImage+"')";
         this.coursethird.backgroundImage = "url('"+this.fileURL+this.courses[2].courseCoverImage+"')";
         this.courselast.backgroundImage = "url('"+this.fileURL+this.courses[3].courseCoverImage+"')";
-        console.log(this.coursefirst.backgroundImage);
+//        console.log(this.coursefirst.backgroundImage);
       }).catch(error => {
         alert(error)
       })

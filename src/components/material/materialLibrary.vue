@@ -102,12 +102,12 @@
                 this.$router.push({path: '/material/up'});
             },
             one: function (index) {
-                console.log("one：" + index);
+                //console.log("one：" + index);
                 this.type = index;
                 this.reqAxios(this.type, this.orderStr, 1, 10);
             },
             two: function (index) {
-                console.log("two:" + index);
+                //console.log("two:" + index);
                 this.orderStr = index;
                 this.reqAxios(this.type, this.orderStr, 1, 10);
             },
@@ -126,7 +126,7 @@
                     } else {
                         this.hiddendata = false
                     }
-                    console.log(response.data.list);
+                    //console.log(response.data.list);
                 }).catch(e => {
                     this.errors.push(e);
                 });
@@ -147,7 +147,7 @@
                     } else {
                         this.hiddendata = false
                     }
-                    console.log(response.data.list);
+                    //console.log(response.data.list);
                 }).catch(e => {
                     this.errors.push(e);
                 });
@@ -155,7 +155,7 @@
         },
         created: function () {
             this.searchval;
-            console.log("search的值为："+this.search);
+            //console.log("search的值为："+this.search);
             if (this.search == "") {
                 this.reqAxios(0, 0, 1, 10)
             } else {

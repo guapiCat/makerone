@@ -60,7 +60,7 @@
                     voteObjType:3
                 }
             }).then(response => {
-                console.log("这是访问记录返回的消息："+response.data);
+//                console.log("这是访问记录返回的消息："+response.data);
             }).catch(e => {
                 this.errors.push(e)
             });

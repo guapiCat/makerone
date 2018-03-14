@@ -122,7 +122,7 @@
                     objectId:this.workId
                 }
             }).then(response => {
-                console.log("这是访问点赞状态返回的消息："+response.data);
+                //console.log("这是访问点赞状态返回的消息："+response.data);
                 if(response.data==false){
                     //没点赞就是1，点赞就是0。。点赞成功得到0，取消点赞成功得到-1
                     this.voteStatus=1;
@@ -139,7 +139,7 @@
                     voteObjType:1
                 }
             }).then(response => {
-                console.log("这是访问记录返回的消息："+response.data);
+                //console.log("这是访问记录返回的消息："+response.data);
             }).catch(e => {
                 this.errors.push(e)
             });

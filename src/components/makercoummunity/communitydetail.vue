@@ -140,7 +140,7 @@
                     makerCommunityId:this.clubId
                 }
             }).then(response => {
-                console.log(response);
+                //console.log(response);
                 this.allMsg=response.data;
                 //添加组员，添加组员图片
                 this.allPson.push([this.allMsg.sysUserDTO.username,this.allMsg.sysUserDTO.avatar]);

@@ -113,7 +113,7 @@
                     alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
                 }
                 this.logoFile=e.target.files[0];
-                console.log(this.logoFile);
+                //console.log(this.logoFile);
                 reader.onload = function(e) {
                     //获取图片dom
                     var img = document.getElementById("preview");
@@ -124,7 +124,7 @@
             },
             metzipPost:function(e){
                 this.metzipFile=e.target.files[0];
-                console.log(this.metzipFile);
+                //console.log(this.metzipFile);
             },
             postMet:function(){
                 //先获取个人-schoolId（同时判断if登录）-》获得logo的url-》获得metzip的url
@@ -169,7 +169,7 @@
                                         }
                                     }).then(response => {
                                         //console.log(response);
-                                        console.log("上传素材返回的数据"+response.data);
+                                        //console.log("上传素材返回的数据"+response.data);
                                         if(response.data.code==0){
                                             alert("上传成功");
                                             window.history.go(-1);

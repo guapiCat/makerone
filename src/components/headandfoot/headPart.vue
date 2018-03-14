@@ -82,7 +82,7 @@
                 isHidden: false,
                 searchInput: '',
                 allMsg:"",
-                fileURL:"http://192.168.0.103:9000/",
+                fileURL:"http://192.168.0.106:9000/",
                 psonImg:false
             }
         },
@@ -97,7 +97,7 @@
         },
         created:function(){
             this.psonImg=sessionStorage.getItem("psonImg");
-            console.log(psonImg);
+            //console.log(psonImg);
         }
     }
 

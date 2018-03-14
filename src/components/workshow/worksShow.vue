@@ -166,7 +166,7 @@
             AXIOS.get('common/getGlobalType', {
                 params:{}
             }).then(response => {
-                console.log(response);
+                //console.log(response);
                 for(var i=0;response.data;i++){
                     this.proClass.push(response.data[i].desc);
                 }

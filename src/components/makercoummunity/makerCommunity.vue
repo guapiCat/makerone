@@ -148,7 +148,7 @@
                         pageSize:10
                     }
                 }).then(response => {
-                    console.log(response);
+                    //console.log(response);
                     this.groupMsg = response.data;
                 }).catch(e => {
                     this.errors.push(e)

@@ -57,13 +57,13 @@
                 var params = new URLSearchParams();
                 var mad5password = $('#password').val();
                 var mad5pass = $.md5(mad5password);
-                console.log(mad5pass);
+                //console.log(mad5pass);
                 params.append("username", $("#phone_studentId").val());
                 params.append("password", mad5pass);
                 AXIOS.post('preUser/login', params)
                         .then(response => {
                             // JSON responses are automatically parsed.
-                            console.log(response.data);
+                            //console.log(response.data);
                             var jsonResult = eval(response.data);
                             sessionStorage.setItem("TID", jsonResult["token"]);
                             sessionStorage.setItem("UID", jsonResult["sysUser"]["id"]);

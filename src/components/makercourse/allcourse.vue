@@ -185,7 +185,7 @@
         byclaass:function (index) {
           this.classes=index+1;
           this.reqAXIOS(this.classes,this.classify,this.sort,8,8)
-          console.log(this.courseslist)
+//          console.log(this.courseslist)
 
         },
         bysort:function (index) {

@@ -122,7 +122,7 @@
                 this.voteStatus=1;
             },
             playResource: function (type, url) {
-                console.log(type + url);
+                //console.log(type + url);
             }
         },
         created: function () {
@@ -133,7 +133,7 @@
                     objectId:this.courseId
                 }
             }).then(response => {
-                console.log("这是访问点赞状态返回的消息："+response.data);
+                //console.log("这是访问点赞状态返回的消息："+response.data);
                 if(response.data==false){
                     //没点赞就是1，点赞就是0。。点赞成功得到0，取消点赞成功得到-1
                     this.voteStatus=1;
@@ -150,7 +150,7 @@
                 },
             }).then(response=> {
                 this.relatedworks = response.data;
-                console.log(response)
+                //console.log(response)
             }).catch(response=> {
                 this.errors.push(response)
             });
@@ -208,11 +208,11 @@
                     }
                     ;
                     // zNodes =response;
-                    console.log(zNodes);
+                    //console.log(zNodes);
                 }
             });
             function zTreeOnClick(event, treeId, treeNode) {
-                console.log(zTree_Menu.getNodeByTId(treeNode.tId).chapterResource + ", " + zTree_Menu.getNodeByTId(treeNode.tId).resourceType)
+                //console.log(zTree_Menu.getNodeByTId(treeNode.tId).chapterResource + ", " + zTree_Menu.getNodeByTId(treeNode.tId).resourceType)
                 if (zTree_Menu.getNodeByTId(treeNode.tId).resourceType == 1) {
                     $('.default').hide();
                     $('.myvideo').show();

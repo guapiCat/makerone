@@ -127,7 +127,7 @@
                         id:this.metId
                     }
                 }).then(response => {
-                    console.log(response);
+                    //console.log(response);
                     this.allMsg=response.data;
                     this.nowMetClass=this.metClass[this.allMsg.type];
                 }).catch(e => {
