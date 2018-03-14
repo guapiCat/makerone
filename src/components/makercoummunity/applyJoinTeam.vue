@@ -36,7 +36,7 @@
                             <tr>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>
-                                    <a class="am-btn am-btn-primary am-radius table_button"><span v-on:click="sendMsg" style="font-size: 20px;">提交</span></a>
+                                    <span class="am-btn am-btn-primary am-radius table_button" v-on:click="sendMsg"><span style="font-size: 20px;">提交</span></span>
                                 </td>
                             </tr>
                         </table>

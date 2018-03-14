@@ -63,18 +63,13 @@
                 AXIOS.post('preUser/login', params)
                         .then(response => {
                             // JSON responses are automatically parsed.
+                            console.log(response.data);
                             var jsonResult = eval(response.data);
                             sessionStorage.setItem("TID", jsonResult["token"]);
                             sessionStorage.setItem("UID", jsonResult["sysUser"]["id"]);
+                            sessionStorage.setItem("psonImg", response.data.sysUser.avatar);
                             alert("登录成功");
                             //保存头像图片到session
-                            AXIOS.get('user/getUserInfo', {
-                                params: {}
-                            }).then(response => {
-                                sessionStorage.setItem("psonImg", response.data.sysUser.avatar);
-                            }).catch(e => {
-                                this.errors.push(e);
-                            });
                             location.href = "/";
 
                         })

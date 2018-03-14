@@ -31,7 +31,7 @@
           <div class="am-g">
             <div class="am-u-sm-5" style="margin-left: -2%;">
               <div style="margin-bottom: 4%;">
-                <img :src="fileURL+item.courseCoverImage" width="140%" height="400px" style="border: 1px solid #000000"/>
+                <img :src="fileURL+item.courseCoverImage" style="width: 350px;height: 350px;border: 1px solid #000000;display: inline-block;margin-left: 150px"/>
               </div>
               <div style="text-align: right;">
                 <span>点赞数&nbsp;:&nbsp;</span><img src="../../../static/img/icon_upvote.png" width="4%" style="margin-top: -2%;"/><span style="margin-right:10%;margin-left: 2%;">{{item.courseThumbsUpNum}}</span>

@@ -29,7 +29,8 @@
         </div>
         <div style="margin-left: 13%;position: relative;cursor: pointer">
             <!--<input type="file" multiple name="file_0" class="input-file">-->
-            <span v-on:click="postMet" class="am-btn am-btn-primary" style="margin-right: 45px;margin-top: 35px;">我要上传</span>
+            <span v-on:click="postMet" class="am-btn am-btn-primary"
+                  style="margin-right: 45px;margin-top: 35px;">我要上传</span>
         </div>
         <div class="pic_content" style="margin-top: 60px;margin-left: 12%;">
 
@@ -37,7 +38,8 @@
                 <router-link class="goMetDel" :to="{name: 'meterialdetail',params: {metId: item.id}}">
                     <div class="img-content" style="">
                         <!--图片未做处理-->
-                        <img class="am-thumbnail" :src="fileURL+item.materialCoverImage" style="width: 240px;height: 240px"/>
+                        <img class="am-thumbnail" :src="fileURL+item.materialCoverImage"
+                             style="width: 240px;height: 240px"/>
                     </div>
                     <span style="border:0;color: #000;">{{item.materialName}}</span>
                 </router-link>
@@ -51,19 +53,19 @@
 
 
         </div>
-      <div class="nodata" v-show="hiddendata">
-      </div>
+        <div class="nodata" v-show="hiddendata">
+        </div>
 
         <!--<div class="am-u-sm-10 am-u-sm-centered" style="margin-top: 100px;margin-right: 11%; clear: both;">-->
-            <!--<ul class="am-pagination am-pagination-right">-->
-                <!--<li class="am-disabled"><a href="#">&laquo;</a></li>-->
-                <!--<li class="am-active"><a href="#">1</a></li>-->
-                <!--<li><a href="#">2</a></li>-->
-                <!--<li><a href="#">3</a></li>-->
-                <!--<li><a href="#">4</a></li>-->
-                <!--<li><a href="#">5</a></li>-->
-                <!--<li><a href="#">&raquo;</a></li>-->
-            <!--</ul>-->
+        <!--<ul class="am-pagination am-pagination-right">-->
+        <!--<li class="am-disabled"><a href="#">&laquo;</a></li>-->
+        <!--<li class="am-active"><a href="#">1</a></li>-->
+        <!--<li><a href="#">2</a></li>-->
+        <!--<li><a href="#">3</a></li>-->
+        <!--<li><a href="#">4</a></li>-->
+        <!--<li><a href="#">5</a></li>-->
+        <!--<li><a href="#">&raquo;</a></li>-->
+        <!--</ul>-->
         <!--</div>-->
     </div>
 </template>
@@ -71,17 +73,17 @@
 <script type="es6">
     import {AXIOS} from '../../http-common'
     export default {
-      name: "material-library",
-      props: {
-        fileURL: {
-          type: String,
-          required: true
-        }
-      },
+        name: "material-library",
+        props: {
+            fileURL: {
+                type: String,
+                required: true
+            }
+        },
         data () {
             return {
-              search:'',
-              hiddendata:false,
+                search: '',
+                hiddendata: false,
                 allMet: [],//所有素材
                 metClass: [],//素材分类
                 metSee: ["最新", "下载量"],//查看素材分类（2级）
@@ -89,18 +91,18 @@
                 orderStr: 0
             }
         },
-      computed:{
-        searchval:function(){
-          var searchval=document.getElementById("search").value
-          return this.search=searchval
-        }
-      },
+        computed: {
+        },
         methods: {
-            postMet:function(){
-                this.$router.push({ path: '/material/up' });
+            searchval: function () {
+                var searchval = document.getElementById("search").value
+                return this.search = searchval
+            },
+            postMet: function () {
+                this.$router.push({path: '/material/up'});
             },
             one: function (index) {
-                console.log("one" + index);
+                console.log("one：" + index);
                 this.type = index;
                 this.reqAxios(this.type, this.orderStr, 1, 10);
             },
@@ -119,44 +121,45 @@
                     }
                 }).then(response => {
                     this.allMet = response.data.list;//将zuopins转为为后台数据
-                  if(this.allMet.length<1){
-                    this.hiddendata=true
-                  }else {
-                    this.hiddendata=false
-                  }
-                    //console.log(response.data.list);
+                    if (this.allMet.length < 1) {
+                        this.hiddendata = true
+                    } else {
+                        this.hiddendata = false
+                    }
+                    console.log(response.data.list);
                 }).catch(e => {
                     this.errors.push(e);
                 });
             },
-          searchAxios: function (type, orderStr, pageNum, pageSize,makerMaterialName) {
-            AXIOS.get('makerMaterial/MakerMaterialControllerShow', {
-              params: {
-                "type": type,
-                "orderStr": orderStr,
-                "pageNum": pageNum,
-                "pageSize": pageSize,
-                "makerMaterialName":makerMaterialName
-              }
-            }).then(response => {
-              this.allMet = response.data.list;//将zuopins转为为后台数据
-              if(this.allMet.length<1){
-                this.hiddendata=true
-              }else {
-                this.hiddendata=false
-              }
-              //console.log(response.data.list);
-            }).catch(e => {
-              this.errors.push(e);
-            });
-          },
+            searchAxios: function (type, orderStr, pageNum, pageSize, makerMaterialName) {
+                AXIOS.get('makerMaterial/MakerMaterialControllerShow', {
+                    params: {
+                        "type": type,
+                        "orderStr": orderStr,
+                        "pageNum": pageNum,
+                        "pageSize": pageSize,
+                        "makerMaterialName": makerMaterialName
+                    }
+                }).then(response => {
+                    this.allMet = response.data.list;//将zuopins转为为后台数据
+                    if (this.allMet.length < 1) {
+                        this.hiddendata = true
+                    } else {
+                        this.hiddendata = false
+                    }
+                    console.log(response.data.list);
+                }).catch(e => {
+                    this.errors.push(e);
+                });
+            }
         },
         created: function () {
             this.searchval;
-            if (this.search==""){
-              this.reqAxios(0, 0, 1, 10)
-            }else {
-              this.searchAxios(0,0,1,10,this.search);
+            console.log("search的值为："+this.search);
+            if (this.search == "") {
+                this.reqAxios(0, 0, 1, 10)
+            } else {
+                this.searchAxios(0, 0, 1, 10, this.search);
 
             }
 
@@ -164,7 +167,7 @@
             AXIOS.get('common/getGlobalType', {
                 params: {}
             }).then(response => {
-                for (var i = 0; i<response.data.length; i++) {
+                for (var i = 0; i < response.data.length; i++) {
                     this.metClass.push(response.data[i].desc);
                 }
             }).catch(e => {
@@ -179,13 +182,15 @@
     .onOne {
         background: #FFCA57;
     }
-    .nodata{
-      width: 99%;
-      height: 400px;
-      margin: 0 auto;
-      background: url(../../../static/img/nodata.png) top center no-repeat;
+
+    .nodata {
+        width: 99%;
+        height: 400px;
+        margin: 0 auto;
+        background: url(../../../static/img/nodata.png) top center no-repeat;
     }
-    .goMetDel{
+
+    .goMetDel {
         display: block;
     }
 

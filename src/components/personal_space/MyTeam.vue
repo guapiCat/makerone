@@ -75,10 +75,10 @@
 
                                     <div class="content-box-body" style="overflow: hidden;">
                                         <ul class="am-avg-sm-4 am-thumbnails">
-                                            <li style="margin-right: 10px" v-if="item.sysUserDTO" class="am-thumbnail"><img class="cg-img" :src="fileURL+item.sysUserDTO.avatar"/>
+                                            <li v-if="item.sysUserDTO" class="am-thumbnail"><img class="cg-img" :src="fileURL+item.sysUserDTO.avatar"/>
                                                 <p style="padding-left: 30px">组长:<span>{{item.sysUserDTO.realName}}</span></p>
                                             </li>
-                                            <li  style="margin-right: 10px" v-for="member in item.sysUserList" class="am-thumbnail"><img class="cg-img" v-if="member.avatar" :src="fileURL+member.avatar"/>
+                                            <li  v-for="member in item.sysUserList" class="am-thumbnail"><img class="cg-img" v-if="member.avatar" :src="fileURL+member.avatar"/>
                                                 <p style="padding-left: 30px">组员:<span>{{member.realName}}</span></p>
                                             </li>
                                             <!--<li class="am-thumbnail"><img src="../../../static/img/img_bitmap.png"/>-->
