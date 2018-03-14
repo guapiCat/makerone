@@ -244,10 +244,16 @@ const Routers = [
     component:WorkShow
   },
   {
-    path:'/user/uploadAlltype',
+    path:'/user/uploadAlltype/:workId',
+    name:'unuploadAlltype',
+    component:uploadAlltype
+  },
+  {
+    path:'/workshow/submit',
     name:'uploadAlltype',
     component:uploadAlltype
   },
+
   {
     path:'/user/editor',
     name:'editor',
