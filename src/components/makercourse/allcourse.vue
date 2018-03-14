@@ -109,9 +109,9 @@
       mounted(){
         this.searchval;
         if(this.search==""){
-          this.reqAXIOS(1, 0, 1, 8,8);
+          this.reqAXIOS(1, 0, 0, 8,8);
         }else {
-          this.searchAXIOS(1, 0, 1, 8,8,this.search);
+          this.searchAXIOS(1, 0, 0, 8,8,this.search);
         }
       },
       computed:{
