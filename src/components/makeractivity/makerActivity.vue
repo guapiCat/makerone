@@ -36,7 +36,7 @@
     </div>
 
 
-    <div class="am-u-sm-10 am-u-sm-centered" style="text-align: center">
+    <div class="am-u-sm-10 am-u-sm-centered" style="text-align: center" v-show="ishide">
       <a class="am-btn am-btn-default am-radius" @click="clickmore(pageNum)">查看更多</a>
     </div>
 
@@ -60,7 +60,8 @@
          background:{
            backgroundImage: '',
          },
-         pageNum:[]
+         pageNum:[],
+         ishide:true
 
        }
 
@@ -89,6 +90,7 @@
 
         },
         clickmore:function (pageNum) {
+          this.ishide=false;
           this.reqAxios(pageNum,8)
 
         }
