@@ -33,8 +33,7 @@
                         <!--<span class="cxTwo">浏览量</span>&nbsp;&nbsp;-->
                     </div>
                     <div class="center-right">
-                        <button type="button" class="am-btn am-btn-primary am-round" style="margin-bottom: 15px;">提交作品
-                        </button>
+                        <router-link to="/workshow/submit"  class="am-btn am-btn-primary am-round" style="margin-bottom: 15px;">提交作品</router-link>
                     </div>
                 </div>
                 <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-5 am-thumbnails">
@@ -158,7 +157,7 @@
             this.reqAxios(0, 0, 1, 10);
           }else {
           this.searchAxios(0,0,1,10,this.search)
-            
+
           }
 
 

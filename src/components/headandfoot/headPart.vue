@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="nav-container">
-            <img src="../../../static/img/logo.png"/>
+            <img src="../../../static/img/logo.png" style="height: 60px;width: 200px"/>
         </div>
         <div class="myHeaderMsg">
             <p>

@@ -1,5 +1,5 @@
 <template>
-  <div class="hello compon_center">
+  <div class="firstType">
       <div class="center-box">
         <div class="content-title" style="height: 60px;">
           <span style="background: url(../../../static/img/content-title1.1.png) center center; width: 291px;">第一步</span>
@@ -10,20 +10,35 @@
         </div>
         <div class="content-box" style="border: solid 1px #F3F3F3; position: relative;">
           <h2>基本信息</h2>
+
           <div class="am-form-group">
-            <label v-if="this.getMakerWorkDisplay[0]" >{{this.getMakerWorkDisplay[0].dictDesc}}</label>
-            <textarea  v-model="workName" class="" rows="4" cols="90"  placeholder="为你的项目取个响亮的名字吧!"></textarea>
+            <label v-if="this.getMakerWorkDisplay[1]" >{{this.getMakerWorkDisplay[1].dictDesc}}</label>
+
+            <textarea  v-model="workName"  minlength="10" maxlength="100"  class="" rows="4" cols="90"   placeholder="为你的项目取个响亮的名字吧!"></textarea>
           </div>
           <div class="am-form-group" >
-            <label v-if="this.getMakerWorkDisplay[1]">{{this.getMakerWorkDisplay[1].dictDesc}}</label>
-            <select id="id_select1" class="selectpicker bla bla bli" v-model="teamSelect" style="width: 741px;" @change="show()">
-              <option selected  value="no" >个人作品不选择团队</option>
-              <option v-for="(item,index) in teambox"  v-bind:value="index" >{{item.teamName}}</option>
+            <label v-if="this.getMakerWorkDisplay[0]">{{this.getMakerWorkDisplay[0].dictDesc}}</label>
+            <select v-show="selectteam" class="selectpicker bla bla bli" v-model="titleclassify" style="width: 741px;" @change="classifyfirst()">
+              <option v-for="(item,index) in classify"  v-bind:value="index" >{{item.desc}}</option>
             </select>
+            <span v-show="newselect">{{this.classification}}</span>
           </div>
+          <div class="am-form-group" >
+            <label v-if="this.getMakerWorkDisplay[2]">{{this.getMakerWorkDisplay[2].dictDesc}}:</label>
+
+            <select  v-show="selectteam"  id="id_select1"   class="selectpicker bla bla bli" v-model="teamSelect" style="width: 741px;" @change="show()">
+              <option selected  value="no" >个人作品不选择团队</option>
+              <option  v-for="(item,index) in teambox"  v-bind:value="index" >{{item.teamName}}</option>
+            </select>
+            <span v-show="newselect">{{this.creatteam}}</span>
+            <div class="am-form-group" v-show="newselect"  id="newselect" style="margin-top: 50px;">
+
+            </div>
+          </div>
+
           <div class="am-form-group" v-show="ishide"  style="margin-top: 50px;">
             <label >团队分工:</label>
-            <div v-for="(item,index) in selectedTeam " class="team" style="margin-left: 95px;margin-top: -90px;" >
+            <div   v-for="(item,index) in  selectedTeam " class="team" style="margin-left: 95px;margin-top: -90px;" >
               <img :src="fileURL+item.avatar" style="width:100px;height: 100px; padding: 12px; border-radius: 50%;margin: 4% 0"/>
               <span>{{item.realName}}</span>
               <input type="hidden" name="workLaborId" v-bind:value="item.id"/>
@@ -37,9 +52,10 @@
               <input id="doc-form-file"  v-on:change="update($event)"  style="margin-left: 20px;"   type="file" multiple accept="image/*">
             </div>
             <div id="file-list"></div>
+            <div>{{fileCover}}</div>
           </div>
           <div class="am-form-group" style="margin-top: 50px;">
-            <label v-if="getMakerWorkDisplay[2]">{{this.getMakerWorkDisplay[2].dictDesc}}</label>
+            <label v-if="getMakerWorkDisplay[3]">{{this.getMakerWorkDisplay[3].dictDesc}}</label>
             <input type="text" name="" value="" v-model="teachervalue">
             <button type="button" class="am-btn am-btn-primary" @click="searchT()">搜索</button>
           </div>
@@ -67,20 +83,21 @@
           </div>
 
           <div class="am-form-group">
-            <label v-if="getMakerWorkDisplay[3]" >{{this.getMakerWorkDisplay[3].dictDesc}}</label>
+            <label v-if="getMakerWorkDisplay[4]" >{{this.getMakerWorkDisplay[4].dictDesc}}</label>
             <textarea v-model="productIdeas" class="" rows="4" cols="136"  placeholder="给我们渗透渗透你们的创意闪光点来自哪里，有怎样的光明前程吧！"></textarea>
           </div>
           <div class="am-form-group">
-            <label v-if="getMakerWorkDisplay[4]">{{this.getMakerWorkDisplay[4].dictDesc}}</label>
+            <label v-if="getMakerWorkDisplay[5]">{{this.getMakerWorkDisplay[5].dictDesc}}</label>
             <textarea v-model="referenceData" class="" rows="4" cols="136"  placeholder="你们参考了哪些资料，访问了哪些网站？"></textarea>
           </div>
           <div class="am-form-group">
-            <label v-if="this.getMakerWorkDisplay[5]">{{this.getMakerWorkDisplay[5].dictDesc}}</label>
+            <label v-if="this.getMakerWorkDisplay[6]">{{this.getMakerWorkDisplay[6].dictDesc}}</label>
             <textarea v-model="knowledgeApplication" class="" rows="4" cols="136"  placeholder="你们运用了哪些课堂知识,如有没有用到爱因斯坦的E=mc2"></textarea>
           </div>
           <a style="width: 120px;margin: 50px auto;display: block;">
-           <button style="width: 120px;" type="button" class="am-btn am-btn-default" @click="save()">下一步</button>
+           <button style="width: 120px;" type="submit" class="am-btn am-btn-default" @click="save()">下一步</button>
           </a>
+
         </div>
       </div>
   </div>
@@ -101,8 +118,10 @@
         teamSelect: '',
         teachervalue: '',
         ishide: false,
+        teamhide:false,
         teacherhide: false,
         teambox: [],
+        classify:[],
         teamboxtitle: '',
         teacherdetail: [],
         teacheruser: [],
@@ -120,10 +139,20 @@
         productIdeas: '',
         referenceData: '',
         knowledgeApplication: '',
+        titleclassify:'',
+        classifyselect:'',
         workDisplay: [],
         workLabor: [],
-        firsthiden:true
-
+        firsthiden:true,
+        // 数据回显
+        workId: this.$route.params.workId,
+        firstallmsg:'',
+        creatteam:'',
+        selectteam:true,
+        newselect:false,
+        userLabors:[],
+        selectuser:[],
+        classification:''
       }
     },
 
@@ -133,7 +162,7 @@
         var param = new FormData(); //创建form对象
         param.append('file', file, file.name);//通过append向form对象添加数据
         param.append('chunk', '0');//添加form表单中其他数据
-        //console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
+        console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
         let config = {
           headers: {'Content-Type': 'multipart/form-data'}
         };  //添加请求头
@@ -144,14 +173,20 @@
 
       },
       show: function () {
-        if (this.teamSelect == 'no') {
-          this.ishide = false
+        if (this.teamSelect =='no') {
+          this.ishide = false;
+          this.selectionTeam=''
         } else {
           this.ishide = true;
           // 团队详情
           this.selectedTeam = this.teambox[this.teamSelect].sysUserDTOList;
-          this.selectionTeam=this.teambox[this.teamSelect].teamName;
+          this.selectionTeam=this.teambox[this.teamSelect].id;
+          return false
         }
+
+      },
+      classifyfirst(){
+        this.classifyselect=this.classify[this.titleclassify].value
 
       },
       searchT() {
@@ -179,7 +214,7 @@
         var params1 = new URLSearchParams();
         params1.append('userId', userId);
         AXIOS.post('common/getOtherUser', params1).then(response => {
-          //console.log(response.data);
+          console.log(response.data);
           this.teacheruser = response.data;
           this.teacherdetail = response.data.sysUser
         })
@@ -195,28 +230,38 @@
         $("input[name='workLaborValue']").each(function (i,item) {
           vue.workLabor[i] = {key: idArray[i].value,value:item.value}
         });
-        this.workDisplay.push( {key: this.getMakerWorkDisplay[0].dictValue, value:this.workName});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[3].dictValue, value:this.productIdeas});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[4].dictValue, value:this.referenceData});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[5].dictValue, value:this.knowledgeApplication});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[6].dictValue, value:this.fileCover});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[2].dictValue, value:this.teacheruserId});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[1].dictValue, value:this.selectionTeam})
+        this.workDisplay.push( {key: this.getMakerWorkDisplay[0].dictValue, value:this.classifyselect});
+        this.workDisplay.push( {key: this.getMakerWorkDisplay[1].dictValue, value:this.workName});
+        this.workDisplay.push({key: this.getMakerWorkDisplay[2].dictValue, value:this.selectionTeam});
+        this.workDisplay.push({key: this.getMakerWorkDisplay[3].dictValue, value:this.teacheruserId});
+        this.workDisplay.push({key: this.getMakerWorkDisplay[4].dictValue, value:this.productIdeas});
+        this.workDisplay.push({key: this.getMakerWorkDisplay[5].dictValue, value:this.referenceData});
+        this.workDisplay.push({key: this.getMakerWorkDisplay[6].dictValue, value:this.knowledgeApplication});
+        this.workDisplay.push({key: this.getMakerWorkDisplay[7].dictValue, value:this.fileCover})
         this.$emit('firstType',this.workDisplay,this.workLabor,this.firsthiden);
       },
 
     },
     created: function () {
       // this.workDisplay[0].key = "创意来源";
+
       AXIOS.get('makerWorks/userCreateTeams', {}).then(response => {
         this.teambox = response.data;
+      }).catch(response => {
+        this.errors.push(response)
+      });
+      //获取分类
+      AXIOS.get('common/getGlobalType', {}).then(response => {
+        var classify=response.data;
+        classify.splice(0,1);
+        this.classify=classify;
       }).catch(response => {
         this.errors.push(response)
       });
       // 获取标题
       AXIOS.get('makerWorks/getMakerWorkDisplay', {}).then(response => {
         this.getMakerWorkDisplay = response.data;
-        //console.log(this.getMakerWorkDisplay[0].dictDesc)
+        console.log(this.getMakerWorkDisplay[0].dictDesc)
       }).catch(response => {
         this.errors.push(response)
       });
@@ -230,6 +275,51 @@
           $('#file-list').html(fileNames);
         });
       });
+  // 数据回显
+      AXIOS.get('makerWorks/editMakerWork', {
+        params:{
+          makerWorkId: this.$route.params.workId,
+        }
+      }).then(response => {
+        this.firstallmsg = response.data;
+        this.workName=response.data.makerWorkDisplays[1].content;
+        // this.titleclassify=response.data.makerWorkDisplays[0].content
+        this.productIdeas=response.data.makerWorkDisplays[3].content;
+        this.referenceData=response.data.makerWorkDisplays[4].content;
+        this.knowledgeApplication=response.data.makerWorkDisplays[5].content;
+        this.fileCover=response.data.makerWorkDisplays[6].content;
+        this.creatteam=response.data.makerWorkDisplays[2].content;
+         this.classification=response.data.makerWorkDisplays[0].content
+        this.userLabors=response.data.userLabors;
+        if(this.creatteam.length>0){
+          this.selectteam=false;
+          this.newselect=true;
+      AXIOS.get('team/MakerTeamParticulars',{
+        params:{
+          makerTeamId:this.firstallmsg.teamId
+        }
+      }).then(response=>{
+        this.selectuser=response.data.sysUser;
+        var html='';
+        for (var i=0;i<this.userLabors.length;i++){
+          this.userLabors[i].realName = this.selectuser.realName;
+          this.userLabors[i].avatar = this.selectuser.avatar;
+          html+='<div  class="team"  style="margin-left: 95px;margin-top: -90px;" >'
+          html+='<img src='+this.fileURL+this.userLabors[i].avatar+' style="width:100px;height: 100px; padding: 12px; border-radius: 50%;margin: 4% 0"/>'
+          html+='<span>'+this.userLabors[i].realName+'</span>'
+          html+=' <input type="hidden" name="workLaborId" value='+this.userLabors[i].workId+'/>'
+          html+= '<input type="text"   name="workLaborValue" value='+this.userLabors[i].userLabor+' /></div>'
+          $('#newselect').html(html);
+        }
+      })
+        };
+      }).catch(response => {
+        this.errors.push(response)
+      });
+      // 作品分类
+    if(this.classification.length>0){
+
+    }
 
 
     }
@@ -358,4 +448,5 @@
   .btn-group .bootstrap-select {
     width: 650px;
   }
+
 </style>
