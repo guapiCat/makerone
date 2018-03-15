@@ -220,6 +220,7 @@ const Routers = [
   },{
     path:"/user/psonSpace",
     name:"PsonSpace",
+    meta: {requireAuth:true},
     component:PsonSpace
   },{
     path:"/user/sclCource",
