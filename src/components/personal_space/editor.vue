@@ -95,7 +95,14 @@
       'quilleditor': quillEditor
     },
     mounted(){
-      this.content=this.value
+      AXIOS.get('makerWorks/editMakerWork', {
+        params:{
+          makerWorkId: this.$route.params.workId,
+        }
+      }).then(response => {
+        this.lastmsg=response.data
+        this.content=this.lastmsg.makerWorkDisplays[12].content;
+      });
     },
     watch:{
       'value'(newVal, oldVal) {

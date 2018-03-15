@@ -220,6 +220,7 @@ const Routers = [
   },{
     path:"/user/psonSpace",
     name:"PsonSpace",
+    meta: {requireAuth:true},
     component:PsonSpace
   },{
     path:"/user/sclCource",
@@ -244,10 +245,16 @@ const Routers = [
     component:WorkShow
   },
   {
-    path:'/user/uploadAlltype',
+    path:'/user/uploadAlltype/:workId',
+    name:'unuploadAlltype',
+    component:uploadAlltype
+  },
+  {
+    path:'/workshow/submit',
     name:'uploadAlltype',
     component:uploadAlltype
   },
+
   {
     path:'/user/editor',
     name:'editor',

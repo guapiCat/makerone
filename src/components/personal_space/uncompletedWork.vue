@@ -21,7 +21,7 @@
         <div class="am-g">
           <div class="am-u-sm-6 am-u-sm-offset-6" style="margin-top: 2%;">
             <a class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;" @click="delect(item.id)">移除作品</a>
-            <router-link :to="{name: '',params:{ }}"  class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;float: right;margin-right: 17%;">编辑作品</router-link>
+            <router-link :to="{name: 'unuploadAlltype',params:{workId:item.id}}"  class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;float: right;margin-right: 17%;">编辑作品</router-link>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@
             workId:objectId
           }
         }).then(response=>{
-          //console.log(response.data);
+          console.log(response.data);
           window.location.reload();
           alert('删除成功')
         })
