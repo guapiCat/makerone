@@ -18,7 +18,7 @@
               </div>
               <div class="content-title-hand-right">
                 <h5>{{allMsg.makerCommunityDTO.communityName}}</h5>
-                <p>创建时间：<span>{{allMsg.makerCommunityDTO.creatTime}}</span></p>
+                <p>创建时间：<span>{{allMsg.makerCommunityDTO.creatDate}}</span></p>
                 <p>需要人数：<span>{{allMsg.needNum}}</span></p>
                 <p>当前人数：<span>{{allMsg.nowNum}}</span></p>
                 <p>发起学校：<span>{{allMsg.makerCommunityDTO.schoolName}}</span></p>

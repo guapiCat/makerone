@@ -65,7 +65,7 @@
                         </div>
                         <div style="margin-bottom: 5%;">
                             <span style="color: #818181">上传时间</span>&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-                                style="color: #818181">{{allMsg.createTime}}</span>
+                                style="color: #818181">{{allMsg.createDate}}</span>
                         </div>
                         <div style="text-align: center;width: 100%;">
                             <button v-on:click="addColl" class="am-btn am-btn-primary">

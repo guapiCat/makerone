@@ -35,7 +35,7 @@
                             </div>
                             <div class="am-u-sm-6" style="padding-left: 25px;padding-top:10px;text-align: left">
                                 <span>{{item.makerCommunity.communityName}}</span><br/>
-                                创建时间:<span>{{item.makerCommunity.creatTime}}</span><br/>
+                                创建时间:<span>{{item.makerCommunity.createDate}}</span><br/>
                                 需要人数:<span>{{item.maxNum}}</span><br/>
                                 当前人数:<span>{{item.makerCommunityNum}}</span><br/>
                                 团队介绍:<span>{{item.makerCommunity.communityIntro}}</span>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="am-u-sm-6" style="padding-left: 25px;padding-top:10px;text-align: left">
                                 <span>{{item.teamName}}</span><br/>
-                                创建时间:<span>{{item.createTime}}</span><br/>
+                                创建时间:<span>{{item.createDate}}</span><br/>
                                 <!--需要人数:<span></span><br/>-->
                                 <!--当前人数:<span></span><br/>-->
                                 团队介绍:<span>{{item.teamIntro}}</span>
