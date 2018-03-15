@@ -27,15 +27,10 @@
 
       <div class="am-form-group" v-show="ishide">
         <label v-if="getMakerWorkDisplay[16]">{{getMakerWorkDisplay[16].dictDesc}}:</label>
-        <label class="am-radio-inline">
-          <input type="radio"  value="" name="docInlineRadio" @click="notjoin()">否
-        </label>
-        <label class="am-radio-inline">
-          <input type="radio" name="docInlineRadio" @click="joinactivity()"><span>是</span>
-        </label>
+        <span style="margin-top: 5px;display: block;">(必须选择活动)</span>
       </div>
-      <div class="activity" style="float: left;margin-left: 214px;margin-top: -48px;" v-show="ishide">
-        <select name="" style="width: 200px;" v-show="ishidden"  v-model="selectActivity" @change="selectAct()">
+      <div class="activity" style="float: left;margin-left: 153px;margin-top: -78px;" >
+        <select name="" style="width: 200px;"  v-model="selectActivity" @change="selectAct()">
           <option  v-for="(item,index) in activity"  v-bind:value="index">{{item.activityName}}</option>
         </select>
       </div>
@@ -137,49 +132,57 @@ export default {
     notjoin(){
       this.ishidden=false
     },
-    joinactivity(){
-      this.ishidden=true;
-    },
+
     selectAct(){
       this.selectActivityname=this.activity[this.selectActivity].id
     },
     submitData(){
-      this.thirddisplay.push({key: this.getMakerWorkDisplay[12].dictValue, value:this.introduce});
-      this.thirddisplay.push({key: this.getMakerWorkDisplay[13].dictValue, value:this.myworkscontent});
-      this.thirddisplay.push({key: this.getMakerWorkDisplay[14].dictValue, value:this.difficulty });
-      this.thirddisplay.push({key: this.getMakerWorkDisplay[15].dictValue, value:this.summarize});
-      this.thirddisplay.push({key: this.getMakerWorkDisplay[16].dictValue, value:this.selectActivityname});
-      var newarray=this.firstdisplay.concat(this.seconddata);
-      var newarraysecond=newarray.concat(this.thirddisplay);
-      this.alldataplay=newarraysecond;
-      var params = new URLSearchParams();
-      params.append('makerWorkDisplays',JSON.stringify(this.alldataplay) );
-      params.append('userLabors',JSON.stringify(this.firstdisplayname));
-      params.append('makerWorksSteps',JSON.stringify(this.secondtype));
-      params.append('upMakerWorkId',this.upMakerWorkId)
-      params.append('type','3');
-      AXIOS.post('makerWorks/makerWorksSubmit', params).then(response => {
-        alert("提交成功,待审核！")
-      })
+      if(typeof(this.upMakerWorkId)=="undefined"){
+        this.upMakerWorkId='';
+        this.thirddisplay.push({key: this.getMakerWorkDisplay[12].dictValue, value:this.introduce});
+        this.thirddisplay.push({key: this.getMakerWorkDisplay[13].dictValue, value:this.myworkscontent});
+        this.thirddisplay.push({key: this.getMakerWorkDisplay[14].dictValue, value:this.difficulty });
+        this.thirddisplay.push({key: this.getMakerWorkDisplay[15].dictValue, value:this.summarize});
+        this.thirddisplay.push({key: this.getMakerWorkDisplay[16].dictValue, value:this.selectActivityname});
+        var newarray=this.firstdisplay.concat(this.seconddata);
+        var newarraysecond=newarray.concat(this.thirddisplay);
+        this.alldataplay=newarraysecond;
+        var params = new URLSearchParams();
+        params.append('makerWorkDisplays',JSON.stringify(this.alldataplay) );
+        params.append('userLabors',JSON.stringify(this.firstdisplayname));
+        params.append('makerWorksSteps',JSON.stringify(this.secondtype));
+        params.append('upMakerWorkId',this.upMakerWorkId)
+        params.append('type','3');
+        AXIOS.post('makerWorks/makerWorksSubmit', params).then(response => {
+          alert("提交成功,待审核！")
+        })
+
+      }
+
     },
     preserve(){
-      this.thirddisplay.push({key: this.getMakerWorkDisplay[12].dictValue, value:this.introduce});
-      this.thirddisplay.push({key: this.getMakerWorkDisplay[13].dictValue, value:this.myworkscontent});
-      this.thirddisplay.push({key: this.getMakerWorkDisplay[14].dictValue, value:this.difficulty });
-      this.thirddisplay.push({key: this.getMakerWorkDisplay[15].dictValue, value:this.summarize});
-      this.thirddisplay.push({key: this.getMakerWorkDisplay[16].dictValue, value:this.selectActivityname});
-      var newarray=this.firstdisplay.concat(this.seconddata);
-      var newarraysecond=newarray.concat(this.thirddisplay);
-      this.alldataplay=newarraysecond;
-      var params = new URLSearchParams();
-      params.append('makerWorkDisplays',JSON.stringify(this.alldataplay) );
-      params.append('userLabors',JSON.stringify(this.firstdisplayname));
-      params.append('makerWorksSteps',JSON.stringify(this.secondtype));
-      params.append('upMakerWorkId',this.upMakerWorkId)
-      params.append('type','2');
-      AXIOS.post('makerWorks/makerWorksSubmit', params).then(response => {
-        alert("保存成功")
-      })
+      if(typeof(this.upMakerWorkId)=="undefined"){
+        this.upMakerWorkId='';
+        this.thirddisplay.push({key: this.getMakerWorkDisplay[12].dictValue, value:this.introduce});
+        this.thirddisplay.push({key: this.getMakerWorkDisplay[13].dictValue, value:this.myworkscontent});
+        this.thirddisplay.push({key: this.getMakerWorkDisplay[14].dictValue, value:this.difficulty });
+        this.thirddisplay.push({key: this.getMakerWorkDisplay[15].dictValue, value:this.summarize});
+        this.thirddisplay.push({key: this.getMakerWorkDisplay[16].dictValue, value:this.selectActivityname});
+        var newarray=this.firstdisplay.concat(this.seconddata);
+        var newarraysecond=newarray.concat(this.thirddisplay);
+        this.alldataplay=newarraysecond;
+        var params = new URLSearchParams();
+        params.append('makerWorkDisplays',JSON.stringify(this.alldataplay) );
+        params.append('userLabors',JSON.stringify(this.firstdisplayname));
+        params.append('makerWorksSteps',JSON.stringify(this.secondtype));
+        params.append('upMakerWorkId',this.upMakerWorkId)
+        params.append('type','2');
+        AXIOS.post('makerWorks/makerWorksSubmit', params).then(response => {
+          alert("保存成功")
+        })
+
+      }
+
     }
   }
 
