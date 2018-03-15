@@ -5,7 +5,7 @@
       <div class="am-u-sm-7 am-u-sm-centered" style="width:1200px;padding-top: 50px;padding-bottom: 70px">
         <span style="float: left"><img src="../../../static/img/icon_address.png"></span>
         <div style="float: left;padding-top: 6px;margin-left: 3px;">
-          <span style="color: #999999;">益谷创客平台-个人空间-我的作品</span>
+          <span style="color: #999999;">{{schoolESB}}-个人空间-我的作品</span>
         </div>
       </div>
 
@@ -45,12 +45,16 @@
   import completeWork from './completeWork'
 
   export default {
-    name: 'hello',
+    name: 'myWorks',
     props: {
       fileURL: {
         type: String,
         required: true
-      }
+      },
+        schoolESB: {
+            type: String,
+            required: true
+        }
     },
     components:{uncompleteWork, completeWork},
     data () {

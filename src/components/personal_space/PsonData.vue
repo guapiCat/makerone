@@ -6,7 +6,7 @@
                 <span style="float: left"><img src="../../../static/img/icon_address.png"></span>
 
                 <div style="float: left;padding-top: 6px;margin-left: 3px;">
-                    <span style="color: #999999;">益谷创客平台-个人空间-个人资料</span>
+                    <span style="color: #999999;">{{schoolESB}}-个人空间-个人资料</span>
                 </div>
             </div>
             <div class="am-u-sm-7 am-u-sm-centered" style="width:1200px;padding-top: 10px;">
@@ -59,6 +59,12 @@
     import psonset from './PsonSet'
 
     export default {
+        props: {
+            schoolESB: {
+                type: String,
+                required: true
+            }
+        },
         name: 'hello',
         components:{psonset},
         data () {

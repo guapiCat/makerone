@@ -5,7 +5,7 @@
                 <span style="float: left"><img src="../../../static/img/icon_address.png"></span>
 
                 <div style="float: left;padding-top: 6px;margin-left: 3px;">
-                    <span style="color: #999999;">益谷创客平台-个人空间-我的团队</span>
+                    <span style="color: #999999;">{{schoolESB}}-个人空间-我的团队</span>
                 </div>
             </div>
 
@@ -45,6 +45,12 @@
     import teamJoin from './TemJoin'
     import teamCre from './TemCre'
     export default {
+        props: {
+            schoolESB: {
+                type: String,
+                required: true
+            }
+        },
         name: 'hello',
         components:{teamJoin,teamCre},
         data () {

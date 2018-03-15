@@ -3,7 +3,7 @@
         <div class="workshow" style="width: 1200px;margin: 50px auto; ">
             <div class="center-title" style="margin-bottom: 20px; color: #969696;">
                 <span> <img src="../../../static/img/icon_address.png"
-                            alt=""/><i>益谷创客平台-作品展示-<span>{{allMsg.worksName}}</span></i></span>
+                            alt=""/><i>{{schoolESB}}-作品展示-<span>{{allMsg.worksName}}</span></i></span>
             </div>
             <div class="center-box" style="border: solid 3px #f3f3f3 ; padding: 20px ; background-color: #fbfbfb;">
                 <!--titile-->
@@ -91,6 +91,12 @@
     import comment from '../comment/comment'
 
     export default {
+        props: {
+            schoolESB: {
+                type: String,
+                required: true
+            }
+        },
         name: "workshowdetail",
         component:{comment},
         data () {

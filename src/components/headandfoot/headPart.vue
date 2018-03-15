@@ -59,9 +59,15 @@
 
                 <div class="mySs_xx">
                     <p>
-                        <router-link v-if="!psonImg" :to="{name: 'login',params: {loginType: 2}}"><span>登陆</span></router-link>
-                        <img v-if="psonImg" style="width: 50px;height: 50px;border-radius: 50%;display: block;margin-top: -12px;" :src="fileURL+psonImg" alt=""/>
+                        <router-link v-if="!psonImg" :to="{name: 'login',params: {loginType: 2}}"><span class="go-login">登陆</span>
+                        </router-link>
+
+                        <img v-if="psonImg"
+                             style="width: 30px;height: 30px;border-radius: 50%;display: block;margin-top: -12px;margin-left: 5px;"
+                             :src="fileURL+psonImg" alt=""/>
+                        <span v-if="psonName" style="float: right;color: white;">{{psonName}}</span>
                     </p>
+                <div v-if="psonImg" v-on:click="logOut" class="log-out">注销</div>
                 </div>
 
             </div>
@@ -81,9 +87,10 @@
             return {
                 isHidden: false,
                 searchInput: '',
-                allMsg:"",
-                fileURL:"http://192.168.0.106:9000/",
-                psonImg:false
+                allMsg: "",
+                fileURL: "http://192.168.0.106:9000/",
+                psonImg: false,
+                psonName:false
             }
         },
         methods: {
@@ -93,11 +100,27 @@
             close(){
                 this.isHidden = false;
                 this.searchInput = ''
+            },
+            logOut(){
+                var params = new URLSearchParams();
+                AXIOS.get('preUser/LogOut', {
+                    params: {}
+                }).then(response => {
+                    console.log(response.data);
+                    sessionStorage.removeItem("TID");
+                    sessionStorage.removeItem("UID");
+                    sessionStorage.removeItem("psonImg");
+                    sessionStorage.removeItem("psonName");
+                    location.reload();
+                }).catch(e => {
+                    this.errors.push(e);
+                });
             }
         },
-        created:function(){
-            this.psonImg=sessionStorage.getItem("psonImg");
-            //console.log(psonImg);
+        created: function () {
+            this.psonImg = sessionStorage.getItem("psonImg");
+            this.psonName = sessionStorage.getItem("psonName");
+            console.log(psonImg);
         }
     }
 
@@ -107,7 +130,19 @@
 
 <style scoped>
     @import "../../../static/css/indexheader.css";
-
+    .go-login{
+        color: white;
+    }
+    .go-login:hover{
+        color:yellow;
+    }
+    .log-out{
+        margin-left:40px;
+        color: white;
+    }
+    .log-out:hover{
+        color: yellow;
+    }
     .seachlist {
         position: absolute;
         left: 74px;

@@ -2,7 +2,7 @@
     <div>
         <div class="workshow" style="width: 1200px;margin: 50px auto;">
             <div class="center-title" style="margin-bottom: 20px; color: #969696;">
-                <span> <img src="../../../static/img/icon_address.png" alt=""/><i>益谷创客平台-作品展示</i></span>
+                <span> <img src="../../../static/img/icon_address.png" alt=""/><i>{{schoolESB}}-作品展示</i></span>
 
                 <div class="classify">
                     <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
@@ -33,14 +33,17 @@
                         <!--<span class="cxTwo">浏览量</span>&nbsp;&nbsp;-->
                     </div>
                     <div class="center-right">
-                        <router-link to="/workshow/submit"  class="am-btn am-btn-primary am-round" style="margin-bottom: 15px;">提交作品</router-link>
+                        <router-link to="/workshow/submit" class="am-btn am-btn-primary am-round"
+                                     style="margin-bottom: 15px;">提交作品
+                        </router-link>
                     </div>
                 </div>
                 <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-5 am-thumbnails">
                     <!--作品展示-->
                     <li v-for="item in myProducts">
                         <router-link :to="{name: 'workshowdetail',params: {workId: item.makerWorks.id}}">
-                            <img style="height: 166px;width: 220px" class="am-thumbnail" :src="fileURL+item.makerWorks.worksCoverImage"/>
+                            <img style="height: 166px;width: 220px" class="am-thumbnail"
+                                 :src="fileURL+item.makerWorks.worksCoverImage"/>
 
                             <p class="q_coverName">{{item.makerWorks.worksName}}</p>
 
@@ -50,6 +53,7 @@
                                 <a class="q_works_user">{{item.realName}}</a>
                                 <a class="q_dianzan"><img src="../../../static/img/upvote.png"/><span>{{item.makerWorks.worksThumbsUpNum}}</span></a>
                                 <a class="q_liulan"><img src="../../../static/img/browse.png"/><span>{{item.makerWorks.worksScanNum}}</span></a>
+
                                 <div class="clear"></div>
                             </div>
                         </router-link>
@@ -57,8 +61,8 @@
                     </li>
 
                 </ul>
-              <div class="nodata" v-show="hiddendata">
-              </div>
+                <div class="nodata" v-show="hiddendata">
+                </div>
 
             </div>
         </div>
@@ -70,16 +74,20 @@
     import {AXIOS} from '../../http-common'
     export default {
         name: "works-show",
-      props: {
-        fileURL: {
-          type: String,
-          required: true
-        }
-      },
+        props: {
+            fileURL: {
+                type: String,
+                required: true
+            },
+            schoolESB: {
+                type: String,
+                required: true
+            }
+        },
         data () {
             return {
-              search:'',
-              hiddendata:false,
+                search: '',
+                hiddendata: false,
                 proClass: [],
                 proSee: [
                     "时间",
@@ -113,60 +121,59 @@
                 }).then(response => {
                     this.myProducts = response.data.list;//将zuopins转为为后台数据
                     //console.log(response.data.list);
-                  if(this.myProducts.length<=0){
-                    this.hiddendata=true
-                  }else {
-                    this.hiddendata=false
-                  }
+                    if (this.myProducts.length <= 0) {
+                        this.hiddendata = true
+                    } else {
+                        this.hiddendata = false
+                    }
                 }).catch(e => {
                     this.errors.push(e);
                 });
             },
-          searchAxios: function (makeWorType, sortType, pageNum, pageSize,makerWorksName) {
-            AXIOS.get('makerWorks/sortMakerWorks', {
-              params: {
-                "makeWorType": makeWorType,
-                "sortType": sortType,
-                "pageNum": pageNum,
-                "pageSize": pageSize,
-                "makerWorksName":makerWorksName
-              }
-            }).then(response => {
-              this.myProducts = response.data.list;//将zuopins转为为后台数据
-              //console.log(response.data.list);
-              if(this.myProducts.length<=0){
-                this.hiddendata=true
-              }else {
-                this.hiddendata=false
-              }
-            }).catch(e => {
-              this.errors.push(e);
-            });
-          }
+            searchAxios: function (makeWorType, sortType, pageNum, pageSize, makerWorksName) {
+                AXIOS.get('makerWorks/sortMakerWorks', {
+                    params: {
+                        "makeWorType": makeWorType,
+                        "sortType": sortType,
+                        "pageNum": pageNum,
+                        "pageSize": pageSize,
+                        "makerWorksName": makerWorksName
+                    }
+                }).then(response => {
+                    this.myProducts = response.data.list;//将zuopins转为为后台数据
+                    //console.log(response.data.list);
+                    if (this.myProducts.length <= 0) {
+                        this.hiddendata = true
+                    } else {
+                        this.hiddendata = false
+                    }
+                }).catch(e => {
+                    this.errors.push(e);
+                });
+            }
         },
-      computed:{
-        searchval:function(){
-          var searchval=document.getElementById("search").value
-          return this.search=searchval
-        }
+        computed: {
+            searchval: function () {
+                var searchval = document.getElementById("search").value
+                return this.search = searchval
+            }
 
-      },
+        },
         created: function () {
-          this.searchval;
-          if (this.search==''){
-            this.reqAxios(0, 0, 1, 10);
-          }else {
-          this.searchAxios(0,0,1,10,this.search)
+            this.searchval;
+            if (this.search == '') {
+                this.reqAxios(0, 0, 1, 10);
+            } else {
+                this.searchAxios(0, 0, 1, 10, this.search)
 
-          }
-
+            }
 
             var params = new URLSearchParams();
             AXIOS.get('common/getGlobalType', {
-                params:{}
+                params: {}
             }).then(response => {
                 //console.log(response);
-                for(var i=0;response.data;i++){
+                for (var i = 0; response.data; i++) {
                     this.proClass.push(response.data[i].desc);
                 }
             }).catch(e => {
@@ -183,12 +190,14 @@
     .on {
         background: #FFCA57 !important;
     }
-    .nodata{
-      width: 99%;
-      height: 400px;
-      margin: 0 auto;
-      background: url(../../../static/img/nodata.png) top center no-repeat;
+
+    .nodata {
+        width: 99%;
+        height: 400px;
+        margin: 0 auto;
+        background: url(../../../static/img/nodata.png) top center no-repeat;
     }
+
     .classify img {
         height: 25px;
         width: 29px;

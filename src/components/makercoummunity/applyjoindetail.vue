@@ -4,7 +4,7 @@
     <div class="am-u-sm-8 am-u-sm-centered" style="padding-top: 50px;padding-bottom: 70px">
       <span style="float: left"><img src="../../../static/img/icon_address.png"></span>
       <div style="float: left;padding-top: 6px;margin-left: 3px;">
-        <span style="color: #999999;">益谷创客平台-创客项目-加入社团</span>
+        <span style="color: #999999;">{{schoolESB}}-创客项目-加入社团</span>
       </div>
     </div>
 
@@ -52,6 +52,12 @@
 <script type="es6">
     import {AXIOS} from '../../http-common'
     export default {
+        props: {
+            schoolESB: {
+                type: String,
+                required: true
+            }
+        },
         name: "applyjoindetail",
         data:function(){
             return {

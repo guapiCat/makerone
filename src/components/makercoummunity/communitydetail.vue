@@ -2,7 +2,7 @@
     <div>
       <div class="workshow" style="width: 1200px;margin: 50px auto; ">
         <div class="center-title" style="margin-bottom: 20px; color: #969696;">
-          <span> <img src="../../../static/img/icon_address.png" alt="" /><i>益谷创客平台-创客社团-<span>社团详情</span></i></span>
+          <span> <img src="../../../static/img/icon_address.png" alt="" /><i>{{schoolESB}}-创客社团-<span>社团详情</span></i></span>
         </div>
         <div class="center-box" style="text-align: center; border: solid 1px #f3f3f3; border-bottom: solid 5px #FAC952; padding: 20px ; background-color: #EEEEEE;">
           <h1>{{allMsg.makerCommunityDTO.communityName}}</h1>
@@ -94,7 +94,11 @@
         fileURL: {
           type: String,
           required: true
-        }
+        },
+          schoolESB: {
+              type: String,
+              required: true
+          }
       },
         data:function(){
             return {

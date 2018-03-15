@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <component :is="currentView"></component>
-    <router-view :fileURL="fileURL" v-on:voteReq="voteReq"/>
+    <router-view class="my-body" :schoolESB="schoolESB" :fileURL="fileURL" v-on:voteReq="voteReq"/>
     <footPart></footPart>
 
 
@@ -22,7 +22,8 @@
     data (){
       return {
         fileURL: 'http://192.168.0.103:9000/',
-        currentView: ''
+        currentView: '',
+          schoolESB:"益谷创客平台"
       }
     },
     watch:{
@@ -76,4 +77,7 @@
 </script>
 
 <style>
+    .my-body{
+        min-height: 700px;;
+    }
 </style>

@@ -10,7 +10,7 @@
         <!--content-->
         <div class="workshow compon_center" style="width: 1200px;margin: 50px auto; ">
             <div class="center-title" style="margin-bottom: 20px; color: #969696;">
-                <span> <img src="../../../static/img/icon_address.png" alt=""/><i style="margin-left: 15px;">益谷创客平台-我的社团-<span>我加入的社团</span></i></span>
+                <span> <img src="../../../static/img/icon_address.png" alt=""/><i style="margin-left: 15px;">{{schoolESB}}-我的社团-<span>我加入的社团</span></i></span>
             </div>
             <div class="am-panel-group" id="accordion">
                 <div class="am-panel am-panel-default">
@@ -175,6 +175,12 @@
     import {AXIOS} from '../../http-common'
 
     export default {
+        props: {
+            schoolESB: {
+                type: String,
+                required: true
+            }
+        },
         name: 'myTeam',
         data () {
             return {

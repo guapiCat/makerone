@@ -21,7 +21,7 @@
                     <div class="center-left">
                         <i style="color:#000;">排序:</i>&nbsp;&nbsp;&nbsp;
                         <span class="title" v-on:click="two(index)" v-for="item,index in metSee"
-                              v-bind:class="{on:index==orderStr}" style="margin-left: 10px">{{item}}</span>
+                              v-bind:class="{onMat:index==orderStr}" style="margin-left: 10px">{{item}}</span>
                         <!--<span class="title">下载量</span>&nbsp;&nbsp;-->
                     </div>
                 </div>
@@ -194,7 +194,7 @@
         display: block;
     }
 
-    .on {
+    .onMat {
         background-color: #f1cd3d;
     }
 
