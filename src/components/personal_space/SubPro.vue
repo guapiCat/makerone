@@ -21,7 +21,7 @@
             <select v-show="selectteam" class="selectpicker bla bla bli" v-model="titleclassify" style="width: 741px;" @change="classifyfirst()">
               <option v-for="(item,index) in classify"  v-bind:value="index" >{{item.desc}}</option>
             </select>
-            <span v-show="newselect">{{this.classification}}</span>
+            <span v-show="newselect">:{{this.changeclass}}</span>
           </div>
           <div class="am-form-group" >
             <label v-if="this.getMakerWorkDisplay[2]">{{this.getMakerWorkDisplay[2].dictDesc}}:</label>
@@ -30,7 +30,7 @@
               <option selected  value="no" >个人作品不选择团队</option>
               <option  v-for="(item,index) in teambox"  v-bind:value="index" >{{item.teamName}}</option>
             </select>
-            <span v-show="newselect">{{this.creatteam}}</span>
+            <span v-show="newselect">{{this.creatteamname}}</span>
             <div class="am-form-group" v-show="newselect"  id="newselect" style="margin-top: 50px;">
 
             </div>
@@ -122,6 +122,7 @@
         teacherhide: false,
         teambox: [],
         classify:[],
+        classify1:[],
         teamboxtitle: '',
         teacherdetail: [],
         teacheruser: [],
@@ -152,7 +153,9 @@
         newselect:false,
         userLabors:[],
         selectuser:[],
-        classification:''
+        classification:'',
+        changeclass:'',
+        creatteamname:[]
       }
     },
 
@@ -186,7 +189,7 @@
 
       },
       classifyfirst(){
-        this.classifyselect=this.classify[this.titleclassify].value
+        this.classifyselect=this.classify[this.titleclassify-1].value
 
       },
       searchT() {
@@ -230,9 +233,18 @@
         $("input[name='workLaborValue']").each(function (i,item) {
           vue.workLabor[i] = {key: idArray[i].value,value:item.value}
         });
-        this.workDisplay.push( {key: this.getMakerWorkDisplay[0].dictValue, value:this.classifyselect});
+        if(this.titleclassify.length>0){
+          this.workDisplay.push( {key: this.getMakerWorkDisplay[0].dictValue, value:this.titleclassify});
+        }else {
+          this.workDisplay.push( {key: this.getMakerWorkDisplay[0].dictValue, value:this.classifyselect});
+        };
+        if(this.creatteam.length>0){
+          this.workDisplay.push({key: this.getMakerWorkDisplay[2].dictValue, value:this.creatteam});
+        }else {
+          this.workDisplay.push({key: this.getMakerWorkDisplay[2].dictValue, value:this.selectionTeam});
+        }
         this.workDisplay.push( {key: this.getMakerWorkDisplay[1].dictValue, value:this.workName});
-        this.workDisplay.push({key: this.getMakerWorkDisplay[2].dictValue, value:this.selectionTeam});
+
         this.workDisplay.push({key: this.getMakerWorkDisplay[3].dictValue, value:this.teacheruserId});
         this.workDisplay.push({key: this.getMakerWorkDisplay[4].dictValue, value:this.productIdeas});
         this.workDisplay.push({key: this.getMakerWorkDisplay[5].dictValue, value:this.referenceData});
@@ -252,16 +264,15 @@
       });
       //获取分类
       AXIOS.get('common/getGlobalType', {}).then(response => {
-        var classify=response.data;
-        classify.splice(0,1);
-        this.classify=classify;
+        this.classify1=response.data;
+        this.classify1.splice(0,1);
+        this.classify=this.classify1;
       }).catch(response => {
         this.errors.push(response)
       });
       // 获取标题
       AXIOS.get('makerWorks/getMakerWorkDisplay', {}).then(response => {
         this.getMakerWorkDisplay = response.data;
-        console.log(this.getMakerWorkDisplay[0].dictDesc)
       }).catch(response => {
         this.errors.push(response)
       });
@@ -289,12 +300,13 @@
         this.knowledgeApplication=response.data.makerWorkDisplays[5].content;
         this.fileCover=response.data.makerWorkDisplays[6].content;
         this.creatteam=response.data.makerWorkDisplays[2].content;
-         this.classification=response.data.makerWorkDisplays[0].content
+        this.titleclassify= response.data.makerWorkDisplays[0].content;
+        this.changeclass=this.classify1[this.titleclassify-1].desc;
         this.userLabors=response.data.userLabors;
         if(this.creatteam.length>0){
           this.selectteam=false;
           this.newselect=true;
-      AXIOS.get('team/MakerTeamParticulars',{
+          AXIOS.get('team/MakerTeamParticulars',{
         params:{
           makerTeamId:this.firstallmsg.teamId
         }
@@ -311,11 +323,22 @@
           html+= '<input type="text"   name="workLaborValue" value='+this.userLabors[i].userLabor+' /></div>'
           $('#newselect').html(html);
         }
-      })
+      });
+          // 团队名字
+          AXIOS.get('team/MakerTeamParticulars',{
+            params:{
+              makerTeamId:this.creatteam
+            }
+          }).then(response=>{
+            this.creatteamname=response.data.teamName
+
+          })
+
         };
       }).catch(response => {
         this.errors.push(response)
       });
+
       // 作品分类
     if(this.classification.length>0){
 
