@@ -59,7 +59,7 @@
 
                 <div class="mySs_xx">
                     <p>
-                        <router-link v-if="!psonImg" :to="{name: 'login',params: {loginType: 2}}"><span class="go-login">登陆</span>
+                        <router-link v-if="!psonImg" :to="{name: 'login',params: {loginType: 2}}"><span class="go-login">登录</span>
                         </router-link>
 
                         <img v-if="psonImg"
