@@ -33,6 +33,7 @@
                     <img src="../../static/img/message.png" alt=""/>
 
                     <p>消息</p>
+                    <div v-if="isMessage" class="redDot"></div>
                 </div>
                 <img v-if="allMsg" class="mySs_person" :src="fileURL+allMsg.sysUser.avatar" style="border-radius: 50%" alt=""/>
             </div>
@@ -56,11 +57,13 @@
                 ],
                 guigeSpan: -1,
                 allMsg:"",
-                fileURL:"http://192.168.0.103:9000/"
+                fileURL:"http://192.168.0.103:9000/",
+                isMessage:false
             }
         },
         created:function(){
             var params = new URLSearchParams();
+            //获取个人信息
             AXIOS.get('user/getUserInfo', {
                 params: {}
             }).then(response => {
@@ -69,6 +72,21 @@
                     this.allMsg=response.data;
                 }else{
                     alert(response.data);
+                }
+            }).catch(e => {
+                this.errors.push(e)
+            });
+            //获取新消息
+            var params = new URLSearchParams();
+            //获取type为0的信息（新消息）
+            AXIOS.get('message/haveMessage', {
+                params: {
+
+                }
+            }).then(response => {
+                //console.log(response);
+                if(response.data==true){
+                    this.isMessage=true;
                 }
             }).catch(e => {
                 this.errors.push(e)
@@ -106,6 +124,14 @@
 
 <style scoped>
     /*改动的样式-yzh*/
+    .redDot{
+        border: 4px solid red;
+        border-radius: 50%;
+        width: 0px;
+        height: 0px;
+        float: left;
+        margin: -17px -54px;
+    }
     span{
         color:white;
     }

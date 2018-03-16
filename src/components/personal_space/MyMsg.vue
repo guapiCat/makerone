@@ -29,7 +29,7 @@
                                 <div class="am-u-sm-8" style="padding-left: 5%;">
                                     <div>
                                         <div>
-                                            <div style="float: left;width: 12%;text-align: right;margin-right: 10px;margin-top: 20px;"><span>{{itemNew.createTime}}</span>
+                                            <div style="float: left;width: 24%;text-align: right;margin-right: 10px;margin-top: 20px;margin-bottom: 20px;">{{itemNew.createDate}}
                                             </div>
                                             <div style="float: left;width: 800px;word-wrap:break-word;">
                                                 <p style="display: inline;">
@@ -45,7 +45,7 @@
                                        style="border-radius: 7px;width: 130px;float: right;margin-right: 20%;">忽略</a>
                                 </div>
                             </div>
-
+                            <div v-if="allMsgNew.length==0">目前没有新消息哟(*^▽^*)</div>
 
                         </div>
 
@@ -56,7 +56,7 @@
                                 <div class="am-u-sm-8" style="padding-left: 5%;">
                                     <div>
                                         <div>
-                                            <div style="float: left;width: 12%;text-align: right;margin-right: 10px;margin-top: 20px;"><span>{{itemOld.createTime}}</span>
+                                            <div style="margin-bottom:20px;float: left;width: 24%;text-align: right;margin-right: 10px;margin-top: 20px;"><span>{{itemOld.createDate}}</span>
                                             </div>
                                             <div style="float: left;width: 800px;clear: both;margin-left: 4%;word-wrap:break-word;">
                                                 <p style="display: inline;">
@@ -78,7 +78,7 @@
                                     <a class="am-btn am-btn-default" style="border-radius: 7px;width: 130px;">已忽略</a>
                                 </div>
                             </div>
-
+                            <div v-if="allMsgOld.length==0">目前没有旧消息哟(*^▽^*)</div>
 
                         </div>
 
@@ -112,7 +112,13 @@
                     }
                 }).then(response => {
                     //console.log(response);
-                    alert(response.data);
+                    if(response.data==true){
+
+                    }else{
+                        alert(response.data);
+                    }
+                    this.getAllMsg();
+
                 }).catch(e => {
                     this.errors.push(e)
                 });
@@ -126,36 +132,44 @@
                     }
                 }).then(response => {
                     //console.log(response);
-                    alert(response.data);
+                    if(response.data==true){
+
+                    }else{
+                        alert(response.data);
+                    }
+                    this.getAllMsg();
+                }).catch(e => {
+                    this.errors.push(e)
+                });
+            },
+            getAllMsg:function(){
+                var params = new URLSearchParams();
+                //获取type为0的信息（新消息）
+                AXIOS.get('message/messageList', {
+                    params: {
+                        messagesType:0
+                    }
+                }).then(response => {
+                    //console.log(response);
+                    this.allMsgNew=response.data;
+                }).catch(e => {
+                    this.errors.push(e)
+                });
+                //获取type为1的信息（历史消息）
+                AXIOS.get('message/messageList', {
+                    params: {
+                        messagesType:1
+                    }
+                }).then(response => {
+                    //console.log(response);
+                    this.allMsgOld=response.data;
                 }).catch(e => {
                     this.errors.push(e)
                 });
             }
         },
         created:function(){
-            var params = new URLSearchParams();
-            //获取type为0的信息（新消息）
-            AXIOS.get('message/messageList', {
-                params: {
-                    messagesType:0
-                }
-            }).then(response => {
-                //console.log(response);
-                this.allMsgNew=response.data;
-            }).catch(e => {
-                this.errors.push(e)
-            });
-            //获取type为1的信息（历史消息）
-            AXIOS.get('message/messageList', {
-                params: {
-                    messagesType:1
-                }
-            }).then(response => {
-                //console.log(response);
-                this.allMsgOld=response.data;
-            }).catch(e => {
-                this.errors.push(e)
-            });
+            this.getAllMsg();
         }
     }
 

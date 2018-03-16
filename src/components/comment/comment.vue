@@ -99,8 +99,13 @@
                         content:this.replyCont
                     }
                 }).then(response => {
-                    alert(response.data);
-                    location.reload();
+                    if(response.data==true){
+
+                    }else{
+                        alert(response.data);
+                    }
+                    //location.reload();
+                    this.showAllDis();
                 }).catch(e => {
                     this.errors.push(e)
                 });
@@ -113,8 +118,13 @@
                         content:this.discuss
                     }
                 }).then(response => {
-                    alert(response.data);
-                    location.reload();
+                    if(response.data==true){
+
+                    }else{
+                        alert(response.data);
+                    }
+                    //location.reload();
+                    this.showAllDis();
                 }).catch(e => {
                     this.errors.push(e)
                 });

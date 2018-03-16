@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const AXIOS = axios.create({
-  baseURL: `http://192.168.0.103:8080`,
+  baseURL: `http://192.168.0.106:8080`,
   withCredentials:false,
     test:1
 })
@@ -16,7 +16,11 @@ AXIOS.interceptors.request.use(config =>{
 });
 AXIOS.interceptors.response.use(response => {
   if (response.data == 1000) {
-        location.href='/login/1';
+      sessionStorage.removeItem("TID");
+      sessionStorage.removeItem("UID");
+      sessionStorage.removeItem("psonImg");
+      sessionStorage.removeItem("psonName");
+      location.href='/login/1';
   }
   return response
 }, error => {
