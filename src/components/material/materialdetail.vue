@@ -25,7 +25,7 @@
                 <div class="am-u-sm-4" style="height:70%;margin-right: 0px;padding-left: 0px;border-left: 1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;border-top:1px solid #BFBFBF;padding-top: 4%;margin-bottom: 10%;">
                     <div style="height: 50px;text-align: center;margin-left: 13%;">
                         <a class="am-btn am-btn-primary" href="javascript:;"
-                           style="width: 300px;display: -webkit-box;padding-left: 30%;" :download="filePath+'download?url='+allMsg.materialResource">下载&nbsp;<img
+                           style="width: 300px;display: -webkit-box;padding-left: 30%;" :href=downloadURL+allMsg.materialResource>下载&nbsp;<img
                                 src="../../../static/img/icon_download_01.png" style="width: 34%;"/>
 
                         </a>
@@ -96,6 +96,10 @@
           type: String,
           required: true
         },
+        downloadURL: {
+          type: String,
+          required: true
+        }
 
       },
         data () {
@@ -104,7 +108,6 @@
                 allMsg:"",
                 metClass:[],
                 nowMetClass:"",
-                filePath:''
             }
         },
         methods:{
