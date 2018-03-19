@@ -91,11 +91,17 @@
     import {AXIOS} from '../../http-common'
     export default {
         name: "detail",
+      props: {
+        fileURL: {
+          type: String,
+          required: true
+        },
+
+      },
         data () {
             return {
                 metId: this.$route.params.metId,
                 allMsg:"",
-                fileURL:"http://192.168.0.103:9000/",
                 metClass:[],
                 nowMetClass:"",
                 filePath:''
