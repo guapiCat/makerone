@@ -2,76 +2,138 @@
     <div class="hello compon_center">
         <div class="am-g" style="margin-left: 0">
 
-            <div class="cousera" v-for="item in material" style="padding-top: 2%;border-bottom:5px solid #f0f0f0;padding-bottom: 2%; ">
+            <div class="cousera" v-for="item in material"
+                 style="padding-top: 2%;border-bottom:5px solid #f0f0f0;padding-bottom: 2%; ">
                 <div class="am-g">
                     <div class="am-u-sm-6" style="padding-top: 1%;padding-left: 2%;">
-                        <img :src="fileURL+item.materialCoverImage" class="cous-img" style="border: 1px solid #000000; width:100%;"/>
+                        <img :src="fileURL+item.materialCoverImage" class="cous-img"
+                             style="border: 1px solid #000000; width:100%;"/>
                     </div>
                     <div class="am-u-sm-6" style="padding-top: 1%;padding-right: 10%;padding-left: 1%;">
                         <span style="font-size: 23px;color: #378695">课程信息</span><br/>
+
                         <div style="width: 100%;padding-left: 2%;padding-top: 1%;">
                             <span>素材名称&nbsp;:&nbsp;<span>{{item.materialName}}</span></span><br/>
                             <span>创建时间&nbsp;:&nbsp;<span>{{item.createDate}}</span></span><br/>
                             <span>上传者&nbsp;:&nbsp;<span>{{item.username}}</span></span><br/>
                             <span>素材介绍&nbsp;:&nbsp;<p style="word-wrap: break-word;display: inline">
-                            {{item.materialIntro}}
+                                {{item.materialIntro}}
                             </p></span>
                         </div>
                     </div>
                 </div>
                 <div class="am-g">
                     <div class="am-u-sm-6 am-u-sm-offset-6" style="margin-top: 2%;">
-                        <a class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;" @click="delect(item.id)" >移除收藏</a>
-                      <router-link :to="{name: 'meterialdetail',params:{ metId: item.id}}"  class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;float: right;margin-right: 17%;">查看详情</router-link>
+                        <a class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;"
+                           @click="delect(item.id)">移除收藏</a>
+                        <router-link :to="{name: 'meterialdetail',params:{ metId: item.id}}"
+                                     class="am-btn am-btn-primary"
+                                     style="border-radius: 7px;width: 130px;float: right;margin-right: 17%;">查看详情
+                        </router-link>
                     </div>
                 </div>
             </div>
+            <ul v-if="material.length>0" class="am-pagination" style="margin-left: 700px;float: right;margin-right: 30px;">
+                <li v-on:click="prevClick"><span class="adPointer">&laquo;</span></li>
+                <!--<li class="am-active"><a>1</a></li>-->
+                <!--<li><a>2</a></li>-->
+                <!--<li><a>3</a></li>-->
+                <!--<li><a>4</a></li>-->
+                <!--<li><a>5</a></li>-->
+                <li v-on:click="goClickPage(item)" v-bind:class="{'am-active':clickPage==item}" v-for="item in allPage"><span class="adPointer" href="">{{item}}</span></li>
+                <li v-on:click="nextClick"><span class="adPointer">&raquo;</span></li>
+            </ul>
+            <div v-if="material.length==0" style="padding-left: 50px;">快去收藏一个素材吧(*^▽^*)</div>
         </div>
     </div>
 </template>
 
 <script type="es6">
-  import {AXIOS} from "../../http-common";
+    import {AXIOS} from "../../http-common";
     export default {
         name: 'hello',
         props: {
-        fileURL: {
-          type: String,
-          required: true
-        }
-      },
+            fileURL: {
+                type: String,
+                required: true
+            }
+        },
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',
-               material:[]
+                material: [],
+                maxPage:1,//最大页数
+                nowPage:1,//当前页
+                allPage:[],//总页数，，点击哪一页
+                clickPage:1
             }
         },
-      mounted:function () {
-        AXIOS.get('user/favoriteMaterial',{
-          params:{
-            pageNum:1,
-            pageSize:4
-
-          }
-        }).then(response=>{
-          this.material=response.data.list;
-        }).catch(response=>{
-          this.errors.push(response)
-        })
-      },
-      methods:{
-          delect(objectId){
-            AXIOS.get('user/deleteFavorite',{
-              params:{
-                objectId:objectId
-              }
-            }).then(response=>{
-              //console.log(response.data);
-              window.location.reload();
-              alert('删除成功')
-            })
-          }
-          }
+        created:function(){
+            this.getAllMsg(this.clickPage,2);
+        },
+        methods: {
+            //分页的上一页下一页点击事件start
+            prevClick:function(){
+                if(this.clickPage>1){
+                    this.clickPage--;
+                }
+                this.getAllMsg(this.clickPage,2);
+            },
+            nextClick:function(){
+                if(this.clickPage<this.maxPage){
+                    this.clickPage++;
+                }
+                this.getAllMsg(this.clickPage,2);
+            },
+            //点击页码重新挂载数据更新页面
+            goClickPage:function(item){
+                this.clickPage=item;
+                //console.log("item为："+item);
+                this.getAllMsg(this.clickPage,2);
+            },
+            //分页点击事件end
+            getAllMsg:function(pageNum,pageSize){
+                AXIOS.get('user/favoriteMaterial', {
+                    params: {
+                        "pageNum": pageNum,
+                        "pageSize": pageSize
+                    }
+                }).then(response=> {
+                    this.material = response.data.list;
+                    //准备分页数据开始start
+                    this.nowPage=response.data.pageNum;
+                    this.maxPage=response.data.pages;
+                    this.allPage=[];
+                    if(this.nowPage-2>0){
+                        this.allPage.push(this.nowPage-2);
+                    }
+                    if(this.nowPage-1>0){
+                        this.allPage.push(this.nowPage-1);
+                    }
+                    this.allPage.push(this.nowPage);
+                    if(this.nowPage<this.maxPage){
+                        this.allPage.push(this.nowPage+1);
+                    }
+                    if(this.nowPage<this.maxPage-1){
+                        this.allPage.push(this.nowPage+2);
+                    }
+                    //准备分页数据结束end
+                }).catch(response=> {
+                    this.errors.push(response)
+                })
+            },
+            delect(objectId){
+                AXIOS.get('user/deleteFavorite', {
+                    params: {
+                        objectId: objectId
+                    }
+                }).then(response=> {
+                    //console.log(response.data);
+                    window.location.reload();
+                    alert('删除成功')
+                })
+            }
+        }
 
     }
 
@@ -81,10 +143,11 @@
 <style scoped>
     /*改动的样式-yzh*/
     /*改动样式结束*/
-    .cous-img{
-      height: 300px;
-      width: 500px;
+    .cous-img {
+        height: 300px;
+        width: 500px;
     }
+
     i {
         font-style: normal;
     }

@@ -13,7 +13,7 @@
                         <img v-if="voteStatus==1" src="../../../static/img/unvote.png" v-on:click="vote"
                              style="height: 30px; width: 40px; margin-right:20px;cursor: pointer;"/>
                         <img v-if="voteStatus==0" v-on:click="outVote" src="../../../static/img/upvote.png" alt="" style="cursor:pointer;height: 30px; width: 40px; margin-right:20px ;"/>
-                        <button type="button" class="am-btn am-btn-primary">我要收藏</button>
+                        <button v-on:click="addColl" type="button" class="am-btn am-btn-primary">我要收藏</button>
                     </div>
                 </div>
                 <div class="content-title-hand">
@@ -117,6 +117,17 @@
             }
         },
         methods: {
+            //收藏
+            addColl:function(){
+                var params = new URLSearchParams();
+                params.append("objectId", this.courseId);
+                params.append("type", 0);
+                AXIOS.post('common/joinFavorite', params).then(response => {
+                    alert(response.data);
+                }).catch(e => {
+                    this.errors.push(e)
+                });
+            },
             vote: function () {
                 this.$emit('voteReq', {voteObjId:this.courseId, voteObjType:3, voteStatus:1});
                 this.voteStatus=0;
@@ -151,7 +162,7 @@
             AXIOS.get('makerCourse/relatedWorks?pageSize=3', {
                 params: {
                     type: this.typeId
-                },
+                }
             }).then(response=> {
                 this.relatedworks = response.data;
                 //console.log(response)
