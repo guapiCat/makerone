@@ -12,20 +12,20 @@
                 <h1 class="se_1_h1">基本信息</h1>
                 <p class="se_1_p1">
                     <span v-if="this.getMakerWorkDisplay[8]">{{this.getMakerWorkDisplay[8].dictDesc}}</span>
-      <textarea name=""  v-model="designThought" cols="130" rows="15"
+             <textarea name=""  v-model="designThought" cols="130" rows="15"
                 placeholder="你们计划如何将创意一步一步变为现实呢？用到了哪些技术，设计原理，有怎样大胆的思维和设计..."></textarea>
                 </p>
 
                 <p class="se_1_p2">
                     <span  v-if="this.getMakerWorkDisplay[9]">{{this.getMakerWorkDisplay[9].dictDesc}}</span>
-      <textarea name=""cols="130" rows="15" v-model="timeArrangement"
+              <textarea name=""cols="130" rows="15" v-model="timeArrangement"
                 placeholder="合理的时间安排可以大大提高工作效率哦，为你的创意实现一个时间安排吧！"></textarea>
                 </p>
 
                 <p class="se_1_p3">
                     <span  v-if="this.getMakerWorkDisplay[10]">{{this.getMakerWorkDisplay[10].dictDesc}}</span>
-     <textarea name="" cols="130" rows="15" v-model="equipment"
-               placeholder="在实现创意中需要哪些工具和器材开个清单吧！"></textarea>
+                <textarea name="" cols="130" rows="15" v-model="equipment"
+                 placeholder="在实现创意中需要哪些工具和器材开个清单吧！"></textarea>
                 </p>
             </section>
             <section class="se_2">
@@ -35,16 +35,16 @@
                     <div class="se_2_div1" v-for="(item,index) in stepX">
                         <div class="se_2_step">第{{index+1}}步</div>
                         <div>
-                            <span class="se_2_sp">步骤标题</span><input type="text" v-model="stepX[index].steptitle"/>
+                            <span class="se_2_sp">步骤标题</span><input type="text" v-model="stepX[index].title"/>
                           <div class="am-form-group am-form-file" style="float:right; margin-right: 5%">
                             <button type="button" class="am-btn am-btn-danger am-btn-sm">
                               <i class="am-icon-cloud-upload"></i> 上传图片</button>
                             <input id="doc-form-file"  v-on:change="update($event,index)"  style="margin-left: 20px;"   type="file" multiple accept="image/*">
                           </div>
-                          <div id="file-list" style="width: 122px;float: right;margin-top: 50px;">{{item.stepfile}}</div>
+                          <div id="file-list" style="width: 122px;float: right;margin-top: 50px;">{{item.stepUrl}}</div>
                         </div>
                         <div>
-                            <span class="se_2_sp bzms" >步骤描述</span><textarea v-model="stepX[index].stepContent" class="bzmsTxt" name="" id="" cols="30"
+                            <span class="se_2_sp bzms" >步骤描述</span><textarea v-model="stepX[index].content" class="bzmsTxt" name="" id="" cols="30"
                                                                             rows="4"></textarea>
                         </div>
                     </div>
@@ -95,9 +95,9 @@
         data () {
             return {
                 stepX:[{
-                  steptitle:'',
-                  stepContent:'',
-                  stepfile:'',
+                  title:'',
+                  content:'',
+                  stepUrl:'',
                 }],
               getMakerWorkDisplay:'',
               // v-model
@@ -118,9 +118,9 @@
         methods:{
             adStep:function(){
             this.stepX.push({
-              steptitle:'',
-              stepContent:'',
-              stepfile:''
+              title:'',
+              content:'',
+              stepUrl:''
             });
 
           },
@@ -142,9 +142,9 @@
             };  //添加请求头
             AXIOS.post('common/upload', param, config)
               .then(response => {
-                this.stepfile=response.data ;
+                this.stepUrl=response.data ;
                 console.log(this.stepfile)
-                this.stepX[index].stepfile=this.stepfile
+                this.stepX[index].stepUrl=this.stepUrl
 
 
               })

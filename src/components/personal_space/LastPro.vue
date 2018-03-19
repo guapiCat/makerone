@@ -36,8 +36,8 @@
       </div>
         <div class="am-form-group" v-show="nothide">
           <label >参加的活动:</label>
-          <label v-if="lastmsg.makerWorkDisplays[15]" class="am-radio-inline" style="margin-left: 45px;font-size: 18px;">
-            {{lastmsg.makerWorkDisplays[15].content}}
+          <label v-if="this.activity[0]" class="am-radio-inline" style="margin-left: 45px;font-size: 18px;">
+            {{this.activity[0].activityName}}
           </label>
 
         </div>
@@ -91,7 +91,8 @@ export default {
       lastmsg:[],
       ishide:true,
       nothide:false,
-      upMakerWorkId:this.$route.params.workId
+      upMakerWorkId:this.$route.params.workId,
+      activity:[],
     }
 
   },
@@ -108,29 +109,40 @@ export default {
     }).catch(response => {
       this.errors.push(response)
     });
-    //回显
-    AXIOS.get('makerWorks/editMakerWork', {
-      params:{
-        makerWorkId: this.$route.params.workId,
-      }
-    }).then(response => {
-      this.lastmsg=response.data
-      this.difficulty=this.lastmsg.makerWorkDisplays[13].content;
-      this.summarize =this.lastmsg.makerWorkDisplays[14].content;
-      this.introduce=this.lastmsg.makerWorkDisplays[11].content;
-      if(this.lastmsg.makerWorkDisplays[15].content.length>0){
-         this.ishide=false;
-         this.nothide=true;
-      }
+    if (this.$route.params.workId){
+      //回显
+      AXIOS.get('makerWorks/editMakerWork', {
+        params:{
+          makerWorkId: this.$route.params.workId,
+        }
+      }).then(response => {
+        this.lastmsg=response.data
+        this.difficulty=this.lastmsg.makerWorkDisplays[13].content;
+        this.summarize =this.lastmsg.makerWorkDisplays[14].content;
+        this.introduce=this.lastmsg.makerWorkDisplays[11].content;
+        if(this.lastmsg.makerWorkDisplays[15].content.length>0){
+          this.ishide=false;
+          this.nothide=true;
+        }
 
-    });
+      });
+      AXIOS.get('makerActivity/makerActivityParticulars', {
+        params:{
+          activityId: this.lastmsg.makerWorkDisplays[15].content,
+        }
+      }).then(response => {
+        this.activity=response.data[0].activityName
+
+
+      })
+    }
+
+
+
   },
   methods:{
     workscontent:function (data) {
       this.myworkscontent=data
-    },
-    notjoin(){
-      this.ishidden=false
     },
 
     selectAct(){
@@ -139,11 +151,17 @@ export default {
     submitData(){
       if(typeof(this.upMakerWorkId)=="undefined"){
         this.upMakerWorkId='';
+
+      }else {
+        if(this.activity && this.lastmsg.makerWorkDisplays){
+          this.thirddisplay.push({key: this.getMakerWorkDisplay[16].dictValue, value:this.lastmsg.makerWorkDisplays[15].content});
+        }else {
+          this.thirddisplay.push({key: this.getMakerWorkDisplay[16].dictValue, value:this.selectActivityname});
+        }
         this.thirddisplay.push({key: this.getMakerWorkDisplay[12].dictValue, value:this.introduce});
         this.thirddisplay.push({key: this.getMakerWorkDisplay[13].dictValue, value:this.myworkscontent});
         this.thirddisplay.push({key: this.getMakerWorkDisplay[14].dictValue, value:this.difficulty });
         this.thirddisplay.push({key: this.getMakerWorkDisplay[15].dictValue, value:this.summarize});
-        this.thirddisplay.push({key: this.getMakerWorkDisplay[16].dictValue, value:this.selectActivityname});
         var newarray=this.firstdisplay.concat(this.seconddata);
         var newarraysecond=newarray.concat(this.thirddisplay);
         this.alldataplay=newarraysecond;
@@ -154,9 +172,8 @@ export default {
         params.append('upMakerWorkId',this.upMakerWorkId)
         params.append('type','3');
         AXIOS.post('makerWorks/makerWorksSubmit', params).then(response => {
-          alert("提交成功,待审核！")
+          alert("提交成功")
         })
-
       }
 
     },
@@ -180,6 +197,8 @@ export default {
         AXIOS.post('makerWorks/makerWorksSubmit', params).then(response => {
           alert("保存成功")
         })
+
+      }else {
 
       }
 
