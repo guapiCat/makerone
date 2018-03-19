@@ -2,28 +2,46 @@
     <div class="hello compon_center">
         <div class="am-g">
 
-            <div   v-for="item in coursera" class="cousera" style="padding-top: 2%;border-bottom:5px solid #f0f0f0;padding-bottom: 2%; ">
+            <div v-for="item in coursera" class="cousera"
+                 style="padding-top: 2%;border-bottom:5px solid #f0f0f0;padding-bottom: 2%; ">
                 <div class="am-g" style="margin-left: 0px">
                     <div class="am-u-sm-6" style="padding-top: 1%;padding-left: 2%;">
-                        <img class="cous-img" :src="fileURL+item.coverImage" style="border: 1px solid #000000" width="100%;"/>
+                        <img class="cous-img" :src="fileURL+item.coverImage" style="border: 1px solid #000000"
+                             width="100%;"/>
                     </div>
                     <div class="am-u-sm-6" style="padding-top: 1%;padding-right: 10%;padding-left: 1%;">
                         <span style="font-size: 23px;color: #378695">课程信息</span><br/>
+
                         <div style="width: 100%;padding-left: 2%;padding-top: 1%;">
                             <span>课程名称&nbsp;:&nbsp;<span>{{item.objectName}}</span></span><br/>
                             <span>开课时间&nbsp;:&nbsp;<span>{{item.createDate}}</span></span><br/>
                             <span>课程简介&nbsp;:&nbsp;<p style="word-wrap: break-word;display: inline">
-                               {{item.introduce}}</p></span>
+                                {{item.introduce}}</p></span>
                         </div>
                     </div>
                 </div>
                 <div class="am-g">
                     <div class="am-u-sm-6 am-u-sm-offset-6" style="margin-top: 2%;">
-                        <a class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;" @click="delect(item.objectId)" >移除收藏</a>
-                      <router-link :to="{name: 'makerCourse',params:{ workId: item.objectId,typeId:item.objectType}}"  class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;float: right;margin-right: 17%;">查看详情</router-link>
+                        <a class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;"
+                           @click="delect(item.objectId)">移除收藏</a>
+                        <router-link :to="{name: 'makerCourse',params:{ workId: item.objectId,typeId:item.objectType}}"
+                                     class="am-btn am-btn-primary"
+                                     style="border-radius: 7px;width: 130px;float: right;margin-right: 17%;">查看详情
+                        </router-link>
                     </div>
                 </div>
             </div>
+            <ul v-if="coursera.length>0" class="am-pagination" style="margin-left: 700px;float: right;margin-right: 30px;">
+                <li v-on:click="prevClick"><span class="adPointer">&laquo;</span></li>
+                <!--<li class="am-active"><a>1</a></li>-->
+                <!--<li><a>2</a></li>-->
+                <!--<li><a>3</a></li>-->
+                <!--<li><a>4</a></li>-->
+                <!--<li><a>5</a></li>-->
+                <li v-on:click="goClickPage(item)" v-bind:class="{'am-active':clickPage==item}" v-for="item in allPage"><span class="adPointer" href="">{{item}}</span></li>
+                <li v-on:click="nextClick"><span class="adPointer">&raquo;</span></li>
+            </ul>
+            <div v-if="coursera.length==0" style="padding-left: 50px;">去收藏一个课程吧(*^▽^*)</div>
         </div>
     </div>
 </template>
@@ -33,45 +51,87 @@
     export default {
         name: 'hello',
         props: {
-        fileURL: {
-          type: String,
-          required: true
-        }
-      },
+            fileURL: {
+                type: String,
+                required: true
+            }
+        },
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',
-                coursera:[]
-
+                coursera: [],
+                maxPage:1,//最大页数
+                nowPage:1,//当前页
+                allPage:[],//总页数，，点击哪一页
+                clickPage:1
             }
         },
-      methods:{
-        delect(objectId){
-          AXIOS.get('user/deleteFavorite',{
-           params:{
-             objectId:objectId
-           }
-          }).then(response=>{
-            //console.log(response.data);
-            window.location.reload();
-            alert('删除成功')
-          })
+        created:function(){
+            this.getAllMsg(this.clickPage,2);
+        },
+        methods: {
+            //分页的上一页下一页点击事件start
+            prevClick:function(){
+                if(this.clickPage>1){
+                    this.clickPage--;
+                }
+                this.getAllMsg(this.clickPage,2);
+            },
+            nextClick:function(){
+                if(this.clickPage<this.maxPage){
+                    this.clickPage++;
+                }
+                this.getAllMsg(this.clickPage,2);
+            },
+            //点击页码重新挂载数据更新页面
+            goClickPage:function(item){
+                this.clickPage=item;
+                //console.log("item为："+item);
+                this.getAllMsg(this.clickPage,2);
+            },
+            //分页点击事件end
+            getAllMsg:function(pageNum,pageSize){
+                AXIOS.get('user/favoriteCourse', {
+                    params: {
+                        "pageNum": pageNum,
+                        "pageSize": pageSize
+                    }
+                }).then(response=> {
+                    this.coursera = response.data.list;
+                    //准备分页数据开始start
+                    this.nowPage=response.data.pageNum;
+                    this.maxPage=response.data.pages;
+                    this.allPage=[];
+                    if(this.nowPage-2>0){
+                        this.allPage.push(this.nowPage-2);
+                    }
+                    if(this.nowPage-1>0){
+                        this.allPage.push(this.nowPage-1);
+                    }
+                    this.allPage.push(this.nowPage);
+                    if(this.nowPage<this.maxPage){
+                        this.allPage.push(this.nowPage+1);
+                    }
+                    if(this.nowPage<this.maxPage-1){
+                        this.allPage.push(this.nowPage+2);
+                    }
+                    //准备分页数据结束end
+                }).catch(response=> {
+                    this.errors.push(response)
+                })
+            },
+            delect(objectId){
+                AXIOS.get('user/deleteFavorite', {
+                    params: {
+                        objectId: objectId
+                    }
+                }).then(response=> {
+                    //console.log(response.data);
+                    window.location.reload();
+                    alert('删除成功')
+                })
+            }
         }
-      },
-      mounted:function () {
-        AXIOS.get('user/favoriteCourse',{
-          params:{
-            pageNum:1,
-            pageSize:4
-
-          }
-        }).then(response=>{
-          this.coursera=response.data.list;
-        }).catch(response=>{
-          this.errors.push(response)
-        })
-      },
-
     }
 
 
@@ -79,10 +139,11 @@
 
 <style scoped>
     /*改动的样式-yzh*/
-    .cous-img{
+    .cous-img {
         height: 300px;
         width: 500px;
     }
+
     /*改动样式结束*/
     i {
         font-style: normal;
@@ -220,8 +281,8 @@
 
     .nav-search input {
         margin-left: 11px;
-        background: #21252E;../../../
-        border: #21252E;
+        background: #21252E;
+    . . / . . / . . / border : #21252E;
         color: #FFFFFF;
     }
 

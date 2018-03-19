@@ -35,74 +35,16 @@
                     </div>
                 </div>
             </div>
-            <!--<div class="team" style="padding-top: 2%;padding-bottom: 2%; ">-->
-                <!--<div class="am-g">-->
-                    <!--<div class="am-u-sm-12" style="margin-left: 1%;">-->
-                        <!--&lt;!&ndash;<div>&ndash;&gt;-->
-                        <!--<span style="float: left;margin-top: 7px;margin-right: 2%;font-weight: bold"></span>-->
-                      <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                        <!--<hr style="float: left;border-top: 3px solid #E8E8E8;width: 83%;"/>-->
-                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div class="am-g">-->
-                    <!--<div class="am-u-sm-3" style="padding-top: 1%;padding-left: 4%;">-->
-                        <!--<img src="../../../static/img/airplane.png"-->
-                             <!--style="border: 1px solid #000000;width: 200px;margin-top: 15px;"/>-->
-                    <!--</div>-->
-                    <!--<div class="am-u-sm-9" style="padding-top: 1%;padding-right: 10%;padding-left: 1%;">-->
-                        <!--<div style="width: 100%;padding-left: 2%;padding-top: 1%;">-->
-                            <!--<span>元气团队-A&nbsp;:&nbsp;<span>Scratch编程</span></span><br/>-->
-                            <!--<span>创建时间&nbsp;:&nbsp;<span>2017-05-04&nbsp;17:12</span></span><br/>-->
-                            <!--<span>需要人数&nbsp;:&nbsp;<span>6</span></span><br/>-->
-                            <!--<span>当前人数&nbsp;:&nbsp;<span>5</span></span><br/>-->
-                            <!--<span>发起学校&nbsp;:&nbsp;<span>沌口小学</span></span><br/>-->
-                            <!--<span>人员需求&nbsp;:&nbsp;<p style="word-wrap: break-word;display: inline">-->
-                                <!--啊实打实大声大声打我大是大非热话题也会让更多购房人的特特瑞特日光灯管凤尾菇</p></span><br/>-->
-                            <!--<span>团队介绍&nbsp;:&nbsp;<p style="word-wrap: break-word;display: inline">-->
-                                <!--啊实打实大声大声打我大是大非热话题也会让更多购房人的特特瑞特日光灯管凤尾菇</p></span>-->
-                        <!--</div>-->
-                        <!--<div style="margin-top: 5%;">-->
-                            <!--<a class="am-btn am-btn-primary"-->
-                               <!--style="border-radius: 7px;width: 130px;float: right">查看团队详情</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
-
-            <!--<div class="team" style="padding-top: 2%;padding-bottom: 2%; ">-->
-            <!--<div class="am-g">-->
-            <!--<div class="am-u-sm-12" style="margin-left: 1%;">-->
-            <!--&lt;!&ndash;<div>&ndash;&gt;-->
-            <!--<span style="float: left;margin-top: 7px;margin-right: 2%;font-weight: bold">元气团队-A</span>-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;<div>&ndash;&gt;-->
-            <!--<hr style="float: left;border-top: 3px solid #E8E8E8;width: 83%;"/>-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<div class="am-g">-->
-            <!--<div class="am-u-sm-3" style="padding-top: 1%;padding-left: 4%;">-->
-            <!--<img src="../../../static/img/airplane.png" style="border: 1px solid #000000;width: 200px;margin-top: 15px;"/>-->
-            <!--</div>-->
-            <!--<div class="am-u-sm-9" style="padding-top: 1%;padding-right: 10%;padding-left: 1%;">-->
-            <!--<div style="width: 100%;padding-left: 2%;padding-top: 1%;">-->
-            <!--<span>元气团队-A&nbsp;:&nbsp;<span>Scratch编程</span></span><br/>-->
-            <!--<span>创建时间&nbsp;:&nbsp;<span>2017-05-04&nbsp;17:12</span></span><br/>-->
-            <!--<span>需要人数&nbsp;:&nbsp;<span>6</span></span><br/>-->
-            <!--<span>当前人数&nbsp;:&nbsp;<span>5</span></span><br/>-->
-            <!--<span>发起学校&nbsp;:&nbsp;<span>沌口小学</span></span><br/>-->
-            <!--<span>人员需求&nbsp;:&nbsp;<p style="word-wrap: break-word;display: inline">啊实打实大声大声打我大是大非热话题也会让更多购房人的特特瑞特日光灯管凤尾菇</p></span><br/>-->
-            <!--<span>团队介绍&nbsp;:&nbsp;<p style="word-wrap: break-word;display: inline">啊实打实大声大声打我大是大非热话题也会让更多购房人的特特瑞特日光灯管凤尾菇</p></span>-->
-            <!--</div>-->
-            <!--<div style="margin-top: 5%;">-->
-            <!--<a class="am-btn am-btn-primary" style="border-radius: 7px;width: 130px;float: right">查看团队详情</a>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-
+            <ul v-if="allMsg.length>0" class="am-pagination" style="margin-left: 700px;float: right;margin-right: 30px;">
+                <li v-on:click="prevClick"><span class="adPointer">&laquo;</span></li>
+                <!--<li class="am-active"><a>1</a></li>-->
+                <!--<li><a>2</a></li>-->
+                <!--<li><a>3</a></li>-->
+                <!--<li><a>4</a></li>-->
+                <!--<li><a>5</a></li>-->
+                <li v-on:click="goClickPage(item)" v-bind:class="{'am-active':clickPage==item}" v-for="item in allPage"><span class="adPointer" href="">{{item}}</span></li>
+                <li v-on:click="nextClick"><span class="adPointer">&raquo;</span></li>
+            </ul>
         </div>
     </div>
 </template>
@@ -115,20 +57,69 @@
             return {
                 msg: 'Welcome to Your Vue.js App',
                 fileURL: "http://192.168.0.103:9000/",
-                allMsg:""
+                allMsg:"",
+                maxPage:1,//最大页数
+                nowPage:1,//当前页
+                allPage:[],//总页数，，点击哪一页
+                clickPage:1
+            }
+        },
+        methods:{
+            //分页的上一页下一页点击事件start
+            prevClick:function(){
+                if(this.clickPage>1){
+                    this.clickPage--;
+                }
+                this.getAllMsg(this.clickPage,2);
+            },
+            nextClick:function(){
+                if(this.clickPage<this.maxPage){
+                    this.clickPage++;
+                }
+                this.getAllMsg(this.clickPage,2);
+            },
+            //点击页码重新挂载数据更新页面
+            goClickPage:function(item){
+                this.clickPage=item;
+                //console.log("item为："+item);
+                this.getAllMsg(this.clickPage,2);
+            },
+            //分页点击事件end
+            getAllMsg:function(pageNum,pageSize){
+                var params = new URLSearchParams();
+                AXIOS.get('user/joinTeam', {
+                    params: {
+                        "pageNum": pageNum,
+                        "pageSize": pageSize
+                    }
+                }).then(response => {
+                    //console.log(response);
+                    this.allMsg=response.data.list;
+                    //准备分页数据开始start
+                    this.nowPage=response.data.pageNum;
+                    this.maxPage=response.data.pages;
+                    this.allPage=[];
+                    if(this.nowPage-2>0){
+                        this.allPage.push(this.nowPage-2);
+                    }
+                    if(this.nowPage-1>0){
+                        this.allPage.push(this.nowPage-1);
+                    }
+                    this.allPage.push(this.nowPage);
+                    if(this.nowPage<this.maxPage){
+                        this.allPage.push(this.nowPage+1);
+                    }
+                    if(this.nowPage<this.maxPage-1){
+                        this.allPage.push(this.nowPage+2);
+                    }
+                    //准备分页数据结束end
+                }).catch(e => {
+                    this.errors.push(e)
+                });
             }
         },
         created: function () {
-            var params = new URLSearchParams();
-            AXIOS.get('user/joinTeam', {
-                params: {
-                }
-            }).then(response => {
-                //console.log(response);
-                this.allMsg=response.data;
-            }).catch(e => {
-                this.errors.push(e)
-            });
+            this.getAllMsg(this.clickPage,2);
         }
     }
 

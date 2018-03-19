@@ -45,6 +45,17 @@
                                        style="border-radius: 7px;width: 130px;float: right;margin-right: 20%;">忽略</a>
                                 </div>
                             </div>
+                            <!--分页-->
+                            <ul v-if="allMsgNew.length>0" class="am-pagination" style="margin-left: 700px;float: right;margin-right: 30px;">
+                                <li v-on:click="prevClick"><span class="adPointer">&laquo;</span></li>
+                                <!--<li class="am-active"><a>1</a></li>-->
+                                <!--<li><a>2</a></li>-->
+                                <!--<li><a>3</a></li>-->
+                                <!--<li><a>4</a></li>-->
+                                <!--<li><a>5</a></li>-->
+                                <li v-on:click="goClickPage(item)" v-bind:class="{'am-active':clickPage==item}" v-for="item in allPage"><span class="adPointer" href="">{{item}}</span></li>
+                                <li v-on:click="nextClick"><span class="adPointer">&raquo;</span></li>
+                            </ul>
                             <div v-if="allMsgNew.length==0">目前没有新消息哟(*^▽^*)</div>
 
                         </div>
@@ -78,6 +89,17 @@
                                     <a class="am-btn am-btn-default" style="border-radius: 7px;width: 130px;">已忽略</a>
                                 </div>
                             </div>
+                            <!--分页-->
+                            <ul v-if="allMsgOld.length>0" class="am-pagination" style="margin-left: 700px;float: right;margin-right: 30px;">
+                                <li v-on:click="prevClickTwo"><span class="adPointer">&laquo;</span></li>
+                                <!--<li class="am-active"><a>1</a></li>-->
+                                <!--<li><a>2</a></li>-->
+                                <!--<li><a>3</a></li>-->
+                                <!--<li><a>4</a></li>-->
+                                <!--<li><a>5</a></li>-->
+                                <li v-on:click="goClickPageTwo(item)" v-bind:class="{'am-active':clickPageTwo==item}" v-for="item in allPageTwo"><span class="adPointer" href="">{{item}}</span></li>
+                                <li v-on:click="nextClickTwo"><span class="adPointer">&raquo;</span></li>
+                            </ul>
                             <div v-if="allMsgOld.length==0">目前没有旧消息哟(*^▽^*)</div>
 
                         </div>
@@ -99,10 +121,60 @@
             return {
                 msg: 'Welcome to Your Vue.js App',
                 allMsgNew:"",
-                allMsgOld:""
+                allMsgOld:"",
+                //新消息
+                maxPage:1,
+                nowPage:1,
+                allPage:[],
+                clickPage:1,
+                //历史消息
+                maxPageTwo:1,
+                nowPageTwo:1,
+                allPageTwo:[],
+                clickPageTwo:1
             }
         },
         methods:{
+            //分页的上一页下一页点击事件
+            prevClick:function(){
+                if(this.clickPage>1){
+                    this.clickPage--;
+                }
+                this.getAllMsg(this.clickPage,2);
+            },
+            nextClick:function(){
+                if(this.clickPage<this.maxPage){
+                    this.clickPage++;
+                }
+                this.getAllMsg(this.clickPage,2);
+            },
+            //分页点击事件start
+            goClickPage:function(item){
+                this.clickPage=item;
+                //console.log("item为："+item);
+                this.getAllMsg(this.clickPage,2);
+            },
+            //分页点击事件end
+            //分页的上一页下一页点击事件
+            prevClickTwo:function(){
+                if(this.clickPageTwo>1){
+                    this.clickPageTwo--;
+                }
+                this.getAllMsg(this.clickPageTwo,2);
+            },
+            nextClickTwo:function(){
+                if(this.clickPageTwo<this.maxPageTwo){
+                    this.clickPageTwo++;
+                }
+                this.getAllMsg(this.clickPageTwo,2);
+            },
+            //分页点击事件start
+            goClickPageTwo:function(item){
+                this.clickPageTwo=item;
+                //console.log("item为："+item);
+                this.getAllMsg(this.clickPageTwo,2);
+            },
+            //分页点击事件end
             //拒绝申请
             refuseHim:function(getId){
                 var params = new URLSearchParams();
@@ -117,7 +189,7 @@
                     }else{
                         alert(response.data);
                     }
-                    this.getAllMsg();
+                    this.getAllMsg(this.clickPageTwo,2);
 
                 }).catch(e => {
                     this.errors.push(e)
@@ -137,39 +209,79 @@
                     }else{
                         alert(response.data);
                     }
-                    this.getAllMsg();
+                    this.getAllMsg(this.clickPageTwo,2);
                 }).catch(e => {
                     this.errors.push(e)
                 });
             },
-            getAllMsg:function(){
+            getAllMsg:function(pageNum,pageSize){
                 var params = new URLSearchParams();
                 //获取type为0的信息（新消息）
                 AXIOS.get('message/messageList', {
                     params: {
-                        messagesType:0
+                        "messagesType":0,
+                        "pageNum":pageNum,
+                        "pageSize":pageSize
                     }
                 }).then(response => {
                     //console.log(response);
-                    this.allMsgNew=response.data;
+                    this.allMsgNew=response.data.list;
+                    //准备分页数据开始start
+                    this.nowPage=response.data.pageNum;
+                    this.maxPage=response.data.pages;
+                    this.allPage=[];
+                    if(this.nowPage-2>0){
+                        this.allPage.push(this.nowPage-2);
+                    }
+                    if(this.nowPage-1>0){
+                        this.allPage.push(this.nowPage-1);
+                    }
+                    this.allPage.push(this.nowPage);
+                    if(this.nowPage<this.maxPage){
+                        this.allPage.push(this.nowPage+1);
+                    }
+                    if(this.nowPage<this.maxPage-1){
+                        this.allPage.push(this.nowPage+2);
+                    }
+                    //准备分页数据结束end
                 }).catch(e => {
                     this.errors.push(e)
                 });
                 //获取type为1的信息（历史消息）
                 AXIOS.get('message/messageList', {
                     params: {
-                        messagesType:1
+                        "messagesType":1,
+                        "pageNum":pageNum,
+                        "pageSize":pageSize
                     }
                 }).then(response => {
                     //console.log(response);
-                    this.allMsgOld=response.data;
+                    this.allMsgOld=response.data.list;
+                    //准备分页数据开始start
+                    this.nowPageTwo=response.data.pageNum;
+                    this.maxPageTwo=response.data.pages;
+                    this.allPageTwo=[];
+                    if(this.nowPageTwo-2>0){
+                        this.allPageTwo.push(this.nowPageTwo-2);
+                    }
+                    if(this.nowPageTwo-1>0){
+                        this.allPageTwo.push(this.nowPageTwo-1);
+                    }
+                    this.allPageTwo.push(this.nowPageTwo);
+                    if(this.nowPageTwo<this.maxPageTwo){
+                        this.allPageTwo.push(this.nowPageTwo+1);
+                    }
+                    if(this.nowPageTwo<this.maxPageTwo-1){
+                        this.allPageTwo.push(this.nowPageTwo+2);
+                    }
+                    //准备分页数据结束end
                 }).catch(e => {
                     this.errors.push(e)
                 });
             }
         },
         created:function(){
-            this.getAllMsg();
+            this.getAllMsg(this.clickPage,2);
         }
     }
 
@@ -180,7 +292,9 @@
     .topbar {
         background-color: #21252E;
     }
-
+    .adPointer{
+        cursor: pointer;
+    }
     .icons {
         border: solid 1px;
         border-radius: 50%;

@@ -76,7 +76,7 @@
 
                     </ul>
                 </div>
-
+                <div v-on:click="addColl" class="am-btn am-btn-primary" style="margin-left: 50%;">收藏 <span class="am-icon-star"></span></div>
             </div>
             <comment :disId="workId"></comment>
 
@@ -111,6 +111,16 @@
             }
         },
         methods:{
+            addColl:function(){
+                var params = new URLSearchParams();
+                params.append("objectId", this.workId);
+                params.append("type", 1);
+                AXIOS.post('common/joinFavorite', params).then(response => {
+                    alert(response.data);
+                }).catch(e => {
+                    this.errors.push(e)
+                });
+            },
             vote: function () {
                 this.$emit('voteReq', {voteObjId:this.workId, voteObjType:1, voteStatus:1});
                 this.voteStatus=0;

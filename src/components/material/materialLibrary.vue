@@ -55,7 +55,18 @@
         </div>
         <div class="nodata" v-show="hiddendata">
         </div>
-
+        <!--分页-->
+        <ul class="am-pagination" style="margin-left: 700px;float: right;margin-right: 100px;">
+            <li v-on:click="prevClick"><span class="adPointer">&laquo;</span></li>
+            <!--<li class="am-active"><a>1</a></li>-->
+            <!--<li><a>2</a></li>-->
+            <!--<li><a>3</a></li>-->
+            <!--<li><a>4</a></li>-->
+            <!--<li><a>5</a></li>-->
+            <li v-on:click="goClickPage(item)" v-bind:class="{'am-active':clickPage==item}" v-for="item in allPage"><span class="adPointer" href="">{{item}}</span></li>
+            <li v-on:click="nextClick"><span class="adPointer">&raquo;</span></li>
+        </ul>
+        <div style="clear: both;"></div>
         <!--<div class="am-u-sm-10 am-u-sm-centered" style="margin-top: 100px;margin-right: 11%; clear: both;">-->
         <!--<ul class="am-pagination am-pagination-right">-->
         <!--<li class="am-disabled"><a href="#">&laquo;</a></li>-->
@@ -88,12 +99,47 @@
                 metClass: [],//素材分类
                 metSee: ["最新", "下载量"],//查看素材分类（2级）
                 type: 0,
-                orderStr: 0
+                orderStr: 0,
+                maxPage:1,
+                nowPage:1,
+                allPage:[],
+                clickPage:1
             }
         },
-        computed: {
-        },
+        computed: {},
         methods: {
+            //分页的上一页下一页点击事件
+            prevClick:function(){
+                if(this.clickPage>1){
+                    this.clickPage--;
+                    if (this.search == '') {
+                        this.reqAxios(0, 0, this.clickPage, 2);
+                    } else {
+                        this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                    }
+                }
+            },
+            nextClick:function(){
+                if(this.clickPage<this.maxPage){
+                    this.clickPage++;
+                    if (this.search == '') {
+                        this.reqAxios(0, 0, this.clickPage, 2);
+                    } else {
+                        this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                    }
+                }
+            },
+            //分页点击事件start
+            goClickPage:function(item){
+                this.clickPage=item;
+                console.log("item为："+item);
+                if (this.search == '') {
+                    this.reqAxios(0, 0, this.clickPage, 2);
+                } else {
+                    this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                }
+            },
+            //分页点击事件end
             searchval: function () {
                 var searchval = document.getElementById("search").value
                 return this.search = searchval
@@ -104,12 +150,12 @@
             one: function (index) {
                 //console.log("one：" + index);
                 this.type = index;
-                this.reqAxios(this.type, this.orderStr, 1, 10);
+                this.reqAxios(this.type, this.orderStr, this.clickPage, 2);
             },
             two: function (index) {
                 //console.log("two:" + index);
                 this.orderStr = index;
-                this.reqAxios(this.type, this.orderStr, 1, 10);
+                this.reqAxios(this.type, this.orderStr, this.clickPage, 2);
             },
             reqAxios: function (type, orderStr, pageNum, pageSize) {
                 AXIOS.get('makerMaterial/MakerMaterialControllerShow', {
@@ -121,6 +167,24 @@
                     }
                 }).then(response => {
                     this.allMet = response.data.list;//将zuopins转为为后台数据
+                    //准备分页数据开始start
+                    this.nowPage=response.data.pageNum;
+                    this.maxPage=response.data.pages;
+                    this.allPage=[];
+                    if(this.nowPage-2>0){
+                        this.allPage.push(this.nowPage-2);
+                    }
+                    if(this.nowPage-1>0){
+                        this.allPage.push(this.nowPage-1);
+                    }
+                    this.allPage.push(this.nowPage);
+                    if(this.nowPage<this.maxPage){
+                        this.allPage.push(this.nowPage+1);
+                    }
+                    if(this.nowPage<this.maxPage-1){
+                        this.allPage.push(this.nowPage+2);
+                    }
+                    //准备分页数据结束end
                     if (this.allMet.length < 1) {
                         this.hiddendata = true
                     } else {
@@ -142,6 +206,24 @@
                     }
                 }).then(response => {
                     this.allMet = response.data.list;//将zuopins转为为后台数据
+                    //准备分页数据开始start
+                    this.nowPage=response.data.pageNum;
+                    this.maxPage=response.data.pages;
+                    this.allPage=[];
+                    if(this.nowPage-2>0){
+                        this.allPage.push(this.nowPage-2);
+                    }
+                    if(this.nowPage-1>0){
+                        this.allPage.push(this.nowPage-1);
+                    }
+                    this.allPage.push(this.nowPage);
+                    if(this.nowPage<this.maxPage){
+                        this.allPage.push(this.nowPage+1);
+                    }
+                    if(this.nowPage<this.maxPage-1){
+                        this.allPage.push(this.nowPage+2);
+                    }
+                    //准备分页数据结束end
                     if (this.allMet.length < 1) {
                         this.hiddendata = true
                     } else {
@@ -157,9 +239,9 @@
             this.searchval;
             //console.log("search的值为："+this.search);
             if (this.search == "") {
-                this.reqAxios(0, 0, 1, 10)
+                this.reqAxios(0, 0, this.clickPage, 2)
             } else {
-                this.searchAxios(0, 0, 1, 10, this.search);
+                this.searchAxios(0, 0, this.clickPage, 2, this.search);
 
             }
 
@@ -179,6 +261,9 @@
 </script>
 
 <style>
+    .adPointer{
+        cursor: pointer;
+    }
     .onOne {
         background: #FFCA57;
     }
