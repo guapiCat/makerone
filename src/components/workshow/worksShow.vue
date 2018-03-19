@@ -61,6 +61,19 @@
                     </li>
 
                 </ul>
+
+                <!--分页-->
+                <ul class="am-pagination" style="margin-left: 700px;">
+                    <li v-on:click="prevClick"><span class="adPointer">&laquo;</span></li>
+                    <!--<li class="am-active"><a>1</a></li>-->
+                    <!--<li><a>2</a></li>-->
+                    <!--<li><a>3</a></li>-->
+                    <!--<li><a>4</a></li>-->
+                    <!--<li><a>5</a></li>-->
+                    <li v-on:click="goClickPage(item)" v-bind:class="{'am-active':clickPage==item}" v-for="item in allPage"><span class="adPointer" href="">{{item}}</span></li>
+                    <li v-on:click="nextClick"><span class="adPointer">&raquo;</span></li>
+                </ul>
+
                 <div class="nodata" v-show="hiddendata">
                 </div>
 
@@ -96,19 +109,54 @@
                 ],
                 guigeSpan: 0,
                 clickOne: 0,
-                myProducts: []
+                myProducts: [],
+                maxPage:1,
+                nowPage:1,
+                allPage:[],
+                clickPage:1
             }
         },
         methods: {
+            //分页的上一页下一页点击事件
+            prevClick:function(){
+                if(this.clickPage>1){
+                    this.clickPage--;
+                    if (this.search == '') {
+                        this.reqAxios(0, 0, this.clickPage, 2);
+                    } else {
+                        this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                    }
+                }
+            },
+            nextClick:function(){
+                if(this.clickPage<this.maxPage){
+                    this.clickPage++;
+                    if (this.search == '') {
+                        this.reqAxios(0, 0, this.clickPage, 2);
+                    } else {
+                        this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                    }
+                }
+            },
+            //分页点击事件start
+            goClickPage:function(item){
+                this.clickPage=item;
+                console.log("item为："+item);
+                if (this.search == '') {
+                    this.reqAxios(0, 0, this.clickPage, 2);
+                } else {
+                    this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                }
+            },
+            //分页点击事件end
             one: function (index) {
                 this.guigeSpan = index;
                 this.clickOne = index;
-                this.reqAxios(this.clickOne, 0, 1, 10);
+                this.reqAxios(this.clickOne, 0, this.clickPage, 2);
             },
             two: function (index) {
                 //console.log(index);
-                this.reqAxios(this.clickOne, index, 1, 10);
-
+                this.reqAxios(this.clickOne, index, this.clickPage, 2);
             },
             reqAxios: function (makeWorType, sortType, pageNum, pageSize) {
                 AXIOS.get('makerWorks/sortMakerWorks', {
@@ -121,6 +169,24 @@
                 }).then(response => {
                     this.myProducts = response.data.list;//将zuopins转为为后台数据
                     //console.log(response.data.list);
+                    //准备分页数据开始start
+                    this.nowPage=response.data.pageNum;
+                    this.maxPage=response.data.pages;
+                    this.allPage=[];
+                    if(this.nowPage-2>0){
+                        this.allPage.push(this.nowPage-2);
+                    }
+                    if(this.nowPage-1>0){
+                        this.allPage.push(this.nowPage-1);
+                    }
+                    this.allPage.push(this.nowPage);
+                    if(this.nowPage<this.maxPage){
+                        this.allPage.push(this.nowPage+1);
+                    }
+                    if(this.nowPage<this.maxPage-1){
+                        this.allPage.push(this.nowPage+2);
+                    }
+                    //准备分页数据结束end
                     if (this.myProducts.length <= 0) {
                         this.hiddendata = true
                     } else {
@@ -141,6 +207,24 @@
                     }
                 }).then(response => {
                     this.myProducts = response.data.list;//将zuopins转为为后台数据
+                    //准备分页数据开始start
+                    this.nowPage=response.data.pageNum;
+                    this.maxPage=response.data.pages;
+                    this.allPage=[];
+                    if(this.nowPage-2>0){
+                        this.allPage.push(this.nowPage-2);
+                    }
+                    if(this.nowPage-1>0){
+                        this.allPage.push(this.nowPage-1);
+                    }
+                    this.allPage.push(this.nowPage);
+                    if(this.nowPage<this.maxPage){
+                        this.allPage.push(this.nowPage+1);
+                    }
+                    if(this.nowPage<this.maxPage-1){
+                        this.allPage.push(this.nowPage+2);
+                    }
+                    //准备分页数据结束end
                     //console.log(response.data.list);
                     if (this.myProducts.length <= 0) {
                         this.hiddendata = true
@@ -150,21 +234,18 @@
                 }).catch(e => {
                     this.errors.push(e);
                 });
-            }
-        },
-        computed: {
+            },
             searchval: function () {
                 var searchval = document.getElementById("search").value
                 return this.search = searchval
             }
-
         },
         created: function () {
             this.searchval;
             if (this.search == '') {
-                this.reqAxios(0, 0, 1, 10);
+                this.reqAxios(0, 0, this.clickPage, 2);
             } else {
-                this.searchAxios(0, 0, 1, 10, this.search)
+                this.searchAxios(0, 0, this.clickPage, 2, this.search)
 
             }
 
@@ -190,7 +271,9 @@
     .on {
         background: #FFCA57 !important;
     }
-
+    .adPointer{
+        cursor: pointer;
+    }
     .nodata {
         width: 99%;
         height: 400px;
