@@ -100,7 +100,11 @@
             fileURL: {
                 type: String,
                 required: true
-            }
+            },
+          downloadURL: {
+            type: String,
+            required: true
+          }
         },
         data() {
             return {
@@ -223,15 +227,20 @@
                 }
             });
             function zTreeOnClick(event, treeId, treeNode) {
+
+              console.log(treeNode)
                 //console.log(zTree_Menu.getNodeByTId(treeNode.tId).chapterResource + ", " + zTree_Menu.getNodeByTId(treeNode.tId).resourceType)
                 if (zTree_Menu.getNodeByTId(treeNode.tId).resourceType == 1) {
                     $('.default').hide();
                     $('.myvideo').show();
                     $('.myvideo').attr('src', vueObj.fileURL + zTree_Menu.getNodeByTId(treeNode.tId).chapterResource)
-                } else {
+                } else if(zTree_Menu.getNodeByTId(treeNode.tId).resourceType == 2) {
                     $('.default').show()
                     $('.default').attr('src', vueObj.fileURL + zTree_Menu.getNodeByTId(treeNode.tId).chapterResource)
                     $('.myvideo').hide();
+                }else{
+                  var aObj = $("#" + treeNode.tId + "_a");
+                  aObj.attr({href:vueObj.downloadURL + zTree_Menu.getNodeByTId(treeNode.tId).chapterResource})
                 }
 
             };

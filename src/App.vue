@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <component :is="currentView"></component>
-    <router-view class="my-body" :schoolESB="schoolESB" :fileURL="fileURL" v-on:voteReq="voteReq"/>
+    <router-view class="my-body" :schoolESB="schoolESB" :fileURL="fileURL" :downloadURL="downloadURL" v-on:voteReq="voteReq"/>
     <footPart></footPart>
 
 
@@ -21,7 +21,8 @@
     name: 'app',
     data (){
       return {
-        fileURL: 'http://192.168.0.103:9000/',
+        fileURL: 'http://192.168.0.102:9200?url=',
+        downloadURL: 'http://192.168.0.102:9200/download?url=',
         currentView: '',
           schoolESB:"益谷创客平台"
       }
@@ -62,7 +63,7 @@
                     console.log("out vote");
                 }
              //console.log(response.data.list);
-                
+
          }).catch(e => {
              this.errors.push(e);
          });
