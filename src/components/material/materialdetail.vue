@@ -91,7 +91,7 @@
     import {AXIOS} from '../../http-common'
     export default {
         name: "detail",
-      props: {
+        props: {
         fileURL: {
           type: String,
           required: true
