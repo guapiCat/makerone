@@ -60,7 +60,20 @@
           <div style="margin-top: 3%;margin-bottom: 3%;">
             <hr style="border-top:3px solid #eeeeee;"/>
           </div>
+
+
         </div>
+        <ul class="am-pagination" style="margin-left: 700px;">
+          <li v-on:click="prevClick"><span class="adPointer">&laquo;</span></li>
+          <!--<li class="am-active"><a>1</a></li>-->
+          <!--<li><a>2</a></li>-->
+          <!--<li><a>3</a></li>-->
+          <!--<li><a>4</a></li>-->
+          <!--<li><a>5</a></li>-->
+          <li v-on:click="goClickPage(item)" v-bind:class="{'am-active':clickPage==item}" v-for="item in allPage"><span class="adPointer" href="">{{item}}</span></li>
+          <li v-on:click="nextClick"><span class="adPointer">&raquo;</span></li>
+        </ul>
+
         <div class="nodata" v-show="hiddendata">
         </div>
 
@@ -103,16 +116,26 @@
             ],
             classify: 0,
             sort: 0,
-            classes:0
+            classes:0,
+            // 分页
+            maxPage:1,//最大页数
+            nowPage:1,//当前页
+            allPage:[],//总页数，，点击哪一页
+            clickPage:1
           }
+
       },
       mounted(){
         this.searchval;
         if(this.search==""){
-          this.reqAXIOS(1, 0, 0, 8,8);
+          this.reqAXIOS(1, 0, 0, this.clickPage,2);
         }else {
-          this.searchAXIOS(1, 0, 0, 8,8,this.search);
-        }
+          this.searchAXIOS(1, 0, 0, 1,2,this.search);
+        };
+        // 分页
+
+
+
       },
       computed:{
         searchval:function(){
@@ -144,6 +167,22 @@
             }
           }).then(response=>{
             this.courseslist=response.data.list;
+            this.nowPage=response.data.pageNum;
+            this.maxPage=response.data.pages;
+            this.allPage=[];
+            if(this.nowPage-2>0){
+              this.allPage.push(this.nowPage-2);
+            }
+            if(this.nowPage-1>0){
+              this.allPage.push(this.nowPage-1);
+            }
+            this.allPage.push(this.nowPage);
+            if(this.nowPage<this.maxPage){
+              this.allPage.push(this.nowPage+1);
+            }
+            if(this.nowPage<this.maxPage-1){
+              this.allPage.push(this.nowPage+2);
+            }
             if(this.courseslist.length<1){
               this.hiddendata=true;
             }else {
@@ -155,6 +194,37 @@
           });
 
         },
+        prevClick:function(){
+          if(this.clickPage>1){
+            this.clickPage--;
+            if (this.search == '') {
+              this.reqAXIOS(this.classes,this.classify, this.sort, this.clickPage, 2);
+            } else {
+              this.searchAxios(this.classes,this.classify, this.sort, this.clickPage, 2, this.search)
+            }
+          }
+        },
+        nextClick:function(){
+          if(this.clickPage<this.maxPage){
+            this.clickPage++;
+            if (this.search == '') {
+              this.reqAXIOS(this.classes,this.classify, this.sort, this.clickPage, 2);
+            } else {
+              this.searchAxios(this.classes,this.classify, this.sort, this.clickPage, 2, this.search)
+            }
+          }
+        },
+        //点击页码重新挂载数据更新页面
+        goClickPage:function(item){
+          this.clickPage=item;
+          console.log("item为："+item);
+          if (this.search == '') {
+            this.reqAXIOS(this.classes,this.classify, this.sort, this.clickPage, 2);
+          } else {
+            this.searchAxios(this.classes,this.classify, this.sort, this.clickPage, 2, this.search)
+          }
+        },
+        //分页点击事件end
         searchAXIOS:function (courseGrade,type,sortType,pageNum,pageSize,courseName) {
           AXIOS.get('makerCourse/makerCourseShow',{
             params:{
@@ -167,6 +237,27 @@
             }
           }).then(response=>{
             this.courseslist=response.data.list;
+            this.nowPage=response.data.pageNum;
+            this.maxPage=response.data.pages;
+            this.allPage=[];
+            if(this.nowPage-2>0){
+              this.allPage.push(this.nowPage-2);
+            }
+            if(this.nowPage-1>0){
+              this.allPage.push(this.nowPage-1);
+            }
+            this.allPage.push(this.nowPage);
+            if(this.nowPage<this.maxPage){
+              this.allPage.push(this.nowPage+1);
+            }
+            if(this.nowPage<this.maxPage-1){
+              this.allPage.push(this.nowPage+2);
+            }
+            if(this.courseslist.length<1){
+              this.hiddendata=true;
+            }else {
+              this.hiddendata=false
+            }
             if(this.courseslist.length<=0){
               this.hiddendata=true
             }else {
@@ -180,17 +271,17 @@
 
         byClassify: function (type) {
           this.classify= type;
-          this.reqAXIOS(this.classes,this.classify,this.sort,8 ,8)
+          this.reqAXIOS(this.classes,this.classify,this.sort,1 ,2)
         },
         byclaass:function (index) {
           this.classes=index+1;
-          this.reqAXIOS(this.classes,this.classify,this.sort,8,8)
+          this.reqAXIOS(this.classes,this.classify,this.sort,1,2)
 //          console.log(this.courseslist)
 
         },
         bysort:function (index) {
           this.sort=index;
-          this.reqAXIOS(this.classes,this.classify,this.sort,8 ,8)
+          this.reqAXIOS(this.classes,this.classify,this.sort,1 ,2)
         }
       }
     }

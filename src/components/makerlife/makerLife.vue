@@ -31,6 +31,16 @@
       </div>
       <router-link :to="{name: 'lifedetail',params:{ workId: item.makerLive.id}}"class="see-details"><button type="button" class="am-btn am-btn-primary am-radius">查看详情</button></router-link>
     </div>
+    <ul class="am-pagination" style="margin-left: 700px;">
+      <li v-on:click="prevClick"><span class="adPointer">&laquo;</span></li>
+      <!--<li class="am-active"><a>1</a></li>-->
+      <!--<li><a>2</a></li>-->
+      <!--<li><a>3</a></li>-->
+      <!--<li><a>4</a></li>-->
+      <!--<li><a>5</a></li>-->
+      <li v-on:click="goClickPage(item)" v-bind:class="{'am-active':clickPage==item}" v-for="item in allPage"><span class="adPointer" href="">{{item}}</span></li>
+      <li v-on:click="nextClick"><span class="adPointer">&raquo;</span></li>
+    </ul>
     <div class="nodata" v-show="hiddendata">
     </div>
 
@@ -64,7 +74,12 @@
               "点赞数",
               "浏览量"
             ],
-            contentbox:[]
+            contentbox:[],
+            // 分页
+            maxPage:1,//最大页数
+            nowPage:1,//当前页
+            allPage:[],//总页数，，点击哪一页
+            clickPage:1
 
 
           }
@@ -72,24 +87,16 @@
       created:function () {
         AXIOS.get('common/getGlobalType',{}).then(response=>{
           this.titletype=response.data;
-          this.classify = this.titletype[0].type;
+          this.classify = this.titletype[0].value;
 
         });
-        this.searchval;
-        if(this.search==''){
-          this.reqAxios(0, 1, 1, 10);
-        }else {
-         this.searchAxios(0,1,1,10,this.search)
-          if(this.makerlife.length<=0){
-           this.hiddendata=true
-          }
-        }
+
 
       },
       computed:{
         searchval:function(){
-          var searchval=document.getElementById("search").value
-          return this.search=searchval
+            var searchval=document.getElementById("search").value;
+            this.search=searchval
         }
 
       },
@@ -107,6 +114,24 @@
             for (var i=0;i<this.makerlife.length;i++){
               this.contentbox=this.makerlife[i].makerLive.liveContent;
             };
+            //准备分页数据开始start
+            this.nowPage=response.data.pageNum;
+            this.maxPage=response.data.pages;
+            this.allPage=[];
+            if(this.nowPage-2>0){
+              this.allPage.push(this.nowPage-2);
+            }
+            if(this.nowPage-1>0){
+              this.allPage.push(this.nowPage-1);
+            }
+            this.allPage.push(this.nowPage);
+            if(this.nowPage<this.maxPage){
+              this.allPage.push(this.nowPage+1);
+            }
+            if(this.nowPage<this.maxPage-1){
+              this.allPage.push(this.nowPage+2);
+            }
+            //准备分页数据结束end
             if(this.contentbox.length<1){
               this.hiddendata=true;
             }else {
@@ -116,6 +141,36 @@
           }).catch(response=>{
             this.errors.push(response);
           })
+        },
+        prevClick:function(){
+          if(this.clickPage>1){
+            this.clickPage--;
+            if (this.search == '') {
+              this.reqAxios(this.classify, this.sort, this.clickPage, 2);
+            } else {
+              this.searchAxios(this.classify, this.sort, this.clickPage, 2, this.search)
+            }
+          }
+        },
+        nextClick:function(){
+          if(this.clickPage<this.maxPage){
+            this.clickPage++;
+            if (this.search == '') {
+              this.reqAxios(this.classify, this.sort, this.clickPage, 2);
+            } else {
+              this.searchAxios(this.classify, this.sort, this.clickPage, 2, this.search)
+            }
+          }
+        },
+        //点击页码重新挂载数据更新页面
+        goClickPage:function(item){
+          this.clickPage=item;
+          console.log("item为："+item);
+          if (this.search == '') {
+            this.reqAxios(this.classify, this.sort, this.clickPage, 2);
+          } else {
+            this.searchAxios(this.classify, this.sort, this.clickPage, 2, this.search)
+          }
         },
         searchAxios:function (type,sortType,pageNum, pageSize,liveTitle) {
           AXIOS.get('makerLive/makerLiveShow',{
@@ -144,12 +199,12 @@
         byClassify: function (value) {
           this.classify= value;
           this.classifyClass=value;
-          this.reqAxios(this.classify,this.sort ,1 ,8)
+          this.reqAxios(this.classify,this.sort , 1,2)
         },
         bySort: function (index) {
           this.sort= index;
           this.sortClass=index;
-          this.reqAxios(this.classify,this.sort ,1 ,8)
+          this.reqAxios(this.classify,this.sort ,1 ,2)
         }
       },
 
@@ -162,7 +217,16 @@
               $p.text($p.text().replace(/(\s)*([a-zA-Z0-9]+|\W)(\.\.\.)?$/, "..."));
             };
           });
-        })
+        });
+        this.searchval;
+        if(this.search==''){
+          this.reqAxios(0, 0, this.clickPage, 2);
+        }else {
+          this.searchAxios(0,1,1,10,this.search)
+          if(this.makerlife.length<=0){
+            this.hiddendata=true
+          }
+        }
       }
 
     }
