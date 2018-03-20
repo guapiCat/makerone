@@ -176,13 +176,13 @@
         var worksshow= eval(response.data);
         this.ImplementationNotes = worksshow.data;
       }).catch(error => {
-        alert(error)
+        console.log(error)
 
       });
       AXIOS.get('homePage/makercommunity?pageSize=6',{}).then(response=>{
        this.teams=response.data;
       }).catch(error => {
-        alert(error)
+        console.log(error)
       });
       AXIOS.get('homePage/makercourse?pageSize=4',{}).then(response=>{
         this.courses=response.data;
@@ -192,7 +192,7 @@
         this.courselast.backgroundImage = "url('"+this.fileURL+this.courses[3].courseCoverImage+"')";
 //        console.log(this.coursefirst.backgroundImage);
       }).catch(error => {
-        alert(error)
+        console.log(error)
       })
 
     }
