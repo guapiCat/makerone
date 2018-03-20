@@ -66,7 +66,7 @@ a{
   border: solid 2px white;
   position: relative;
   top: 19px;
-  left: 1%;
+  left: -2%;
   cursor: pointer;
 }
 .mySs .mySs_img{
@@ -168,4 +168,34 @@ a{
         position: relative;
         left: 110%;
     }
+}
+@media screen and (max-width: 1550px) {
+    .myHeaderMsg>p{
+        border-right: solid 1px white;
+        font-size: 17px;
+        margin-right: 23px;
+        margin-left: 13px;
+        padding-right: 9px;
+        cursor: pointer;
+        line-height: 31px;
+        height: 38px;
+        margin-top: 15px;
+    }
+    .myHeaderMsg>p>a>i{
+        font-style: normal;
+        display: block;
+        font-size: 12px;
+        margin: -12px auto;
+    }
+    .mySs{
+        height: 30px;
+        width: 160px;
+        border-radius: 20px;
+        border: solid 2px white;
+        position: relative;
+        top: 19px;
+        left: 0;
+        cursor: pointer;
+    }
+
 }

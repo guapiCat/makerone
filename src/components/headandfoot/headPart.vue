@@ -166,7 +166,7 @@
         width: 88px;
         line-height: 27px;
         text-align: center;
-        font-family: simhei;
+        /*font-family: simhei;*/
     }
 
     .seachlist li:hover {
