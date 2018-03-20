@@ -8,7 +8,7 @@
                 <router-link to="/"><span>网站首页</span><i>HOME</i></router-link>
             </p>
             <p>
-                <router-link to="/worksShow/list"><span>作品展示</span><i style="margin-left: -5px">WORK SHOW</i>
+                <router-link to="/worksShow/list"><span>作品展示</span><i class="cgI" style="">WORK SHOW</i>
                 </router-link>
             </p>
             <p>
@@ -21,15 +21,15 @@
                 <router-link to="/makerActivity/list"><span>创客活动</span><i>ACTIVITY</i></router-link>
             </p>
             <p>
-                <router-link to="/materialLibrary/list"><span>素材库</span><i style="margin-left: -26px;">MATERIAL
-                    LIBRARY</i></router-link>
+                <router-link to="/materialLibrary/list"><span>素材库</span><i style="">MATERIAL
+                 </i></router-link>
             </p>
             <p>
-                <router-link to="/user/psonSpace"><span>个人空间</span><i style="margin-left: -13px;">PERSONAL SPACE</i>
+                <router-link to="/user/psonSpace"><span>个人空间</span><i class="cgI" style="">PERSONAL SPACE</i>
                 </router-link>
             </p>
             <p>
-                <router-link to="/makerLife/list"><span>创客生活</span><i style="margin-left: -3px;">CREATIVE LIFE</i>
+                <router-link to="/makerLife/list"><span>创客生活</span><i class="cgI" style="">CREATIVE LIFE</i>
                 </router-link>
             </p>
             <div class="mySs">
@@ -172,5 +172,14 @@
     .seachlist li:hover {
         color: #FC7E8E;
     }
-
+    @media screen and (max-width: 1200px) {
+        .log-out{
+            margin-left:30px;
+            color: white;
+        }
+        .go-login{
+            color: white;
+            margin-left: 10px;
+        }
+    }
 </style>
