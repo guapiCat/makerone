@@ -114,7 +114,7 @@
                                                 style="margin-left: 10px;margin-top: -3px;"/> </span></p>
                                         <ul :class="contTwo?'am-avg-sm-4 am-thumbnails contTwo':'am-avg-sm-4 am-thumbnails'">
                                             <li v-for="goodVideo in item.videoResourceList">
-                                                <video controls="controls" :src="fileURL+goodVideo.resourceUrl" style="width:250px;height:250px"></video>
+                                                <video preload="none" controls="controls" :src="fileURL+goodVideo.resourceUrl" style="width:250px;height:250px"></video>
                                             </li>
                                             <!--<li><img class="am-thumbnail"-->
                                                      <!--src="http://s.amazeui.org/media/i/demos/bing-2.jpg"/></li>-->
