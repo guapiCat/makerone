@@ -14,7 +14,7 @@
                 <form class="am-form">
                     <div class="am-form-group am-u-sm-10 am-u-sm-centered">
                         <input type="text" class="am-input-lg am-radius" id="phone_studentId" name="phone_studentId"
-                               placeholder="手机/学号"/>
+                               placeholder="昵称"/>
                     </div>
                     <div class="am-form-group am-u-sm-10 am-u-sm-centered">
                         <input type="password" class="am-input-lg am-radius" id="password" name="password"

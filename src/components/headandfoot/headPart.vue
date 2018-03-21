@@ -137,8 +137,11 @@
         color:yellow;
     }
     .log-out{
-        margin-left:40px;
+        margin-left: 40px;
         color: white;
+        float: right;
+        margin-right: 84px;
+        margin-top: -50px;
     }
     .log-out:hover{
         color: yellow;
