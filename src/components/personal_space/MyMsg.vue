@@ -140,19 +140,19 @@
                 if(this.clickPage>1){
                     this.clickPage--;
                 }
-                this.getAllMsg(this.clickPage,2);
+                this.getAllMsg(this.clickPage,8);
             },
             nextClick:function(){
                 if(this.clickPage<this.maxPage){
                     this.clickPage++;
                 }
-                this.getAllMsg(this.clickPage,2);
+                this.getAllMsg(this.clickPage,8);
             },
             //分页点击事件start
             goClickPage:function(item){
                 this.clickPage=item;
                 //console.log("item为："+item);
-                this.getAllMsg(this.clickPage,2);
+                this.getAllMsg(this.clickPage,8);
             },
             //分页点击事件end
             //分页的上一页下一页点击事件
@@ -160,19 +160,19 @@
                 if(this.clickPageTwo>1){
                     this.clickPageTwo--;
                 }
-                this.getAllMsg(this.clickPageTwo,2);
+                this.getAllMsg(this.clickPageTwo,8);
             },
             nextClickTwo:function(){
                 if(this.clickPageTwo<this.maxPageTwo){
                     this.clickPageTwo++;
                 }
-                this.getAllMsg(this.clickPageTwo,2);
+                this.getAllMsg(this.clickPageTwo,8);
             },
             //分页点击事件start
             goClickPageTwo:function(item){
                 this.clickPageTwo=item;
                 //console.log("item为："+item);
-                this.getAllMsg(this.clickPageTwo,2);
+                this.getAllMsg(this.clickPageTwo,8);
             },
             //分页点击事件end
             //拒绝申请
@@ -189,7 +189,7 @@
                     }else{
                         alert(response.data);
                     }
-                    this.getAllMsg(this.clickPageTwo,2);
+                    this.getAllMsg(this.clickPageTwo,8);
 
                 }).catch(e => {
                     this.errors.push(e)
@@ -209,7 +209,7 @@
                     }else{
                         alert(response.data);
                     }
-                    this.getAllMsg(this.clickPageTwo,2);
+                    this.getAllMsg(this.clickPageTwo,8);
                 }).catch(e => {
                     this.errors.push(e)
                 });
@@ -281,7 +281,7 @@
             }
         },
         created:function(){
-            this.getAllMsg(this.clickPage,2);
+            this.getAllMsg(this.clickPage,8);
         }
     }
 

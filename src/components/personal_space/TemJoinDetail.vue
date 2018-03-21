@@ -133,8 +133,10 @@
                     }).then(response => {
                         //console.log(response);
                         if(response.data){
-                            alert(response.data);
-                            this.$router.push({ path: '/user/myGroup' })
+                            if(response.data==true){
+                                alert("退出成功");
+                                this.$router.push({ path: '/user/myGroup' })
+                            }
                         }else{
                             alert(response.data);
                         }

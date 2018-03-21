@@ -141,31 +141,31 @@
             showClub:function(){
                 this.controlTitle=true;
                 this.controlShow=true;
-                this.clickClub(1,2);
+                this.clickClub(1,8);
             },
             showGroup:function(){
                 this.controlTitle=false;
                 this.controlShow=false;
-                this.clickGroup(1,2);
+                this.clickGroup(1,8);
             },
             //分页的上一页下一页点击事件
             prevClick:function(){
                 if(this.clickPage>1){
                     this.clickPage--;
                 }
-                this.clickClub(this.clickPage,2);
+                this.clickClub(this.clickPage,8);
             },
             nextClick:function(){
                 if(this.clickPage<this.maxPage){
                     this.clickPage++;
                 }
-                this.clickClub(this.clickPage,2);
+                this.clickClub(this.clickPage,8);
             },
             //分页点击事件start
             goClickPage:function(item){
                 this.clickPage=item;
                 //console.log("item为："+item);
-                this.clickClub(this.clickPage,2);
+                this.clickClub(this.clickPage,8);
             },
             //分页点击事件end
             //分页的上一页下一页点击事件
@@ -173,19 +173,19 @@
                 if(this.clickPageTwo>1){
                     this.clickPageTwo--;
                 }
-                this.clickGroup(this.clickPageTwo,2);
+                this.clickGroup(this.clickPageTwo,8);
             },
             nextClickTwo:function(){
                 if(this.clickPageTwo<this.maxPageTwo){
                     this.clickPageTwo++;
                 }
-                this.clickGroup(this.clickPageTwo,2);
+                this.clickGroup(this.clickPageTwo,8);
             },
             //分页点击事件start
             goClickPageTwo:function(item){
                 this.clickPageTwo=item;
                 //console.log("item为："+item);
-                this.clickGroup(this.clickPageTwo,2);
+                this.clickGroup(this.clickPageTwo,8);
             },
             //分页点击事件end
 
@@ -262,8 +262,8 @@
             }
         },
         created: function () {
-            this.clickGroup(this.clickPageTwo,2);
-            this.clickClub(this.clickPage,2);
+            this.clickGroup(this.clickPageTwo,8);
+            this.clickClub(this.clickPage,8);
         }
     }
 </script>

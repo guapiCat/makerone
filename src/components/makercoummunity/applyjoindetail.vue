@@ -80,8 +80,15 @@
                         content:this.mySpecial
                     }
                 }).then(response => {
-                    alert(response.data);
-                    window.history.go(-1);
+                    //alert(response.data);
+                    //console.log(response.data.code);
+                    if(response.data==true){
+                        alert("提交成功");
+                        window.history.go(-1);
+                    }else if(response.data.code!=true){
+                        alert("已结提交过了哦");
+                        window.history.go(-1);
+                    }
                 }).catch(e => {
                     this.errors.push(e)
                 });

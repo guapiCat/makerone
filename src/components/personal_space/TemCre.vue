@@ -74,19 +74,19 @@
                 if(this.clickPage>1){
                     this.clickPage--;
                 }
-                this.getAllMsg(this.clickPage,2);
+                this.getAllMsg(this.clickPage,8);
             },
             nextClick:function(){
                 if(this.clickPage<this.maxPage){
                     this.clickPage++;
                 }
-                this.getAllMsg(this.clickPage,2);
+                this.getAllMsg(this.clickPage,8);
             },
             //点击页码重新挂载数据更新页面
             goClickPage:function(item){
                 this.clickPage=item;
                 //console.log("item为："+item);
-                this.getAllMsg(this.clickPage,2);
+                this.getAllMsg(this.clickPage,8);
             },
             //分页点击事件end
             getAllMsg:function(pageNum,pageSize){
@@ -123,7 +123,7 @@
             }
         },
         created: function () {
-            this.getAllMsg(this.clickPage,2);
+            this.getAllMsg(this.clickPage,8);
         }
     }
 

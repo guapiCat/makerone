@@ -27,7 +27,7 @@
                                     <!--style="border: 0px;" scrolling="no" onload="iframeLoad_1()"></iframe>-->
                             <teamCre></teamCre>
                             <button v-on:click="goCreTm" class="am-btn am-btn-primary" style="margin-left: 4%;
-    margin-top: -10%;">+创建团队</button>
+    margin-top: 2%;">+创建团队</button>
                         </div>
                         <div class="am-tab-panel am-fade" id="tab2">
                             <!--<iframe id="team_joined" src="team_joined.html" width="100%" height="100%"-->

@@ -212,7 +212,11 @@
                     }
                 }).then(response => {
                     //console.log(response);
-                    alert(response.data);
+                    if(response.data==true){
+                        alert("发送成功");
+                    }else{
+                        alert("网络连接错误");
+                    }
                 }).catch(e => {
                     this.errors.push(e)
                 });
@@ -231,11 +235,11 @@
                     }
                 }).then(response => {
                     //console.log(response);
-                    if(response.data){
-                        alert(response.data);
+                    if(response.data==true){
+                        alert("解散成功");
                         this.$router.push({ path: '/user/myGroup' })
                     }else{
-                        alert(response.data);
+                        alert("网络连接错误");
                     }
                 }).catch(e => {
                     this.errors.push(e)

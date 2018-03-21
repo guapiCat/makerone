@@ -80,8 +80,13 @@
                         content:this.mySpecial
                     }
                 }).then(response => {
-                    alert(response.data);
-                    window.history.go(-1);
+                    console.log(response.data);
+                    if(response.data==true){
+                        alert("提交成功");
+                        window.history.go(-1);
+                    }else if(response.data.code!=true){
+                        alert("已结提交过了哦");
+                    }
                 }).catch(e => {
                     this.errors.push(e)
                 });

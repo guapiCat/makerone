@@ -63,7 +63,7 @@
                 </ul>
 
                 <!--分页-->
-                <ul class="am-pagination" style="margin-left: 700px;">
+                <ul class="am-pagination" style="margin-left: 700px;float: right;margin-right:60px;">
                     <li v-on:click="prevClick"><span class="adPointer">&laquo;</span></li>
                     <!--<li class="am-active"><a>1</a></li>-->
                     <!--<li><a>2</a></li>-->
@@ -76,7 +76,7 @@
 
                 <div class="nodata" v-show="hiddendata">
                 </div>
-
+                <div style="clear: both"></div>
             </div>
         </div>
 
@@ -122,9 +122,9 @@
                 if(this.clickPage>1){
                     this.clickPage--;
                     if (this.search == '') {
-                        this.reqAxios(0, 0, this.clickPage, 2);
+                        this.reqAxios(0, 0, this.clickPage, 10);
                     } else {
-                        this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                        this.searchAxios(0, 0, this.clickPage, 10, this.search)
                     }
                 }
             },
@@ -132,9 +132,9 @@
                 if(this.clickPage<this.maxPage){
                     this.clickPage++;
                     if (this.search == '') {
-                        this.reqAxios(0, 0, this.clickPage, 2);
+                        this.reqAxios(0, 0, this.clickPage, 10);
                     } else {
-                        this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                        this.searchAxios(0, 0, this.clickPage, 10, this.search)
                     }
                 }
             },
@@ -143,20 +143,20 @@
                 this.clickPage=item;
                 console.log("item为："+item);
                 if (this.search == '') {
-                    this.reqAxios(0, 0, this.clickPage, 2);
+                    this.reqAxios(0, 0, this.clickPage, 10);
                 } else {
-                    this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                    this.searchAxios(0, 0, this.clickPage, 10, this.search)
                 }
             },
             //分页点击事件end
             one: function (index) {
                 this.guigeSpan = index;
                 this.clickOne = index;
-                this.reqAxios(this.clickOne, 0, this.clickPage, 2);
+                this.reqAxios(this.clickOne, 0, this.clickPage, 10);
             },
             two: function (index) {
                 //console.log(index);
-                this.reqAxios(this.clickOne, index, this.clickPage, 2);
+                this.reqAxios(this.clickOne, index, this.clickPage, 10);
             },
             reqAxios: function (makeWorType, sortType, pageNum, pageSize) {
                 AXIOS.get('makerWorks/sortMakerWorks', {
@@ -243,9 +243,9 @@
         created: function () {
             this.searchval;
             if (this.search == '') {
-                this.reqAxios(0, 0, this.clickPage, 2);
+                this.reqAxios(0, 0, this.clickPage, 10);
             } else {
-                this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                this.searchAxios(0, 0, this.clickPage, 10, this.search)
 
             }
 

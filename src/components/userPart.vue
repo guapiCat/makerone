@@ -124,6 +124,26 @@
 
 <style scoped>
     /*改动的样式-yzh*/
+    @media screen and (max-width: 1400px) {
+        .myLogo{
+            display: block;
+            position: relative;
+            width: 180px;
+            height: 50px;
+            left: -4%;
+            top: 5px;
+        }
+        .myHeaderMsg  p{
+            border-right: dashed 2px white;
+            font-size: 18px;
+            margin-right: 10px;
+            margin-left: 10px;
+            margin-top: 8px;
+            padding-right: 20px;
+            cursor: pointer;
+            line-height: 40px;
+        }
+    }
     .redDot{
         border: 4px solid red;
         border-radius: 50%;

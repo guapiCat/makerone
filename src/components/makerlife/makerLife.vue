@@ -71,8 +71,8 @@
             sortClass:0,
             sorttitle:[
               "时间",
-              "点赞数",
-              "浏览量"
+              "浏览量",
+              "点赞数"
             ],
             contentbox:[],
             // 分页
@@ -146,9 +146,9 @@
           if(this.clickPage>1){
             this.clickPage--;
             if (this.search == '') {
-              this.reqAxios(this.classify, this.sort, this.clickPage, 2);
+              this.reqAxios(this.classify, this.sort, this.clickPage, 8);
             } else {
-              this.searchAxios(this.classify, this.sort, this.clickPage, 2, this.search)
+              this.searchAxios(this.classify, this.sort, this.clickPage, 8, this.search)
             }
           }
         },
@@ -156,9 +156,9 @@
           if(this.clickPage<this.maxPage){
             this.clickPage++;
             if (this.search == '') {
-              this.reqAxios(this.classify, this.sort, this.clickPage, 2);
+              this.reqAxios(this.classify, this.sort, this.clickPage, 8);
             } else {
-              this.searchAxios(this.classify, this.sort, this.clickPage, 2, this.search)
+              this.searchAxios(this.classify, this.sort, this.clickPage, 8, this.search)
             }
           }
         },
@@ -167,9 +167,9 @@
           this.clickPage=item;
           console.log("item为："+item);
           if (this.search == '') {
-            this.reqAxios(this.classify, this.sort, this.clickPage, 2);
+            this.reqAxios(this.classify, this.sort, this.clickPage, 8);
           } else {
-            this.searchAxios(this.classify, this.sort, this.clickPage, 2, this.search)
+            this.searchAxios(this.classify, this.sort, this.clickPage, 8, this.search)
           }
         },
         searchAxios:function (type,sortType,pageNum, pageSize,liveTitle) {
@@ -199,12 +199,12 @@
         byClassify: function (value) {
           this.classify= value;
           this.classifyClass=value;
-          this.reqAxios(this.classify,this.sort , 1,2)
+          this.reqAxios(this.classify,this.sort , 1,8)
         },
         bySort: function (index) {
           this.sort= index;
           this.sortClass=index;
-          this.reqAxios(this.classify,this.sort ,1 ,2)
+          this.reqAxios(this.classify,this.sort ,1 ,8)
         }
       },
 
@@ -220,7 +220,7 @@
         });
         this.searchval;
         if(this.search==''){
-          this.reqAxios(0, 0, this.clickPage, 2);
+          this.reqAxios(0, 0, this.clickPage, 8);
         }else {
           this.searchAxios(0,1,1,10,this.search)
           if(this.makerlife.length<=0){

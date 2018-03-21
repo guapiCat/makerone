@@ -116,7 +116,12 @@
                 params.append("objectId", this.workId);
                 params.append("type", 1);
                 AXIOS.post('common/joinFavorite', params).then(response => {
-                    alert(response.data);
+                    //alert(response.data);
+                    if(response.data==true){
+                        alert("收藏成功");
+                    }else{
+                        alert("网络连接错误");
+                    }
                 }).catch(e => {
                     this.errors.push(e)
                 });

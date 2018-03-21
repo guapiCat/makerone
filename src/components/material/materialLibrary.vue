@@ -113,9 +113,9 @@
                 if(this.clickPage>1){
                     this.clickPage--;
                     if (this.search == '') {
-                        this.reqAxios(0, 0, this.clickPage, 2);
+                        this.reqAxios(0, 0, this.clickPage, 8);
                     } else {
-                        this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                        this.searchAxios(0, 0, this.clickPage, 8, this.search)
                     }
                 }
             },
@@ -123,9 +123,9 @@
                 if(this.clickPage<this.maxPage){
                     this.clickPage++;
                     if (this.search == '') {
-                        this.reqAxios(0, 0, this.clickPage, 2);
+                        this.reqAxios(0, 0, this.clickPage, 8);
                     } else {
-                        this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                        this.searchAxios(0, 0, this.clickPage, 8, this.search)
                     }
                 }
             },
@@ -134,9 +134,9 @@
                 this.clickPage=item;
                 console.log("item为："+item);
                 if (this.search == '') {
-                    this.reqAxios(0, 0, this.clickPage, 2);
+                    this.reqAxios(0, 0, this.clickPage, 8);
                 } else {
-                    this.searchAxios(0, 0, this.clickPage, 2, this.search)
+                    this.searchAxios(0, 0, this.clickPage, 8, this.search)
                 }
             },
             //分页点击事件end
@@ -150,12 +150,12 @@
             one: function (index) {
                 //console.log("one：" + index);
                 this.type = index;
-                this.reqAxios(this.type, this.orderStr, this.clickPage, 2);
+                this.reqAxios(this.type, this.orderStr, this.clickPage, 8);
             },
             two: function (index) {
                 //console.log("two:" + index);
                 this.orderStr = index;
-                this.reqAxios(this.type, this.orderStr, this.clickPage, 2);
+                this.reqAxios(this.type, this.orderStr, this.clickPage, 8);
             },
             reqAxios: function (type, orderStr, pageNum, pageSize) {
                 AXIOS.get('makerMaterial/MakerMaterialControllerShow', {
@@ -239,9 +239,9 @@
             this.searchval;
             //console.log("search的值为："+this.search);
             if (this.search == "") {
-                this.reqAxios(0, 0, this.clickPage, 2)
+                this.reqAxios(0, 0, this.clickPage, 8)
             } else {
-                this.searchAxios(0, 0, this.clickPage, 2, this.search);
+                this.searchAxios(0, 0, this.clickPage, 8, this.search);
 
             }
 
