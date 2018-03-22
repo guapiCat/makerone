@@ -75,7 +75,7 @@
 
                         })
                         .catch(e => {
-                            alert("登录失败");
+                            alert("账号或密码错误");
                             this.errors.push(e)
                         })
             }

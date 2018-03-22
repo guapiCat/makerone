@@ -2,7 +2,7 @@
 <div>
   <div class="bg">
     <div class="am-g head_img">
-      <img src="../../../static/img/banner_activity.png">
+      <img class="activityTopImg" src="../../../static/img/banner_activity.png">
     </div>
 
     <div class="am-u-sm-10 am-u-sm-centered arrow_img">
@@ -99,6 +99,12 @@
 </script>
 
 <style scoped>
+    .activityTopImg{
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        height: 500px;
+    }
   .title{
     font-size: 35px;
     font-weight: normal;

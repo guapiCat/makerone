@@ -3,8 +3,7 @@
     <div class="hello">
         <div class="myHeaderMsg">
             <img v-on:click="goHome" class="myLogo" style="cursor: pointer" src="../../static/img/logo.png" alt=""/>
-
-
+            <span class="logoName">黄陵中学创客平台</span>
             <div v-for="value,index in myHeader" v-on:click="hdClick(index)" v-bind:class="{useron:index==guigeSpan}">
                 <p class="myHeadP">
                     <a>
@@ -124,6 +123,15 @@
 
 <style scoped>
     /*改动的样式-yzh*/
+    .logoName{
+        display: inline-block;
+        position: relative;
+        color: black;
+        left: -88px;
+        top: 34px;
+        font-style: italic;
+        font-family: cursive;
+    }
     @media screen and (max-width: 1400px) {
         .myLogo{
             display: block;
@@ -173,7 +181,7 @@
         height: 60px;
         display: flex;
         justify-content: center;
-        background-position: 60% -14px;
+        background-position: 50% -14px;
     }
 
     .myHeaderMsg  p {

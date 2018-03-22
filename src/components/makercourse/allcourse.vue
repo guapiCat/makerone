@@ -4,7 +4,7 @@
             <div class="classify">
                 <i> <img src="../../../static/img/icon_classify.png"/><span>班级</span></i>
             </div>
-            <div class="classifylist" style="margin: 0 0 20px 0; padding-top: 20px;">
+            <div class="classifylist">
                 <ul>
                     <li @click="byclaass(index)" v-for="item,index in classtitle" class="title"
                         v-bind:class="{lighton:index== classes-1 }">{{item}}
@@ -21,7 +21,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="classify" style="margin-top: 20px;">
+            <div class="classify">
                 <i> <img src="../../../static/img/icon_sort.png"/><span>排序</span></i>
             </div>
             <div class="classifylist">
@@ -347,24 +347,23 @@
 
     .classifylist {
         padding-left: 18%;
-        margin: 20px 0;
     }
 
     .classifylist ul {
         overflow: hidden;
-        padding-bottom: 5px;
+        padding-bottom: 0px;
     }
 
     .classifylist li {
-        margin-bottom: 2px;
+        margin-bottom: 0px;
         list-style: none;
         float: left;
         border: solid 1px #FFF;
         height: 40px;
-        width: 11%;
+        width: 9%;
         text-align: center;
         color: #333;
-        margin: 6px 20px;
+        margin: 6px 4px;
         padding: 5px 0;
         background: #FFFFFF;
         box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
