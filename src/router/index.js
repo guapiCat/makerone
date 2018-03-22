@@ -203,6 +203,7 @@ const Routers = [
     component:MyTeam
   },{
     path:"/user/myWorks",
+    name:"myWorks",
     component:MyWorks
   },{
     path:"/user/newMsg",
