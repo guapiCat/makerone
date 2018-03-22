@@ -120,7 +120,7 @@
                 desc:" ",
                 file:"",
                 avatar:"",
-                fileURL: 'http://121.46.4.37:9000/'
+                fileURL: 'http://121.46.4.37:9000/download?url='
                 //fileURL:"http://192.168.0.106:9000/"
             }
         },
