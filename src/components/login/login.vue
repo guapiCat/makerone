@@ -30,7 +30,7 @@
                     <div class="am-form-group am-u-sm-10 am-u-sm-centered">
                         <div class="am-u-sm-11 am-u-sm-centered">
                             <a @click="login()" class="table_button am-btn am-btn-default am-radius" name="login"
-                               id="nextstep" style="margin-right: 60px;"><span style="font-size: 20px;">登录</span></a>
+                               id="nextstep"><span style="font-size: 20px;">登录</span></a>
                             <router-link to="/register" class="table_button am-btn am-btn-default am-radius"
                                          name="register" id="cancel"><span style="font-size: 20px;">我要注册</span>
                             </router-link>

@@ -2,7 +2,8 @@
     <div>
         <div class="nav-container">
             <img src="../../../static/img/logo.png" style="height: 70px;width: 70px;border-radius: 50%;"/>
-            <span class="logoName">黄陵中学创客教育平台</span>
+            <span class="logoName">黄陵中学智慧校园·创客平台</span>
+            <span class="logoEngName">WEDZ EXPERIMENTAL HUANGLIN MIDDLE SCHOOL</span>
         </div>
         <div class="myHeaderMsg">
             <p>
@@ -139,10 +140,17 @@
     .logoName{
         display: inline-block;
         position: relative;
-        top: 32px;
-        font-size: 18px;
-        font-style: italic;
-        font-family: cursive;
+        font-size: 21px;
+        font-weight: bold;
+        color: #185594;
+    }
+    .logoEngName{
+        display: inline-block;
+        position: relative;
+        left: -265px;
+        top: 28px;
+        font-size: 14px;
+        color: #185594;
     }
     .go-login{
         color: white;
