@@ -35,7 +35,7 @@
                 <p style="font-weight: bold; text-align: center;">课程计划表</p>
               </div>
               <div class="content-title-hand-right">
-                <p>课程介绍：<span>注重使用先进的教学方法和手段。精品课程要使用网络进行教学与管理，相关的教学大纲、教案、习题、实验指导、参考文献目录等要上网并免费开放，鼓励将网络课件、授课录像等上网开放，实现优质教学资源共享，带动其他课程的建设</span></p>
+                <p>课程介绍：<span>{{allMsg.makerCommunityDTO.communityIntro}}</span></p>
               </div>
 
             </div>
