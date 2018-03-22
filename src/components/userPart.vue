@@ -173,7 +173,7 @@
         height: 60px;
         display: flex;
         justify-content: center;
-        background-position: 50% -14px;
+        background-position: 60% -14px;
     }
 
     .myHeaderMsg  p {
@@ -203,10 +203,11 @@
     .myLogo {
         display: block;
         position: relative;
-        width: 180px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         left: -4%;
-        top: 5px;
+        top: 0px;
+        margin-right: 30px;
     }
 
     .mySs {
