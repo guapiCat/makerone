@@ -27,12 +27,12 @@
                         </label>
                         <a href="javascript:;" style="font-weight: normal;float: right;color: #000000">忘记密码?</a>
                     </div>
-                    <div class="am-form-group am-u-sm-10 am-u-sm-centered">
-                        <div class="am-u-sm-11 am-u-sm-centered">
-                            <a @click="login()" class="table_button am-btn am-btn-default am-radius" name="login"
+                    <div class="am-form-group am-u-sm-12 am-u-sm-centered">
+                        <div class="am-u-sm-6 am-u-sm-centered">
+                            <a style="display: block;margin-bottom: 10px;" @click="login()" class="table_button am-btn am-btn-default am-radius" name="login"
                                id="nextstep"><span style="font-size: 20px;">登录</span></a>
                             <router-link to="/register" class="table_button am-btn am-btn-default am-radius"
-                                         name="register" id="cancel"><span style="font-size: 20px;">我要注册</span>
+                                         name="register" id="cancel"><span style="font-size: 20px;margin-top: 10px;">我要注册</span>
                             </router-link>
 
                         </div>
