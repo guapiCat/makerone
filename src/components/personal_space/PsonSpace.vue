@@ -130,12 +130,16 @@
             schoolESB: {
                 type: String,
                 required: true
+            },
+            fileURL: {
+                type: String,
+                required: true
             }
         },
         name: 'hello',
         data () {
             return {
-                fileURL:"http://192.168.0.103:9000/",
+                //fileURL:"http://192.168.0.103:9000/",
                 allMsg:[],
                 myLatelyTm:[],
                 myLatelyWorks:[],

@@ -179,13 +179,18 @@
             schoolESB: {
                 type: String,
                 required: true
+            },
+            fileURL: {
+                type: String,
+                required: true
             }
+
         },
         name: 'myTeam',
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',
-                fileURL:"http://192.168.0.103:9000/",
+                //fileURL:"http://192.168.0.103:9000/",
                 allMsg: "",
                 clubImg:[],
                 clubVideo:[],

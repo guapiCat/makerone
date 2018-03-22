@@ -64,6 +64,10 @@
             schoolESB: {
                 type: String,
                 required: true
+            },
+            fileURL: {
+                type: String,
+                required: true
             }
         },
         name: 'hello',

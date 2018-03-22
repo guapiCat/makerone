@@ -304,7 +304,9 @@
     .lighton {
         background: #FFCA57 !important;
     }
-
+    .adPointer{
+        cursor: pointer;
+    }
     .nodata {
         width: 99%;
         height: 400px;
@@ -355,7 +357,6 @@
     }
 
     .classifylist li {
-        margin-bottom: 0px;
         list-style: none;
         float: left;
         border: solid 1px #FFF;
@@ -368,7 +369,7 @@
         background: #FFFFFF;
         box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
         cursor: pointer;
-
+        border-radius: 20px;
     }
 
     .q_coverName span {

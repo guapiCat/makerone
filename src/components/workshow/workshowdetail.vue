@@ -95,6 +95,10 @@
             schoolESB: {
                 type: String,
                 required: true
+            },
+            fileURL: {
+                type: String,
+                required: true
             }
         },
         name: "workshowdetail",
@@ -103,7 +107,7 @@
             return {
                 workId: this.$route.params.workId,
                 //typeId: this.$route.params.typeId,
-                fileURL:"http://192.168.0.103:9000/",
+                //fileURL:"http://192.168.0.103:9000/",
                 allMsg:"",
                 allStep:[],
                 voteStatus:"",

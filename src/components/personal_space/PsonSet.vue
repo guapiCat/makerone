@@ -101,6 +101,7 @@
     import {AXIOS} from '../../http-common'
     export default {
         name: 'hello',
+
         data () {
             return {
                 allMsg:"",

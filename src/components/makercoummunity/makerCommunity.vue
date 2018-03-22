@@ -117,10 +117,16 @@
     import {AXIOS} from '../../http-common'
     export default {
         name: "maker-community",
+        props: {
+            fileURL: {
+                type: String,
+                required: true
+            }
+        },
         data: function () {
             return {
                 clubMsg: [],
-                fileURL:"http://192.168.0.103:9000/",
+                //fileURL:"http://192.168.0.103:9000/",
                 groupMsg: [],
                 controlShow:true,
                 controlTitle:true,

@@ -146,6 +146,10 @@
             schoolESB: {
                 type: String,
                 required: true
+            },
+            fileURL: {
+                type: String,
+                required: true
             }
         },
         name: "makerteam",
@@ -154,7 +158,7 @@
                 allMsg: [],
                 teamMemb:[],
                 teamId: this.$route.params.teamId,
-                fileURL:"http://192.168.0.103:9000/",
+                //fileURL:"http://192.168.0.103:9000/",
                 //修改css的控件数据
                 contOne: true,
                 contTwo: true,
