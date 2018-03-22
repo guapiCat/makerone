@@ -147,9 +147,9 @@
                 //console.log(response);
                 this.allMsg=response.data;
                 //添加组员，添加组员图片
-                this.allPson.push([this.allMsg.sysUserDTO.username,this.allMsg.sysUserDTO.avatar]);
+                this.allPson.push([this.allMsg.sysUserDTO.realName,this.allMsg.sysUserDTO.avatar]);
                 for(var i=0;i<this.allMsg.sysUserList.length;i++){
-                    this.allPson.push([this.allMsg.sysUserList[i].username,this.allMsg.sysUserList[i].avatar]);
+                    this.allPson.push([this.allMsg.sysUserList[i].realName,this.allMsg.sysUserList[i].avatar]);
                 }
                 //添加精彩图片和视频
                 for(var i=0;i<this.allMsg.communityResourceList.length;i++){

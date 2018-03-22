@@ -64,7 +64,7 @@
                     <li v-on:click="nextClick"><span class="adPointer">&raquo;</span></li>
                 </ul>
                 <!--分页end-->
-                <div v-if="clubMsg.length==0">快去加入一个社团吧(*^▽^*)</div>
+                <div v-if="clubMsg.length==0">目前没有数据o(╥﹏╥)o</div>
             </ul>
             <ul v-bind:style="{display:controlShow?'none':'block'}" class="am-avg-sm-2 am-avg-md-2 am-avg-lg-2 am-thumbnails">
                 <li v-for="item in groupMsg"
@@ -106,7 +106,7 @@
                     <li v-on:click="nextClickTwo"><span class="adPointer">&raquo;</span></li>
                 </ul>
                 <!--分页end-->
-                <div v-if="groupMsg.length==0">快去加入一个团队吧(*^▽^*)</div>
+                <div v-if="groupMsg.length==0">目前没有数据o(╥﹏╥)o</div>
             </ul>
         </div>
 

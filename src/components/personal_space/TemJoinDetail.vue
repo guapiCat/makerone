@@ -163,9 +163,9 @@
             }).then(response => {
                 //console.log(response.data);
                 this.allMsg = response.data;
-                this.teamMemb.push([this.allMsg.sysUser.username,this.allMsg.sysUser.avatar,this.allMsg.sysUser.id]);
+                this.teamMemb.push([this.allMsg.sysUser.realName,this.allMsg.sysUser.avatar,this.allMsg.sysUser.id]);
                 for(var i=0;i<this.allMsg.teamMemberUserList.length;i++){
-                    this.teamMemb.push([this.allMsg.teamMemberUserList[i].username,this.allMsg.teamMemberUserList[i].avatar,this.allMsg.teamMemberUserList[i].id]);
+                    this.teamMemb.push([this.allMsg.teamMemberUserList[i].realName,this.allMsg.teamMemberUserList[i].avatar,this.allMsg.teamMemberUserList[i].id]);
                 }
                 if(response.data.makerWorksList.length==0){
                     this.contOne=false;
