@@ -90,11 +90,9 @@
                 type: String,
                 required: true
             },
-            props: {
-                fileURL: {
-                    type: String,
-                    required: true
-                }
+            fileURL: {
+                type: String,
+                required: true
             }
         },
         name: "makerteam",

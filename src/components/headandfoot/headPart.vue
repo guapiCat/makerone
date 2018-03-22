@@ -84,18 +84,19 @@
 
     export default {
         name: 'headPart',
-        props: {
-            fileURL: {
-                type: String,
-                required: true
-            }
-        },
+        //props: {
+        //    fileURL: {
+        //        type: String,
+        //        required: true
+        //    }
+        //},
         data () {
             return {
                 isHidden: false,
                 searchInput: '',
                 allMsg: "",
                 //fileURL: "http://192.168.0.106:9000/",
+                fileURL: 'http://121.46.4.37:9000/',
                 psonImg: false,
                 psonName:false
             }

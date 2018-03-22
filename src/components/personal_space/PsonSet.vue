@@ -101,7 +101,12 @@
     import {AXIOS} from '../../http-common'
     export default {
         name: 'hello',
-
+        //props: {
+        //    fileURL: {
+        //        type: String,
+        //        required: true
+        //    }
+        //},
         data () {
             return {
                 allMsg:"",
@@ -115,7 +120,8 @@
                 desc:" ",
                 file:"",
                 avatar:"",
-                fileURL:"http://192.168.0.106:9000/"
+                fileURL: 'http://121.46.4.37:9000/'
+                //fileURL:"http://192.168.0.106:9000/"
             }
         },
         created:function(){

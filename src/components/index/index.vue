@@ -13,7 +13,7 @@
       <div class="container">
         <div class="section--header">
           <img src="static/img/flag.png" alt=""/>
-            <i class="flag-i1">黄陵中学</i>
+            <b class="flag-i1">黄陵中学</b>
           <h5 class="sectionleft" >作品展示</h5>
           <span>WORKS SHOW</span>
         </div>
@@ -44,7 +44,7 @@
       <div class="container">
         <div class="section--header">
           <img src="../../../static/img/flag.png" alt=""/>
-            <i class="flag-i1">黄陵中学</i>
+            <b class="flag-i1">黄陵中学</b>
 
             <h5 class="sectionleft" >校本课程</h5>
           <span>COURSES</span>
@@ -96,7 +96,7 @@
       <div class="container">
         <div class="section--header">
           <img src="../../../static/img/flag.png" alt=""/>
-            <i class="flag-i1">黄陵中学</i>
+            <b class="flag-i1">黄陵中学</b>
 
             <h5 class="sectionleft" >创客社团</h5>
           <span>TEAM</span>

@@ -44,12 +44,12 @@
     import {AXIOS} from '../http-common'
     export default {
         name: 'hello',
-        props: {
-            fileURL: {
-                type: String,
-                required: true
-            }
-        },
+        //props: {
+        //    fileURL: {
+        //        type: String,
+        //        required: true
+        //    }
+        //},
         data () {
             return {
                 myHeader: [
@@ -63,6 +63,7 @@
                 guigeSpan: -1,
                 allMsg:"",
                 //fileURL:"http://192.168.0.103:9000/",
+                fileURL: 'http://121.46.4.37:9000/',
                 isMessage:false
             }
         },
