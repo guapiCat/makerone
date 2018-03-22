@@ -13,6 +13,7 @@
       <div class="container">
         <div class="section--header">
           <img src="static/img/flag.png" alt=""/>
+            <i class="flag-i1">黄陵中学</i>
           <h5 class="sectionleft" >作品展示</h5>
           <span>WORKS SHOW</span>
         </div>
@@ -43,7 +44,9 @@
       <div class="container">
         <div class="section--header">
           <img src="../../../static/img/flag.png" alt=""/>
-          <h5 class="sectionleft" >校本课程</h5>
+            <i class="flag-i1">黄陵中学</i>
+
+            <h5 class="sectionleft" >校本课程</h5>
           <span>COURSES</span>
         </div>
 
@@ -93,7 +96,9 @@
       <div class="container">
         <div class="section--header">
           <img src="../../../static/img/flag.png" alt=""/>
-          <h5 class="sectionleft" >创客社团</h5>
+            <i class="flag-i1">黄陵中学</i>
+
+            <h5 class="sectionleft" >创客社团</h5>
           <span>TEAM</span>
         </div>
         <!--index-container end-->
@@ -202,7 +207,16 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
   /*轮播*/
-
+  .flag-i1{
+      font-style: normal;
+      position: relative;
+      width: 40px;
+      left: -51px;
+      display: inline-block;
+      top: 7px;
+      font-size: 14px;
+      color: white;
+  }
   .workimg{
     height: 220px !important;
     width: 290px !important;
