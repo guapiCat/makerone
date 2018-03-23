@@ -35,10 +35,10 @@
                             <!--<iframe id="change_password" src="change_pwd.html" width="100%" height="100%"-->
                                     <!--style="border: 0px;" scrolling="no" onload="iframeLoad_2()"></iframe>-->
                             <div>
-                                <span>当前密码</span><input maxlength="20" v-model="nowPassword" type="text"/>
+                                <span>当前密码</span><input maxlength="20" v-model="nowPassword" type="password"/>
                             </div>
                             <div>
-                                <span style="margin-left: 5px">新密码 </span><input maxlength="20" v-model="newPassword" type="password"/>
+                                <span style="margin-left: 12px">新密码 </span><input maxlength="20" v-model="newPassword" type="password"/>
                             </div>
                             <div style="margin-bottom: 100px">
                                 <span>确认密码</span><input maxlength="20" v-model="cofirmPassword" type="password"/>
@@ -57,6 +57,7 @@
 <script type="es6">
     import {AXIOS} from '../../http-common'
     import psonset from './PsonSet'
+    import '../../../static/js/md5'
 
     export default {
         props: {
@@ -77,14 +78,28 @@
         },
         methods:{
             submitPassword:function(){
-                var params = new URLSearchParams();
-                params.append("oldPwd",this.nowPassword);
-                params.append("password",this.newPassword);
-                AXIOS.post('user/changePwd', params).then(response => {
-                    alert(response.data);
-                }).catch(e => {
-                    this.errors.push(e)
-                });
+                if(this.newPassword==this.cofirmPassword){
+                    var params = new URLSearchParams();
+                    var onePass=this.nowPassword;
+                    var twoPass=this.newPassword;
+                    onePass= $.md5(onePass);
+                    twoPass = $.md5(twoPass);
+                    params.append("oldPwd",onePass);
+                    params.append("password",twoPass);
+                    AXIOS.post('user/changePwd', params).then(response => {
+                        console.log(response.data);
+                        if(response.data==true){
+                            alert("修改成功");
+                        }else{
+                            alert("当前密码错误");
+                        }
+                    }).catch(e => {
+                        this.errors.push(e)
+                    });
+                }else{
+                    alert("两次输入的密码不一致");
+                }
+
             }
         }
     }
