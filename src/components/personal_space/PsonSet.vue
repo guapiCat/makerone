@@ -84,8 +84,8 @@
                         <td style="width: 130px;"></td>
                         <td style="width: 900px;">
                             <div>
-                                <a href="javascript:;" class="am-btn am-btn-default am-radius table_button"
-                                   style="margin-right: 40%;"><span style="color: #FFFFFF" v-on:click="postAllMsg">保存</span></a>
+                                <a href="javascript:;" v-on:click="postAllMsg" class="am-btn am-btn-default am-radius table_button"
+                                   style="margin-right: 40%;"><span style="color: #FFFFFF">保存</span></a>
                                 <a href="javascript:;" class="am-btn am-btn-default am-radius table_button"><span
                                         style="color: #FFFFFF">取消</span></a>
                             </div>
@@ -147,6 +147,7 @@
                 this.file=e.target.files[0];
                 //console.log(this.file);
             },
+            //同步请求消息，逐级嵌套
             postAllMsg:function(){
                 if(this.username.length<2||this.name.length<2){
                     alert("请输入一个更长的用户名");
@@ -161,23 +162,51 @@
                     let config = {
                         headers: {'Content-Type': 'multipart/form-data'}
                     };
-                    // 添加请求头
-                    AXIOS.post('common/upload', param, config).then(response => {
-                        //console.log(response.data);
-                        this.avatar=response.data;
-                        //发送提交的修改信息
-                        var params = new URLSearchParams();
-                        params.append("avatar",this.avatar);
-                        params.append("username",this.username);
-                        params.append("realName",this.name);
-                        params.append("mobile",this.mobilephone);
-                        params.append("intro",this.desc);
-                        AXIOS.post('user/editUser', params).then(response => {
-                            alert(response.data);
-                        }).catch(e => {
-                            this.errors.push(e)
-                        });
-                    })
+                    AXIOS.get('validate/username', {
+                        params: {
+                            "username":this.username
+                        }
+                    }).then(response => {
+                        if(response.data==true){
+                            alert("该昵称已被占用");
+                        }else{
+                            AXIOS.get('validate/mobile', {
+                                params: {
+                                    "mobile":this.mobilephone
+                                }
+                            }).then(response => {
+                                if(response.data==true){
+                                    alert("该手机号已被使用");
+                                }else{
+                                    // 添加请求头
+                                    AXIOS.post('common/upload', param, config).then(response => {
+                                        //console.log(response.data);
+                                        this.avatar=response.data;
+                                        //发送提交的修改信息
+                                        var params = new URLSearchParams();
+                                        params.append("avatar",this.avatar);
+                                        params.append("username",this.username);
+                                        params.append("realName",this.name);
+                                        params.append("mobile",this.mobilephone);
+                                        params.append("intro",this.desc);
+                                        AXIOS.post('user/editUser', params).then(response => {
+                                            if(response.data==true){
+                                                alert("修改成功");
+                                            }else{
+                                                alert("请输入要修改的信息");
+                                            }
+                                        }).catch(e => {
+                                            this.errors.push(e)
+                                        });
+                                    })
+                                }
+                            }).catch(e => {
+                                this.errors.push(e);
+                            });
+                        }
+                    }).catch(e => {
+                        this.errors.push(e);
+                    });
                 }
             }
 

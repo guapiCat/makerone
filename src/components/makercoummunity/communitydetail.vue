@@ -6,7 +6,7 @@
         </div>
         <div class="center-box" style="text-align: center; border: solid 1px #f3f3f3; border-bottom: solid 5px #FAC952; padding: 20px ; background-color: #EEEEEE;">
           <h1>{{allMsg.makerCommunityDTO.communityName}}</h1>
-          <p><span>学校:</span><i>{{allMsg.makerCommunityDTO.schoolName}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<span>作者:</span><i>{{allMsg.sysUserDTO.username}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<span>时间:</span><i>2017-10-18</i></p>
+          <p><span>学校:</span><i>{{allMsg.makerCommunityDTO.schoolName}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<span>作者:</span><i>{{allMsg.sysUserDTO.realName}}</i>&nbsp;&nbsp;&nbsp;&nbsp;<span>时间:</span><i>2017-10-18</i></p>
         </div>
         <div class="center-box" style="border: solid 3px #f3f3f3 ; padding: 20px ;width: 100%;height: 100%;">
           <h1>社团信息</h1>
