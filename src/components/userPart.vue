@@ -133,7 +133,7 @@
     .logoName{
         display: inline-block;
         position: relative;
-        color: black;
+        color: #185599;
         left: -88px;
         top: 34px;
         font-style: italic;

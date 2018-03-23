@@ -68,7 +68,7 @@
                             sessionStorage.setItem("TID", jsonResult["token"]);
                             sessionStorage.setItem("UID", jsonResult["sysUser"]["id"]);
                             sessionStorage.setItem("psonImg", response.data.sysUser.avatar);
-                            sessionStorage.setItem("psonName", response.data.sysUser.username);
+                            sessionStorage.setItem("psonName", response.data.sysUser.realName);
                             alert("登录成功");
                             //保存头像图片到session
                             location.href = "/";
