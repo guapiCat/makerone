@@ -5,7 +5,7 @@
                 <span style="float: left"><img src="../../../static/img/icon_address.png"></span>
 
                 <div style="float: left;padding-top: 6px;margin-left: 3px;">
-                    <span style="color: #999999;">益谷创客平台-素材库-上传素材</span>
+                    <span style="color: #999999;">{{schoolESB}}-素材库-上传素材</span>
                 </div>
             </div>
 
@@ -89,6 +89,12 @@
 
     export default {
         name: "upmaterial",
+        props: {
+            schoolESB: {
+                type: String,
+                required: true
+            }
+        },
         data () {
             return {
                 allMsg:"",

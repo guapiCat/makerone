@@ -6,7 +6,7 @@
                 <span style="float: left"><img src="../../../static/img/icon_address.png"></span>
 
                 <div style="float: left;padding-top: 6px;margin-left: 3px;">
-                    <span style="color: #999999;">益谷创客平台-个人空间-我的消息</span>
+                    <span style="color: #999999;">{{schoolESB}}-个人空间-我的消息</span>
                 </div>
             </div>
 
@@ -117,6 +117,12 @@
 
     export default {
         name: 'hello',
+        props: {
+            schoolESB: {
+                type: String,
+                required: true
+            }
+        },
         data () {
             return {
                 msg: 'Welcome to Your Vue.js App',

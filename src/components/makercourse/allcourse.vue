@@ -369,7 +369,6 @@
         background: #FFFFFF;
         box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
         cursor: pointer;
-        border-radius: 20px;
     }
 
     .q_coverName span {

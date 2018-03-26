@@ -2,7 +2,7 @@
 <div>
   <div class="workshow" style="width: 1200px;margin: 50px auto;  ">
     <div class="center-title" style="margin-bottom: 20px; color: #969696;">
-		<span> <img src="../../../static/img/icon_address.png" alt="" /><i style="margin-left: 15px;">益谷创客平台-作品展示-<span>提交作品</span></i>
+		<span> <img src="../../../static/img/icon_address.png" alt="" /><i style="margin-left: 15px;">{{schoolESB}}-作品展示-<span>提交作品</span></i>
 		</span>
     </div>
     <SubPro  v-on:firstType="firstmessage" :fileURL="fileURL":firstdisplay="firstdisplay" v-show="firsthidden" ></SubPro>
@@ -18,6 +18,16 @@
   import LastPro from './LastPro'
     export default {
         name: "upload-alltype",
+        props: {
+            schoolESB: {
+                type: String,
+                required: true
+            },
+            fileURL: {
+                type: String,
+                required: true
+            }
+        },
         data(){
           return{
             firsthidden:true,//是否展示子组件内容

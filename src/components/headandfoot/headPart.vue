@@ -2,8 +2,8 @@
     <div>
         <div class="nav-container">
             <img src="../../../static/img/logo.png" style="height: 70px;width: 70px;border-radius: 50%;"/>
-            <span class="logoName">黄陵中学智慧校园·创客平台</span>
-            <span class="logoEngName">WEDZ EXPERIMENTAL HUANGLIN MIDDLE SCHOOL</span>
+            <span class="logoName">武汉经济技术开发区第一初级中学教育集团智慧校园·创客平台</span>
+            <span class="logoEngName">WEDZ EXPERIMENTAL FIRST MIDDLE SCHOOL</span>
         </div>
         <div class="myHeaderMsg">
             <p>
@@ -96,7 +96,7 @@
                 searchInput: '',
                 allMsg: "",
                 //fileURL: "http://192.168.0.106:9000/",
-                fileURL: 'http://121.46.4.37:9000/download?url=',
+                fileURL: 'http://10.150.159.220:9000?url=',
                 psonImg: false,
                 psonName:false
             }
@@ -141,14 +141,14 @@
     .logoName{
         display: inline-block;
         position: relative;
-        font-size: 21px;
+        font-size: 17px;
         font-weight: bold;
         color: #185594;
     }
     .logoEngName{
         display: inline-block;
         position: relative;
-        left: -265px;
+        left: -470px;
         top: 28px;
         font-size: 14px;
         color: #185594;

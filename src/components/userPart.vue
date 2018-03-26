@@ -3,7 +3,10 @@
     <div class="hello">
         <div class="myHeaderMsg">
             <img v-on:click="goHome" class="myLogo" style="cursor: pointer" src="../../static/img/logo.png" alt=""/>
-            <span class="logoName">黄陵中学创客平台</span>
+            <div class="logoText">
+                <span class="logoName">一初中智慧校园·创客平台</span>
+                <span class="logoEngName">FIRST MIDDLE SCHOOL</span>
+            </div>
             <div v-for="value,index in myHeader" v-on:click="hdClick(index)" v-bind:class="{useron:index==guigeSpan}">
                 <p class="myHeadP">
                     <a>
@@ -63,7 +66,7 @@
                 guigeSpan: -1,
                 allMsg:"",
                 //fileURL:"http://192.168.0.103:9000/",
-                fileURL: 'http://121.46.4.37:9000/',
+                fileURL: 'http://10.150.159.220:9000?url=',
                 isMessage:false
             }
         },
@@ -130,14 +133,22 @@
 
 <style scoped>
     /*改动的样式-yzh*/
-    .logoName{
-        display: inline-block;
+    .logoText{
         position: relative;
+        left: -84px;
+        top: 5px;
+    }
+    .logoName{
+        display: block;
         color: #185599;
-        left: -88px;
-        top: 34px;
-        font-style: italic;
-        font-family: cursive;
+        font-weight: bold;
+        font-size: 15px;
+    }
+    .logoEngName{
+        display: block;
+        color: #185599;
+        font-weight: bold;
+        font-size: 15px;
     }
     @media screen and (max-width: 1400px) {
         .myLogo{
@@ -188,7 +199,7 @@
         height: 60px;
         display: flex;
         justify-content: center;
-        background-position: 50% -14px;
+        background-position: 46% -14px;
     }
 
     .myHeaderMsg  p {

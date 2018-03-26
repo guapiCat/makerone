@@ -12,8 +12,8 @@
     <div class="section">
       <div class="container">
         <div class="section--header">
-          <img src="static/img/flag.png" alt=""/>
-            <b class="flag-i1">黄陵中学</b>
+          <img src="../../../static/img/flag.png" alt=""/>
+            <b class="flag-i1">一初中</b>
           <h5 class="sectionleft" >作品展示</h5>
           <span>WORKS SHOW</span>
         </div>
@@ -44,7 +44,7 @@
       <div class="container">
         <div class="section--header">
           <img src="../../../static/img/flag.png" alt=""/>
-            <b class="flag-i1">黄陵中学</b>
+            <b class="flag-i1">一初中</b>
 
             <h5 class="sectionleft" >校本课程</h5>
           <span>COURSES</span>
@@ -96,7 +96,7 @@
       <div class="container">
         <div class="section--header">
           <img src="../../../static/img/flag.png" alt=""/>
-            <b class="flag-i1">黄陵中学</b>
+            <b class="flag-i1">一初中</b>
 
             <h5 class="sectionleft" >创客社团</h5>
           <span>TEAM</span>
@@ -211,9 +211,9 @@
       font-style: normal;
       position: relative;
       width: 40px;
-      left: -51px;
+      left: -55px;
       display: inline-block;
-      top: 7px;
+      top: 16px;
       font-size: 14px;
       color: white;
   }
@@ -263,8 +263,11 @@
   }
 
   .section--header img {
-    height: 50px;
-    margin-left: -145px
+      height: 60px;
+      margin-left: -145px;
+      display: inline-block;
+      position: relative;
+      top: 10px;
   }
 
   .section--header span {
