@@ -22,8 +22,8 @@
   </div>
   <div class="workshow" style="width: 1200px;margin: 50px auto; ">
     <div  class="center-box" v-for="item in makerlife ">
-      <h3>{{item.makerLive.liveTitle}}</h3>
-      <div class="work-content"><p id="work-content" v-html="contentbox"></p></div>
+      <h3></h3>
+      <div class="work-content"><h1 id="work-content">{{item.makerLive.liveTitle}}</h1></div>
       <div class="conter-footer">
         <span>点赞数：</span><img src="../../../static/img/upvote.png"/><i>{{item.makerLive.liveThumbsUpNum}}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span>浏览数：</span><img src="../../../static/img/browse.png"/><i>{{item.makerLive.liveScanNum}}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>作者：<i>{{item.username}}</i></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

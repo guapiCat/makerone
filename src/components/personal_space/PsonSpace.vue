@@ -148,7 +148,7 @@
         },
         methods:{
             goWorks:function(){
-                this.$router.push({ path: '/user/subPro' })
+                this.$router.push({ path: '/user/MyWorks' })
             },
             goColl:function(){
                 this.$router.push({ path: '/user/myColl' })

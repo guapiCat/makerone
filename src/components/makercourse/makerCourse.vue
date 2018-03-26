@@ -2,7 +2,7 @@
     <div>
         <div class="workshow" style="width: 1200px;margin: 50px auto;">
             <div class="center-title" style="margin-bottom: 20px; color: #969696;">
-                <span> <img src="../../../static/img/icon_address.png" alt=""/><i>益谷创客平台-创客课程</i></span>
+                <span> <img src="../../../static/img/icon_address.png" alt=""/><i>{{schoolESB}}-创客课程</i></span>
             </div>
             <div class="center-box" style="border: solid 3px #f3f3f3 ;">
                 <div class="centent-title">
@@ -12,7 +12,8 @@
                     <div class="centent-title-right">
                         <img v-if="voteStatus==1" src="../../../static/img/unvote.png" v-on:click="vote"
                              style="height: 30px; width: 40px; margin-right:20px;cursor: pointer;"/>
-                        <img v-if="voteStatus==0" v-on:click="outVote" src="../../../static/img/upvote.png" alt="" style="cursor:pointer;height: 30px; width: 40px; margin-right:20px ;"/>
+                        <img v-if="voteStatus==0" v-on:click="outVote" src="../../../static/img/upvote.png" alt=""
+                             style="cursor:pointer;height: 30px; width: 40px; margin-right:20px ;"/>
                         <button v-on:click="addColl" type="button" class="am-btn am-btn-primary">我要收藏</button>
                     </div>
                 </div>
@@ -101,10 +102,14 @@
                 type: String,
                 required: true
             },
-          downloadURL: {
-            type: String,
-            required: true
-          }
+            downloadURL: {
+                type: String,
+                required: true
+            },
+            schoolESB: {
+                type: String,
+                required: true
+            }
         },
         data() {
             return {
@@ -112,13 +117,13 @@
                 typeId: this.$route.params.typeId,
                 makercourse: [],
                 relatedworks: [],
-                voteStatus:""
+                voteStatus: ""
 
             }
         },
         methods: {
             //收藏
-            addColl:function(){
+            addColl: function () {
                 var params = new URLSearchParams();
                 params.append("objectId", this.courseId);
                 params.append("type", 0);
@@ -129,12 +134,12 @@
                 });
             },
             vote: function () {
-                this.$emit('voteReq', {voteObjId:this.courseId, voteObjType:3, voteStatus:1});
-                this.voteStatus=0;
+                this.$emit('voteReq', {voteObjId: this.courseId, voteObjType: 3, voteStatus: 1});
+                this.voteStatus = 0;
             },
-            outVote:function(){
-                this.$emit('voteReq', {voteObjId:this.courseId, voteObjType:3, voteStatus:0});
-                this.voteStatus=1;
+            outVote: function () {
+                this.$emit('voteReq', {voteObjId: this.courseId, voteObjType: 3, voteStatus: 0});
+                this.voteStatus = 1;
             },
             playResource: function (type, url) {
                 //console.log(type + url);
@@ -144,16 +149,16 @@
             var params = new URLSearchParams();
             //获取点赞状态
             AXIOS.get('common/upStatus', {
-                params:{
-                    objectId:this.courseId
+                params: {
+                    objectId: this.courseId
                 }
             }).then(response => {
                 //console.log("这是访问点赞状态返回的消息："+response.data);
-                if(response.data==false){
+                if (response.data == false) {
                     //没点赞就是1，点赞就是0。。点赞成功得到0，取消点赞成功得到-1
-                    this.voteStatus=1;
-                }else if(response.data==true){
-                    this.voteStatus=0;
+                    this.voteStatus = 1;
+                } else if (response.data == true) {
+                    this.voteStatus = 0;
                 }
             }).catch(e => {
                 this.errors.push(e)
@@ -228,19 +233,19 @@
             });
             function zTreeOnClick(event, treeId, treeNode) {
 
-              console.log(treeNode)
+                console.log(treeNode)
                 //console.log(zTree_Menu.getNodeByTId(treeNode.tId).chapterResource + ", " + zTree_Menu.getNodeByTId(treeNode.tId).resourceType)
                 if (zTree_Menu.getNodeByTId(treeNode.tId).resourceType == 1) {
                     $('.default').hide();
                     $('.myvideo').show();
                     $('.myvideo').attr('src', vueObj.fileURL + zTree_Menu.getNodeByTId(treeNode.tId).chapterResource)
-                } else if(zTree_Menu.getNodeByTId(treeNode.tId).resourceType == 2) {
+                } else if (zTree_Menu.getNodeByTId(treeNode.tId).resourceType == 2) {
                     $('.default').show()
                     $('.default').attr('src', vueObj.fileURL + zTree_Menu.getNodeByTId(treeNode.tId).chapterResource)
                     $('.myvideo').hide();
-                }else{
-                  var aObj = $("#" + treeNode.tId + "_a");
-                  aObj.attr({href:vueObj.downloadURL + zTree_Menu.getNodeByTId(treeNode.tId).chapterResource})
+                } else {
+                    var aObj = $("#" + treeNode.tId + "_a");
+                    aObj.attr({href: vueObj.downloadURL + zTree_Menu.getNodeByTId(treeNode.tId).chapterResource})
                 }
 
             };

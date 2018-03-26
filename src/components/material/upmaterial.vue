@@ -47,9 +47,20 @@
                                 </tr>
 
                                 <tr>
+                                    <td style="color: #aaaaaa;width: 95px;">素材分类:</td>
+                                    <td style="width: 700px;">
+                                        <select v-model="selected">
+                                            <option v-for="item in metClass" v-bind:value="item.value">{{item.desc}}</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
                                     <td style="color: #aaaaaa;width: 95px;">所属作品:</td>
                                     <td style="width: 700px;">
-                                        <input placeholder="请输入٩(๑>◡<๑)۶" v-model="fromWork" type="text" name="material_name" style="width: 65%;border-radius: 5px;"/>
+                                        <select v-model="selectedWork">
+                                            <option v-for="item in myWorksClass" v-bind:value="item.value">{{item.worksName}}</option>
+                                        </select>
                                     </td>
                                 </tr>
 
@@ -97,6 +108,10 @@
         },
         data () {
             return {
+                //测试start
+                //items:[{text:'A',value:'a'},{text:'B',value:'b'},{text:'C',value:'c'}],
+                //selected:'',
+                //测试end
                 allMsg:"",
                 fileURL:"http://192.168.0.103:9000/",
                 logoFile:"",
@@ -108,7 +123,12 @@
                 metIntro:"",
                 fromWork:"",
                 workId:"",
-                type:""
+                type:"",
+                //素材分类
+                metClass:"",
+                selected:0,
+                myWorksClass:"",
+                selectedWork:0
             }
         },
         methods:{
@@ -174,7 +194,7 @@
                                             worksId:this.workId
                                         }
                                     }).then(response => {
-                                        //console.log(response);
+                                        console.log(response);
                                         //console.log("上传素材返回的数据"+response.data);
                                         if(response.data.code==0){
                                             alert("上传成功");
@@ -188,7 +208,6 @@
                                 });
                             })
                         });
-
                     }else{
                         alert("请先登录(*^▽^*)");
                     }
@@ -199,7 +218,26 @@
             }
         },
         created:function(){
+            var params = new URLSearchParams();
+            AXIOS.get('common/getGlobalType', {
+                params: {}
+            }).then(response => {
+                //console.log(response.data);
+                this.metClass=response.data;
+            }).catch(e => {
+                this.errors.push(e);
+            });
+            AXIOS.get('user/getFinishedWorks', {
+                params: {
+                    pageSize:50
+                }
+            }).then(response => {
+                //console.log(response.data);
+                this.myWorksClass=response.data.list;
 
+            }).catch(e => {
+                this.errors.push(e);
+            });
         },
         mounted: function () {
 //            $(function () {

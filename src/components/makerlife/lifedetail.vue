@@ -3,7 +3,7 @@
         <div class="workshow" style="width: 1200px;margin: 50px auto;">
             <div class="center-title" style="margin-bottom: 20px; color: #969696;">
                 <span> <img src="../../../static/img/icon_address.png"
-                            alt=""/><i>益谷创客平台-创客社团-<span>详情页</span></i></span>
+                            alt=""/><i>{{schoolESB}}-创客社团-<span>详情页</span></i></span>
             </div>
             <div>
                 <div class="center-box"
@@ -45,6 +45,10 @@
         component: {comment},
         props: {
             fileURL: {
+                type: String,
+                required: true
+            },
+            schoolESB: {
                 type: String,
                 required: true
             }

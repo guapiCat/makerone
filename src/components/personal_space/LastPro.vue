@@ -172,7 +172,12 @@ export default {
         params.append('upMakerWorkId',this.upMakerWorkId)
         params.append('type','3');
         AXIOS.post('makerWorks/makerWorksSubmit', params).then(response => {
-          alert("提交成功")
+//              console.log(response.data);
+          if(response.data==true){
+              alert("提交成功");
+          }else{
+              alert("网络连接错误");
+          }
         })
       }
 
@@ -195,7 +200,12 @@ export default {
         params.append('upMakerWorkId',this.upMakerWorkId)
         params.append('type','2');
         AXIOS.post('makerWorks/makerWorksSubmit', params).then(response => {
-          alert("保存成功")
+//              console.log(response.data);
+          if(response.data){
+              alert("保存成功");
+          }else{
+              alert("网络连接错误");
+          }
         })
 
       }else {

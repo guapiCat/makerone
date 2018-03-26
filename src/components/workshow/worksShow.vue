@@ -3,7 +3,6 @@
         <div class="workshow" style="width: 1200px;margin: 50px auto;">
             <div class="center-title" style="margin-bottom: 20px; color: #969696;">
                 <span> <img src="../../../static/img/icon_address.png" alt=""/><i>{{schoolESB}}-作品展示</i></span>
-
                 <div class="classify">
                     <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
                 </div>
@@ -79,7 +78,6 @@
                 <div style="clear: both"></div>
             </div>
         </div>
-
     </div>
 </template>
 

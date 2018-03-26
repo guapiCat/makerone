@@ -5,7 +5,7 @@
 		<span> <img src="../../../static/img/icon_address.png" alt="" /><i style="margin-left: 15px;">{{schoolESB}}-作品展示-<span>提交作品</span></i>
 		</span>
     </div>
-    <SubPro  v-on:firstType="firstmessage" :fileURL="fileURL":firstdisplay="firstdisplay" v-show="firsthidden" ></SubPro>
+    <SubPro  v-on:firstType="firstmessage" :fileURL="fileURL" :firstdisplay="firstdisplay" v-show="firsthidden" ></SubPro>
      <Second v-show="secondhidden"  v-on:secondType="secondmessage" ></Second>
     <LastPro v-show="lasthidden" :firstdisplay="firstdisplay" :firstdisplayname="firstdisplayname" :seconddata="seconddata" :secondtype="secondtype"></LastPro>
 
@@ -39,12 +39,6 @@
             secondtype:[]
           }
        },
-         props: {
-         fileURL: {
-          type: String,
-          required: true
-        }
-      },
       methods:{
         firstmessage:function (firstdata,firstdata1,firsthide,lasthide) {
           this.firstdisplay=firstdata;

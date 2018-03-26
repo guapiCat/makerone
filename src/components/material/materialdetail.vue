@@ -5,12 +5,14 @@
                 <span style="float: left"><img src="../../../static/img/icon_address.png"></span>
 
                 <div style="float: left;padding-top: 6px;margin-left: 3px;">
-                    <span style="color: #999999;">益谷创客平台-素材库-下载素材</span>
+                    <span style="color: #999999;">{{schoolESB}}-素材库-下载素材</span>
                 </div>
             </div>
 
-            <div class="am-u-sm-9 am-u-sm-centered" style="height: 1300px;padding-top: 10px;border: 1px solid #BFBFBF;margin-bottom: 15%;padding-left: 0;padding-right: 0px;">
+            <div class="am-u-sm-9 am-u-sm-centered"
+                 style="height: 1300px;padding-top: 10px;border: 1px solid #BFBFBF;margin-bottom: 15%;padding-left: 0;padding-right: 0px;">
                 <p style="width: 100%;text-align: center;font-size: 20px;color:gray;">{{allMsg.materialName}}</p>
+
                 <div class="am-u-sm-8" style="margin-left: 0px;padding-left: 0px;">
                     <div id="material_img"
                          style="width:100%;text-align:center;border-right: 1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;border-top:1px solid #BFBFBF;padding-top: 5%;padding-left: 6%;padding-bottom: 6%;margin-bottom: 3%;">
@@ -22,10 +24,12 @@
                     </div>
                 </div>
 
-                <div class="am-u-sm-4" style="height:70%;margin-right: 0px;padding-left: 0px;border-left: 1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;border-top:1px solid #BFBFBF;padding-top: 4%;margin-bottom: 10%;">
+                <div class="am-u-sm-4"
+                     style="height:70%;margin-right: 0px;padding-left: 0px;border-left: 1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;border-top:1px solid #BFBFBF;padding-top: 4%;margin-bottom: 10%;">
                     <div style="height: 50px;text-align: center;margin-left: 13%;">
                         <a class="am-btn am-btn-primary" href="javascript:;"
-                           style="width: 300px;display: -webkit-box;padding-left: 30%;" :href=downloadURL+allMsg.materialResource>下载&nbsp;<img
+                           style="width: 300px;display: -webkit-box;padding-left: 30%;"
+                           :href=downloadURL+allMsg.materialResource>下载&nbsp;<img
                                 src="../../../static/img/icon_download_01.png" style="width: 34%;"/>
 
                         </a>
@@ -56,7 +60,8 @@
                             <div class="am-u-sm-4" style="margin-right: 0px;">
                                 <span style="color: #818181">素材介绍&nbsp;&nbsp;:</span>
                             </div>
-                            <div class="am-u-sm-4" style="width: 80%;margin-left: 0px;margin-top: -6%;padding-left: 8%;">
+                            <div class="am-u-sm-4"
+                                 style="width: 80%;margin-left: 0px;margin-top: -6%;padding-left: 8%;">
                                 <p style="color: #818181">{{allMsg.materialIntro}}</p>
                             </div>
                         </div>
@@ -92,29 +97,32 @@
     export default {
         name: "detail",
         props: {
-        fileURL: {
-          type: String,
-          required: true
+            fileURL: {
+                type: String,
+                required: true
+            },
+            downloadURL: {
+                type: String,
+                required: true
+            },
+            schoolESB: {
+                type: String,
+                required: true
+            }
         },
-        downloadURL: {
-          type: String,
-          required: true
-        }
-
-      },
         data () {
             return {
                 metId: this.$route.params.metId,
-                allMsg:"",
-                metClass:[],
-                nowMetClass:"",
+                allMsg: "",
+                metClass: [],
+                nowMetClass: "",
             }
         },
-        methods:{
-            returnMet:function(){
-                this.$router.push({ path: '/materialLibrary/list' });
+        methods: {
+            returnMet: function () {
+                this.$router.push({path: '/materialLibrary/list'});
             },
-            addColl:function(){
+            addColl: function () {
                 var params = new URLSearchParams();
                 params.append("objectId", this.metId);
                 params.append("type", 2);
@@ -125,23 +133,23 @@
                 });
             }
         },
-        created:function(){
+        created: function () {
             //先获取分类，然后查询素材详情，得到‘当前素材分类’
             var params = new URLSearchParams();
             AXIOS.get('common/getGlobalType', {
                 params: {}
             }).then(response => {
-                for (var i = 0;i<response.data.length; i++) {
+                for (var i = 0; i < response.data.length; i++) {
                     this.metClass.push(response.data[i].desc);
                 }
                 AXIOS.get('makerMaterial/makerMaterialParticulars', {
-                    params:{
-                        id:this.metId
+                    params: {
+                        id: this.metId
                     }
                 }).then(response => {
                     //console.log(response);
-                    this.allMsg=response.data;
-                    this.nowMetClass=this.metClass[this.allMsg.type];
+                    this.allMsg = response.data;
+                    this.nowMetClass = this.metClass[this.allMsg.type];
                 }).catch(e => {
                     this.errors.push(e)
                 });
