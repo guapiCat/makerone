@@ -12,7 +12,7 @@
             <div class="container">
                 <div class="section--header">
                     <img src="../../../static/img/flag.png" alt=""/>
-                    <b class="flag-i1">一初中</b>
+                    <b class="flag-i1">黄陵中学</b>
                     <h5 class="sectionleft">作品展示</h5>
                     <span>WORKS SHOW</span>
                 </div>
@@ -47,7 +47,7 @@
             <div class="container">
                 <div class="section--header">
                     <img src="../../../static/img/flag.png" alt=""/>
-                    <b class="flag-i1">一初中</b>
+                    <b class="flag-i1">黄陵中学</b>
 
                     <h5 class="sectionleft">校本课程</h5>
                     <span>COURSES</span>
@@ -111,7 +111,7 @@
             <div class="container">
                 <div class="section--header">
                     <img src="../../../static/img/flag.png" alt=""/>
-                    <b class="flag-i1">一初中</b>
+                    <b class="flag-i1">黄陵中学</b>
 
                     <h5 class="sectionleft">创客社团</h5>
                     <span>TEAM</span>
@@ -121,10 +121,10 @@
         </div>
         <div class="workshow" style="width: 1200px;margin: 0 auto;">
             <ul class="am-avg-sm-3 am-thumbnails">
-                <li v-for="maker in teams">
+                <li v-for="maker,index in teams">
                     <router-link :to="{name: 'communitydetail', params: {workId: maker.id}}">
                         <div class="am-thumbnail"
-                             style="background: url(../../../static/img/img_shading_1.png) center top 0px; position: relative; ">
+                             :style="`background: url(../../../static/img/img_shading_`+index+`.png) center top 0px; position: relative; `">
                             <img :src="fileURL+maker.communityLogo"
                                  style="left: 128px; top: 22px;width: 133px;height: 133px;border-radius: 50%; position: absolute;"/>
 

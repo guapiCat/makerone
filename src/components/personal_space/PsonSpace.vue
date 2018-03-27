@@ -530,8 +530,10 @@
         margin: 0;
         text-align: center;
         background-color: #f3f3f3;
-
         width: 140px;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        white-space:nowrap;
     }
 
     .am-thumbnail {

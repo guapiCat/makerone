@@ -160,7 +160,7 @@
                 this.errors.push(response);
             });
             AXIOS.get('common/getGrade', {}).then(response=> {
-                console.log(response.data);
+                //console.log(response.data);
                 for(var i=0;i<response.data.length;i++){
                     this.classtitle.push(response.data[i].desc);
                 }
@@ -230,7 +230,7 @@
             //点击页码重新挂载数据更新页面
             goClickPage: function (item) {
                 this.clickPage = item;
-                console.log("item为：" + item);
+                //console.log("item为：" + item);
                 if (this.search == '') {
                     this.reqAXIOS(this.classes, this.classify, this.sort, this.clickPage, 2);
                 } else {

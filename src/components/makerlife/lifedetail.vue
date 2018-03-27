@@ -10,7 +10,7 @@
                      style="text-align: center; border: solid 1px #f3f3f3; border-bottom: solid 5px #FAC952; padding: 20px ; background-color: #EEEEEE;">
                     <h1>{{makelifelist.makerLive.liveTitle}}</h1>
 
-                    <p>分类 ：<span>创客动态</span></p>
+                    <p>分类 ：<span>创客生活</span></p>
                     <img v-on:click="vote" v-if="voteStatus==1" src="../../../static/img/unvote.png" style="cursor: pointer"/>
                     <img v-on:click="outVote" v-if="voteStatus==0" src="../../../static/img/upvote.png" style="cursor: pointer"/>
                 </div>

@@ -26,7 +26,7 @@
                                             <div class="am-form-group am-form-file">
                                                 <p style="font-size: 15px;color: #959595;">最佳尺寸为400*400像素的方形图片(支持JPG、PNG、GIF格式,图片尺寸不超过3MB)</p>
                                                 <button style="margin-bottom: 40px;" type="button" class="am-btn am-btn-default am-btn-sm">
-                                                    <i class="am-icon-cloud-upload"></i> 选择要上传的素材logo</button>
+                                                    <i class="am-icon-cloud-upload"></i><span style="color: red;margin-left: 5px;">*</span> 选择要上传的素材logo</button>
                                                 <input v-on:change="logoPost($event)" id="doc-form-file" accept="image/*" type="file" multiple>
                                                 <img style="margin:0 auto;display: block;width: 200px;height:200px" id="preview" src="" alt=""/>
                                             </div>
@@ -40,7 +40,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td style="color: #aaaaaa;width: 95px;">素材文件:</td>
+                                   <td style="color: #aaaaaa;width: 95px;"> <span style="color: red;">*</span>素材文件:</td>
                                     <td style="width: 700px;">
                                         <input v-on:change="metzipPost($event)" name="img" id="upload_file" type="file">
                                     </td>
@@ -59,13 +59,13 @@
                                     <td style="color: #aaaaaa;width: 95px;">所属作品:</td>
                                     <td style="width: 700px;">
                                         <select v-model="selectedWork">
-                                            <option v-for="item in myWorksClass" v-bind:value="item.value">{{item.worksName}}</option>
+                                            <option v-for="item,index in myWorksClass" v-bind:value="index">{{index>0?item.worksName:test}}</option>
                                         </select>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td style="color: #aaaaaa;width: 95px;">素材名称:</td>
+                                    <td style="color: #aaaaaa;width: 95px;"><span style="color: red;">*</span>素材名称:</td>
                                     <td style="width: 700px;">
                                         <input maxlength="15" v-model="metName" type="text" name="material_name" style="width: 65%;border-radius: 5px;"/>
                                     </td>
@@ -104,6 +104,12 @@
             schoolESB: {
                 type: String,
                 required: true
+            },
+            props: {
+                fileURL: {
+                    type: String,
+                    required: true
+                }
             }
         },
         data () {
@@ -113,11 +119,11 @@
                 //selected:'',
                 //测试end
                 allMsg:"",
-                fileURL:"http://192.168.0.103:9000/",
+                //fileURL:"http://192.168.0.103:9000/",
                 logoFile:"",
-                logoUrl:"",
+                logoUrl:false,
                 metzipFile:"",
-                metzipUrl:"",
+                metzipUrl:false,
                 schoolId:"",
                 metName:"",
                 metIntro:"",
@@ -128,7 +134,8 @@
                 metClass:"",
                 selected:0,
                 myWorksClass:"",
-                selectedWork:0
+                selectedWork:0,
+                test:"不选择"
             }
         },
         methods:{
@@ -154,67 +161,69 @@
             },
             postMet:function(){
                 //先获取个人-schoolId（同时判断if登录）-》获得logo的url-》获得metzip的url
-                var params = new URLSearchParams();
-                AXIOS.get('user/getUserInfo', {
-                    params: {}
-                }).then(response => {
-                    if(response.data){
-                        this.schoolId=response.data.schoolId;//获取学校id
-                        var param = new FormData(); // 创建form对象，准备提交文件并得到地址
-                        param.append('file', this.logoFile, this.logoFile.name);
-                        let config = {
-                            headers: {'Content-Type': 'multipart/form-data'}
-                        };
-                        AXIOS.post('common/upload', param, config).then(response => {
-                            this.logoUrl=response.data;//得到logo的url
-                            var param = new FormData();
-                            param.append('file', this.metzipFile, this.metzipFile.name);
+                if(!this.logoFile||!this.metzipFile){
+                    alert("素材log和文件必须选择哦(*^▽^*)")
+                }else{
+                    var params = new URLSearchParams();
+                    AXIOS.get('user/getUserInfo', {
+                        params: {}
+                    }).then(response => {
+                        if(response.data){
+                            this.schoolId=response.data.schoolId;//获取学校id
+                            var param = new FormData(); // 创建form对象，准备提交文件并得到地址
+                            param.append('file', this.logoFile, this.logoFile.name);
                             let config = {
                                 headers: {'Content-Type': 'multipart/form-data'}
                             };
                             AXIOS.post('common/upload', param, config).then(response => {
-                                this.metzipUrl=response.data;//得到metzip的url
-                                //获取作品id
-                                AXIOS.get('makerMaterial/getWork', {
-                                    params: {
-                                        workName:this.fromWork
+                                this.logoUrl=response.data;//得到logo的url
+                                var param = new FormData();
+                                param.append('file', this.metzipFile, this.metzipFile.name);
+                                let config = {
+                                    headers: {'Content-Type': 'multipart/form-data'}
+                                };
+                                AXIOS.post('common/upload', param, config).then(response => {
+                                    this.metzipUrl=response.data;//得到metzip的url
+                                    //判断图片和素材是否上传=》修改workid=》调用接口上传素材的数据
+                                    if(this.selectedWork>0){
+                                        this.worksId=this.myWorksClass[this.selectedWork--].id;
+                                    }else{
+                                        this.worksId="";
                                     }
-                                }).then(response => {
-                                    //console.log(response);
-                                    this.workId=response.data.data.id;
-                                    this.type=response.data.data.type;
                                     AXIOS.get('makerMaterial/uploadingMakerMaterial', {
                                         params: {
                                             materialName:this.metName,
                                             materialCoverImage:this.logoUrl,
                                             materialIntro:this.metIntro,
                                             materialResource:this.metzipUrl,
-                                            type:this.type,
+                                            type:this.selected,
                                             schoolId:this.schoolId,
                                             worksId:this.workId
                                         }
                                     }).then(response => {
-                                        console.log(response);
+                                        console.log(response.data);
                                         //console.log("上传素材返回的数据"+response.data);
-                                        if(response.data.code==0){
+                                        if(response.data.data==true){
                                             alert("上传成功");
                                             window.history.go(-1);
+                                        }else{
+                                            alert("请填写完成的信息");
                                         }
                                     }).catch(e => {
                                         this.errors.push(e)
                                     });
-                                }).catch(e => {
-                                    this.errors.push(e)
-                                });
-                            })
-                        });
-                    }else{
-                        alert("请先登录(*^▽^*)");
-                    }
 
-                }).catch(e => {
-                    this.errors.push(e);
-                });
+                                })
+                            });
+                        }else{
+                            alert("请先登录(*^▽^*)");
+                        }
+
+                    }).catch(e => {
+                        this.errors.push(e);
+                    });
+                }
+
             }
         },
         created:function(){

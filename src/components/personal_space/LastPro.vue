@@ -175,6 +175,7 @@ export default {
 //              console.log(response.data);
           if(response.data==true){
               alert("提交成功");
+              window.history.go(-1);
           }else{
               alert("网络连接错误");
           }
@@ -203,6 +204,7 @@ export default {
 //              console.log(response.data);
           if(response.data){
               alert("保存成功");
+              window.history.go(-1);
           }else{
               alert("网络连接错误");
           }

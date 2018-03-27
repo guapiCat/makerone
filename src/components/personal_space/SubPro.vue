@@ -12,13 +12,13 @@
                 <h2>基本信息</h2>
 
                 <div class="am-form-group">
-                    <label v-if="this.getMakerWorkDisplay[1]">{{this.getMakerWorkDisplay[1].dictDesc}}</label>
+                    <label v-if="this.getMakerWorkDisplay[1]"><span style="color: red;">*</span>{{this.getMakerWorkDisplay[1].dictDesc}}</label>
 
-                    <textarea v-model="workName" minlength="10" maxlength="100" class="" rows="4" cols="90"
+                    <textarea v-model="workName" minlength="10" maxlength="12" class="" rows="4" cols="90"
                               placeholder="为你的项目取个响亮的名字吧!"></textarea>
                 </div>
                 <div class="am-form-group">
-                    <label v-if="this.getMakerWorkDisplay[0]">{{this.getMakerWorkDisplay[0].dictDesc}}</label>
+                    <label v-if="this.getMakerWorkDisplay[0]"><span style="color: red;">*</span>{{this.getMakerWorkDisplay[0].dictDesc}}</label>
                     <select v-show="selectteam" class="selectpicker bla bla bli" v-model="titleclassify"
                             style="width: 741px;" @change="classifyfirst()">
                         <option v-for="(item,index) in classify" v-bind:value="index">{{item.desc}}</option>
@@ -26,7 +26,7 @@
                     <span v-show="newselect">:{{this.changeclass}}</span>
                 </div>
                 <div class="am-form-group">
-                    <label v-if="this.getMakerWorkDisplay[2]">{{this.getMakerWorkDisplay[2].dictDesc}}:</label>
+                    <label v-if="this.getMakerWorkDisplay[2]"><span style="color: red;">*</span>{{this.getMakerWorkDisplay[2].dictDesc}}:</label>
 
                     <select v-show="selectteam" id="id_select1" class="selectpicker bla bla bli" v-model="teamSelect"
                             style="width: 741px;" @change="show()">
@@ -55,7 +55,7 @@
                 <div class="am-form-group am-form-file"
                      style="overflow: hidden; position: absolute;top: 50px;right: 30px;">
                     <div class="am-form-group am-form-file">
-                        <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                        <span style="color: red;display: inline-block;margin-right: 10px;">*</span><button type="button" class="am-btn am-btn-danger am-btn-sm">
                             <i class="am-icon-cloud-upload"></i> 上传封面
                         </button>
                         <input id="doc-form-file" v-on:change="update($event)" style="margin-left: 20px;" type="file"

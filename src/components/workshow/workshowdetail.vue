@@ -21,7 +21,7 @@
                     </div>
                     <div class="box-right" v-if="voteStatus==0">
                         <img v-on:click="outVote" src="../../../static/img/upvote.png" alt="" style="cursor: pointer"/>
-                        <i>{{thumbs+1}}</i>
+                        <i>{{thumbs}}</i>
                     </div>
 
                 </div>
@@ -38,11 +38,14 @@
                 <div class="box-team">
                     <h5>{{allMsg.makerWorksDisplays[2].title}}:</h5>
 
-                    <p><span>电子材料</span>:<span>{{allMsg.makerWorksDisplays[2].content}}</span></p>
+                    <p><span></span><span>{{allMsg.makerWorksDisplays[2].content}}</span></p>
 
-                    <!--<p><span>电子材料</span>:<span>回家放大后即可上都会尽快哈市将看到后尽快</span></p>-->
+                </div>
+                <div class="box-team">
+                    <h5>{{allMsg.makerWorksDisplays[3].title}}:</h5>
 
-                    <!--<p><span>电子材料</span>:<span>回家放大后即可上都会尽快哈市将看到后尽快</span></p>-->
+                    <p><span></span><span>{{allMsg.makerWorksDisplays[3].content}}</span></p>
+
                 </div>
                 <div class="box-team">
                     <h5>制作过程:</h5>
@@ -133,10 +136,12 @@
             vote: function () {
                 this.$emit('voteReq', {voteObjId:this.workId, voteObjType:1, voteStatus:1});
                 this.voteStatus=0;
+                this.thumbs++;
             },
             outVote:function(){
                 this.$emit('voteReq', {voteObjId:this.workId, voteObjType:1, voteStatus:0});
                 this.voteStatus=1;
+                this.thumbs--;
             }
         },
         created: function(){
@@ -177,7 +182,7 @@
                 var jsonResult = eval(response.data);
                 this.allMsg=response.data;
                 this.allStep=response.data.makerWorksSteps;
-                this.thumbs=this.allMsg.worksScanNum;
+                this.thumbs=this.allMsg.worksThumbsUpNum;
             }).catch(e => {
                 this.errors.push(e)
             });

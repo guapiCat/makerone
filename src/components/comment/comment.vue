@@ -63,11 +63,20 @@
     import {AXIOS} from '../../http-common'
 
     export default {
+        props: {
+            //fileURL: {
+            //    type: String,
+            //    required: true
+            //},
+            disId: {
+                type: String,
+                required: true
+            }
+        },
         name: "comment",
-        props:["disId"],
         data: function () {
             return {
-                fileURL:"http://192.168.0.103:9000/",
+                fileURL:"http://121.46.4.37:9000?url=",
                 discuss: "",
                 allMsg:"",
                 replyCont:"",
@@ -83,19 +92,19 @@
                 if(this.clickPage>1){
                     this.clickPage--;
                 }
-                this.showAllDis(this.clickPage,2);
+                this.showAllDis(this.clickPage,8);
 
             },
             nextClick:function(){
                 if(this.clickPage<this.maxPage){
                     this.clickPage++;
                 }
-                this.showAllDis(this.clickPage,2);
+                this.showAllDis(this.clickPage,8);
             },
             //点击页码重新挂载数据更新页面
             goClickPage:function(item){
                 this.clickPage=item;
-                this.showAllDis(this.clickPage,2);
+                this.showAllDis(this.clickPage,8);
             },
             //分页点击事件end
             goReplay:function(userCommentId,objectId){
@@ -107,13 +116,13 @@
                         content:this.replyCont
                     }
                 }).then(response => {
-                    if(response.data==true){
+                   if(response.data.code==100){
+                        alert("登录后才能回复哦(*^▽^*)");
+                   }else{
 
-                    }else{
-                        alert(response.data);
-                    }
+                   }
                     //location.reload();
-                    this.showAllDis(this.clickPage,2);
+                    this.showAllDis(this.clickPage,8);
                 }).catch(e => {
                     this.errors.push(e)
                 });
@@ -126,13 +135,14 @@
                         content:this.discuss
                     }
                 }).then(response => {
-                    if(response.data==true){
-
+                    //console.log(response.data);
+                    if(response.data.code==100){
+                        alert("登录后才能评论哦(*^▽^*)");
                     }else{
-                        alert(response.data);
+
                     }
                     //location.reload();
-                    this.showAllDis(this.clickPage,2);
+                    this.showAllDis(this.clickPage,8);
                 }).catch(e => {
                     this.errors.push(e)
                 });
@@ -172,7 +182,7 @@
             }
         },
         created:function(){
-            this.showAllDis(this.clickPage,2);
+            this.showAllDis(this.clickPage,8);
         }
     }
 </script>

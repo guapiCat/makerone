@@ -16,7 +16,7 @@
                 <div class="am-u-sm-8" style="margin-left: 0px;padding-left: 0px;">
                     <div id="material_img"
                          style="width:100%;text-align:center;border-right: 1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;border-top:1px solid #BFBFBF;padding-top: 5%;padding-left: 6%;padding-bottom: 6%;margin-bottom: 3%;">
-                        <img :src="fileURL+allMsg.materialCoverImage"/>
+                        <img class="metBigImg" :src="fileURL+allMsg.materialCoverImage"/>
                     </div>
                     <div style="text-align: center;">
                         <span style="color: #818181">上传图片</span>
@@ -26,7 +26,7 @@
 
                 <div class="am-u-sm-4"
                      style="height:70%;margin-right: 0px;padding-left: 0px;border-left: 1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;border-top:1px solid #BFBFBF;padding-top: 4%;margin-bottom: 10%;">
-                    <div style="height: 50px;text-align: center;margin-left: 13%;">
+                    <div style="height: 50px;text-align: center;margin-left: 10%;">
                         <a class="am-btn am-btn-primary" href="javascript:;"
                            style="width: 300px;display: -webkit-box;padding-left: 30%;"
                            :href=downloadURL+allMsg.materialResource>下载&nbsp;<img
@@ -36,8 +36,7 @@
                     </div>
 
                     <div style="height: 50px;text-align: center;margin-top: 10%;">
-                        <img src="../../../static/img/browse.png"/><span
-                            style="color: #9d9c9c">浏览</span>&nbsp;:&nbsp;<span>30</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img
+                        <img src="../../../static/img/browse.png"/><img
                             src="../../../static/img/icon_download_02.png"/><span style="color: #9d9c9c">下载</span>&nbsp;:&nbsp;<span>{{allMsg.downloadNum}}</span>
                     </div>
 
@@ -115,7 +114,7 @@
                 metId: this.$route.params.metId,
                 allMsg: "",
                 metClass: [],
-                nowMetClass: "",
+                nowMetClass: ""
             }
         },
         methods: {
@@ -161,6 +160,12 @@
 </script>
 
 <style scoped>
+    .metBigImg{
+        width: 500px;
+        height: 500px;
+        display: inline-block;
+        margin: 0 auto;
+    }
     table tr {
         display: block;
         margin-bottom: 30px;
