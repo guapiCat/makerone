@@ -13,7 +13,7 @@
                 <div class="section--header">
                     <img src="../../../static/img/flag.png" alt=""/>
                     <b class="flag-i1">黄陵中学</b>
-                    <h5 class="sectionleft">作品展示</h5>
+                    <h5 class="sectionleft">创客作品</h5>
                     <span>WORKS SHOW</span>
                 </div>
 
@@ -49,7 +49,7 @@
                     <img src="../../../static/img/flag.png" alt=""/>
                     <b class="flag-i1">黄陵中学</b>
 
-                    <h5 class="sectionleft">校本课程</h5>
+                    <h5 class="sectionleft">创客课程</h5>
                     <span>COURSES</span>
                 </div>
 
@@ -57,7 +57,7 @@
         </div>
         <div class="workshow" style="width: 1200px;margin: 0 auto; overflow: hidden;">
             <div style="width: 780px; height: 500px; float: left;">
-                <div class="course1" :style="coursefirst">
+                <router-link  :to="{name: 'makerCourse', params: {workId: courses[0].id,typeId:courses[0].type}}" class="course1" :style="coursefirst">
                     <div class=""
                          style="height: 100%;width: 30%;float: left;background-color: #50ad5f;color: #fff;background-color: rgba(80,172,95,0.7);">
                         <p v-if="courses[0]" style="text-align: center; margin-top: 30%; font-size: 23px;">
@@ -65,27 +65,27 @@
 
                         <p v-if="courses[0]" style="text-align: center; font-size: 18px;">{{courses[0].courseIntro}}</p>
                     </div>
-                </div>
+                </router-link>
                 <div style="width: 780px; height: 300px; margin-top: 5px;">
                     <ul style="float: left; list-style: none; padding-left:0px ;">
-                        <li class="courselist" :style="coursesecond ">
-                            <div style="height: 38%;width: 100%;float: left;margin-top: 35%; color:#fff;background-color: rgba(67,116,160,.7);">
+                        <router-link :to="{name: 'makerCourse', params: {workId: courses[1].id,typeId:courses[1].type}}" class="courselist" :style="coursesecond ">
+                            <div style="display:block;height: 38%;width: 100%;float: left;margin-top: 35%; color:#fff;background-color: rgba(67,116,160,.7);">
                                 <p v-if="courses[1]" style="text-align: left; font-size: 23px; padding-left: 20px;">
                                     {{courses[1].courseName}}</p>
 
                                 <p v-if="courses[1]" style="text-align: left; font-size: 18px; padding-left: 20px;">
                                     {{courses[1].courseIntro}}</p>
                             </div>
-                        </li>
-                        <li class="courselist1" :style="coursethird">
-                            <div style="height: 38%;width: 100%;float: left;margin-top: 35%; color:#fff;background-color: rgba(67,116,160,.7);">
+                        </router-link>
+                        <router-link :to="{name: 'makerCourse', params: {workId: courses[2].id,typeId:courses[2].type}}" class="courselist1" :style="coursethird">
+                            <div style="display:block;height: 38%;width: 100%;float: left;margin-top: 35%; color:#fff;background-color: rgba(67,116,160,.7);">
                                 <p v-if="courses[2]" style="text-align: left; font-size: 23px; padding-left: 20px;">
                                     {{courses[2].courseName}}</p>
 
                                 <p v-if="courses[2]" style="text-align: left; font-size: 18px; padding-left: 20px;">
                                     {{courses[2].courseIntro}}</p>
                             </div>
-                        </li>
+                        </router-link>
                     </ul>
                     <div>
 
@@ -93,7 +93,7 @@
                 </div>
 
             </div>
-            <div class="am-thumbnail course2" :style="courselast">
+            <router-link :to="{name: 'makerCourse', params: {workId: courses[3].id,typeId:courses[3].type}}" class="am-thumbnail course2" :style="courselast">
                 <div class=""
                      style="height: 40%;width: 100%;float: left;background-color: #50ad5f;color: #fff;background-color: rgba(240,200,75,0.7);">
                     <p style="text-align: center; margin-top: 10%; font-size: 23px;" v-if="courses[3]">
@@ -101,7 +101,7 @@
 
                     <p style="text-align: center; font-size: 18px;" v-if="courses[3]">{{courses[3].courseIntro}}</p>
                 </div>
-            </div>
+            </router-link>
         </div>
         <div class="index_link_div">
             <router-link to="/makercourse/allcourse" class="p_lookMore" style="float:right">查看更多</router-link>
@@ -170,19 +170,25 @@
                 courses: [],
                 coursesfirst: [],
                 coursefirst: {
-                    backgroundImage: ''
+                    backgroundImage: '',
+                    display:"block"
                 },
                 coursesecond: {
                     backgroundImage: ''
                 },
                 coursethird: {
-                    backgroundImage: ''
+                    backgroundImage: '',
+                    display:"block"
                 },
                 courselast: {
-                    backgroundImage: ''
+                    backgroundImage: '',
+                    display:"block"
                 }
 
             }
+
+        },
+        methods:{
 
         },
         created: function () {
@@ -360,3 +366,4 @@
         overflow: hidden;
     }
 </style>
+

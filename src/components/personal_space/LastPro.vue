@@ -177,7 +177,7 @@ export default {
               alert("提交成功");
               window.history.go(-1);
           }else{
-              alert("网络连接错误");
+              alert("网络连接错误，请填写正确信息");
           }
         })
       }
@@ -202,11 +202,11 @@ export default {
         params.append('type','2');
         AXIOS.post('makerWorks/makerWorksSubmit', params).then(response => {
 //              console.log(response.data);
-          if(response.data){
+          if(response.data==true){
               alert("保存成功");
               window.history.go(-1);
           }else{
-              alert("网络连接错误");
+              alert("网络连接错误，请填写正确信息");
           }
         })
 

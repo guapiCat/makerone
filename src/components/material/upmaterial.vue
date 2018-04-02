@@ -24,7 +24,7 @@
                                             <!--<a href="javascript:;" class="am-btn am-btn-default am-radius">上传图片</a>-->
 
                                             <div class="am-form-group am-form-file">
-                                                <p style="font-size: 15px;color: #959595;">最佳尺寸为400*400像素的方形图片(支持JPG、PNG、GIF格式,图片尺寸不超过3MB)</p>
+                                                <p style="font-size: 15px;color: #959595;">最佳尺寸为400*400像素的方形图片(支持JPG、PNG、GIF格式,图片尺寸不超过5MB)</p>
                                                 <button style="margin-bottom: 40px;" type="button" class="am-btn am-btn-default am-btn-sm">
                                                     <i class="am-icon-cloud-upload"></i><span style="color: red;margin-left: 5px;">*</span> 选择要上传的素材logo</button>
                                                 <input v-on:change="logoPost($event)" id="doc-form-file" accept="image/*" type="file" multiple>

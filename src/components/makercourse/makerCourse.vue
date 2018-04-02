@@ -19,9 +19,10 @@
                 </div>
                 <div class="content-title-hand">
                     <div class="content-title-hand-left">
-                        <img :src="fileURL+makercourse.courseCoverImage" class="default"/>
-                        <video class="myvideo" controls="controls"
-                               style="width: 100%;height: 100%;display: none"></video>
+                        <img v-if="nowSourseType==2" :src="fileURL+makercourse.courseCoverImage" class="default"/>
+                        <img v-if="nowSourseType==0" :src="fileURL+nowClickSourse" class="default"/>
+                        <video v-if="nowSourseType==1" :src="fileURL+nowClickSourse" class="myvideo" controls="controls"
+                               style="width: 100%;height: 100%;"></video>
                     </div>
 
                     <div class="content-title-hand-right" style="float: left; width: 40%;">
@@ -45,7 +46,51 @@
                         </div>
                         <div class="content-box-body">
                             <div class="zTreeDemoBackground left">
-                                <ul id="treeDemo" class="ztree"></ul>
+                                <div id="treeDemo">
+
+
+                                    <ul style="margin: 0px;" class="am-list admin-sidebar-list" id="collapase-nav-1">
+
+                                        <li v-for="bigItem,index in handleCourse" class="am-panel">
+                                            <a style="background-color: #EEEEEE;" :data-am-collapse="`{parent: '#collapase-nav-1', target: '#user-nav`+index+`'}`">
+                                                {{bigItem[1]}}<i class="am-icon-angle-right am-fr am-margin-right"></i>
+                                            </a>
+                                            <ul style="width: 520px;margin: 0px;" class="am-list am-collapse admin-sidebar-sub" :id="`user-nav`+index">
+                                                <li v-for="litItem in bigItem[4]">
+                                                    <a v-on:click="choseResouse(litItem[2],litItem[3])">
+                                                        <span style="display: inline-block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:20%;">{{litItem[1]}}</span>
+                                                        <span v-if="litItem[4]" style="display: inline-block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:360px;"> : {{litItem[4]}}</span>
+                                                        <a href="javascript:;" download="" :href=downloadURL+litItem[2] class="am-icon-cloud-download am-fr"></a>
+                                                    </a>
+
+                                                </li>
+                                                <!--<li><a href="#/userList/0"></i> 人员列表 </a></li>-->
+                                            </ul>
+                                        </li>
+
+                                        <!--<li class="am-panel">-->
+                                            <!--<a style="background-color: #EEEEEE;" data-am-collapse="{parent: '#collapase-nav-1', target: '#company-nav'}">-->
+                                                <!--单位（部门）管理 <i class="am-icon-angle-right am-fr am-margin-right"></i>-->
+                                            <!--</a>-->
+                                            <!--<ul style="width: 520px;" class="am-list am-collapse admin-sidebar-sub" id="company-nav">-->
+                                                <!--<li><a href="#/companyAdd">添加单位（部门） </a></li>-->
+                                                <!--<li><a href="#/companyList/0">单位（部门）列表 </a></li>-->
+                                            <!--</ul>-->
+                                        <!--</li>-->
+
+                                        <!--<li class="am-panel">-->
+                                            <!--<a style="background-color: #EEEEEE;" data-am-collapse="{parent: '#collapase-nav-1', target: '#role-nav'}">-->
+                                                <!--角色管理 <i class="am-icon-angle-right am-fr am-margin-right"></i>-->
+                                            <!--</a>-->
+                                            <!--<ul style="width: 520px;" class="am-list am-collapse admin-sidebar-sub" id="role-nav">-->
+                                                <!--<li><a href="#/roleAdd">添加角色 </a></li>-->
+                                                <!--<li><a href="#/roleList/0">角色列表 </a></li>-->
+                                            <!--</ul>-->
+                                        <!--</li>-->
+                                    </ul>
+
+
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,7 +139,7 @@
     import '../../../static/css/demo.css'
     import '../../../static/css/zTreeStyle.css'
     import '../../../static/js/jquery.ztree.core'
-    import {AXIOS} from "../../http-common";
+    import {AXIOS} from "../../http-common"
     export default {
         name: "maker-course",
         props: {
@@ -117,12 +162,38 @@
                 typeId: this.$route.params.typeId,
                 makercourse: [],
                 relatedworks: [],
-                voteStatus: ""
-
+                voteStatus: "",
+                //fileURL:"http://192.168.0.103:9000/",
+                //课程目录展示数据
+                courseCatalog:"",
+                handleCourse:[],
+                nowSourseType:2,
+                nowClickSourse:""
             }
         },
         methods: {
-            //收藏
+            //下载资源
+            //downSource:function(sourseUrl){
+            //    var downUrl=sourseUrl;
+            //    console.log(downUrl);
+            //    var params = new URLSearchParams();
+            //    AXIOS.get('common/download', {
+            //        params: {
+            //            url:downUrl
+            //        }
+            //    }).then(response => {
+            //        //alert(response.data);
+            //    }).catch(e => {
+            //        this.errors.push(e);
+            //    });
+            //},
+            //切换视频资源
+            choseResouse:function(sourse,type){
+                console.log(type,sourse);
+                this.nowSourseType=type;
+                this.nowClickSourse=sourse;
+            },
+            //收藏start
             addColl: function () {
                 var params = new URLSearchParams();
                 params.append("objectId", this.courseId);
@@ -133,6 +204,8 @@
                     this.errors.push(e)
                 });
             },
+            //收藏end
+            //点赞start
             vote: function () {
                 this.$emit('voteReq', {voteObjId: this.courseId, voteObjType: 3, voteStatus: 1});
                 this.voteStatus = 0;
@@ -141,12 +214,50 @@
                 this.$emit('voteReq', {voteObjId: this.courseId, voteObjType: 3, voteStatus: 0});
                 this.voteStatus = 1;
             },
+            //点赞end
             playResource: function (type, url) {
                 //console.log(type + url);
             }
         },
         created: function () {
             var params = new URLSearchParams();
+            //访问记录
+            AXIOS.get('common/view', {
+                params:{
+                    voteObjId:this.courseId,
+                    voteObjType:3
+                }
+            }).then(response => {
+                //console.log("这是访问记录返回的消息："+response.data);
+            }).catch(e => {
+                this.errors.push(e)
+            });
+            //得到课程目录信息
+            AXIOS.get('makerCourse/makerCourseInfo', {
+                params: {
+                    courseId:this.courseId
+                }
+            }).then(response => {
+                //console.log("即将处理的目录信息："+response.data);
+                this.courseCatalog=response.data.makerCourseChapterList;
+                //保存章节内容
+                for(var i=0;i<this.courseCatalog.length;i++){
+                    if(this.courseCatalog[i].parentId==null){
+                        //章节信息【章节id，章节名字，章节资源，章节资源类型，【小节】,章节介绍】
+                        this.handleCourse.push([this.courseCatalog[i].id,this.courseCatalog[i].chapterName,this.courseCatalog[i].chapterResource,this.courseCatalog[i].resourceType,[],this.courseCatalog[i].chapterIntro])
+                    }
+                }
+                //保存章节的小节内容
+                for(var k=0;k<this.courseCatalog.length;k++){
+                    for(var j=0;j<this.handleCourse.length;j++){
+                        if(this.courseCatalog[k].parentId==this.handleCourse[j][0]){
+                            this.handleCourse[j][4].push([this.courseCatalog[k].id,this.courseCatalog[k].chapterName,this.courseCatalog[k].chapterResource,this.courseCatalog[k].resourceType,this.courseCatalog[k].chapterIntro]);
+                        }
+                    }
+                }
+            }).catch(e => {
+                this.errors.push(e);
+            });
             //获取点赞状态
             AXIOS.get('common/upStatus', {
                 params: {
@@ -164,9 +275,10 @@
                 this.errors.push(e)
             });
             // 相关作品
-            AXIOS.get('makerCourse/relatedWorks?pageSize=3', {
+            AXIOS.get('makerCourse/relatedWorks', {
                 params: {
-                    type: this.typeId
+                    type: this.typeId,
+                    pageSize:4
                 }
             }).then(response=> {
                 this.relatedworks = response.data;
@@ -174,119 +286,6 @@
             }).catch(response=> {
                 this.errors.push(response)
             });
-            // 边栏
-            var curMenu = null, zTree_Menu = null;
-            var pageid = [];
-            var pagepId = [];
-            var pagename = [];
-            var zNodes = [];
-            var vueObj = this;
-            var setting = {
-                view: {
-                    showLine: false,
-                    showIcon: false,
-                    selectedMulti: false,
-                    dblClickExpand: false,
-                    addDiyDom: addDiyDom
-                },
-                data: {
-                    simpleData: {
-                        enable: true
-                    }
-                },
-                callback: {
-                    beforeClick: beforeClick,
-                    onClick: zTreeOnClick
-                }
-            };
-            $.ajax({
-                async: false,
-                cache: false,
-                type: 'get',
-                dataType: 'json',
-                url: "http://192.168.0.106:8080/makerCourse/makerCourseInfo",
-                data: {
-                    courseId: this.courseId
-                },
-                error: function () {
-                    alert('请求失败');
-                },
-                success: function (data) {
-                    var response = data.makerCourseChapterList;
-                    for (var i = 0; i < response.length; i++) {
-                        pageid = (response[i].id);
-                        pagepId = (response[i].parentId);
-                        pagename = (response[i].chapterName);
-                        zNodes.push({
-                            id: pageid,
-                            pId: pagepId,
-                            name: pagename,
-                            resourceType: response[i].resourceType,
-                            chapterResource: response[i].chapterResource,
-                            open: false
-                        })
-                    }
-                    ;
-                    // zNodes =response;
-                    //console.log(zNodes);
-                }
-            });
-            function zTreeOnClick(event, treeId, treeNode) {
-
-                console.log(treeNode)
-                //console.log(zTree_Menu.getNodeByTId(treeNode.tId).chapterResource + ", " + zTree_Menu.getNodeByTId(treeNode.tId).resourceType)
-                if (zTree_Menu.getNodeByTId(treeNode.tId).resourceType == 1) {
-                    $('.default').hide();
-                    $('.myvideo').show();
-                    $('.myvideo').attr('src', vueObj.fileURL + zTree_Menu.getNodeByTId(treeNode.tId).chapterResource)
-                } else if (zTree_Menu.getNodeByTId(treeNode.tId).resourceType == 2) {
-                    $('.default').show()
-                    $('.default').attr('src', vueObj.fileURL + zTree_Menu.getNodeByTId(treeNode.tId).chapterResource)
-                    $('.myvideo').hide();
-                } else {
-                    var aObj = $("#" + treeNode.tId + "_a");
-                    aObj.attr({href: vueObj.downloadURL + zTree_Menu.getNodeByTId(treeNode.tId).chapterResource})
-                }
-
-            };
-            function addDiyDom(treeId, treeNode) {
-                var spaceWidth = 5;
-                var switchObj = $("#" + treeNode.tId + "_switch"),
-                        icoObj = $("#" + treeNode.tId + "_ico");
-                switchObj.remove();
-                icoObj.before(switchObj);
-
-                if (treeNode.level > 1) {
-                    var spaceStr = "<span style='display: inline-block;width:" + (spaceWidth * treeNode.level) + "px'></span>";
-                    switchObj.before(spaceStr);
-                }
-            }
-
-            function beforeClick(treeId, treeNode) {
-                if (treeNode.level == 0) {
-                    var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-                    zTree.expandNode(treeNode);
-                    return false;
-                }
-                return true;
-            }
-
-            $(document).ready(function () {
-                var treeObj = $("#treeDemo");
-                $.fn.zTree.init(treeObj, setting, zNodes);
-                zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
-                //curMenu = zTree_Menu.getNodes()[0].children[0].children[0];
-                zTree_Menu.selectNode(curMenu);
-
-                treeObj.hover(function () {
-                    if (!treeObj.hasClass("showIcon")) {
-                        treeObj.addClass("showIcon");
-                    }
-                }, function () {
-                    treeObj.removeClass("showIcon");
-                });
-            });
-
         },
         updated: function () {
 
@@ -310,6 +309,38 @@
 </script>
 
 <style scoped>
+    /*amaze-ui修改课程目录start*/
+    .am-panel>ul>li>a[data-v-97d1cc7c] {
+        font-size: 14px;
+        color: #44AED8;
+        width: 565px;
+    }
+    .am-list {
+        margin-bottom: 1.6rem;
+        padding-left: 0px;
+        box-sizing: border-box;
+        width: 580px;
+    }
+    .am-list > li {
+        position: relative;
+        display: block;
+        margin-bottom: -1px;
+        background-color: white;
+        border: 1px solid #dedede;
+        border-width: 1px 0;
+    }
+    .am-list > li > a {
+        display: block;
+        padding: 1rem 0;
+        padding-left: 30px;
+        color: black;
+    }
+    .am-panel>ul>li>a{
+        font-size: 14px;
+        color: #44AED8;
+    }
+    /*amaze-ui修改课程目录end*/
+
 
     .workimg {
         height: 220px !important;

@@ -65,7 +65,7 @@
                 ],
                 guigeSpan: -1,
                 allMsg:"",
-                //fileURL:"http://192.168.0.103:9000/",
+                //fileURL: 'http://10.150.159.220:9000?url=',
                 fileURL: 'http://121.46.4.37:9000?url=',
                 isMessage:false
             }

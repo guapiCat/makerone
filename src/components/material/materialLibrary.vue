@@ -32,7 +32,7 @@
             <span v-on:click="postMet" class="am-btn am-btn-primary"
                   style="margin-right: 45px;margin-top: 35px;">我要上传</span>
         </div>
-        <div class="pic_content" style="margin-top: 60px;margin-left: 12%;">
+        <div class="pic_content" style="width:1200px;margin-top: 60px;margin-left: 12%;">
 
             <li v-for="item,index in allMet" class="testLi">
                 <router-link class="goMetDel" :to="{name: 'meterialdetail',params: {metId: item.id}}">

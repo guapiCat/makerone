@@ -31,7 +31,7 @@
                 </router-link>
             </p>
             <p>
-                <router-link to="/makerLife/list"><span>创客生活</span><i class="cgI" style="">CREATIVE LIFE</i>
+                <router-link to="/makerLife/list"><span>创客社区</span><i class="cgI" style="">CREATIVE LIFE</i>
                 </router-link>
             </p>
             <div class="mySs">

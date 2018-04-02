@@ -87,7 +87,7 @@
                                 <a href="javascript:;" v-on:click="postAllMsg" class="am-btn am-btn-default am-radius table_button"
                                    style="margin-right: 40%;"><span style="color: #FFFFFF">保存</span></a>
                                 <a href="javascript:;" class="am-btn am-btn-default am-radius table_button"><span
-                                        style="color: #FFFFFF">取消</span></a>
+                                       v-on:click="returnPre" style="color: #FFFFFF">取消</span></a>
                             </div>
                         </td>
                     </tr>
@@ -143,16 +143,20 @@
             });
         },
         methods:{
+            returnPre:function(){
+                window.history.go(-1);
+            },
             update:function(e){
                 this.file=e.target.files[0];
                 //console.log(this.file);
             },
             //同步请求消息，逐级嵌套
             postAllMsg:function(){
+                //让名字不能太长也不能太短
                 if(this.username.length<2||this.name.length<2){
-                    alert("请输入一个更长的用户名");
+                    alert("请输入一个更长的名字");
                 }else{
-                    //提交图片文件，获取相对路径
+                    //提交图片文件，获取相对路径，获取file地址，简历param
                     var param = new FormData(); // 创建form对象
                     param.append('file', this.file, this.file.name); // 通过append向form对象添加数据
                     //param.append("username",this.username);
@@ -162,6 +166,7 @@
                     let config = {
                         headers: {'Content-Type': 'multipart/form-data'}
                     };
+                    //看昵称是否被占用，只有不被占用才能进行下面操作
                     AXIOS.get('validate/username', {
                         params: {
                             "username":this.username
@@ -170,6 +175,7 @@
                         if(response.data==true){
                             alert("该昵称已被占用");
                         }else{
+                            //调用查看手机号是否被占用的接口，只有不被占用再继续提价操作
                             AXIOS.get('validate/mobile', {
                                 params: {
                                     "mobile":this.mobilephone
@@ -179,9 +185,9 @@
                                     alert("该手机号已被使用");
                                 }else{
                                     // 添加请求头
-                                    AXIOS.post('common/upload', param, config).then(response => {
-                                        //console.log(response.data);
-                                        this.avatar=response.data;
+                                    console.log("this.file是："+this.file);
+                                    if(this.file.name==null){    //处理图片，如果未传图片就把地址改为原来的地址，否则提交资源获得新地址再上传
+                                        this.avatar=this.allMsg.sysUser.avatar;
                                         //发送提交的修改信息
                                         var params = new URLSearchParams();
                                         params.append("avatar",this.avatar);
@@ -192,13 +198,41 @@
                                         AXIOS.post('user/editUser', params).then(response => {
                                             if(response.data==true){
                                                 alert("修改成功");
+                                                window.history.go(-1);
                                             }else{
                                                 alert("请输入要修改的信息");
                                             }
                                         }).catch(e => {
                                             this.errors.push(e)
                                         });
-                                    })
+                                    }else{
+                                        AXIOS.post('common/upload', param, config).then(response => {
+                                            //console.log("返回资源的信息："+response.data+"头像地址："+this.allMsg.sysUser.avatar);
+                                            if(response.data.code==100){
+                                                this.avatar=this.allMsg.sysUser.avatar
+                                            }else{
+                                                this.avatar=response.data;
+                                            }
+                                            //发送提交的修改信息
+                                            var params = new URLSearchParams();
+                                            params.append("avatar",this.avatar);
+                                            params.append("username",this.username);
+                                            params.append("realName",this.name);
+                                            params.append("mobile",this.mobilephone);
+                                            params.append("intro",this.desc);
+                                            AXIOS.post('user/editUser', params).then(response => {
+                                                if(response.data==true){
+                                                    alert("修改成功");
+                                                    window.history.go(-1);
+                                                }else{
+                                                    alert("请输入要修改的信息");
+                                                }
+                                            }).catch(e => {
+                                                this.errors.push(e)
+                                            });
+                                        })
+                                    }
+
                                 }
                             }).catch(e => {
                                 this.errors.push(e);

@@ -76,7 +76,7 @@
         name: "comment",
         data: function () {
             return {
-                fileURL:"http://121.46.4.37:9000?url=",
+                fileURL:"http://10.150.159.220:9000?url=",
                 discuss: "",
                 allMsg:"",
                 replyCont:"",

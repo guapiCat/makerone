@@ -33,7 +33,7 @@
                             <div class="am-u-sm-5" style="padding: 10px;">
                                 <img :src="fileURL+item.makerCommunity.communityLogo" style="margin-left:40px;width:200px;height:200px"/>
                             </div>
-                            <div class="am-u-sm-6" style="padding-left: 25px;padding-top:10px;text-align: left">
+                            <div class="am-u-sm-6" style="padding-left: 36px;padding-top:10px;text-align: left">
                                 <span>{{item.makerCommunity.communityName}}</span><br/>
                                 创建时间:<span>{{item.makerCommunity.createDate}}</span><br/>
                                 需要人数:<span>{{item.maxNum}}</span><br/>
@@ -75,7 +75,7 @@
                             <div class="am-u-sm-5" style="padding: 10px;">
                                 <img :src="fileURL+item.teamLogo" style="margin-left:40px;width:200px;height:200px"/>
                             </div>
-                            <div class="am-u-sm-6" style="padding-left: 25px;padding-top:10px;text-align: left">
+                            <div class="am-u-sm-6" style="padding-left: 36px;padding-top:10px;text-align: left">
                                 <span>{{item.teamName}}</span><br/>
                                 创建时间:<span>{{item.createDate}}</span><br/>
                                 <!--需要人数:<span></span><br/>-->

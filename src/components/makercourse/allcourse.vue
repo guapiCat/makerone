@@ -7,7 +7,7 @@
             <div class="classifylist">
                 <ul>
                     <li @click="byclaass(index)" v-for="item,index in classtitle" class="title"
-                        v-bind:class="{lighton:index== classes-1 }">{{item}}
+                        v-bind:class="{lighton:index== classLight}">{{item[0]}}
                     </li>
                 </ul>
             </div>
@@ -36,10 +36,10 @@
             <div v-for="item in courseslist ">
                 <div class="am-g">
                     <div class="am-u-sm-5" style="margin-left: -2%;">
-                        <div style="margin-bottom: 4%;">
+                        <router-link :to="{name: 'makerCourse',params:{ workId: item.id,typeId:item.type}}" style="margin-bottom: 4%;display: block;">
                             <img :src="fileURL+item.courseCoverImage"
                                  style="width: 350px;height: 350px;border: 1px solid #000000;display: inline-block;margin-left: 150px"/>
-                        </div>
+                        </router-link>
                         <div style="text-align: right;">
                             <span>点赞数&nbsp;:&nbsp;</span><img src="../../../static/img/icon_upvote.png" width="4%"
                                                               style="margin-top: -2%;"/><span
@@ -56,7 +56,7 @@
                             <span class="course_span">课程名称&nbsp;:&nbsp;<span>{{item.courseName}}</span></span>
                             <span class="course_span">开课时间&nbsp;  :&nbsp;<span>{{item.createDate}}</span></span>
                             <span class="course_span">浏览人数&nbsp;:&nbsp;<span>{{item.courseScanNum}}</span>人</span>
-                <span class="course_span">课程简介&nbsp;:&nbsp;
+                    <span class="course_span">课程简介&nbsp;:&nbsp;
 						 <span>{{item.courseIntro}}</span>
 					 </span>
                         </div>
@@ -75,7 +75,7 @@
 
 
             </div>
-            <ul v-if="courseslist.length>0" class="am-pagination" style="margin-left: 700px;">
+            <ul v-if="courseslist.length>0" class="am-pagination" style="margin-left: 850px;">
                 <li v-on:click="prevClick"><span class="adPointer">&laquo;</span></li>
                 <!--<li class="am-active"><a>1</a></li>-->
                 <!--<li><a>2</a></li>-->
@@ -125,6 +125,7 @@
                 classify: 0,
                 sort: 0,
                 classes: 0,
+                classLight:0,//年级样式点亮
                 // 分页
                 maxPage: 1,//最大页数
                 nowPage: 1,//当前页
@@ -133,42 +134,39 @@
             }
 
         },
-        mounted(){
+        created: function () {
             this.searchval;
             if (this.search == "") {
-                this.reqAXIOS(1, 0, 0, this.clickPage, 2);
+                this.reqAXIOS(7, 0, 0, this.clickPage, 8);
             } else {
-                this.searchAXIOS(1, 0, 0, 1, 2, this.search);
+                this.searchAXIOS(7, 0, 0, this.clickPage, 8, this.search);
             }
-            ;
-            // 分页
-
-        },
-        computed: {
-            searchval: function () {
-                var searchval = document.getElementById("search").value
-                return this.search = searchval
-            }
-
-        },
-        created: function () {
             AXIOS.get('common/getGlobalType', {}).then(response=> {
                 this.titletype = response.data;
-                this.sort = this.titletype[0].value;
-                this.classes = this.titletype[0].value + 1
+                //this.sort = this.titletype[0].value;
+                this.classify = this.titletype[0].value;//初始化类型
             }).catch(response=> {
                 this.errors.push(response);
             });
             AXIOS.get('common/getGrade', {}).then(response=> {
                 //console.log(response.data);
                 for(var i=0;i<response.data.length;i++){
-                    this.classtitle.push(response.data[i].desc);
+                    this.classtitle.push([response.data[i].desc,response.data[i].value]);
                 }
+                this.classes=this.classtitle[0][1];//初始化年级
+                //console.log("type test:"+this.classtitle[0][1]);
             }).catch(response=> {
                 this.errors.push(response);
             });
         },
         methods: {
+            //跳转start
+
+            //跳转end
+            searchval: function () {
+                var searchval = document.getElementById("search").value;
+                return this.search = searchval
+            },
             reqAXIOS: function (courseGrade, type, sortType, pageNum, pageSize) {
                 AXIOS.get('makerCourse/makerCourseShow', {
                     params: {
@@ -211,9 +209,9 @@
                 if (this.clickPage > 1) {
                     this.clickPage--;
                     if (this.search == '') {
-                        this.reqAXIOS(this.classes, this.classify, this.sort, this.clickPage, 2);
+                        this.reqAXIOS(this.classes, this.classify, this.sort, this.clickPage, 8);
                     } else {
-                        this.searchAxios(this.classes, this.classify, this.sort, this.clickPage, 2, this.search)
+                        this.searchAxios(this.classes, this.classify, this.sort, this.clickPage, 8, this.search)
                     }
                 }
             },
@@ -221,9 +219,9 @@
                 if (this.clickPage < this.maxPage) {
                     this.clickPage++;
                     if (this.search == '') {
-                        this.reqAXIOS(this.classes, this.classify, this.sort, this.clickPage, 2);
+                        this.reqAXIOS(this.classes, this.classify, this.sort, this.clickPage, 8);
                     } else {
-                        this.searchAxios(this.classes, this.classify, this.sort, this.clickPage, 2, this.search)
+                        this.searchAxios(this.classes, this.classify, this.sort, this.clickPage, 8, this.search)
                     }
                 }
             },
@@ -232,9 +230,9 @@
                 this.clickPage = item;
                 //console.log("item为：" + item);
                 if (this.search == '') {
-                    this.reqAXIOS(this.classes, this.classify, this.sort, this.clickPage, 2);
+                    this.reqAXIOS(this.classes, this.classify, this.sort, this.clickPage, 8);
                 } else {
-                    this.searchAxios(this.classes, this.classify, this.sort, this.clickPage, 2, this.search)
+                    this.searchAxios(this.classes, this.classify, this.sort, this.clickPage, 8, this.search)
                 }
             },
             //分页点击事件end
@@ -284,17 +282,20 @@
 
             byClassify: function (type) {
                 this.classify = type;
-                this.reqAXIOS(this.classes, this.classify, this.sort, 1, 2)
+                this.reqAXIOS(this.classes, this.classify, this.sort, this.clickPage, 8)
             },
             byclaass: function (index) {
-                this.classes = index + 1;
-                this.reqAXIOS(this.classes, this.classify, this.sort, 1, 2)
+                this.classLight=index;
+                //console.log("年级的index："+index);
+                //console.log("classes的值为："+this.classtitle[index][1]);
+                this.classes = this.classtitle[index][1];
+                this.reqAXIOS(this.classes, this.classify, this.sort, this.clickPage, 8);
 //          console.log(this.courseslist)
 
             },
             bysort: function (index) {
                 this.sort = index;
-                this.reqAXIOS(this.classes, this.classify, this.sort, 1, 2)
+                this.reqAXIOS(this.classes, this.classify, this.sort, this.clickPage, 8)
             }
         }
     }
@@ -369,6 +370,9 @@
         background: #FFFFFF;
         box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
         cursor: pointer;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        white-space:nowrap;
     }
 
     .q_coverName span {

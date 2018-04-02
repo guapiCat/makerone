@@ -28,7 +28,7 @@
                      style="height:70%;margin-right: 0px;padding-left: 0px;border-left: 1px solid #BFBFBF;border-bottom:1px solid #BFBFBF;border-top:1px solid #BFBFBF;padding-top: 4%;margin-bottom: 10%;">
                     <div style="height: 50px;text-align: center;margin-left: 10%;">
                         <a class="am-btn am-btn-primary" href="javascript:;"
-                           style="width: 300px;display: -webkit-box;padding-left: 30%;"
+                           style="width: 300px;display: -webkit-box;padding-left: 30%;" v-on:click="downloadMet"
                            :href=downloadURL+allMsg.materialResource>下载&nbsp;<img
                                 src="../../../static/img/icon_download_01.png" style="width: 34%;"/>
 
@@ -118,6 +118,19 @@
             }
         },
         methods: {
+            //下载
+            downloadMet:function(){
+                var params = new URLSearchParams();
+                AXIOS.get('makerMaterial/addDownloadNum', {
+                    params: {
+                        id:this.metId
+                    }
+                }).then(response => {
+                    //console.log(response.data);
+                }).catch(e => {
+                    this.errors.push(e);
+                });
+            },
             returnMet: function () {
                 this.$router.push({path: '/materialLibrary/list'});
             },
