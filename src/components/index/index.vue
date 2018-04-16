@@ -1,8 +1,10 @@
 <template>
     <div>
-        <div class="am-slider am-slider-default" data-am-flexslider>
+        <div class="am-slider am-slider-default" data-am-flexslider id="demo-slider-0">
             <ul class="am-slides">
-                <li v-for="banner in banners"><img :src="fileURL+banner.adImg"/></li>
+                <li v-for="banner in banners">
+                    <img :src="fileURL+banner.adImg"/>
+                </li>
             </ul>
         </div>
 
@@ -12,7 +14,7 @@
             <div class="container">
                 <div class="section--header">
                     <img src="../../../static/img/flag.png" alt=""/>
-                    <b class="flag-i1">黄陵中学</b>
+                    <b class="flag-i1">一初中</b>
                     <h5 class="sectionleft">创客作品</h5>
                     <span>WORKS SHOW</span>
                 </div>
@@ -47,7 +49,7 @@
             <div class="container">
                 <div class="section--header">
                     <img src="../../../static/img/flag.png" alt=""/>
-                    <b class="flag-i1">黄陵中学</b>
+                    <b class="flag-i1">一初中</b>
 
                     <h5 class="sectionleft">创客课程</h5>
                     <span>COURSES</span>
@@ -111,7 +113,7 @@
             <div class="container">
                 <div class="section--header">
                     <img src="../../../static/img/flag.png" alt=""/>
-                    <b class="flag-i1">黄陵中学</b>
+                    <b class="flag-i1">一初中</b>
 
                     <h5 class="sectionleft">创客社团</h5>
                     <span>TEAM</span>
@@ -191,12 +193,16 @@
         methods:{
 
         },
+        mounted:function(){
+            $('.am-slider').flexslider();
+        },
         created: function () {
+
             AXIOS.get('homePage/banner', {}).then(response => {
-                this.banners = response.data;
                 $(function () {
                     $('.am-slider').flexslider()
                 });
+                this.banners = response.data;
             }).catch(error => {
                 alert(error);
                 //this.errors.push(response)

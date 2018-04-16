@@ -4,8 +4,8 @@
         <div class="myHeaderMsg">
             <img v-on:click="goHome" class="myLogo" style="cursor: pointer" src="../../static/img/logo.png" alt=""/>
             <div class="logoText">
-                <span class="logoName">黄陵中学智慧校园·创客平台</span>
-                <span class="logoEngName">HUANGLIN MIDDLE SCHOOL</span>
+                <span class="logoName">第一初级中学·创客平台</span>
+                <span class="logoEngName">HUANGLIN FIRST SCHOOL</span>
             </div>
             <div v-for="value,index in myHeader" v-on:click="hdClick(index)" v-bind:class="{useron:index==guigeSpan}">
                 <p class="myHeadP">
@@ -66,7 +66,7 @@
                 guigeSpan: -1,
                 allMsg:"",
                 //fileURL: 'http://10.150.159.220:9000?url=',
-                fileURL: 'http://121.46.4.37:9000?url=',
+                fileURL: 'http://61.183.86.13:9000?url=',
                 isMessage:false
             }
         },

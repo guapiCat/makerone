@@ -2,8 +2,8 @@
     <div>
         <div class="nav-container">
             <img src="../../../static/img/logo.png" style="height: 70px;width: 70px;border-radius: 50%;"/>
-            <span class="logoName">黄陵中学智慧校园·创客平台</span>
-            <span class="logoEngName">WEDZ EXPERIMENTAL HUANGLIN MIDDLE SCHOOL</span>
+            <span class="logoName">武汉经济技术开发区第一初级中学教育集团智慧校园·创客平台</span>
+            <span class="logoEngName">WEDZ EXPERIMENTAL FIRST MIDDLE SCHOOL</span>
         </div>
         <div class="myHeaderMsg">
             <p>
@@ -128,7 +128,7 @@
         created: function () {
             this.psonImg = sessionStorage.getItem("psonImg");
             this.psonName = sessionStorage.getItem("psonName");
-            console.log(psonImg);
+            //console.log(psonImg);
         }
     }
 
@@ -148,7 +148,7 @@
     .logoEngName{
         display: inline-block;
         position: relative;
-        left: -217px;
+        left: -471px;
         top: 28px;
         font-size: 14px;
         color: #185594;

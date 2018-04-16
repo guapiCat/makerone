@@ -1,23 +1,25 @@
     <template>
     <div>
-        <div class="workshow" style="width: 1200px;margin: 50px auto;">
-            <div class="center-title" style="margin-bottom: 20px; color: #969696;">
-                <span> <img src="../../../static/img/icon_address.png" alt=""/><i>{{schoolESB}}-作品展示</i></span>
+        <div class="workshow" style="width: 1200px;margin: 20px auto;">
+            <div class="center-title" style="margin-bottom: -20px; color: black;">
+                <!--<span> <img src="../../../static/img/icon_address.png" alt=""/><i>{{schoolESB}}-作品展示</i></span>-->
                 <div class="classify">
-                    <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
+                    <!--<i><img src="../../../static/img/icon_classify.png"/><span>分类</span></i>-->
                 </div>
                 <div class="classifylist">
-                    <ul style="overflow: hidden;margin-top: 25px;">
-                        <li v-on:click="one(index)" v-for="item,index in proClass" v-bind:class="{on:index==guigeSpan}"
-                            class="title">{{item}}
-                        </li>
+                    <span v-bind:class="{clickClassify:index==guigeSpan}" @click="one(index)" v-for="item,index in proClass" class="classifyDetail">{{item}}</span>
+
+                    <!--<ul style="overflow: hidden;margin-top: 25px;">-->
+                        <!--<li v-on:click="one(index)" v-for="item,index in proClass" v-bind:class="{on:index==guigeSpan}"-->
+                            <!--class="title">{{item}}-->
+                        <!--</li>-->
                         <!--<li @click="one(index)" class="title classify-active" style="margin-left: -31px;">全部</li>-->
                         <!--<li class="title" @click="one(index)">3D打印</li>-->
                         <!--<li @click="one(index)" class="title">机器人</li>-->
                         <!--<li @click="one(index)" class="title">木工</li>-->
                         <!--<li @click="one(index)" class="title">Scratch编程</li>-->
                         <!--<li @click="one(index)" class="title">综合课程</li>S-->
-                    </ul>
+                    <!--</ul>-->
                 </div>
                 <div class="clear"></div>
 
@@ -26,7 +28,7 @@
                 <div class="center-box-title">
                     <div class="center-left">
                         <i>排序:</i>&nbsp;&nbsp;&nbsp;
-                        <span v-on:click="two(index)" class="cxTwo" v-for="item,index in proSee"
+                        <span v-bind:class="{clickTwo:index==classify}" v-on:click="two(index)" class="cxTwo" v-for="item,index in proSee"
                               style="margin-right:10px;">{{item}}</span>
                         <!--<span class="cxTwo">点赞数</span>&nbsp;&nbsp;&nbsp;-->
                         <!--<span class="cxTwo">浏览量</span>&nbsp;&nbsp;-->
@@ -41,8 +43,9 @@
                     <!--作品展示-->
                     <li v-for="item in myProducts">
                         <router-link :to="{name: 'workshowdetail',params: {workId: item.makerWorks.id}}">
-                            <img style="height: 166px;width: 220px" class="am-thumbnail"
-                                 :src="fileURL+item.makerWorks.worksCoverImage"/>
+                            <div style="height: 166px;width: 220px;overflow: hidden">
+                                <img style="height: 166px;width: 220px" class="am-thumbnail workImg" :src="fileURL+item.makerWorks.worksCoverImage"/>
+                            </div>
 
                             <p class="q_coverName">{{item.makerWorks.worksName}}</p>
 
@@ -111,7 +114,8 @@
                 maxPage:1,
                 nowPage:1,
                 allPage:[],
-                clickPage:1
+                clickPage:1,
+                classify: 0
             }
         },
         methods: {
@@ -154,6 +158,7 @@
             },
             two: function (index) {
                 //console.log(index);
+                this.classify=index;
                 this.reqAxios(this.clickOne, index, this.clickPage, 10);
             },
             reqAxios: function (makeWorType, sortType, pageNum, pageSize) {
@@ -266,6 +271,39 @@
 </script>
 
 <style scoped>
+    .clickTwo{
+        color: #2878B7;
+    }
+    .workImg:hover{
+        transform: scale(1.2);
+        transition: all .3s linear;
+    }
+    .clickClassify{
+        background: #1177C0;
+        color: white;
+        border-radius: 20px;
+    }
+    .classifyDetail{
+        display: inline-block;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        margin: 30px 30px 30px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all .3s linear;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        white-space:nowrap;
+    }
+    .classifyDetail:hover{
+        background: #1177C0;
+        color: white;
+        border-radius: 20px;
+    }
+
+
     .on {
         background: #FFCA57 !important;
     }
@@ -354,12 +392,12 @@
         cursor: pointer;
     }
 
-    .center-left span:hover {
-        border: solid 1px #ffca57;
-        background: #FFCA57;
-        padding: 10px;
-        border-radius: 10px;
-    }
+    /*.center-left span:hover {*/
+        /*border: solid 1px #ffca57;*/
+        /*background: #FFCA57;*/
+        /*padding: 10px;*/
+        /*border-radius: 10px;*/
+    /*}*/
 
     .q_dianzan {
         padding-right: 0px;

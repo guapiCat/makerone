@@ -265,7 +265,28 @@
         cursor: pointer;
     }
     .onOne {
-        background: #FFCA57;
+        background: #1177C0;
+        color: white;
+    }
+    .titleOne{
+        transition: all .3s linear;
+        margin: 0 20px;
+    }
+    .titleOne:hover{
+        background: #1177C0;
+        color: white;
+    }
+    .title{
+        transition: all .3s linear;
+        margin: 0 20px;
+    }
+    .title:hover{
+        background: #1177C0;
+        color: white;
+    }
+    .onMat{
+        background: #1177C0;
+        color: white;
     }
 
     .nodata {
@@ -279,9 +300,9 @@
         display: block;
     }
 
-    .onMat {
-        background-color: #f1cd3d;
-    }
+    /*.onMat {*/
+        /*background-color: #f1cd3d;*/
+    /*}*/
 
     .center-active {
         background-color: #f1cd3d;
@@ -289,14 +310,12 @@
 
     .center-left {
         float: left;
-        color: #969696;
         cursor: pointer;
     }
 
     .center-left > span {
         border-radius: 10px;
-        padding: 10px;
-        color: #000000;
+        padding: 4px 16px;
     }
 
     .pic_content li img {

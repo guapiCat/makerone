@@ -35,7 +35,7 @@
                 <p style="font-weight: bold; text-align: center;">课程计划表</p>
               </div>
               <div class="content-title-hand-right">
-                <p>课程介绍：<span>{{allMsg.makerCommunityDTO.communityIntro}}</span></p>
+                <p>课程安排：<span>{{allMsg.makerCommunityDTO.communityLessonPlan}}</span></p>
               </div>
 
             </div>

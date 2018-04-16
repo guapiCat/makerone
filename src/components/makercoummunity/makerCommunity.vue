@@ -38,7 +38,9 @@
                                 创建时间:<span>{{item.makerCommunity.createDate}}</span><br/>
                                 需要人数:<span>{{item.maxNum}}</span><br/>
                                 当前人数:<span>{{item.makerCommunityNum}}</span><br/>
-                                团队介绍:<span>{{item.makerCommunity.communityIntro}}</span>
+                                <div class="commIntro">
+                                    团队介绍:{{item.makerCommunity.communityIntro}}
+                                </div>
                             </div>
                         </div>
                         <div style="margin-top: 1%;padding-bottom: 2%;">
@@ -80,7 +82,9 @@
                                 创建时间:<span>{{item.createDate}}</span><br/>
                                 <!--需要人数:<span></span><br/>-->
                                 <!--当前人数:<span></span><br/>-->
-                                团队介绍:<span>{{item.teamIntro}}</span>
+                                <p class="commIntro">
+                                    团队介绍:{{item.teamIntro}}
+                                </p>
                             </div>
                         </div>
                         <div style="margin-top: 1%;padding-bottom: 2%;">
@@ -275,6 +279,13 @@
 </script>
 
 <style scoped>
+    .commIntro{
+        width: 160px;
+        height: 150px;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        white-space:normal;
+    }
     .adPointer{
         cursor: pointer;
     }

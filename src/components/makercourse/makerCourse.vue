@@ -49,7 +49,7 @@
                                 <div id="treeDemo">
 
 
-                                    <ul style="margin: 0px;" class="am-list admin-sidebar-list" id="collapase-nav-1">
+                                    <ul style="margin: 0px;width: 565px;" class="am-list admin-sidebar-list" id="collapase-nav-1">
 
                                         <li v-for="bigItem,index in handleCourse" class="am-panel">
                                             <a style="background-color: #EEEEEE;" :data-am-collapse="`{parent: '#collapase-nav-1', target: '#user-nav`+index+`'}`">
@@ -58,9 +58,9 @@
                                             <ul style="width: 520px;margin: 0px;" class="am-list am-collapse admin-sidebar-sub" :id="`user-nav`+index">
                                                 <li v-for="litItem in bigItem[4]">
                                                     <a v-on:click="choseResouse(litItem[2],litItem[3])">
-                                                        <span style="display: inline-block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:20%;">{{litItem[1]}}</span>
-                                                        <span v-if="litItem[4]" style="display: inline-block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:360px;"> : {{litItem[4]}}</span>
-                                                        <a href="javascript:;" download="" :href=downloadURL+litItem[2] class="am-icon-cloud-download am-fr"></a>
+                                                        <span style="display: inline-block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">{{litItem[1]}}</span>
+                                                        <span v-if="litItem[4]" style="display: inline-block;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:335px;"> : {{litItem[4]}}</span>
+                                                        <a style="margin-right: 15px;" href="javascript:;" download="" :href=downloadURL+litItem[2] class="am-icon-cloud-download am-fr"></a>
                                                     </a>
 
                                                 </li>
@@ -309,6 +309,13 @@
 </script>
 
 <style scoped>
+    .zTreeDemoBackground{
+        overflow: scroll;
+        height: 750px;
+    }
+    #treeDemo{
+        width: 550px;
+    }
     /*amaze-ui修改课程目录start*/
     .am-panel>ul>li>a[data-v-97d1cc7c] {
         font-size: 14px;

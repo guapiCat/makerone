@@ -1,38 +1,58 @@
 <template>
     <div>
-        <div class="work-title" style="background: #F3F3F3;">
-            <div class="classify">
-                <i> <img src="../../../static/img/icon_classify.png"/><span>班级</span></i>
+        <div class="work-title" style="width: 100%;">
+
+            <!--新按钮start-->
+            <div class="newClass">
+                <span v-bind:class="{clickClass:index== classLight}" @click="byclaass(index)" v-for="item,index in classtitle" class="classDetail">{{item[0]}}</span>
+                <!--<span class="classDetail">八年级</span>-->
+                <!--<span class="classDetail">九年级</span>-->
             </div>
-            <div class="classifylist">
-                <ul>
-                    <li @click="byclaass(index)" v-for="item,index in classtitle" class="title"
-                        v-bind:class="{lighton:index== classLight}">{{item[0]}}
-                    </li>
-                </ul>
+            <div class="newClassify">
+                <span v-bind:class="{clickClassify:index==classify}" @click="byClassify(item.value)" v-for="item,index in titletype" class="classifyDetail">{{item.desc}}</span>
+                <!--<span class="classifyDetail">3D打印</span>-->
+                <!--<span class="classifyDetail">search编程</span>-->
+                <!--<span class="classifyDetail">机器人</span>-->
+                <div class="litClassify">
+                    <span v-bind:class="{clickTree:index==sort}" @click="bysort(index)" v-for="item,index in sorttitle" class="litDetail">{{item}}</span>
+                    <!--<span class="litDetail">最热</span>-->
+                </div>
+                <span class="adDown">|</span>
             </div>
-            <div class="classify">
-                <i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>
-            </div>
-            <div class="classifylist">
-                <ul>
-                    <li @click="byClassify(item.value)" v-for="item,index in titletype" class="title"
-                        v-bind:class="{lighton:index==classify}">{{item.desc}}
-                    </li>
-                </ul>
-            </div>
-            <div class="classify">
-                <i> <img src="../../../static/img/icon_sort.png"/><span>排序</span></i>
-            </div>
-            <div class="classifylist">
-                <ul>
-                    <li @click="bysort(index)" v-for="item,index in sorttitle" class=" title"
-                        v-bind:class="{lighton:index==sort}">{{item}}
-                    </li>
-                </ul>
-            </div>
+            <!--新按钮end-->
+
+            <!--<div class="classify">-->
+                <!--<i> <img src="../../../static/img/icon_classify.png"/><span>班级</span></i>-->
+            <!--</div>-->
+            <!--<div class="classifylist">-->
+                <!--<ul>-->
+                    <!--<li @click="byclaass(index)" v-for="item,index in classtitle" class="title"-->
+                        <!--v-bind:class="{lighton:index== classLight}">{{item[0]}}-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="classify">-->
+                <!--<i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>-->
+            <!--</div>-->
+            <!--<div class="classifylist">-->
+                <!--<ul>-->
+                    <!--<li @click="byClassify(item.value)" v-for="item,index in titletype" class="title"-->
+                        <!--v-bind:class="{lighton:index==classify}">{{item.desc}}-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+            <!--<div class="classify">-->
+                <!--<i> <img src="../../../static/img/icon_sort.png"/><span>排序</span></i>-->
+            <!--</div>-->
+            <!--<div class="classifylist">-->
+                <!--<ul>-->
+                    <!--<li @click="bysort(index)" v-for="item,index in sorttitle" class=" title"-->
+                        <!--v-bind:class="{lighton:index==sort}">{{item}}-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
         </div>
-        <div class="workshow" style="width: 1200px;margin: 80px auto;">
+        <div class="workshow" style="width: 1200px;margin: 20px auto;">
             <div v-for="item in courseslist ">
                 <div class="am-g">
                     <div class="am-u-sm-5" style="margin-left: -2%;">
@@ -302,6 +322,74 @@
 </script>
 
 <style scoped>
+    /*点击样式atart*/
+    .adDown{
+        float: right;
+        margin: 30px -53px;
+    }
+    .clickClass{
+        border-bottom: 5px solid #0A77BD;
+    }
+    .clickClassify{
+        background: #1177C0;
+        color: white;
+        border-radius: 20px;
+    }
+    .clickTree{
+        color: #2878B7;
+        transition: all .3s linear;
+    }
+    /*点击样式end*/
+    .litClassify{
+        float: right;
+    }
+    .litDetail{
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+        cursor: pointer;
+        margin: 20px 10px;
+    }
+    .newClassify{
+        width: 1200px;
+        margin: 0 auto;
+    }
+    .classifyDetail{
+        display: inline-block;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        margin: 30px 30px 30px -5px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all .3s linear;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        white-space:nowrap;
+    }
+    .classifyDetail:hover{
+        background: #1177C0;
+        color: white;
+        border-radius: 20px;
+    }
+    .newClass{
+        width: 1200px;
+        box-shadow: 0 3px 1px #A8C7DF;
+        margin: 0 auto;
+    }
+    .classDetail{
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        /*border-bottom: 4px solid black;*/
+        margin-right: 50px;
+        margin-left: 10px;
+        color:#427EAC;
+        cursor: pointer;
+        transition: all .5s linear;
+    }
     .lighton {
         background: #FFCA57 !important;
     }
