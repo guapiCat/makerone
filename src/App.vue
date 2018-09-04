@@ -21,10 +21,10 @@
     name: 'app',
     data (){
       return {
-        fileURL: 'http://192.168.0.107:9000?url=',
-        downloadURL: 'http://192.168.0.107:9000/download?url=',
+        fileURL: 'http://10000:9000?url=',
+        downloadURL: 'http://100000:9000/download?url=',
         currentView: '',
-          schoolESB:"武汉市经开区神龙小学·创客平台"
+          schoolESB:"创客平台"
       }
     },
     watch:{

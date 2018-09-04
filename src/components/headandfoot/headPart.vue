@@ -2,7 +2,7 @@
     <div>
         <div class="nav-container">
             <img src="../../../static/img/logo.png" style="height: 70px;width: 70px;border-radius: 50%;"/>
-            <span class="logoName">武汉经开区神龙小学·创客平台</span>
+            <span class="logoName">创客平台</span>
             <span class="logoEngName">WUHAN SHENLONG PRIMARY SCHOOL</span>
         </div>
         <div class="myHeaderMsg">

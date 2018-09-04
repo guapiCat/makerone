@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 export const AXIOS = axios.create({
-  // baseURL: `http://192.168.0.102:8080`,
-  baseURL: `http://61.183.86.13:8567`,
+  baseURL: `http://000.000.0.000:8080`,
   withCredentials:false,
     test:1
 })

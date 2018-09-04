@@ -4,7 +4,7 @@
         <div class="myHeaderMsg">
             <img title="点击返回首页" v-on:click="goHome" class="myLogo" style="cursor: pointer" src="../../static/img/logo.png" alt=""/>
             <div style="cursor: pointer" title="点击返回首页" v-on:click="goHome" class="logoText">
-                <span class="logoName">神龙小学·创客平台</span>
+                <span class="logoName">创客平台</span>
                 <span class="logoEngName">SHENLONG PRIMARY SCHOOL</span>
             </div>
             <div v-for="value,index in myHeader" v-on:click="hdClick(index)" v-bind:class="{useron:index==guigeSpan}">
