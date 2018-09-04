@@ -9,12 +9,13 @@
         </div>
 
 
+
         <!--content-->
         <div class="section">
             <div class="container">
                 <div class="section--header">
                     <img src="../../../static/img/flag.png" alt=""/>
-                    <b class="flag-i1">一初中</b>
+                    <b class="flag-i1">神龙小学</b>
                     <h5 class="sectionleft">创客作品</h5>
                     <span>WORKS SHOW</span>
                 </div>
@@ -49,7 +50,7 @@
             <div class="container">
                 <div class="section--header">
                     <img src="../../../static/img/flag.png" alt=""/>
-                    <b class="flag-i1">一初中</b>
+                    <b class="flag-i1">神龙小学</b>
 
                     <h5 class="sectionleft">创客课程</h5>
                     <span>COURSES</span>
@@ -113,7 +114,7 @@
             <div class="container">
                 <div class="section--header">
                     <img src="../../../static/img/flag.png" alt=""/>
-                    <b class="flag-i1">一初中</b>
+                    <b class="flag-i1">神龙小学</b>
 
                     <h5 class="sectionleft">创客社团</h5>
                     <span>TEAM</span>
@@ -133,9 +134,9 @@
                             <p style="float: left;height: 30px;width: 390px;text-align: center;margin-top: 165px; color: #FFF; font-size: 20px; margin-bottom: 0;">
                                 {{maker.communityName}}</p>
 
-                            <p style="float: left; margin: 0; text-align: center; color: #FFF; font-size: 15px;width: 390px;
-    height: 80px;">
-                                {{maker.communityIntro}}
+                            <p style="padding:0 40px;float: left; margin: 0; text-align: center; color: #FFF; font-size: 15px;width: 390px;
+    height: 70px;overflow: hidden">
+                                &nbsp;&nbsp;&nbsp;{{maker.communityIntro}}
                             </p>
                         </div>
                     </router-link>
@@ -193,14 +194,13 @@
         methods:{
 
         },
-        mounted:function(){
-            $('.am-slider').flexslider();
-        },
         created: function () {
 
             AXIOS.get('homePage/banner', {}).then(response => {
                 $(function () {
-                    $('.am-slider').flexslider()
+
+                    $('.am-slider').flexslider();
+                    //console.log("created的$："+$(".am-slider"));
                 });
                 this.banners = response.data;
             }).catch(error => {
@@ -221,7 +221,7 @@
             });
             AXIOS.get('homePage/makercourse?pageSize=4', {}).then(response=> {
                 this.courses = response.data;
-                this.coursefirst.backgroundImage = "url('" + this.fileURL + this.courses[0].courseCoverImage + "')";
+                this.coursefirst= "url('" + this.fileURL + this.courses[0].courseCoverImage + "')";
                 this.coursesecond.backgroundImage = "url('" + this.fileURL + this.courses[1].courseCoverImage + "')";
                 this.coursethird.backgroundImage = "url('" + this.fileURL + this.courses[2].courseCoverImage + "')";
                 this.courselast.backgroundImage = "url('" + this.fileURL + this.courses[3].courseCoverImage + "')";
@@ -230,12 +230,20 @@
                 console.log(error)
             })
 
+        },
+        mounted:function(){
+            $(function () {
+                $('.am-slider').flexslider();
+                //console.log("mounted的$："+$(".am-slider"));
+            });
         }
+
     }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+
     /*轮播*/
     .flag-i1 {
         font-style: normal;

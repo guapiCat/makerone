@@ -67,6 +67,7 @@
                             var jsonResult = eval(response.data);
                             sessionStorage.setItem("TID", jsonResult["token"]);
                             sessionStorage.setItem("UID", jsonResult["sysUser"]["id"]);
+                            sessionStorage.setItem("loginCasType", 2);//cas平台登录类型为1，yigu为2
                             sessionStorage.setItem("psonImg", response.data.sysUser.avatar);
                             sessionStorage.setItem("psonName", response.data.sysUser.realName);
                             alert("登录成功");

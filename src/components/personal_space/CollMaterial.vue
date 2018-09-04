@@ -7,11 +7,10 @@
                 <div class="am-g">
                     <div class="am-u-sm-6" style="padding-top: 1%;padding-left: 2%;">
                         <img :src="fileURL+item.materialCoverImage" class="cous-img"
-                             style="border: 1px solid #000000; width:100%;"/>
+                             style="border: 1px solid #000000; width:300px;height: 300px;margin-left: 100px;"/>
                     </div>
                     <div class="am-u-sm-6" style="padding-top: 1%;padding-right: 10%;padding-left: 1%;">
                         <span style="font-size: 23px;color: #378695">课程信息</span><br/>
-
                         <div style="width: 100%;padding-left: 2%;padding-top: 1%;">
                             <span>素材名称&nbsp;:&nbsp;<span>{{item.materialName}}</span></span><br/>
                             <span>创建时间&nbsp;:&nbsp;<span>{{item.createDate}}</span></span><br/>

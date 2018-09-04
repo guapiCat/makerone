@@ -41,11 +41,17 @@
             </div>
           </div>
           <div class="content-center">
-            <span class="content-title">社团成员</span>
-            <div class="content-box-body" style="overflow: hidden;">
-              <ul class="am-avg-sm-4 am-thumbnails">
-                <li class="am-thumbnail" v-for="item,index in allPson"><img class="psonImg" :src="fileURL+item[1]"
-                        style="margin-left: 20px"/><p>{{index?"组员":"组长"}}:<span>{{item[0]}}</span></p></li>
+              <p>
+                  <span style="font-weight: bold;">社团成员</span>
+                  <span style="float: right; color: #008bbe; cursor: pointer;" v-on:click="seeAllPson()">
+                      收起
+                      <img src="../../../static/img/arrow_2.png" style="margin-left: 10px;margin-top: -3px;" />
+                  </span>
+              </p>
+              <div class="content-box-body" style="overflow: hidden;">
+              <ul v-bind:class="{'controPson':switchPson}" class="am-avg-sm-4 am-thumbnails">
+                <li class="am-thumbnail" v-for="item,index in allPson" style="margin: 20px;width: 250px;"><img class="psonImg" :src="fileURL+item[1]"
+                        style="margin: 20px;width: 180px;height: 180px;"/><p>{{index?"组员":"组长"}}:<span>{{item[0]}}</span></p></li>
                 <!--<li class="am-thumbnail"><img  src="../../../static/img/img_bitmap.png" /><p>组员:<span>张华</span></p></li>-->
                 <!--<li class="am-thumbnail"><img  src="../../../static/img/img_bitmap.png" /><p>组员:<span>张华</span></p></li>-->
                 <!--<li class="am-thumbnail"><img  src="../../../static/img/img_bitmap.png" /><p>组员:<span>张华</span></p></li>-->
@@ -112,10 +118,14 @@
                 contTwo: true,
                 creTrue:true,
                 jugCont:false,
-                jugContTwo:false
+                jugContTwo:false,
+                switchPson:false
             }
         },
         methods:{
+            seeAllPson:function(){
+                this.switchPson=!this.switchPson;
+            },
             applyJoin:function(){
                 this.$router.push({ path: '/community/applyjoindetail/'+this.clubId });
             },
@@ -173,6 +183,9 @@
 </script>
 
 <style scoped>
+    .controPson{
+        display: none;
+    }
     .myTeamImg{
         width:250px;
         height: 250px;

@@ -5,13 +5,14 @@
   "author": "lihuakun",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 192.168.0.105",
     "start": "npm run dev",
     "build": "node build/build.js"
   },
   "dependencies": {
     "axios": "^0.17.1",
     "jquery": "^3.3.1",
+    "swiper": "^4.2.2",
     "vue": "^2.5.2",
     "vue-awesome-swiper": "^3.1.2",
     "vue-quill-editor": "^3.0.5",

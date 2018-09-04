@@ -21,46 +21,16 @@
             </div>
             <!--新按钮end-->
 
-            <!--<div class="classify">-->
-                <!--<i> <img src="../../../static/img/icon_classify.png"/><span>班级</span></i>-->
-            <!--</div>-->
-            <!--<div class="classifylist">-->
-                <!--<ul>-->
-                    <!--<li @click="byclaass(index)" v-for="item,index in classtitle" class="title"-->
-                        <!--v-bind:class="{lighton:index== classLight}">{{item[0]}}-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="classify">-->
-                <!--<i> <img src="../../../static/img/icon_classify.png"/><span>分类</span></i>-->
-            <!--</div>-->
-            <!--<div class="classifylist">-->
-                <!--<ul>-->
-                    <!--<li @click="byClassify(item.value)" v-for="item,index in titletype" class="title"-->
-                        <!--v-bind:class="{lighton:index==classify}">{{item.desc}}-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
-            <!--<div class="classify">-->
-                <!--<i> <img src="../../../static/img/icon_sort.png"/><span>排序</span></i>-->
-            <!--</div>-->
-            <!--<div class="classifylist">-->
-                <!--<ul>-->
-                    <!--<li @click="bysort(index)" v-for="item,index in sorttitle" class=" title"-->
-                        <!--v-bind:class="{lighton:index==sort}">{{item}}-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
         </div>
         <div class="workshow" style="width: 1200px;margin: 20px auto;">
             <div v-for="item in courseslist ">
                 <div class="am-g">
-                    <div class="am-u-sm-5" style="margin-left: -2%;">
+                    <div class="am-u-sm-5" style="margin-left: 0%;">
                         <router-link :to="{name: 'makerCourse',params:{ workId: item.id,typeId:item.type}}" style="margin-bottom: 4%;display: block;">
                             <img :src="fileURL+item.courseCoverImage"
-                                 style="width: 350px;height: 350px;border: 1px solid #000000;display: inline-block;margin-left: 150px"/>
+                                 style="width: 200px;height: 200px;border: 1px solid #000000;display: inline-block;margin-left: 150px"/>
                         </router-link>
-                        <div style="text-align: right;">
+                        <div style="text-align: right;padding-right: 76px">
                             <span>点赞数&nbsp;:&nbsp;</span><img src="../../../static/img/icon_upvote.png" width="4%"
                                                               style="margin-top: -2%;"/><span
                                 style="margin-right:10%;margin-left: 2%;">{{item.courseThumbsUpNum}}</span>
@@ -68,7 +38,7 @@
                                                               style="margin-top: -1%;"/><span style="margin-left: 2%">{{item.courseScanNum}}</span>
                         </div>
                     </div>
-                    <div class="am-u-sm-5" style="margin-left: -1%;">
+                    <div class="am-u-sm-6" style="margin-left: -1%;">
                         <div style="margin-bottom: 2%;">
                             <span class="course_span" style="color: #5fb7cf;">课程信息</span>
                         </div>
@@ -404,7 +374,7 @@
     }
 
     .course_span {
-        padding-bottom: 3%;
+        padding-bottom: 6px;
         display: block;
     }
 

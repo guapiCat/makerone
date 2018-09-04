@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script>
+<script type="es6">
 
   import headPart from './components/headandfoot/headPart'
   import footPart from './components/headandfoot/footPart'
@@ -21,10 +21,10 @@
     name: 'app',
     data (){
       return {
-        fileURL: 'http://192.168.0.102:9200?url=',
-        downloadURL: 'http://192.168.0.102:9200/download?url=',
+        fileURL: 'http://192.168.0.107:9000?url=',
+        downloadURL: 'http://192.168.0.107:9000/download?url=',
         currentView: '',
-          schoolESB:"益谷创客平台"
+          schoolESB:"武汉市经开区神龙小学·创客平台"
       }
     },
     watch:{
@@ -58,9 +58,9 @@
              }
          }).then(response => {
                 if(response.data==0){
-                    console.log("vote ok");
+//                    console.log("vote ok");
                 }else if(response.data==-1){
-                    console.log("out vote");
+//                    console.log("out vote");
                 }
              //console.log(response.data.list);
 
@@ -79,6 +79,6 @@
 
 <style>
     .my-body{
-        min-height: 700px;;
+        min-height: 800px;
     }
 </style>

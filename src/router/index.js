@@ -22,6 +22,10 @@ import materialdetail from '@/components/material/materialdetail'
 import upmaterial from '@/components/material/upmaterial'
 import allcourse from '@/components/makercourse/allcourse'
 import activitydetail from '@/components/makeractivity/activitydetail'
+
+//中间件
+import loginMiddle from '@/components/middle_page/loginMiddle'
+
 // 评价
 import CollMaterial from '@/components/personal_space/CollMaterial'
 import CollCousera from '@/components/personal_space/CollCousera'
@@ -286,7 +290,12 @@ const Routers = [
     path:"/user/uncompleteWork",
     component:uncompleteWork,
     name:'uncompleteWork'
-  }
+  },
+    // 中间件
+    {
+        path:"/loginMiddle/:key",
+        component:loginMiddle
+    }
 
 
 ]

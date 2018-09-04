@@ -2,10 +2,10 @@
 <template>
     <div class="hello">
         <div class="myHeaderMsg">
-            <img v-on:click="goHome" class="myLogo" style="cursor: pointer" src="../../static/img/logo.png" alt=""/>
-            <div class="logoText">
-                <span class="logoName">第一初级中学·创客平台</span>
-                <span class="logoEngName">HUANGLIN FIRST SCHOOL</span>
+            <img title="点击返回首页" v-on:click="goHome" class="myLogo" style="cursor: pointer" src="../../static/img/logo.png" alt=""/>
+            <div style="cursor: pointer" title="点击返回首页" v-on:click="goHome" class="logoText">
+                <span class="logoName">神龙小学·创客平台</span>
+                <span class="logoEngName">SHENLONG PRIMARY SCHOOL</span>
             </div>
             <div v-for="value,index in myHeader" v-on:click="hdClick(index)" v-bind:class="{useron:index==guigeSpan}">
                 <p class="myHeadP">
@@ -28,8 +28,8 @@
             <!--<p><a href="">我的收藏</a></p>-->
 
             <div class="mySs">
-                <img class="mySs_img" src="../../static/img/nav_serch.png" alt=""/>
-                <input class="mySs_inp" type="text" placeholder="请输入关键字"/>
+                <!--<img class="mySs_img" src="../../static/img/nav_serch.png" alt=""/>-->
+                <!--<input class="mySs_inp" type="text" placeholder="请输入关键字"/>-->
 
                 <div v-on:click="goSeeMsg" class="mySs_xx">
                     <img src="../../static/img/message.png" alt=""/>
@@ -40,6 +40,8 @@
                 <img v-if="allMsg" class="mySs_person" :src="fileURL+allMsg.sysUser.avatar" style="border-radius: 50%" alt=""/>
             </div>
         </div>
+
+        <div></div>
     </div>
 </template>
 
@@ -66,7 +68,7 @@
                 guigeSpan: -1,
                 allMsg:"",
                 //fileURL: 'http://10.150.159.220:9000?url=',
-                fileURL: 'http://61.183.86.13:9000?url=',
+                fileURL: 'http://61.183.86.6:9000?url=',
                 isMessage:false
             }
         },
@@ -237,14 +239,14 @@
     }
 
     .mySs {
+        position: relative;
         height: 30px;
         width: 160px;
         border-radius: 20px;
-        border: solid 2px white;
-        position: relative;
+        /*border: solid 2px white;*/
         top: 16px;
-        left: 2%;
-        cursor: pointer;
+        left: -8%;
+        /*cursor: pointer;*/
     }
 
     .mySs .mySs_img {
@@ -275,7 +277,7 @@
 
     .mySs .mySs_xx {
         position: relative;
-        left: 120%;
+        left: 104%;
     }
 
     .mySs .mySs_xx > img {
